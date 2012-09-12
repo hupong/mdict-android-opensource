@@ -1,0 +1,7 @@
+此目录下的libmdx.so文件版权为Rayman Zhang （raymanzhang@gmail.com) 所有。该文件仅可用于“MDict for Android"软件内。未经Rayman Zhang授权不可以将这些文件用于任何其他软件或其他用途。
+
+The "libmdx.so" file are copyrighted by Rayman Zhang (raymanzhang@gmail.com). It's licensed for use within "MDict for Android" only。Using it for any other softwares or any other purposes without authorization of Rayman Zhang are prohibited.
+
+
+Rayman Zhang
+2011/08/16

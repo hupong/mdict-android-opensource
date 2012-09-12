@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, version 3 of the License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<project name="module_mdict" default="compile.module.mdict">
+  <dirname property="module.mdict.basedir" file="${ant.file.module_mdict}"/>
+  
+  <property name="module.jdk.home.mdict" value="${jdk.home.android_3.2_platform}"/>
+  <property name="module.jdk.bin.mdict" value="${jdk.bin.android_3.2_platform}"/>
+  <property name="module.jdk.classpath.mdict" value="jdk.classpath.android_3.2_platform"/>
+  
+  <property name="compiler.args.mdict" value="${compiler.args}"/>
+  
+  <property name="mdict.output.dir" value="${module.mdict.basedir}/bin/classes"/>
+  <property name="mdict.testoutput.dir" value="${module.mdict.basedir}/bin/classes"/>
+  
+  <path id="mdict.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="mdict.module.production.classpath">
+    <path refid="${module.jdk.classpath.mdict}"/>
+    <pathelement location="${actionbarsherlock.output.dir}"/>
+  </path>
+  
+  <path id="mdict.runtime.production.module.classpath">
+    <pathelement location="${mdict.output.dir}"/>
+    <path refid="actionbarsherlock.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="mdict.module.classpath">
+    <path refid="${module.jdk.classpath.mdict}"/>
+    <pathelement location="${mdict.output.dir}"/>
+    <pathelement location="${actionbarsherlock.output.dir}"/>
+  </path>
+  
+  <path id="mdict.runtime.module.classpath">
+    <pathelement location="${mdict.output.dir}"/>
+    <path refid="actionbarsherlock.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.mdict">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.mdict">
+    <patternset refid="excluded.from.module.mdict"/>
+  </patternset>
+  
+  <path id="mdict.module.sourcepath">
+    <dirset dir="${module.mdict.basedir}">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.mdict" depends="compile.module.mdict.production,compile.module.mdict.tests" description="Compile module MDict"/>
+  
+  <target name="compile.module.mdict.production" depends="register.custom.compilers,compile.module.actionbarsherlock" description="Compile module MDict; production classes">
+    <mkdir dir="${mdict.output.dir}"/>
+    <javac2 destdir="${mdict.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mdict}/javac">
+      <compilerarg line="${compiler.args.mdict}"/>
+      <bootclasspath refid="mdict.module.bootclasspath"/>
+      <classpath refid="mdict.module.production.classpath"/>
+      <src refid="mdict.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.mdict"/>
+    </javac2>
+    
+    <copy todir="${mdict.output.dir}">
+      <fileset dir="${module.mdict.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.mdict.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.mdict.tests" depends="register.custom.compilers,compile.module.mdict.production" description="compile module MDict; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.mdict" description="cleanup module">
+    <delete dir="${mdict.output.dir}"/>
+    <delete dir="${mdict.testoutput.dir}"/>
+  </target>
+</project>

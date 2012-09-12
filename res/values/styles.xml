@@ -1,0 +1,33 @@
+<!--
+  ~ Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, version 3 of the License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <style name="Widget.MDict.ActionButton" parent="Widget.Sherlock.ActionButton">
+        <item name="android:width">40dp</item>
+    </style>
+    <style name="Theme.MDict" parent="@style/Theme.Sherlock">
+        <item name="icon">@drawable/app_icon_medium</item>
+        <!--
+            <item name="android:actionButtonStyle">@style/Widget.MDict.ActionButton</item>
+            <item name="absForceOverflow">true</item>
+            <item name="customNavigationLayout">@layout/search_edit</item>
+            <item name="windowSplitActionBar">true</item>
+        -->
+    </style>
+    <style name="Theme.MDict.ForceOverFlow" parent="@style/Theme.MDict">
+        <item name="absForceOverflow">true</item>
+    </style>
+</resources>

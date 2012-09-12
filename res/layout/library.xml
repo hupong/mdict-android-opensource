@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, version 3 of the License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tlv="http://schemas.android.com/apk/res/cn.mdict"
+    android:id="@+id/library_view"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+    <cn.mdict.widgets.TouchListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:background="#FFFFFF"
+        android:id="@+id/library_list" android:cacheColorHint="#00000000"
+        android:divider="#000000"
+        tlv:normal_height="40dp"
+        tlv:expanded_height="80dp"
+        tlv:grabber="@+id/grabber"
+        tlv:remove_mode="none"
+        tlv:dragndrop_background="@color/action_bar_selected_bg" >
+
+     </cn.mdict.widgets.TouchListView>
+</LinearLayout>

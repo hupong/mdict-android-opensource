@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, version 3 of the License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+    <item android:id="@+id/search"
+          android:icon="@drawable/ic_search"
+          android:title="@string/search"
+          android:showAsAction="always|collapseActionView"
+          android:actionViewClass="android.widget.EditText" />
+    <item android:id="@+id/speak"
+          android:icon="@drawable/ic_speak"
+          android:title="@string/speak"
+          android:showAsAction="always"/>
+
+    <item android:id="@+id/add_to_fav"
+          android:icon="@drawable/ic_add_to_fav"
+          android:title="@string/add_to_fav"
+          android:showAsAction="always"/>
+-->
+
+    <item android:id="@+id/library"
+          android:icon="@drawable/ic_library"
+          android:title="@string/library"
+          android:showAsAction="always"
+            />
+
+    <item android:id="@+id/history"
+          android:icon="@drawable/ic_history"
+          android:title="@string/history"
+          android:showAsAction="always"
+            />
+
+    <item android:id="@+id/favorites"
+          android:icon="@drawable/ic_favorites"
+          android:title="@string/favorites"
+          android:showAsAction="always"
+            />
+
+    <item android:id="@+id/view"
+          android:icon="@drawable/btn_view"
+          android:title="@string/view"
+          android:showAsAction="always">
+        <menu>
+            <!-- <group android:checkableBehavior="single"> -->
+            <item android:id="@+id/no_chn_conv"
+                  android:icon="@drawable/ic_no_chn_conv"
+                  android:title="@string/no_chn_conv"
+                  android:showAsAction="never"
+                  android:checkable="true"/>
+            <item android:id="@+id/to_simp_chn"
+                  android:icon="@drawable/ic_to_simp_chn"
+                  android:title="@string/to_simp_chn"
+                  android:showAsAction="never"
+                  android:checkable="true" />
+            <item android:id="@+id/to_trad_chn"
+                  android:icon="@drawable/ic_to_trad_chn"
+                  android:title="@string/to_trad_chn"
+                  android:showAsAction="never"
+                  android:checkable="true" />
+            <item android:id="@+id/zoom_in"
+                  android:icon="@drawable/ic_zoom_in"
+                  android:showAsAction="never"
+                  android:title="@string/zoom_in" />
+            <item android:id="@+id/zoom_out"
+                  android:icon="@drawable/ic_zoom_out"
+                  android:showAsAction="never"
+                  android:title="@string/zoom_out" />
+            <item android:id="@+id/expand_all"
+                  android:title="@string/expand_all"
+                  android:showAsAction="never" />
+            <item android:id="@+id/collapse_all"
+                  android:title="@string/collapse_all"
+                  android:showAsAction="never" />
+
+            <!--    </group> -->
+        </menu>
+    </item>
+    <item android:id="@+id/navigate"
+          android:title="@string/navigate"
+          android:icon="@drawable/ic_navigate"
+          android:showAsAction="ifRoom">
+        <menu>
+            <item android:id="@+id/entry_prev"
+                  android:icon="@drawable/ic_entry_prev"
+                  android:title="@string/entry_prev"
+                  android:showAsAction="never"/>
+            <item android:id="@+id/entry_next"
+                  android:icon="@drawable/ic_entry_next"
+                  android:title="@string/entry_next"
+                  android:showAsAction="never"/>
+
+            <item android:id="@+id/history_back"
+                  android:icon="@drawable/ic_nav_back"
+                  android:title="@string/history_back"
+                  android:showAsAction="never"/>
+            <item android:id="@+id/history_forward"
+                  android:icon="@drawable/ic_nav_forward"
+                  android:title="@string/history_forward"
+                  android:showAsAction="never"/>
+        </menu>
+    </item>
+    <item android:id="@+id/settings"
+          android:icon="@drawable/ic_setting"
+          android:title="@string/settings"
+          android:showAsAction="ifRoom"
+            />
+    <item android:id="@+id/help"
+          android:title="@string/help"
+          android:icon="@drawable/ic_info"
+          android:showAsAction="ifRoom">
+        <menu>
+            <item android:id="@+id/aboutapp"
+                  android:title="@string/aboutapp"
+                  android:showAsAction="never"/>
+            <item android:id="@+id/aboutdict"
+                  android:title="@string/aboutdict"
+                  android:showAsAction="never"/>
+        </menu>
+    </item>
+    <item android:id="@+id/quit"
+          android:title="@string/quit"
+          android:icon="@drawable/ic_quit"
+          android:showAsAction="ifRoom"/>
+</menu>

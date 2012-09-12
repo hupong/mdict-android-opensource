@@ -1,0 +1,167 @@
+<!--
+  ~ Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, version 3 of the License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=$initial_scale$, maximum-scale=5.0" />
+
+    $extra_header$
+    <style type="text/css">
+        $css$
+    </style>
+<script>
+<!--
+
+$jscode$
+
+-->
+
+<!--
+
+var expand_single=$expand_single$;
+
+function hasClass(ele,cls) {
+  return ele.className.match(new RegExp("(\\s|^)"+cls+"(\\s|$)"));
+}
+function addClass(ele,cls) {
+  if (!this.hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+  if (hasClass(ele,cls)) {
+    var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)");
+    ele.className=ele.className.replace(reg," ");
+  }
+}
+
+function FixIFrameSrc(elem){
+    if ( elem.tagName=='IFRAME' && ( elem.src==null || elem.src=="" )){
+        elem.src=elem.attributes["src1"].value;
+    }
+}
+function ToggleShow(elemId, arrowId){
+
+    var elem = document.getElementById(elemId);
+    var arrow = document.getElementById(arrowId)
+
+    var visible= (elem.className == "__mdx_dict_block_collapse");
+    if ( visible && expand_single ){
+        ShowAllBlock(false, false, elemId);
+    }
+    if (elem){
+        if ( visible )
+             FixIFrameSrc(elem);
+        alert("scroll into view:"+elem.offsetLeft+","+elem.offsetTop);
+        elem.className=visible? "__mdx_dict_block_expand":"__mdx_dict_block_collapse";
+        if (visible){
+            elem = document.getElementById(elemId);
+            elem.scrollIntoView(true);
+            //alert("Scroll into view:"+elem);
+            //window.scrollTo(elem.offsetLeft, elem.offsetTop);
+        }
+    }
+    if (arrow)
+        arrow.src=visible?"content://asset.mdict.cn/arrow_down.png":"content://asset.mdict.cn/arrow_up.png";
+}
+
+
+function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
+  allArrowImgs=document.getElementsByName("__mdx_arrow_img");
+  for(i=0; i<allArrowImgs.length; ++i){
+    allArrowImgs[i].src=visible?"content://asset.mdict.cn/arrow_down.png":"content://asset.mdict.cn/arrow_up.png";
+    if (onlyFirstOne)
+      break;
+  }
+
+  allBlockDivs=document.getElementsByName("__mdx_block_div");
+  for(i=0; i<allBlockDivs.length; ++i){
+    if (allBlockDivs[i].id!=exceptElementId) {
+      allBlockDivs[i].className=visible?"__mdx_dict_block_expand":"__mdx_dict_block_collapse";
+      if ( visible )
+        FixIFrameSrc(allBlockDivs[i]);
+    }
+    if (onlyFirstOne)
+      break;
+  }
+
+}
+
+function SetupMdx(){
+    if (!iframe_mode ) {
+        SetupTouchEventListener();
+    } else{
+        //document.body.style.background='black';
+        alert("iframe mode, skip setup eventlistener for top window");
+    }
+    var expand_all=$start_expand_all$;
+    ShowAllBlock(true, !expand_all, "");
+
+    var elements = document.getElementsByClassName("__mdx_block_title");
+    for(var i = 0; i < elements.length; i++) {
+      var elm = elements[i];
+      elm.addEventListener("touchstart", function(event) {
+        addClass(this, "__mdx_block_title_active");event.cancelBubble=true;}, false);
+      elm.addEventListener("touchmove", function() {
+        removeClass(this, "__mdx_block_title_active");}, false);
+      elm.addEventListener("touchend", function() {
+        removeClass(this, "__mdx_block_title_active");event.cancelBubble=true;}, false);
+      elm.addEventListener("touchcancel", function() {
+        removeClass(this, "__mdx_block_title_active");}, false);
+    }
+    //window.location="mdxentry://mdx.mdict.cn/~!";
+    window.MdxDict.onPageComplete();
+}
+-->
+</script>
+<style>
+    .__mdx_btn {
+      font-size: 1em;
+      line-height: normal;
+      margin-left: 8px;
+      margin-right: 8px;
+
+      padding: 4px 10px 4px 10px;
+      border-radius: 6px;
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ececec), to(#d6d6d6));
+      background-image: -webkit-linear-gradient(top, #ececec, #d6d6d6);
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      border-color: #C43C35 #C43C35 #882A25;
+      border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    }
+    .__mdx_block_title{
+        border-bottom:#ccc;
+        margin:0px 0px 0.5em 0px;
+        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ececec), to(#d6d6d6));
+        background-image: -webkit-linear-gradient(top, #ececec, #d6d6d6);
+        TABLE-LAYOUT:fixed;
+        word-break:break-all;
+    }
+    .__mdx_block_title_active {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c0c0c0), to(#808080));
+    background-image: -webkit-linear-gradient(top, #c0c0c0, #808080);
+    }
+    .__mdx_dict_block_expand{
+        display: block
+    }
+    .__mdx_dict_block_collapse{
+        display: none
+    }
+</style>
+</head>
+<body onload="javascript:SetupMdx();" style="margin:1px;padding:0px;">
+

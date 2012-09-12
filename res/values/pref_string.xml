@@ -1,0 +1,102 @@
+<!--
+  ~ Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, version 3 of the License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="preference_name">MDictPref</string>
+    <string name="prefLast_dict_id">"LastDictId</string>
+    <string name="pref_app_owner">AppOwner</string>
+    <string name="pref_auto_play_pronunciation">AutoPlayPronunciation</string>
+    <string name="pref_auto_lookup_clipboard">AutoLookupClipboard</string>
+    <string name="pref_lock_rotation">LockRotation</string>
+    <string name="pref_shake_for_random_entry">ShakeForRandomEntry</string>
+    <string name="pref_use_popover_for_lookup">UsePopoverForLookup</string>
+    <string name="pref_auto_sip">AutoSIP</string>
+    <string name="pref_multi_dict_lookup_mode">MultiDictLookupMode</string>
+    <string name="pref_chn_conversion">ChnConversion</string>
+    <string name="pref_extra_dict_dir">ExtraDictDir</string>
+    <string name="pref_show_splash">ShowSplash</string>
+    <string name="pref_use_built_in_ipa_font">UseBuiltInIPAFont</string>
+    <string name="pref_use_tts">UseTTS</string>
+    <string name="pref_tts_locale">TTSLocale</string>
+    <string name="pref_preferred_tts_engine">PreferredTTSEngine</string>
+    <string name="pref_show_toolbar">ShowToolbar</string>
+    <string name="pref_multi_dict_expand_only_one">MultiDictExpandOnlyOne</string>
+    <string name="pref_multi_dict_default_expand_all">MultiDictDefaultExpandAll</string>
+    <string name="pref_use_finger_gesture">UseFingerGesture</string>
+    <string name="pref_high_speed_mode">HigeSpeedMode</string>
+    <string name="pref_monitor_clipboard">MonitorClipboard</string>
+    <string name="pref_show_in_notification">ShowInNotification</string>
+    <string name="pref_use_lru_for_dict_order">UseLRUForDictOrder</string>
+
+    <string name="pref_default_tts_locale">en_GB</string>
+    <string name="pref_default_auto_play_pronunciation">false</string>
+    <string name="pref_default_use_tts">false</string>
+    <string name="pref_default_show_splash">true</string>
+    <string name="pref_default_auto_lookup_clipboard">false</string>
+    <string name="pref_default_use_built_in_ipa_font">true</string>
+    <string name="pref_default_lock_rotation">true</string>
+    <string name="pref_default_use_popover_for_lookup">true</string>
+    <string name="pref_default_shake_for_random_entry">false</string>
+    <string name="pref_default_show_toolbar">true</string>
+    <string name="pref_default_auto_sip">true</string>
+    <string name="pref_default_multi_dict_default_expand_all">false</string>
+    <string name="pref_default_multi_dict_expand_only_one">true</string>
+    <string name="pref_default_use_finger_gesture">true</string>
+    <string name="pref_default_high_speed_mode">true</string>
+    <string name="pref_default_monitor_clipboard">true</string>
+    <string name="pref_default_show_in_notification">false</string>
+    <string name="pref_default_use_lru_for_dict_order">false</string>
+
+    <string name="pref_category_sound">pref_category_sound</string>
+    <string name="pref_category_basic">pref_category_basic</string>
+    
+    <string-array name="tts_supported_language">
+        <item>en_GB</item>
+        <item>en_US</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>it</item>
+        <item>spa</item>
+        <item>zh_CN</item>
+    </string-array>
+    <string-array name="tts_supported_language_name">
+        <item>English (GB)</item>
+        <item>English (US)</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Italian</item>
+        <item>Spanish</item>
+        <item>Chinese</item>
+    </string-array>
+
+    <!-- system resource -->
+    <!--
+    <string name="css1"><![CDATA[<STYLE TYPE="text/css">
+        @font-face {font-family: \'DejaVu Sans\';
+                font-style:  normal;
+                font-weight: normal;                
+                src: url(\'file:///android_asset/DejaVuSans.ttf\'); }
+        *{font-family:\'DejaVu Sans\', arial, sans-serif;}
+    </STYLE>]]></string>
+    -->
+    <string name="ipa_font_css"><![CDATA[<STYLE TYPE="text/css">
+        @font-face {font-family: \'Droid Sans IPA\';
+                font-style:  normal;
+                font-weight: normal;
+                src: url(\'content://localfile.mdict.cn/droid_sans.ttf\'); }
+        *{font-family:\'Droid Sans IPA\', DroidSans, arial, sans-serif;}
+    </STYLE>]]></string>
+</resources>
