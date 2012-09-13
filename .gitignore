@@ -1,4 +1,5 @@
-
 /bin
 /classes
 /gen
+library/actionbar-sherlock/bin/
+library/actionbar-sherlock/gen/
