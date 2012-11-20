@@ -18,81 +18,26 @@
       </GlobalState>
     </option>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cc732384-6a3f-40ae-b631-7550406d1ccd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Welcome.htm" afterPath="$PROJECT_DIR$/assets/Welcome.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/block_begin.html" afterPath="$PROJECT_DIR$/assets/block_begin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/block_begin_h.html" afterPath="$PROJECT_DIR$/assets/block_begin_h.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/block_end.html" afterPath="$PROJECT_DIR$/assets/block_end.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/block_end_h.html" afterPath="$PROJECT_DIR$/assets/block_end_h.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/html_begin.html" afterPath="$PROJECT_DIR$/assets/html_begin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/html_end.html" afterPath="$PROJECT_DIR$/assets/html_end.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/mdict.css" afterPath="$PROJECT_DIR$/assets/mdict.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/union_grp_title.html" afterPath="$PROJECT_DIR$/assets/union_grp_title.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/default.properties" afterPath="$PROJECT_DIR$/default.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/Library_License.txt" afterPath="$PROJECT_DIR$/libs/Library_License.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mdict.properties" afterPath="$PROJECT_DIR$/mdict.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mdict.xml" afterPath="$PROJECT_DIR$/mdict.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module_mdict.xml" afterPath="$PROJECT_DIR$/module_mdict.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/btn_view.xml" afterPath="$PROJECT_DIR$/res/drawable/btn_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/content_view_bg.xml" afterPath="$PROJECT_DIR$/res/drawable/content_view_bg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/ic_clear.xml" afterPath="$PROJECT_DIR$/res/drawable/ic_clear.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/round_background.xml" afterPath="$PROJECT_DIR$/res/drawable/round_background.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/content_view.xml" afterPath="$PROJECT_DIR$/res/layout/content_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/dict_view.xml" afterPath="$PROJECT_DIR$/res/layout/dict_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/entry_list_item_view.xml" afterPath="$PROJECT_DIR$/res/layout/entry_list_item_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/entry_view.xml" afterPath="$PROJECT_DIR$/res/layout/entry_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/favorites_frame.xml" afterPath="$PROJECT_DIR$/res/layout/favorites_frame.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/grid_view_menu.xml" afterPath="$PROJECT_DIR$/res/layout/grid_view_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/grid_view_menu_item.xml" afterPath="$PROJECT_DIR$/res/layout/grid_view_menu_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/history_frame.xml" afterPath="$PROJECT_DIR$/res/layout/history_frame.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/library.xml" afterPath="$PROJECT_DIR$/res/layout/library.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main_frame.xml" afterPath="$PROJECT_DIR$/res/layout/main_frame.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/mdxview.xml" afterPath="$PROJECT_DIR$/res/layout/mdxview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/search_edit.xml" afterPath="$PROJECT_DIR$/res/layout/search_edit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/simple_list_item_checked.xml" afterPath="$PROJECT_DIR$/res/layout/simple_list_item_checked.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/dict_view_option_menu.xml" afterPath="$PROJECT_DIR$/res/menu/dict_view_option_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/history_frame_item_option_menu.xml" afterPath="$PROJECT_DIR$/res/menu/history_frame_item_option_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/history_frame_option_menu.xml" afterPath="$PROJECT_DIR$/res/menu/history_frame_option_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/colors.xml" afterPath="$PROJECT_DIR$/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/searchable.xml" afterPath="$PROJECT_DIR$/res/xml/searchable.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/settings.xml" afterPath="$PROJECT_DIR$/res/xml/settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/AddonFuncUnt.java" afterPath="$PROJECT_DIR$/src/cn/mdict/AddonFuncUnt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java" afterPath="$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/FavoritesFrame.java" afterPath="$PROJECT_DIR$/src/cn/mdict/FavoritesFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/HistoryFrame.java" afterPath="$PROJECT_DIR$/src/cn/mdict/HistoryFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/LibraryFrame.java" afterPath="$PROJECT_DIR$/src/cn/mdict/LibraryFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/MainForm.java" afterPath="$PROJECT_DIR$/src/cn/mdict/MainForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/MemoryFileUtil.java" afterPath="$PROJECT_DIR$/src/cn/mdict/MemoryFileUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/SettingFrame.java" afterPath="$PROJECT_DIR$/src/cn/mdict/SettingFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/SimpleGestureFilter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/SimpleGestureFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/SocketAssetFileDescriptor.java" afterPath="$PROJECT_DIR$/src/cn/mdict/SocketAssetFileDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/WebViewGestureFilter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/WebViewGestureFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/DictBookmarkRef.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/DictBookmarkRef.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/DictEntry.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/DictEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/DictPref.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/DictPref.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngine.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngineSetting.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngineSetting.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxLibraryMgrRef.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxLibraryMgrRef.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxUtils.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/BookmarkAdapter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/BookmarkAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewList.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/GridViewMenu.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/GridViewMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/LibraryAdapter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/LibraryAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxAdapter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxEntryView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxEntryView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/armeabi/libiconv.so" afterPath="$PROJECT_DIR$/libs/armeabi/libiconv.so" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/x86/libiconv.so" afterPath="$PROJECT_DIR$/libs/x86/libiconv.so" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/armeabi/libmdx.so" afterPath="$PROJECT_DIR$/libs/armeabi/libmdx.so" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/x86/libmdx.so" afterPath="$PROJECT_DIR$/libs/x86/libmdx.so" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/Actionbar-sherlock.iml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/Actionbar-sherlock.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MDict.iml" afterPath="$PROJECT_DIR$/MDict.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MDict.iws" />
     <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353382767670" ignored="false" />
+    <file path="/fragment.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353290508486" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +57,8 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_any>
+    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -120,6 +66,7 @@
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
         <option name="CONDITION_ENABLED" value="false" />
@@ -135,6 +82,7 @@
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
         <option name="CONDITION_ENABLED" value="false" />
@@ -144,11 +92,14 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="MDict" />
+    <favorites_list name="Current task" />
   </component>
   <component name="FileEditorManager">
     <leaf>
@@ -156,10 +107,7 @@
         <entry file="file://$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="686" column="33" selection-start="25664" selection-end="25664" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#26798#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -167,18 +115,25 @@
       <file leaf-file-name="DictContentProvider.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="314" column="79" selection-start="12471" selection-end="12471" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#18829#0" expanded="true" />
-              </folding>
+            <state line="117" column="91" selection-start="4392" selection-end="4392" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Library_License.txt" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/libs/Library_License.txt">
+      <file leaf-file-name="EntryViewSingle.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="74" selection-start="395" selection-end="395" vertical-scroll-proportion="0.20547946">
+            <state line="69" column="88" selection-start="2852" selection-end="2852" vertical-scroll-proportion="0.92365456">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MdxEngine.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="260" column="60" selection-start="8968" selection-end="8968" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -196,7 +151,7 @@
       <file leaf-file-name="SimpleActionModeCallbackAgent.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/mdict/SimpleActionModeCallbackAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="98" selection-start="1251" selection-end="1251" vertical-scroll-proportion="0.0">
+            <state line="36" column="26" selection-start="1251" selection-end="1251" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -206,15 +161,6 @@
         <entry file="file://$PROJECT_DIR$/src/cn/mdict/mdx/DictBookmarkRef.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="26" column="13" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="block_begin.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/block_begin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -257,6 +203,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
@@ -272,10 +223,10 @@
         <option value="$PROJECT_DIR$/src/cn/mdict/mdx/DictPref.java" />
         <option value="$PROJECT_DIR$/src/cn/mdict/MainForm.java" />
         <option value="$PROJECT_DIR$/src/cn/mdict/SettingFrame.java" />
-        <option value="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java" />
         <option value="$PROJECT_DIR$/libs/Library_License.txt" />
+        <option value="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java" />
       </list>
     </option>
   </component>
@@ -297,10 +248,9 @@
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
+    <option name="y" value="22" />
     <option name="width" value="1864" />
-    <option name="height" value="1098" />
+    <option name="height" value="970" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -376,7 +326,69 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android" />
+              <option name="myItemId" value="mdict-android-opensource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MDict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mdict-android-opensource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mdict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MDict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mdict-android-opensource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mdict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widgets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MDict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mdict-android-opensource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mdict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mdx" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -412,14 +424,15 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="221" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="217" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="a22" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="a21" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.32296652" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="AndroidProguardConfigPath" value="D:\ProjectHome\mdict-android\proguard.cfg" />
-    <property name="options.lastSelected" value="copyright" />
-    <property name="project.structure.side.proportion" value="0.1969697" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.File Status" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="project.structure.side.proportion" value="0.1969697" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="AndroidRunProguardForReleaseBuild" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -443,9 +456,10 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.200.70:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="" />
     <property name="KeystoreLocation" value="D:\ProjectHome\mdict-release-key.keystore" />
     <property name="KeyAlias" value="mdict-rel" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -468,17 +482,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Android Application.MDict">
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
-      <option name="PROGRAM_PARAMETERS" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -494,12 +497,7 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -507,29 +505,7 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -557,12 +533,20 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -577,12 +561,7 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -603,12 +582,7 @@
       </option>
       <envs />
       <patterns />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
@@ -623,12 +597,7 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="false" name="MDict" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="MDict" />
@@ -733,36 +702,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1864" height="1098" extended-state="6" />
+    <frame x="0" y="22" width="1864" height="970" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26416907" sideWeight="0.49571735" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3172269" sideWeight="0.39025697" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6613455" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3382353" sideWeight="0.50984806" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33647057" sideWeight="0.50984806" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32660902" sideWeight="0.48621273" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2977906" sideWeight="0.49776787" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2977906" sideWeight="0.4715813" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44069767" sideWeight="0.17107485" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39764705" sideWeight="0.4715813" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32853025" sideWeight="0.49567568" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17028381" sideWeight="0.3067227" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17028381" sideWeight="0.36869746" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.169967" sideWeight="0.7105882" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976928" sideWeight="0.65802115" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39945945" sideWeight="0.67869616" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.169967" sideWeight="0.28117648" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756963" sideWeight="0.48283625" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="452" y="311" width="1116" height="473" />
       <window_info id="Jindent" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949087" sideWeight="0.49776787" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6762728" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22933142" sideWeight="0.7094972" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14180672" sideWeight="0.17107485" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3172269" sideWeight="0.39025697" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976928" sideWeight="0.65802115" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39945945" sideWeight="0.67869616" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39827254" sideWeight="0.49785867" order="5" side_tool="false" content_ui="tabs" />
@@ -791,7 +762,6 @@
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
     <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
-    <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
@@ -801,9 +771,9 @@
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
     <option name="LAST_COMMIT_MESSAGE" value="try fix crash report in google play." />
@@ -829,23 +799,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/app_icon_medium.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="13" selection-start="2866" selection-end="2866" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1089" selection-end="1179" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/mdict/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="399" column="21" selection-start="16244" selection-end="16244" vertical-scroll-proportion="0.0" />
@@ -853,26 +806,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/html_begin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="21" selection-start="4320" selection-end="4320" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="132" column="21" selection-start="4320" selection-end="4320" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/block_begin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="39" column="0" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/mdict/SettingFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="0" selection-start="2326" selection-end="2326" vertical-scroll-proportion="0.0" />
+        <state line="65" column="0" selection-start="2326" selection-end="2326" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngineSetting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="40" selection-start="1720" selection-end="1720" vertical-scroll-proportion="0.0" />
+        <state line="47" column="40" selection-start="1720" selection-end="1720" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
@@ -892,16 +845,13 @@
     <entry file="file://$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="686" column="33" selection-start="25664" selection-end="25664" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#26798#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/mdict/SimpleActionModeCallbackAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="98" selection-start="1251" selection-end="1251" vertical-scroll-proportion="0.0">
+        <state line="36" column="26" selection-start="1251" selection-end="1251" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -920,18 +870,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java">
+    <entry file="file://$PROJECT_DIR$/libs/Library_License.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="314" column="79" selection-start="12471" selection-end="12471" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#18829#0" expanded="true" />
-          </folding>
+        <state line="6" column="46" selection-start="395" selection-end="395" vertical-scroll-proportion="0.1125" />
+      </provider>
+    </entry>
+    <entry file="uml://MODULES/mdl-MDict">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MODULES</ID>
+          <OriginalElement>mdl-MDict</OriginalElement>
+          <nodes>
+            <node x="" y="">mdl-Actionbar-sherlock</node>
+            <node x="" y="">mdl-MDict</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="83.0" y="55.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/Library_License.txt">
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="74" selection-start="395" selection-end="395" vertical-scroll-proportion="0.20547946">
+        <state line="117" column="91" selection-start="4392" selection-end="4392" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="260" column="60" selection-start="8968" selection-end="8968" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="88" selection-start="2852" selection-end="2852" vertical-scroll-proportion="0.92365456">
           <folding />
         </state>
       </provider>
@@ -953,7 +931,7 @@
       </state>
       <state key="Copyright.UI">
         <settings>
-          <last-edited>GPL 3.0</last-edited>
+          <last-edited>Octopus Studio</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -969,7 +947,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.37687862" />
+                <option value="0.1969697" />
               </list>
             </option>
           </splitter-proportions>
@@ -1029,7 +1007,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.37687862" />
+                <option value="0.1969697" />
               </list>
             </option>
           </splitter-proportions>
