@@ -41,6 +41,9 @@
     <string name="pref_show_in_notification">ShowInNotification</string>
     <string name="pref_use_lru_for_dict_order">UseLRUForDictOrder</string>
 
+    <string name="pref_floating_window_height">FloatingWindowHeight</string>
+
+
     <string name="pref_default_tts_locale">en_GB</string>
     <string name="pref_default_auto_play_pronunciation">false</string>
     <string name="pref_default_use_tts">false</string>
@@ -60,9 +63,11 @@
     <string name="pref_default_show_in_notification">false</string>
     <string name="pref_default_use_lru_for_dict_order">false</string>
 
+    <string name="pref_default_floating_window_height">-1</string>
+
     <string name="pref_category_sound">pref_category_sound</string>
     <string name="pref_category_basic">pref_category_basic</string>
-    
+
     <string-array name="tts_supported_language">
         <item>en_GB</item>
         <item>en_US</item>

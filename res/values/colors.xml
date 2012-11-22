@@ -16,4 +16,10 @@
 
 <resources>
     <color name="action_bar_selected_bg">#9933b5e5</color>
+    <color name="transparent">#0000</color>
+    <!-- 0000是全透明，您也可以9000 -->
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="gray">#999999</color>
+    <color name="black">#000000</color>
 </resources>

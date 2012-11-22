@@ -1,0 +1,224 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=gb2312">
+<style>
+    BODY {
+        MARGIN: 10pt;
+        FONT-FAMILY: Tahoma, Verdana, Helvetica, Arial, sans-serif;
+        BACKGROUND-COLOR: white;
+    }
+
+    A:visited {
+        COLOR: #666;
+    }
+
+    A:active {
+        COLOR: #f60;
+    }
+
+    A:hover {
+        COLOR: #f60;
+    }
+
+    A.search {
+        FONT-FAMILY: Tahoma, Verdana, Helvetica, Arial, sans-serif;
+        FONT-SIZE: 14px;
+        MARGIN: 3pt;
+        COLOR: navy;
+        LINE-HEIGHT: 120%;
+        TEXT-DECORATION: none;
+    }
+
+    A {
+        FONT-SIZE: 12px;
+        MARGIN: 3pt;
+        COLOR: #416D96;
+        LINE-HEIGHT: 120%;
+        TEXT-DECORATION: none;
+    }
+
+    .input1 {
+        padding: 2px;
+        BORDER-RIGHT: #416D96 1px solid;
+        BORDER-TOP: #416D96 1px solid;
+        FONT-SIZE: 13px;
+        BACKGROUND: #ffffff;
+        BORDER-LEFT: #416D96 1px solid;
+        WIDTH: 80px;
+        COLOR: #416D96;
+        BORDER-BOTTOM: #416D96 1px solid;
+        FONT-FAMILY: arial;
+        HEIGHT: 23px;
+        position: relative;
+        top: 10px;
+    }
+
+    .input2 {
+        BORDER-RIGHT: #416D96 1px solid;
+        BORDER-TOP: #416D96 1px solid;
+        FONT-SIZE: 13px;
+        BACKGROUND: #ffffff;
+        BORDER-LEFT: #416D96 1px solid;
+        WIDTH: 80px;
+        COLOR: #416D96;
+        BORDER-BOTTOM: #416D96 1px solid;
+        FONT-FAMILY: arial;
+        HEIGHT: 23px;
+        position: relative;
+        top: 10px;
+    }
+
+    TD {
+        FONT-SIZE: 14px;
+        COLOR: #416D96;
+        LINE-HEIGHT: 120%;
+        TEXT-DECORATION: none;
+    }
+
+    TD A.a4 {
+        COLOR: #416D96;
+        FONT-WEIGHT: normal;
+        TEXT-DECORATION: none;
+    }
+
+    TD A {
+        FONT-WEIGHT: normal;
+        COLOR: #416D96;
+    }
+
+    TR.e TD {
+        FONT-FAMILY: Verdana, Tahoma;
+    }
+
+    TR.e A:hover {
+        FONT-SIZE: 14px;
+    }
+
+    TR.e A {
+        FONT-SIZE: 14px;
+    }
+
+    TR.c TD {
+        padding-bottom: 16px;
+        COLOR: olive;
+        FONT-FAMILY: Tahoma, Verdana;
+    }
+
+    TR.t {
+        COLOR: #416D96;
+        FONT-FAMILY: Tahoma, Verdana;
+    }
+
+    TR.c A:hover {
+        FONT-SIZE: 14px;
+        COLOR: #416D96;
+    }
+
+    TR.c A {
+        FONT-SIZE: 14px;
+        COLOR: olive;
+        MARGIN: 0pt;
+    }
+
+    TR.s TD {
+        FONT-SIZE: 12px;
+        COLOR: gray;
+        FONT-FAMILY: Tahoma, Verdana;
+        TEXT-ALIGN: right;
+    }
+
+    tr.abstract {
+        color: black;
+    }
+
+    tr.url {
+        color: #416D96;
+    }
+
+    B {
+        COLOR: #FF5809;
+        FONT-SIZE: 14px;
+    }
+
+    H4 {
+        COLOR: navy;
+    }
+
+    SUB {
+        COLOR: gray;
+    }
+</style>
+<script type="text/javascript">
+    function windows_load() {
+        InitClickToDict(document.getElementById('dictContent'));
+    }
+
+    function isChinese(s) {
+        var patrn = /[\u4E00-\u9FA5]|[\uFE30-\uFFA0]/gi;
+        if (!patrn.exec(s)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function InitClickToDict(zxcN) {
+        var zxcnu = zxcN.childNodes.length;
+        for (var zxc0 = 0; zxc0 < zxcnu; zxc0++) {
+            var zxcTxt = zxcN.firstChild.data;
+            var zxc = zxcN.removeChild(zxcN.firstChild);
+            if (zxc.nodeType == 3) {
+                if (!isChinese(zxcTxt)) {
+                    zxcAry = zxcTxt.split(' ');
+                    for (var zxc1 = 0; zxc1 < zxcAry.length; zxc1++) {
+                        var zxcT = document.createElement('SPAN');
+                        zxcT.onmousedown = function (oEvent) {
+                            loopDictionary(parseInt(oEvent.pageX * window.devicePixelRatio, 10), parseInt(oEvent.pageY * window.devicePixelRatio, 10), this);
+                        }
+                        var zxcTTxt = document.createTextNode(zxcAry[zxc1]
+                                + ' ');
+                        zxcT.appendChild(zxcTTxt);
+                        zxcN.appendChild(zxcT);
+                    }
+                }
+                else {
+                    var zxcTTxt = document.createTextNode(zxcTxt);
+                    zxcN.appendChild(zxcTTxt);
+                }
+            } else {
+                InitClickToDict(zxc);
+                zxcN.appendChild(zxc);
+            }
+        }
+    }
+
+    function loopDictionary(x, y, obj) {
+        //alert(1);
+        var wordToSearch = obj.firstChild.data;
+        wordToSearch = wordToSearch.replace(/^\s+|\s+$/g, '');
+        var captureWorld = "";
+        var reLastWord = /^(\w+)/;
+        reLastWord.test(wordToSearch);
+        if (RegExp.$1 != null) {
+            wordToSearch = RegExp.$1;
+        } else {
+            reLastWord = /(\w+)\.$/;
+            reLastWord.test(wordToSearch);
+            if (RegExp.$1 != null) {
+                wordToSearch = RegExp.$1;
+            }
+        }
+
+        if (wordToSearch.length > 0)
+        //top.window.location.href= 'mdxentry://lookup.mdict.cn/'+x+'/'+y+'/' + word;
+            window.MdxDict.loopDictionary(x, y, wordToSearch);
+    }
+</script>
+</head>
+<body onload="windows_load()">
+<table id="dictContent">
+    {DICT_CONTENT}
+</table>
+</body>
+</html>

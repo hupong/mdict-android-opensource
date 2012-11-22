@@ -19,17 +19,16 @@ package cn.mdict.mdx;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Environment;
 import cn.mdict.R;
 
 /**
  * Class MdxEngineSetting ...
  *
  * @author rayman
- * Created on 11-12-31
+ *         Created on 11-12-31
  */
 public class MdxEngineSetting {
-    public static String preferenceName=null;
+    public static String preferenceName = null;
     public static String prefLastDictId;
     public static String prefAppOwner;
     public static String prefAutoPlayPronunciation;
@@ -55,6 +54,8 @@ public class MdxEngineSetting {
     public static String prefShowInNotification;
     public static String prefUseLRUForDictOrder;
 
+    public static String prefFloatingWindowHeight;
+
     //Preference default values
     public static String prefDefaultTTSLocale;
     public static boolean prefDefaultAutoPlayPronunciation;
@@ -75,14 +76,14 @@ public class MdxEngineSetting {
     public static boolean prefDefaultShowInNotification;
     public static boolean prefDefaultUseLRUForDictOrder;
 
+    public static int prefDefaultFloatingWindowHeight;
 
     /**
      * Constructor MdxEngineSetting creates a new MdxEngineSetting instance.
-     *
      */
     public MdxEngineSetting(Context appContext) {
-        Resources res= appContext.getResources();
-        if ( preferenceName==null ){
+        Resources res = appContext.getResources();
+        if (preferenceName == null) {
             preferenceName = res.getString(R.string.preference_name);
             prefLastDictId = res.getString(R.string.prefLast_dict_id);
             prefAppOwner = res.getString(R.string.pref_app_owner);
@@ -100,15 +101,17 @@ public class MdxEngineSetting {
             prefUseTTS = res.getString(R.string.pref_use_tts);
             prefTTSLocale = res.getString(R.string.pref_tts_locale);
             prefPreferredTTSEngine = res.getString(R.string.pref_preferred_tts_engine);
-            prefShowToolbar=res.getString(R.string.pref_show_toolbar);
-            prefMultiDictExpandOnlyOne=res.getString(R.string.pref_multi_dict_expand_only_one);
-            prefMultiDictDefaultExpandAll=res.getString(R.string.pref_multi_dict_default_expand_all);
-            prefUseFingerGesture=res.getString(R.string.pref_use_finger_gesture);
-            prefHighSpeedMode =res.getString(R.string.pref_high_speed_mode);
-            prefMonitorClipboard=res.getString(R.string.pref_monitor_clipboard);
+            prefShowToolbar = res.getString(R.string.pref_show_toolbar);
+            prefMultiDictExpandOnlyOne = res.getString(R.string.pref_multi_dict_expand_only_one);
+            prefMultiDictDefaultExpandAll = res.getString(R.string.pref_multi_dict_default_expand_all);
+            prefUseFingerGesture = res.getString(R.string.pref_use_finger_gesture);
+            prefHighSpeedMode = res.getString(R.string.pref_high_speed_mode);
+            prefMonitorClipboard = res.getString(R.string.pref_monitor_clipboard);
             prefShowInNotification = res.getString(R.string.pref_show_in_notification);
             prefUseLRUForDictOrder = res.getString(R.string.pref_use_lru_for_dict_order);
-            
+
+            prefFloatingWindowHeight = res.getString(R.string.pref_floating_window_height);
+
             prefDefaultTTSLocale = res.getString(R.string.pref_default_tts_locale);
             prefDefaultAutoPlayPronunciation = Boolean.parseBoolean(res.getString(R.string.pref_default_auto_play_pronunciation));
             prefDefaultUseTTS = Boolean.parseBoolean(res.getString(R.string.pref_default_use_tts));
@@ -119,76 +122,70 @@ public class MdxEngineSetting {
             prefDefaultUsePopoverForLookup = Boolean.parseBoolean(res.getString(R.string.pref_default_use_popover_for_lookup));
             prefDefaultShakeForRandomEntry = Boolean.parseBoolean(res.getString(R.string.pref_default_shake_for_random_entry));
             prefDefaultShowToolbar = Boolean.parseBoolean(res.getString(R.string.pref_default_show_toolbar));
-            prefDefaultAutoSIP =  Boolean.parseBoolean(res.getString(R.string.pref_default_auto_sip));
+            prefDefaultAutoSIP = Boolean.parseBoolean(res.getString(R.string.pref_default_auto_sip));
             prefDefaultMultiDictDefaultExpandAll = Boolean.parseBoolean(res.getString(R.string.pref_default_multi_dict_default_expand_all));
             prefDefaultMultiDictExpandOnlyOne = Boolean.parseBoolean(res.getString(R.string.pref_default_multi_dict_expand_only_one));
-            prefDefaultUseFingerGesture =Boolean.parseBoolean(res.getString(R.string.pref_default_use_finger_gesture));
+            prefDefaultUseFingerGesture = Boolean.parseBoolean(res.getString(R.string.pref_default_use_finger_gesture));
             prefDefaultMonitorClipboard = Boolean.parseBoolean(res.getString(R.string.pref_default_monitor_clipboard));
             prefDefaultShowInNotification = Boolean.parseBoolean(res.getString(R.string.pref_default_show_in_notification));
             prefDefaultHighSpeedMode = Boolean.parseBoolean(res.getString(R.string.pref_default_high_speed_mode));
             prefDefaultUseLRUForDictOrder = Boolean.parseBoolean(res.getString(R.string.pref_default_use_lru_for_dict_order));
 
+            prefDefaultFloatingWindowHeight = Integer.parseInt(res.getString(R.string.pref_default_floating_window_height), 10);
         }
-        this.appPrefs=appContext.getApplicationContext().getSharedPreferences(preferenceName, 0);
-	}
+        this.appPrefs = appContext.getApplicationContext().getSharedPreferences(preferenceName, 0);
+    }
 
-    public SharedPreferences getSharedPreferences(){
+    public SharedPreferences getSharedPreferences() {
         return appPrefs;
     }
 
-	/**
+    /**
      * Method getAppOwner returns the appOwner of this MdxEngineSetting object.
      *
      * @return the appOwner (type String) of this MdxEngineSetting object.
      */
     // Native declarations
-	//获取和设置使用者的名字(邮件地址)
-	public String getAppOwner(){
-        return appPrefs.getString(prefAppOwner,"");
+    //获取和设置使用者的名字(邮件地址)
+    public String getAppOwner() {
+        return appPrefs.getString(prefAppOwner, "");
     }
 
-	/**
+    /**
      * Method setAppOwner sets the appOwner of this MdxEngineSetting object.
      *
      * @param ownerName the appOwner of this MdxEngineSetting object.
-     *
      */
-    public void setAppOwner(String ownerName){
+    public void setAppOwner(String ownerName) {
         appPrefs.edit().putString(prefAppOwner, ownerName).commit();
     }
 
     /**
      * Method getPrefAutoPlayPronunciation returns the prefAutoPlayPronunciation of this MdxEngineSetting object.
      *
-     *
-     *
      * @return the prefAutoPlayPronunciation (type boolean) of this MdxEngineSetting object.
      */
     //在显示查询的单词解释后，自动播放发音
-    public boolean getPrefAutoPlayPronunciation(){
+    public boolean getPrefAutoPlayPronunciation() {
         return appPrefs.getBoolean(prefAutoPlayPronunciation, prefDefaultAutoPlayPronunciation);
     }
+
     /**
      * Method setPrefAutoPlayPronunciation sets the prefAutoPlayPronunciation of this MdxEngineSetting object.
      *
-     *
-     *
      * @param on the prefAutoPlayPronunciation of this MdxEngineSetting object.
-     *
      */
-    public void setPrefAutoPlayPronunciation(boolean on){
+    public void setPrefAutoPlayPronunciation(boolean on) {
         appPrefs.edit().putBoolean(prefAutoPlayPronunciation, on).commit();
     }
 
-	/**
+    /**
      * Method getPrefAutoLookupClipboard returns the prefAutoLookupClipboard of this MdxEngineSetting object.
-     *
-     *
      *
      * @return the prefAutoLookupClipboard (type boolean) of this MdxEngineSetting object.
      */
     //启动或者激活到前台时，自动查找剪贴板的内容
-    public boolean getPrefAutoLookupClipboard(){
+    public boolean getPrefAutoLookupClipboard() {
         return appPrefs.getBoolean(prefAutoLookupClipboard, prefDefaultAutoLookupClipboard);
     }
 
@@ -196,19 +193,18 @@ public class MdxEngineSetting {
      * Method setPrefAutoLookupClipboard sets the prefAutoLookupClipboard of this MdxEngineSetting object.
      *
      * @param enable the prefAutoLookupClipboard of this MdxEngineSetting object.
-     *
      */
-    public void setPrefAutoLookupClipboard(boolean enable){
+    public void setPrefAutoLookupClipboard(boolean enable) {
         appPrefs.edit().putBoolean(prefAutoLookupClipboard, enable).commit();
     }
-    
-	/**
+
+    /**
      * Method getPrefLockRotation returns the prefLockRotation of this MdxEngineSetting object.
      *
      * @return the prefLockRotation (type boolean) of this MdxEngineSetting object.
      */
     //禁用重力旋屏
-    public boolean getPrefLockRotation(){
+    public boolean getPrefLockRotation() {
         return appPrefs.getBoolean(prefLockRotation, prefDefaultLockRotation);
     }
 
@@ -216,21 +212,18 @@ public class MdxEngineSetting {
      * Method setPrefLockRotation sets the prefLockRotation of this MdxEngineSetting object.
      *
      * @param enable the prefLockRotation of this MdxEngineSetting object.
-     *
      */
-    public void setPrefLockRotation(boolean enable){
+    public void setPrefLockRotation(boolean enable) {
         appPrefs.edit().putBoolean(prefLockRotation, enable).commit();
     }
 
     /**
      * Method getPrefRandomEntry returns the prefRandomEntry of this MdxEngineSetting object.
      *
-     *
-     *
      * @return the prefRandomEntry (type boolean) of this MdxEngineSetting object.
      */
     //摇晃设备时随机显示一个单词
-    public boolean getPrefShakeForRandomEntry(){
+    public boolean getPrefShakeForRandomEntry() {
         return appPrefs.getBoolean(prefShakeForRandomEntry, prefDefaultShakeForRandomEntry);
     }
 
@@ -238,9 +231,8 @@ public class MdxEngineSetting {
      * Method setPrefRandomEntry sets the prefRandomEntry of this MdxEngineSetting object.
      *
      * @param enable the prefRandomEntry of this MdxEngineSetting object.
-     *
      */
-    public void setPrefShakeForRandomEntry(boolean enable){
+    public void setPrefShakeForRandomEntry(boolean enable) {
         appPrefs.edit().putBoolean(prefShakeForRandomEntry, enable).commit();
     }
 
@@ -250,7 +242,7 @@ public class MdxEngineSetting {
      * @return the prefUsePopoverForLookup (type boolean) of this MdxEngineSetting object.
      */
     //使用弹出窗口来显示内部查找
-    public boolean getPrefUsePopoverForLookup(){
+    public boolean getPrefUsePopoverForLookup() {
         return appPrefs.getBoolean(prefUsePopoverForLookup, prefDefaultUsePopoverForLookup);
     }
 
@@ -258,9 +250,8 @@ public class MdxEngineSetting {
      * Method setPrefUsePopoverForLookup sets the prefUsePopoverForLookup of this MdxEngineSetting object.
      *
      * @param enable the prefUsePopoverForLookup of this MdxEngineSetting object.
-     *
      */
-    public void setPrefUsePopoverForLookup(boolean enable){
+    public void setPrefUsePopoverForLookup(boolean enable) {
         appPrefs.edit().putBoolean(prefUsePopoverForLookup, enable).commit();
     }
 
@@ -270,7 +261,7 @@ public class MdxEngineSetting {
      * @return the prefAutoSIP (type boolean) of this MdxEngineSetting object.
      */
     //是否在进入查找界面时将输入焦点设置为输入框(自动弹出输入法)
-    public boolean getPrefAutoSIP(){
+    public boolean getPrefAutoSIP() {
         return appPrefs.getBoolean(prefAutoSIP, true);
     }
 
@@ -278,9 +269,8 @@ public class MdxEngineSetting {
      * Method setPrefAutoSIP sets the prefAutoSIP of this MdxEngineSetting object.
      *
      * @param enable the prefAutoSIP of this MdxEngineSetting object.
-     *
      */
-    public void setPrefAutoSIP(boolean enable){
+    public void setPrefAutoSIP(boolean enable) {
         appPrefs.edit().putBoolean(prefAutoSIP, enable).commit();
     }
 
@@ -290,7 +280,7 @@ public class MdxEngineSetting {
      * @return the prefLookupMultiDict (type boolean) of this MdxEngineSetting object.
      */
     //是否为多辞典同时查询模式
-    public boolean getPrefMultiDictLookkupMode(){
+    public boolean getPrefMultiDictLookkupMode() {
         return appPrefs.getBoolean(prefMultiDictLookupMode, false);
     }
 
@@ -298,19 +288,18 @@ public class MdxEngineSetting {
      * Method setPrefLookupMultiDict sets the prefLookupMultiDict of this MdxEngineSetting object.
      *
      * @param on the prefLookupMultiDict of this MdxEngineSetting object.
-     *
      */
-    public void setPrefMultiDictLookupMode(boolean on){
+    public void setPrefMultiDictLookupMode(boolean on) {
         appPrefs.edit().putBoolean(prefMultiDictLookupMode, on).commit();
     }
 
-	/**
+    /**
      * Method getPrefChnConversion returns the prefChnConversion of this MdxEngineSetting object.
      *
      * @return the prefChnConversion (type int) of this MdxEngineSetting object.
      */
     //设置默认中文转换类型(常见dict_pref.h)
-    public int getPrefChnConversion(){
+    public int getPrefChnConversion() {
         return appPrefs.getInt(prefChnConversion, DictPref.kChnConvNone);
     }
 
@@ -318,9 +307,8 @@ public class MdxEngineSetting {
      * Method setPrefChnConversion sets the prefChnConversion of this MdxEngineSetting object.
      *
      * @param toChn the prefChnConversion of this MdxEngineSetting object.
-     *
      */
-    public void setPrefChnConversion(int toChn){
+    public void setPrefChnConversion(int toChn) {
         appPrefs.edit().putInt(prefChnConversion, toChn).commit();
     }
 
@@ -330,33 +318,32 @@ public class MdxEngineSetting {
      * @return the prefLastDictId (type int) of this MdxEngineSetting object.
      */
     //最后使用的辞典id
-	public int getPrefLastDictId(){
+    public int getPrefLastDictId() {
         return appPrefs.getInt(prefLastDictId, DictPref.kInvalidDictPrefId);
     }
 
-	/**
+    /**
      * Method setPrefLastDictId sets the prefLastDictId of this MdxEngineSetting object.
      *
      * @param lastId the prefLastDictId of this MdxEngineSetting object.
-     *
      */
-    public void setPrefLastDictId(int lastId){
+    public void setPrefLastDictId(int lastId) {
         appPrefs.edit().putInt(prefLastDictId, lastId).commit();
     }
 
-    public String getExtraDictDir(){
+    public String getExtraDictDir() {
         return appPrefs.getString(prefExtraDictDir, "");
     }
 
-    public void setExtraDictDir(String mediaDir){
+    public void setExtraDictDir(String mediaDir) {
         appPrefs.edit().putString(prefExtraDictDir, mediaDir).commit();
     }
 
-    public boolean getPrefShowSplash(){
+    public boolean getPrefShowSplash() {
         return appPrefs.getBoolean(prefShowSplash, prefDefaultShowSplash);
     }
 
-    public void setPrefShowSplash(boolean showSplash){
+    public void setPrefShowSplash(boolean showSplash) {
         appPrefs.edit().putBoolean(prefShowSplash, showSplash).commit();
     }
 
@@ -364,95 +351,105 @@ public class MdxEngineSetting {
         return appPrefs.getBoolean(prefUseBuiltInIPAFont, prefDefaultUseBuiltInIPAFont);
     }
 
-    public void setPrefUseBuiltInIPAFont(boolean useBuiltInIPAFont){
+    public void setPrefUseBuiltInIPAFont(boolean useBuiltInIPAFont) {
         appPrefs.edit().putBoolean(prefUseBuiltInIPAFont, useBuiltInIPAFont).commit();
     }
 
-    public boolean getPrefUseTTS(){
+    public boolean getPrefUseTTS() {
         return appPrefs.getBoolean(prefUseTTS, prefDefaultUseTTS);
     }
 
-    public void setPrefUseTTS(boolean useTTS){
+    public void setPrefUseTTS(boolean useTTS) {
         appPrefs.edit().putBoolean(prefUseTTS, useTTS).commit();
     }
 
-    public String getPrefTTSLocale(){
+    public String getPrefTTSLocale() {
         return appPrefs.getString(prefTTSLocale, prefDefaultTTSLocale);
     }
-    
-    public void setPrefTTSLocale(String locale){
+
+    public void setPrefTTSLocale(String locale) {
         appPrefs.edit().putString(prefTTSLocale, locale).commit();
     }
 
-    public String getPrefPreferedTTSEngine(){
+    public String getPrefPreferedTTSEngine() {
         return appPrefs.getString(prefPreferredTTSEngine, "");
     }
-    public void setPrefPreferedTTSEngine(String engineName){
+
+    public void setPrefPreferedTTSEngine(String engineName) {
         appPrefs.edit().putString(prefPreferredTTSEngine, engineName).commit();
     }
 
-    public Boolean getPrefShowToolbar(){
+    public Boolean getPrefShowToolbar() {
         return appPrefs.getBoolean(prefShowToolbar, prefDefaultShowToolbar);
     }
-    public void setPrefShowToolbar(boolean show){
+
+    public void setPrefShowToolbar(boolean show) {
         appPrefs.edit().putBoolean(prefShowToolbar, show).commit();
     }
 
-    public Boolean getPrefMultiDictExpandOnlyOne(){
-        return  appPrefs.getBoolean(prefMultiDictExpandOnlyOne, prefDefaultMultiDictExpandOnlyOne);
+    public Boolean getPrefMultiDictExpandOnlyOne() {
+        return appPrefs.getBoolean(prefMultiDictExpandOnlyOne, prefDefaultMultiDictExpandOnlyOne);
     }
 
-    public void setPrefMultiDictExpandOnlyOne(boolean expandOnlyOne){
-        appPrefs.edit().putBoolean(prefMultiDictExpandOnlyOne,expandOnlyOne).commit();
+    public void setPrefMultiDictExpandOnlyOne(boolean expandOnlyOne) {
+        appPrefs.edit().putBoolean(prefMultiDictExpandOnlyOne, expandOnlyOne).commit();
     }
 
-    public Boolean getPrefMultiDictDefaultExpandAll(){
+    public Boolean getPrefMultiDictDefaultExpandAll() {
         return appPrefs.getBoolean(prefMultiDictDefaultExpandAll, prefDefaultMultiDictDefaultExpandAll);
     }
 
-    public void setPrefMultiDictDefaultExpandAll(boolean defaultExpandAll){
+    public void setPrefMultiDictDefaultExpandAll(boolean defaultExpandAll) {
         appPrefs.edit().putBoolean(prefMultiDictDefaultExpandAll, defaultExpandAll).commit();
     }
 
-    public Boolean getPrefUseFingerGesture(){
+    public Boolean getPrefUseFingerGesture() {
         return appPrefs.getBoolean(prefUseFingerGesture, prefDefaultUseFingerGesture);
     }
 
-    public void setPrefUseFingerGesture(boolean useFingerGesture){
+    public void setPrefUseFingerGesture(boolean useFingerGesture) {
         appPrefs.edit().putBoolean(prefUseFingerGesture, useFingerGesture).commit();
     }
 
-    public Boolean getPrefHighSpeedMode(){
+    public Boolean getPrefHighSpeedMode() {
         return appPrefs.getBoolean(prefHighSpeedMode, prefDefaultHighSpeedMode);
     }
 
-    public void setPrefHighSpeedMode(boolean highSpeedMode){
+    public void setPrefHighSpeedMode(boolean highSpeedMode) {
         appPrefs.edit().putBoolean(prefHighSpeedMode, highSpeedMode).commit();
     }
 
-    public Boolean getPrefMonitorClipboard(){
+    public Boolean getPrefMonitorClipboard() {
         return appPrefs.getBoolean(prefMonitorClipboard, prefDefaultMonitorClipboard);
     }
 
-    public void setPrefMonitorClipboard(boolean monitorClipboard){
+    public void setPrefMonitorClipboard(boolean monitorClipboard) {
         appPrefs.edit().putBoolean(prefMonitorClipboard, monitorClipboard).commit();
     }
 
-    public Boolean getPrefShowInNotification(){
+    public Boolean getPrefShowInNotification() {
         return appPrefs.getBoolean(prefShowInNotification, prefDefaultShowInNotification);
     }
 
-    public void setPrefShowInNotification(boolean showInNotification){
+    public void setPrefShowInNotification(boolean showInNotification) {
         appPrefs.edit().putBoolean(prefShowInNotification, showInNotification).commit();
     }
 
-    public Boolean getPrefsUseLRUForDictOrder(){
+    public Boolean getPrefsUseLRUForDictOrder() {
         return appPrefs.getBoolean(prefUseLRUForDictOrder, prefDefaultUseLRUForDictOrder);
     }
 
-    public void setPrefUseLRUForDictOrder(boolean useLRU){
+    public void setPrefUseLRUForDictOrder(boolean useLRU) {
         appPrefs.edit().putBoolean(prefUseLRUForDictOrder, useLRU).commit();
     }
 
-    private SharedPreferences appPrefs=null;
+    public int getPrefFloatingWindowHeight() {
+        return appPrefs.getInt(prefFloatingWindowHeight, prefDefaultFloatingWindowHeight);
+    }
+
+    public void setPrefFloatingWindowHeight(int floatingWindowHeight) {
+        appPrefs.edit().putInt(prefFloatingWindowHeight, floatingWindowHeight).commit();
+    }
+
+    private SharedPreferences appPrefs = null;
 }

@@ -15,9 +15,11 @@
   -->
 
 <resources>
+
     <style name="Widget.MDict.ActionButton" parent="Widget.Sherlock.ActionButton">
         <item name="android:width">40dp</item>
     </style>
+
     <style name="Theme.MDict" parent="@style/Theme.Sherlock">
         <item name="icon">@drawable/app_icon_medium</item>
         <!--
@@ -27,7 +29,15 @@
             <item name="windowSplitActionBar">true</item>
         -->
     </style>
+
     <style name="Theme.MDict.ForceOverFlow" parent="@style/Theme.MDict">
         <item name="absForceOverflow">true</item>
     </style>
+
+    <style name="Theme.MDict.Translucent">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
+    </style>
+
 </resources>
