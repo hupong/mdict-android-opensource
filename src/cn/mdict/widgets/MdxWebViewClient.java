@@ -16,16 +16,13 @@
 
 package cn.mdict.widgets;
 
-import android.graphics.Picture;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Handler;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 import cn.mdict.AddonFuncUnt;
@@ -42,12 +39,15 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
     private MdxView mdxView;
     private ScrollView listContainer;
     private String anchor=null;
-    private static final String MdxPageCompleteNotify = "mdxentry://mdx.mdict.cn/~!";
     private Handler jsHandler = new Handler();
 
-    private static Pattern MdxEntryHeadwordFormat = Pattern.compile("mdxentry://mdx[.]mdict[.]cn/!(\\d+)/(.*)");
-    private static Pattern MdxLookupFormat = Pattern.compile("mdxentry://lookup[.]mdict[.]cn/(\\d+)/(\\d+)/(.*)");
-    private static Pattern MdxSoundFormat = Pattern.compile("mdxentry://sound[.]mdict[.]cn/!(\\d+)/(.*)");
+    private static final String UrlHost="mdict.cn";
+    private static final String  UrlScheme="content";
+
+    private static final Pattern EntryUrlPattern = Pattern.compile("/entry/(\\d+)/(.*)");
+    private static final Pattern EntryxUrlPattern = Pattern.compile("/entryx/(\\d+)/(\\d+)");
+    private static final Pattern LookupUrlPattern = Pattern.compile("/lookup/(\\d+)/(\\d+)/(.*)");
+    private static final Pattern SoundUrlPattern = Pattern.compile("/sound/(\\d+)/(.*)");
 
 
     MdxWebViewClient(MdxView mdxView, ScrollView listContainer){
@@ -69,18 +69,21 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Uri uri=Uri.parse(url);
-        String scheme=uri.getScheme();
-        //TODO: Should handle page load complete event here, and jump to anchor
+        if (uri.getScheme().compareToIgnoreCase(UrlScheme)!=0 || uri.getHost().compareToIgnoreCase(UrlHost)!=0 )
+            return false;
 
+        String path=uri.getPath();
+        /*
         if (url.compareTo(MdxPageCompleteNotify)==0){
             jumpToAnchor(view);
             return true;
         }
-        Matcher matcher = MdxEntryHeadwordFormat.matcher(url);
+        */
+        Matcher matcher = EntryUrlPattern.matcher(path);
         if ( matcher.matches() && matcher.groupCount()==2 ){
             //String headWord=uri.getPath();
             //int dictId=Integer.parseInt(matcher.group(1));
-            String headWord= AddonFuncUnt.DecodeUrl(matcher.group(2));
+            String headWord= matcher.group(2);
             anchor=uri.getFragment();
             int fragPos=headWord.indexOf('#');
             if ( fragPos>0 )
@@ -102,9 +105,9 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
             }
             return true;
         }
-        matcher=MdxLookupFormat.matcher(url);
+        matcher= LookupUrlPattern.matcher(path);
         if (matcher.matches() && matcher.groupCount()==3){
-            String headWord=AddonFuncUnt.DecodeUrl(matcher.group(3));
+            String headWord=matcher.group(3);
             mdxView.displayByHeadword(headWord, true);
             return true;
         }
@@ -119,9 +122,9 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
             return true;
         }
         */
-        matcher=MdxSoundFormat.matcher(url);
+        matcher= SoundUrlPattern.matcher(path);
         if (matcher.matches() && matcher.groupCount()==2){
-            String headWord=AddonFuncUnt.DecodeUrl(matcher.group(2));
+            String headWord=matcher.group(2);
             if (headWord!=null && headWord.length()!=0){
                 headWord=headWord.replace('/', '\\');
                 if (headWord.charAt(0)!='\\' )
@@ -149,6 +152,7 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
     }
 
     @SuppressWarnings("unused")
+    //Called by javascript to be notified of page loaded event
     public void onPageComplete(WebView view) {
         jumpToAnchor(view);
     }

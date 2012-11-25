@@ -76,14 +76,14 @@ function ToggleShow(elemId, arrowId){
         }
     }
     if (arrow)
-        arrow.src=visible?"content://asset.mdict.cn/arrow_down.png":"content://asset.mdict.cn/arrow_up.png";
+        arrow.src=visible?"content://mdict.cn/res/arrow_down.png":"content://mdict.cn/res/arrow_up.png";
 }
 
 
 function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
   allArrowImgs=document.getElementsByName("__mdx_arrow_img");
   for(i=0; i<allArrowImgs.length; ++i){
-    allArrowImgs[i].src=visible?"content://asset.mdict.cn/arrow_down.png":"content://asset.mdict.cn/arrow_up.png";
+    allArrowImgs[i].src=visible?"content://mdict.cn/res/arrow_down.png":"content://mdict.cn/res/arrow_up.png";
     if (onlyFirstOne)
       break;
   }
@@ -102,12 +102,8 @@ function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
 }
 
 function SetupMdx(){
-    if (!iframe_mode ) {
-        SetupTouchEventListener();
-    } else{
-        //document.body.style.background='black';
-        alert("iframe mode, skip setup eventlistener for top window");
-    }
+    SetupTouchEventListener();
+    alert("setup touch event listener done");
     var expand_all=$start_expand_all$;
     ShowAllBlock(true, !expand_all, "");
 
@@ -123,7 +119,7 @@ function SetupMdx(){
       elm.addEventListener("touchcancel", function() {
         removeClass(this, "__mdx_block_title_active");}, false);
     }
-    //window.location="mdxentry://mdx.mdict.cn/~!";
+    //window.location="content://mdict.cn/notify/PageLoaded";
     window.MdxDict.onPageComplete();
 }
 -->

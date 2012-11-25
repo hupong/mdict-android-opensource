@@ -16,7 +16,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.mdict"
-    android:versionCode="13"
+    android:versionCode="14"
     android:versionName="1.0.3">
 
     <application
@@ -91,7 +91,7 @@
 
         <provider
             android:name=".DictContentProvider"
-            android:authorities="asset.mdict.cn;localfile.mdict.cn;mdd.mdict.cn;mdx.mdict.cn" />
+            android:authorities="mdict.cn" />
     </application>
     <uses-sdk
         android:minSdkVersion="7"

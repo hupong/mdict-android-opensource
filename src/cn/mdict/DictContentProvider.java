@@ -42,15 +42,8 @@ import cn.mdict.mdx.MdxEngine;
 
 
 public class DictContentProvider extends ContentProvider {
-	private static String MDD_URI_PREFIX = "content://mdd.mdict.cn";
-    private static String LOCALFILE_URI_PREFIX = "content://localfile.mdict.cn";
-    private static String ASSETFILE_URI_PREFIX = "content://asset.mdict.cn";
-    private static String SEARCH_URI_PREFIX="content://mdx.mdict.cn/"+SearchManager.SUGGEST_URI_PATH_QUERY;
-
-    static Pattern MddDataUrlFormat = Pattern.compile("content://mdd[.]mdict[.]cn/(\\d+)/(.*)");
-    static Pattern MdxIFrameUrlFormat =Pattern.compile("content://mdx[.]mdict[.]cn/_(\\d+)/(-?\\d+)/");
-    static Pattern MdxEntryProgFormat =Pattern.compile("content://mdx[.]mdict[.]cn/(\\d+)/(-?\\d+)/(.*)/");
-
+    private static final String ContentHost ="mdict.cn";
+    private static final String SEARCH_PATH="/search/"+SearchManager.SUGGEST_URI_PATH_QUERY;
 
     //private static final String URI_PREFIX = "file://";
 	private static MdxDictBase fCurrentDict;
@@ -156,38 +149,48 @@ public class DictContentProvider extends ContentProvider {
 
     static  HashMap<String, byte[]> cache=new HashMap<String, byte[]>();
 
+    private static final Pattern LocalFilePattern = Pattern.compile("/localfile/(.*)"); //%1=name
+    private static final Pattern AssetFilePattern = Pattern.compile("/res/(.*)"); //%1=name
+
     @Override
-    public AssetFileDescriptor openAssetFile(Uri url, String mode) throws FileNotFoundException {
-         if ( url.toString().startsWith(LOCALFILE_URI_PREFIX) ){
-             return new AssetFileDescriptor(openLocalFile(url.getPath()), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
-         }else if (url.toString().startsWith(ASSETFILE_URI_PREFIX) ){
-             try {
-                 String fileName=url.getPath().substring(1);
-                 byte[] data;
-                 if ( cache.containsKey(fileName) )
-                     data= cache.get(fileName);
-                 else{
-                     data=AddonFuncUnt.loadBinFromAsset(assets, fileName, true);
-                     if ( data!=null )
-                         cache.put(fileName, data);
-                 }
-                 return makeAssetFileDescriptorFromByteArray(fileName, data);
-                 //AddonFuncUnt.copyAssetToFile(assets, fileName, false, MdxEngine.getDataHomeDir()+"/data");
-                 //return new AssetFileDescriptor(ParcelFileDescriptor.open(new File(MdxEngine.getDataHomeDir()+"/data/"+fileName), ParcelFileDescriptor.MODE_READ_ONLY),0,AssetFileDescriptor.UNKNOWN_LENGTH);
-                 //InputStream is=assets.open(fileName);
-                 //AssetFileDescriptor afd= assets.openFd(fileName);
-                 //return afd;
-             }
-             catch (Exception e){
-                 e.printStackTrace();
-                 return null;
-             }
-         }else{
-             if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
-                 return null;
-             else
-                 return openMDDMemoryFile(url);
-         }
+    public AssetFileDescriptor openAssetFile(Uri uri, String mode) throws FileNotFoundException {
+        if ( uri.getScheme().compareToIgnoreCase("content")==0 && uri.getHost().compareToIgnoreCase(ContentHost)==0 ){
+            String path=uri.getPath();
+            Matcher matcher = LocalFilePattern.matcher(path);
+            if ( matcher.matches() && matcher.groupCount()==1 ){
+                return new AssetFileDescriptor(openLocalFile(matcher.group(1)), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
+            }
+            matcher = AssetFilePattern.matcher(path);
+            if ( matcher.matches() && matcher.groupCount()==1 ) {
+                try {
+                    String fileName=matcher.group(1);
+                    byte[] data;
+                    if ( cache.containsKey(fileName) )
+                        data= cache.get(fileName);
+                    else{
+                        data=AddonFuncUnt.loadBinFromAsset(assets, fileName, true);
+                        if ( data!=null )
+                            cache.put(fileName, data);
+                    }
+                    return makeAssetFileDescriptorFromByteArray(fileName, data);
+                    //AddonFuncUnt.copyAssetToFile(assets, fileName, false, MdxEngine.getDataHomeDir()+"/data");
+                    //return new AssetFileDescriptor(ParcelFileDescriptor.open(new File(MdxEngine.getDataHomeDir()+"/data/"+fileName), ParcelFileDescriptor.MODE_READ_ONLY),0,AssetFileDescriptor.UNKNOWN_LENGTH);
+                    //InputStream is=assets.open(fileName);
+                    //AssetFileDescriptor afd= assets.openFd(fileName);
+                    //return afd;
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                    return null;
+                }
+            } else {
+//                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
+//                    return null;
+//                else
+                return openMDDMemoryFile(uri);
+            }
+        }
+        return null;
     }
 
 /*
@@ -218,7 +221,7 @@ public class DictContentProvider extends ContentProvider {
 
 	@Override
 	public String getType(Uri uri) {
-        if ( uri.toString().indexOf(SEARCH_URI_PREFIX)==0 ){
+        if ( uri.getPath().startsWith(SEARCH_PATH) ) {
             return SearchManager.SUGGEST_MIME_TYPE;
         }
 		return null;
@@ -237,7 +240,7 @@ public class DictContentProvider extends ContentProvider {
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Log.d("Search", "Got query:"+uri.toString());
-        if (uri.toString().indexOf(SEARCH_URI_PREFIX)==0){
+        if ( uri.getPath().startsWith(SEARCH_PATH) ) {
             if ( fCurrentDict!=null && fCurrentDict.isValid() ){
                 List<String> pathSegments=uri.getPathSegments();
                 if ( pathSegments.size()>0 && pathSegments.get(0).compareToIgnoreCase(SearchManager.SUGGEST_URI_PATH_QUERY)==0 ){
@@ -286,13 +289,10 @@ public class DictContentProvider extends ContentProvider {
 		return 0;
 	}
 
-/*
-#define MdxEntryScheme L"content://"
-#define MdxEntryProgFormat L"content://%d.mdict.cn/%d/"
-#define MdxIFrameUrlFormat L"content://%d.mdict.cn/_%d/"
-#define MdxEntryHeadwordFormat L"content://%d.mdict.cn/!/"
-#define MddDataUrlFormat L"content://cn.mdict.mdd/%d/"
-*/
+    private static final Pattern MddDataUrlPattern = Pattern.compile("/mdd/(\\d+)/(.*)"); //%1=dict_id, %2=name
+    private static final Pattern IFrameEntryUrlPattern =Pattern.compile("/mdx/_(\\d+)/(-?\\d+)/"); //Used by iframe view mode for sub-entryies, %1=dict_id, %2=entry_no
+    private static final Pattern ProgEntryUrlPattern =Pattern.compile("/mdx/(\\d+)/(-?\\d+)/(.*)/"); //Used by single view mode, %1=dict_id, %2=entry_no, %3=headword
+
     public static byte[] getDataByUrl(MdxDictBase dict, String urlString, StringBuffer mimeType ){
         return getDataByUrl(dict, Uri.parse(urlString), mimeType);
     }
@@ -302,17 +302,17 @@ public class DictContentProvider extends ContentProvider {
         if ( dict==null || !dict.isValid() )
             return null;
         try {
-            if (uri.getScheme().compareToIgnoreCase("content")==0){
+            if (uri.getScheme().compareToIgnoreCase("content")==0 && uri.getHost().compareToIgnoreCase(ContentHost)==0 ){
                 mimeType.setLength(0);
-                String url=uri.toString();
-                Matcher matcher = MddDataUrlFormat.matcher(url);
+                String url=uri.getPath();
+                Matcher matcher = MddDataUrlPattern.matcher(url);
                 if ( matcher.matches() && matcher.groupCount()==2 ){
                     int dictId=Integer.parseInt(matcher.group(1));
-                    String dataName=AddonFuncUnt.DecodeUrl(matcher.group(2));
+                    String dataName=matcher.group(2);
                     mimeType.append("application/octet-stream");
                     return dict.getDictData(dictId, dataName, false);
                 }
-                matcher = MdxIFrameUrlFormat.matcher(url);
+                matcher = IFrameEntryUrlPattern.matcher(url);
                 if ( matcher.matches() && matcher.groupCount()==2 ){
                     Integer dictId=Integer.parseInt(matcher.group(1));
                     Integer entryNo=Integer.parseInt(matcher.group(2));
@@ -325,13 +325,13 @@ public class DictContentProvider extends ContentProvider {
                             "function SetupTouch(){document.body.addEventListener('touchstart', OnTouchStart, false);\n" +
                             "document.body.addEventListener('touchend', OnTouchEnd,false);}\n</script>"+
                             "<style type=\"text/css\">\n@font-face {font-family: 'Droid Sans IPA'; font-style:  normal; font-weight: normal;\n" +
-                            "src: url('content://asset.mdict.cn/droid_sans.ttf');}\n*{font-family:'Droid Sans IPA', DroidSans, arial, sans-serif;}</style>"+
+                            "src: url('content://mdict.cn/assert/droid_sans.ttf');}\n*{font-family:'Droid Sans IPA', DroidSans, arial, sans-serif;}</style>"+
                             "</head><body onload=\"javascript:SetupTouch();\">";
 
                     data= dict.getDictTextN(entry, false, false, htmlBegin, "</body></html>");
                     return data;
                 }
-                matcher = MdxEntryProgFormat.matcher(url);
+                matcher = ProgEntryUrlPattern.matcher(url);
                 if ( matcher.matches() && matcher.groupCount()>=2 ){
                     int dictId=Integer.parseInt(matcher.group(1));
                     int entryNo=Integer.parseInt(matcher.group(2));
@@ -339,7 +339,7 @@ public class DictContentProvider extends ContentProvider {
                     mimeType.append("text/html");
                     String headWord="";
                     if ( matcher.groupCount()==3 ){
-                        headWord=AddonFuncUnt.DecodeUrl(matcher.group(3));
+                        headWord=matcher.group(3);
                         entry.setHeadword(headWord);
                     }
                     if (  entry.isSysCmd() ){
@@ -353,20 +353,6 @@ public class DictContentProvider extends ContentProvider {
                     }
                     return data;
                 }
-                /*
-                matcher = MdxEntryHeadwordFormat.matcher(url);
-                if ( matcher.matches() && matcher.groupCount()==2 ){
-                    int dictId=Integer.parseInt(matcher.group(1));
-                    //String headWord=uri.getPath();
-                    String headWord=AddonFuncUnt.DecodeUrl(matcher.group(2));
-                    DictEntry entry= new DictEntry();
-                    StringBuffer html=new StringBuffer();
-                    if ( dict.locateFirst(headWord, false, false, entry)==MdxDictBase.kMdxSuccess ){
-                        dict.getDictTextN(entry, true, false, html);
-                    }
-                    data=html.toString().getBytes("UTF-8");
-                }
-                */
             }
         }
         catch (Exception e){

@@ -194,7 +194,7 @@ public class MdxView extends RelativeLayout {
                         switchViewMode(false);
                         entryViewSingle.displayEntry(currentEntry);
                     } else {
-                        // htmlView.loadUrl(String.format("content://mdx.mdict.cn/%d/%d/%s/",
+                        // htmlView.loadUrl(String.format("content://mdict.cn/mdx/%d/%d/%s/",
                         // currentEntry.getDictId(), currentEntry.getEntryNo(),
                         // currentEntry.getHeadword()));
 
@@ -204,7 +204,7 @@ public class MdxView extends RelativeLayout {
                         } else {
                             switchViewMode(false);
                             entryViewSingle.loadUrl(String.format(
-                                    "content://mdx.mdict.cn/%d/%d/%s/",
+                                    "content://mdict.cn/mdx/%d/%d/%s/",
                                     currentEntry.getDictId(),
                                     currentEntry.getEntryNo(),
                                     currentEntry.getHeadword()));
