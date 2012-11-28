@@ -584,9 +584,4 @@ public class FloatingForm extends SherlockFragmentActivity {
         MdxEngine.saveEngineSettings();
         super.onDestroy();
     }
-
-    static {
-        System.loadLibrary("iconv");
-        System.loadLibrary("mdx");
-    }
 }

@@ -43,7 +43,7 @@ import cn.mdict.mdx.MdxEngine;
 
 public class DictContentProvider extends ContentProvider {
     private static final String ContentHost ="mdict.cn";
-    private static final String SEARCH_PATH="/search/"+SearchManager.SUGGEST_URI_PATH_QUERY;
+    private static final String SEARCH_PATH="/"+SearchManager.SUGGEST_URI_PATH_QUERY;
 
     //private static final String URI_PREFIX = "file://";
 	private static MdxDictBase fCurrentDict;
@@ -292,6 +292,8 @@ public class DictContentProvider extends ContentProvider {
     private static final Pattern MddDataUrlPattern = Pattern.compile("/mdd/(\\d+)/(.*)"); //%1=dict_id, %2=name
     private static final Pattern IFrameEntryUrlPattern =Pattern.compile("/mdx/_(\\d+)/(-?\\d+)/"); //Used by iframe view mode for sub-entryies, %1=dict_id, %2=entry_no
     private static final Pattern ProgEntryUrlPattern =Pattern.compile("/mdx/(\\d+)/(-?\\d+)/(.*)/"); //Used by single view mode, %1=dict_id, %2=entry_no, %3=headword
+    private static final Pattern SearchViewUrlPattern =Pattern.compile("/searchView/(\\d+)_(-?\\d+)_(.*)"); //Used by search suggestion View action
+
 
     public static byte[] getDataByUrl(MdxDictBase dict, String urlString, StringBuffer mimeType ){
         return getDataByUrl(dict, Uri.parse(urlString), mimeType);
@@ -332,7 +334,13 @@ public class DictContentProvider extends ContentProvider {
                     return data;
                 }
                 matcher = ProgEntryUrlPattern.matcher(url);
-                if ( matcher.matches() && matcher.groupCount()>=2 ){
+                boolean isGetEntryData=( matcher.matches() && matcher.groupCount()>=2);
+                if (!isGetEntryData ){
+                    matcher= SearchViewUrlPattern.matcher(url);
+                    isGetEntryData=( matcher.matches() && matcher.groupCount()>=2);
+                }
+
+                if ( isGetEntryData ){
                     int dictId=Integer.parseInt(matcher.group(1));
                     int entryNo=Integer.parseInt(matcher.group(2));
                     DictEntry entry=new DictEntry(entryNo, "", dictId);
