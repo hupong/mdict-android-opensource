@@ -145,22 +145,14 @@ public class MdxView extends RelativeLayout {
             if (MdxDictBase.isMdxCmd(headword)) {
                 entry.setEntryNo(DictEntry.kSystemCmdEntryNo);
             } else {
-                int r = dict.locateFirst(headword, true, false, entry);
+                int r = dict.locateFirst(headword, true, false, false, entry);
                 if (r != MdxDictBase.kMdxSuccess
-                        || (entry.getHeadword().indexOf(" ") != -1 && headword
-                        .indexOf(" ") == -1)) {
+                        || (entry.getHeadword().indexOf(" ") != -1 && headword.indexOf(" ") == -1)) {
                     String word = "";
-                    try {
-                        word = WordSuggestion.getMdxSuggestWord(getContext(),
-                                dict, headword);
-                    } catch (IOException e) {
-                        word = "";
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    word = WordSuggestion.getMdxSuggestWord(getContext(), dict, headword);
                     if (word.length() > 0) {
                         entry.setHeadword(word);
-                        dict.locateFirst(word, true, false, entry);
+                        dict.locateFirst(word, true, false, false, entry);
                         // entry.setHeadword(word);
                     } else {
                         if (r != MdxDictBase.kMdxSuccess)
@@ -222,22 +214,11 @@ public class MdxView extends RelativeLayout {
                         getContext().getString(R.string.headword_not_found),
                         currentEntry.getHeadword());
                 // this.getHtmlView().loadUrl(url);
-                try {
-                    String wordList = WordSuggestion
-                            .getMdxSuggestWordList(this.getContext(), dict,
-                                    currentEntry.getHeadword());
-                    if (wordList.length() > 0) {
-                        str = "<p/>"
-                                + String.format(
-                                getContext()
-                                        .getString(
-                                                R.string.headword_not_found_suggestion),
-                                currentEntry.getHeadword(), wordList);
-                        ;
-                    }
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                String wordList = WordSuggestion
+                        .getMdxSuggestWordList(this.getContext(), dict,
+                                currentEntry.getHeadword());
+                if (wordList.length() > 0) {
+                    str = String.format(getContext().getString(R.string.headword_not_found_suggestion), currentEntry.getHeadword(), wordList);
                 }
                 // String str=String.format(
                 // getContext().getString(R.string.headword_not_found),

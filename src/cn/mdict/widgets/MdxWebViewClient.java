@@ -48,6 +48,8 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
     private static final Pattern EntryxUrlPattern = Pattern.compile("/entryx/(\\d+)/(\\d+)");
     private static final Pattern LookupUrlPattern = Pattern.compile("/lookup/(\\d+)/(\\d+)/(.*)");
     private static final Pattern SoundUrlPattern = Pattern.compile("/sound/(\\d+)/(.*)");
+    private static final Pattern HeadwordUrlPattern =Pattern.compile("/headword/(.*)"); //Used by word suggestion list
+
 
 
     MdxWebViewClient(MdxView mdxView, ScrollView listContainer){
@@ -91,7 +93,7 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
             if (headWord.length()>0 ){
                 if (headWord.charAt(0)!='#'){
                     DictEntry entry = new DictEntry(0, "", mdxView.getDict().getDictPref().getDictId());
-                    if (mdxView.getDict().locateFirst(headWord, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                    if (mdxView.getDict().locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                         mdxView.displayByEntry(entry,true);
                     }else{
                         Toast.makeText(mdxView.getContext(),
@@ -108,6 +110,12 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
         matcher= LookupUrlPattern.matcher(path);
         if (matcher.matches() && matcher.groupCount()==3){
             String headWord=matcher.group(3);
+            mdxView.displayByHeadword(headWord, true);
+            return true;
+        }
+        matcher = HeadwordUrlPattern.matcher(path);
+        if ( matcher.matches() && matcher.groupCount()==1 ){
+            String headWord=matcher.group(1);
             mdxView.displayByHeadword(headWord, true);
             return true;
         }

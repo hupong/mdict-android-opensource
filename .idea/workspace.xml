@@ -36,22 +36,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc732384-6a3f-40ae-b631-7550406d1ccd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cn/mdict/FloatingActivity.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/armeabi/libmdx.so" afterPath="$PROJECT_DIR$/libs/armeabi/libmdx.so" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/x86/libmdx.so" afterPath="$PROJECT_DIR$/libs/x86/libmdx.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java" afterPath="$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/FloatingForm.java" afterPath="$PROJECT_DIR$/src/cn/mdict/FloatingForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/MainForm.java" afterPath="$PROJECT_DIR$/src/cn/mdict/MainForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/searchable.xml" afterPath="$PROJECT_DIR$/res/xml/searchable.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/fragments/FloatingDictView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/fragments/FloatingDictView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/utils/WordSuggestion.java" afterPath="$PROJECT_DIR$/src/cn/mdict/utils/WordSuggestion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" afterPath="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MDict.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354086160718" ignored="false" />
-    <file path="/MdxWebViewClient.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353773263045" ignored="false" />
-    <file path="/a.dummy" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354089076762" ignored="false" />
-    <file path="/DictContentProvider.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354092328738" ignored="false" />
+    <file path="/Dummy.txt" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354237632818" ignored="false" />
+    <file path="/MdxWebViewClient.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354250688843" ignored="false" />
+    <file path="/a.dummy" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354240584832" ignored="false" />
+    <file path="/DictContentProvider.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248464389" ignored="false" />
     <file path="/union_grp_title.html" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353771259365" ignored="false" />
     <file path="/Welcome.htm" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353771232038" ignored="false" />
-    <file path="/MdxView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353768139579" ignored="false" />
+    <file path="/MdxView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248714271" ignored="false" />
     <file path="/fragment.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353767516884" ignored="false" />
     <file path="/searchable.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354091948248" ignored="false" />
     <file path="/a.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353566601786" ignored="false" />
@@ -59,6 +65,11 @@
     <file path="/a.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353566771158" ignored="false" />
     <file path="/html_begin.html" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353858348874" ignored="false" />
     <file path="/MainForm.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354089698280" ignored="false" />
+    <file path="/strings.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354249994915" ignored="false" />
+    <file path="/WordSuggestion.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248655296" ignored="false" />
+    <file path="/MdxDictBase.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248156536" ignored="false" />
+    <file path="/DictView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248520433" ignored="false" />
+    <file path="/FloatingDictView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248568430" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +89,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -113,7 +124,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
@@ -128,69 +139,29 @@
       <file leaf-file-name="DictContentProvider.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="316" column="64" selection-start="12907" selection-end="12907" vertical-scroll-proportion="0.0">
+            <state line="364" column="0" selection-start="16033" selection-end="16033" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MdxWebViewClient.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MdxWebViewClient.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="102" selection-start="5544" selection-end="5544" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="123" column="43" selection-start="4941" selection-end="4941" vertical-scroll-proportion="0.6895307">
+              <folding>
+                <element signature="e#6327#6354#0" expanded="true" />
+              </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FloatingForm.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cn/mdict/FloatingForm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="335" column="0" selection-start="4240" selection-end="14527" vertical-scroll-proportion="4.8210263">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="floating_frame.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/floating_frame.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="74" selection-start="1009" selection-end="1009" vertical-scroll-proportion="-6.185185">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="FloatingDictView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/mdict/fragments/FloatingDictView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="67" selection-start="3743" selection-end="3743" vertical-scroll-proportion="0.0">
+            <state line="748" column="64" selection-start="28363" selection-end="28363" vertical-scroll-proportion="0.0">
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DictView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="357" column="72" selection-start="13724" selection-end="13724" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="floating_dict_view.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/floating_dict_view.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="17" selection-start="882" selection-end="894" vertical-scroll-proportion="-14.0">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -203,19 +174,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MdxView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java">
+      <file leaf-file-name="MdxDictBase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="214" column="77" selection-start="8463" selection-end="8463" vertical-scroll-proportion="0.0">
+            <state line="111" column="32" selection-start="4306" selection-end="4306" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HistoryFrame.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/mdict/HistoryFrame.java">
+      <file leaf-file-name="WordSuggestion.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/mdict/utils/WordSuggestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="47" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.0">
+            <state line="164" column="63" selection-start="6939" selection-end="6939" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MdxView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="214" column="90" selection-start="8625" selection-end="8625" vertical-scroll-proportion="-8.807693">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="66" selection-start="2172" selection-end="2189" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values-zh-rCN/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="66" selection-start="1930" selection-end="1930" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="irregular_verbs.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/irregular_verbs.txt">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="359" column="54" selection-start="8596" selection-end="8596" vertical-scroll-proportion="-7.075472">
               <folding />
             </state>
           </provider>
@@ -227,6 +237,11 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../mdict-release-key.keystore" />
+    <option name="KEY_ALIAS" value="mdict-rel" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -244,22 +259,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/src/cn/mdict/fragments/FloatingDictView.java" />
-        <option value="$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java" />
-        <option value="$PROJECT_DIR$/assets/Welcome.htm" />
-        <option value="$PROJECT_DIR$/assets/union_grp_title.html" />
-        <option value="$PROJECT_DIR$/assets/block_begin.html" />
         <option value="$PROJECT_DIR$/assets/block_begin_h.html" />
         <option value="$PROJECT_DIR$/res/values/pref_string.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/assets/html_begin.html" />
-        <option value="$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java" />
         <option value="$PROJECT_DIR$/src/cn/mdict/FloatingForm.java" />
         <option value="$PROJECT_DIR$/src/cn/mdict/MainForm.java" />
         <option value="$PROJECT_DIR$/res/xml/searchable.xml" />
+        <option value="$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java" />
+        <option value="$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java" />
+        <option value="$PROJECT_DIR$/src/cn/mdict/fragments/FloatingDictView.java" />
+        <option value="$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java" />
+        <option value="$PROJECT_DIR$/src/cn/mdict/utils/WordSuggestion.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" />
         <option value="$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java" />
+        <option value="$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java" />
       </list>
     </option>
   </component>
@@ -335,6 +350,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -393,7 +418,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="widgets" />
+              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -407,80 +432,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fragments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -504,7 +457,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="231" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="ExportedUnsignedApkPath" value="D:\ProjectHome\mdict-android\MDict.apk" />
-    <property name="ExportedApkPath" value="D:\Android\MDict.apk" />
+    <property name="ExportedApkPath" value="D:/Android/MDict.apk" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="206" />
@@ -525,14 +478,14 @@
     <property name="project.structure.side.proportion" value="0.1969697" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="AndroidRunProguardForReleaseBuild" value="true" />
+    <property name="AndroidRunProguardForReleaseBuild" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mdict-release-key.keystore" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="mdict" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
@@ -772,7 +725,7 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="cc732384-6a3f-40ae-b631-7550406d1ccd" name="Default" comment="" />
       <created>1322918807418</created>
-      <timeSpent>13175000</timeSpent>
+      <timeSpent>24719000</timeSpent>
       <updated>1322918807418</updated>
     </task>
     <task id="LOCAL-00001" summary="try fix crash report in google play.">
@@ -788,7 +741,7 @@
       <updated>1353574089436</updated>
     </task>
     <option name="localTasksCounter" value="4" />
-    <option name="myTotallyTimeSpent" value="13175000" />
+    <option name="myTotallyTimeSpent" value="24719000" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -821,18 +774,18 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34" sideWeight="0.39025697" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6613455" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31529412" sideWeight="0.50984806" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31529412" sideWeight="0.50984806" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32588235" sideWeight="0.48621273" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26352942" sideWeight="0.49776787" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2647059" sideWeight="0.17107485" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39764705" sideWeight="0.4715813" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32853025" sideWeight="0.49567568" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.169967" sideWeight="0.39411765" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.169967" sideWeight="0.21764706" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976928" sideWeight="0.65802115" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39945945" sideWeight="0.67869616" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.169967" sideWeight="0.5976471" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.169967" sideWeight="0.45882353" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756963" sideWeight="0.48283625" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="452" y="311" width="1116" height="473" />
       <window_info id="Jindent" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949087" sideWeight="0.49776787" order="12" side_tool="false" content_ui="tabs" />
@@ -915,86 +868,43 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/HistoryFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/SearchTrack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="47" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="214" column="77" selection-start="8463" selection-end="8463" vertical-scroll-proportion="0.0">
+        <state line="2" column="13" selection-start="40" selection-end="40" vertical-scroll-proportion="0.04494382">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/floating_dict_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="17" selection-start="882" selection-end="894" vertical-scroll-proportion="-14.0">
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/xml/searchable.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="66" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.71480143">
+        <state line="21" column="17" selection-start="882" selection-end="894" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java">
+    <entry file="file://$PROJECT_DIR$/assets/JukuuTemplate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="316" column="64" selection-start="12907" selection-end="12907" vertical-scroll-proportion="0.0">
+        <state line="213" column="37" selection-start="4928" selection-end="4928" vertical-scroll-proportion="0.4214876">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/icon_jukuu.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="102" selection-start="5544" selection-end="5544" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="2489" selection-end="2692" vertical-scroll-proportion="0.7472924">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main_frame.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="85" selection-start="716" selection-end="716" vertical-scroll-proportion="-0.2637571">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/floating_frame.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="74" selection-start="1009" selection-end="1009" vertical-scroll-proportion="-6.185185">
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/GridViewMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="42" selection-start="1828" selection-end="1828" vertical-scroll-proportion="0.47457626">
+        <state line="23" column="74" selection-start="1009" selection-end="1009" vertical-scroll-proportion="0.31688803">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/FloatingForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="364" column="57" selection-start="15891" selection-end="15891" vertical-scroll-proportion="0.032490976">
           <folding />
         </state>
       </provider>
@@ -1008,29 +918,76 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="45" selection-start="4540" selection-end="4540" vertical-scroll-proportion="0.50282484">
+        <state line="111" column="32" selection-start="4306" selection-end="4306" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="357" column="72" selection-start="13724" selection-end="13724" vertical-scroll-proportion="0.0">
+        <state line="632" column="25" selection-start="23744" selection-end="23744" vertical-scroll-proportion="0.33208254">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/mdict/fragments/FloatingDictView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="67" selection-start="3743" selection-end="3743" vertical-scroll-proportion="0.0">
+        <state line="748" column="64" selection-start="28363" selection-end="28363" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/mdict/FloatingForm.java">
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/utils/WordSuggestion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="335" column="0" selection-start="4240" selection-end="14527" vertical-scroll-proportion="4.8210263">
+        <state line="164" column="63" selection-start="6939" selection-end="6939" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/MdxView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="214" column="90" selection-start="8625" selection-end="8625" vertical-scroll-proportion="-8.807693">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="66" selection-start="2172" selection-end="2189" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-zh-rCN/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="66" selection-start="1930" selection-end="1930" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/irregular_verbs.txt">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="359" column="54" selection-start="8596" selection-end="8596" vertical-scroll-proportion="-7.075472">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="364" column="0" selection-start="16033" selection-end="16033" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="43" selection-start="4941" selection-end="4941" vertical-scroll-proportion="0.6895307">
+          <folding>
+            <element signature="e#6327#6354#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

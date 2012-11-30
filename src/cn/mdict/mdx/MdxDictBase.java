@@ -105,13 +105,13 @@ public class MdxDictBase {
      *
      * @param headword Headword to be searched for
      * @param convertKey Convert the given headword into different Chinese form according to dictionary settings?
-     * @param startWithMatch Match start with headword entries. For example "abc" can be matched with "ab" headword search
+     * @param partialMatch Match partial of the headword. For example "abc" can be matched with "abd" headword search
      * @param entry The matched entry if found
      * @return Return kMdxSuccess when succeed, otherwise return error codes.
      */
-    public synchronized int locateFirst(String headword, boolean convertKey, boolean startWithMatch, DictEntry entry){
+    public synchronized int locateFirst(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, DictEntry entry){
 		if ( isValid() ) {
-			return locateFirstN(headword, convertKey, startWithMatch, entry);
+			return locateFirstN(headword, convertKey, partialMatch, startWithMatch, entry);
 		}else {
 			return kMdxDatabaseNotInited;
 		}
@@ -255,7 +255,7 @@ public class MdxDictBase {
      * @param entry of type DictEntry
      * @return int
      */
-    private native int locateFirstN(String headword, boolean convertKey, boolean partialMatch, DictEntry entry);
+    private native int locateFirstN(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, DictEntry entry);
     
     /**
      * Method getDictPrefN returns the dictPrefN of this MdxDictBase object.

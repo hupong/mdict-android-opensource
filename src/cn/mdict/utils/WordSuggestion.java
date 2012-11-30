@@ -13,13 +13,22 @@ import java.util.*;
 public class WordSuggestion {
     private static final char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz"
             .toCharArray();
+    private static Map<String, String> langModel;
 
     public static String getMdxSuggestWord(Context context, MdxDictBase dict,
-                                           String inputWord) throws IOException {
+                                           String inputWord)  {
         DictEntry entry;
-        Map<String, String> langModel = buildLanguageModel(context,
-                "irregular_verbs.txt");
-        String irregularVerb = langModel.get("input");
+        String irregularVerb=null;
+        if (langModel==null){
+            try {
+                langModel= buildLanguageModel(context,
+                        "irregular_verbs.txt");
+                irregularVerb = langModel.get("input");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         if (irregularVerb != null) {
             return irregularVerb;
         }
@@ -29,7 +38,7 @@ public class WordSuggestion {
                 String word = input.substring(0, input.length() - 1);
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compreWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -40,7 +49,7 @@ public class WordSuggestion {
                         word = word.substring(0, word.length() - 1) + "y";
                     entry = new DictEntry();
                     entry.setHeadword("");
-                    if (dict.locateFirst(word, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                    if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                         if (compreWord(entry.getHeadword(), word, 0))
                             return word;
                     }
@@ -51,7 +60,7 @@ public class WordSuggestion {
                 String word = input.substring(0, input.length() - 2);
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compreWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -59,7 +68,7 @@ public class WordSuggestion {
                 word = input.substring(0, input.length() - 1);
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compreWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -69,7 +78,7 @@ public class WordSuggestion {
                         word = input.substring(0, input.length() - 3);
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compreWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -80,7 +89,7 @@ public class WordSuggestion {
                 String word = input.substring(0, input.length() - 3);
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compreWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -91,7 +100,7 @@ public class WordSuggestion {
                         word = input.substring(0, input.length() - 4);
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compreWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -119,7 +128,7 @@ public class WordSuggestion {
     }
 
     public static String getMdxSuggestWordList(Context context,
-                                               MdxDictBase dict, String input) throws IOException {
+                                               MdxDictBase dict, String input) {
         if (dict != null && dict.isValid()) {
 
             Set<String> dictionary = new HashSet<String>();
@@ -132,7 +141,7 @@ public class WordSuggestion {
             for (String editDistance : wordsInEditDistance) {
                 entry = new DictEntry(DictEntry.kInvalidEntryNo, "", dict
                         .getDictPref().getDictId());
-                if (dict.locateFirst(editDistance, true, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(editDistance, true, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     dictionary.add(entry.getHeadword());
                 }
             }
@@ -152,8 +161,8 @@ public class WordSuggestion {
 
             String guessHtml = "";
             for (String guessWord : guessWords) {
-                guessHtml += "<a href=\"mdxentry://lookup.mdict.cn/0/0/"
-                        + guessWord + "\">" + guessWord + "</a><p/>";
+                guessHtml += "<p><a href=\"content://mdict.cn/headword/"
+                        + guessWord + "\">" + guessWord + "</a>";
             }
             entry = null;
             return guessHtml;

@@ -261,7 +261,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                     currentEntry.setEntryNo(-1);
                     if (dict != null && dict.isValid()) {
                         String headword = s.toString();
-                        dict.locateFirst(headword, true, true, currentEntry);
+                        dict.locateFirst(headword, true, true, true, currentEntry);
                         if (!currentEntry.isValid())
                             adapter.setCurrentEntry(new DictEntry(0, "",
                                     dictPref != null ? dictPref.getDictId()
@@ -630,7 +630,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         if (result == MdxDictBase.kMdxSuccess) {
             if (currentInput != null && currentInput.length() != 0) {
                 DictEntry entry = new DictEntry();
-                if (dict.locateFirst(currentInput, true, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(currentInput, true, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     displayByEntry(entry, true);
                 } else {
                     setInputText(currentInput, false);

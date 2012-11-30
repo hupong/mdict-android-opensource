@@ -249,7 +249,7 @@ public class DictContentProvider extends ContentProvider {
                         query=pathSegments.get(1);
                     DictEntry entry=new DictEntry(0, "", fCurrentDict.getDictPref().getDictId());
                     if ( query!=null && query.length()>0 )
-                        fCurrentDict.locateFirst(query, false, true, entry);
+                        fCurrentDict.locateFirst(query, true, false, true, entry);
                     if ( entry.isValid() ){
                         String limit=uri.getQueryParameter(SearchManager.SUGGEST_PARAMETER_LIMIT);
                         int maxResultCount=20;
@@ -334,13 +334,14 @@ public class DictContentProvider extends ContentProvider {
                     return data;
                 }
                 matcher = ProgEntryUrlPattern.matcher(url);
-                boolean isGetEntryData=( matcher.matches() && matcher.groupCount()>=2);
-                if (!isGetEntryData ){
+                boolean isProgEntryUrl=( matcher.matches() && matcher.groupCount()>=2);
+                boolean isSearchEntryUrl=false;
+                if (!isProgEntryUrl ){
                     matcher= SearchViewUrlPattern.matcher(url);
-                    isGetEntryData=( matcher.matches() && matcher.groupCount()>=2);
+                    isSearchEntryUrl=( matcher.matches() && matcher.groupCount()>=2);
                 }
 
-                if ( isGetEntryData ){
+                if ( isSearchEntryUrl || isProgEntryUrl ){
                     int dictId=Integer.parseInt(matcher.group(1));
                     int entryNo=Integer.parseInt(matcher.group(2));
                     DictEntry entry=new DictEntry(entryNo, "", dictId);
@@ -353,7 +354,7 @@ public class DictContentProvider extends ContentProvider {
                     if (  entry.isSysCmd() ){
                         data=dict.getDictTextN(entry, true, false, null, null);
                     }else if ( entry.isUnionDictEntry() ){
-                        if ( dict.locateFirst(headWord, false, false, entry)==MdxDictBase.kMdxSuccess ){
+                        if ( dict.locateFirst(headWord, isSearchEntryUrl, false, false, entry)==MdxDictBase.kMdxSuccess ){
                             data=dict.getDictTextN(entry, true, true, null, null);
                         }
                     }else {

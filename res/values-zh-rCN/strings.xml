@@ -42,6 +42,8 @@
     <string name="confirm_quit">退出程序?</string>
     <string name="quit">退出</string>
     <string name="headword_not_found">找不到\'%s\'</string>
+    <string name="headword_not_found_suggestion" formatted='false'>找不到 \'%s\', 你想找的是不是:%s</string>
+
     <string name="no_dict_selected">未选择词典</string>
     <string name="clear_all">清除所有</string>
     <string name="confirm_clear_all_record">清除所有记录吗?</string>
