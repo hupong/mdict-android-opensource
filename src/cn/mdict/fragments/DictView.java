@@ -16,6 +16,7 @@
 
 package cn.mdict.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Picture;
 import android.os.Bundle;
@@ -94,6 +95,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     @Override
     public boolean onHeadWordNotFound(MdxView view, String headWord,
                                       int scrollX, int scrollY) {
+    	if (history == null) //al20121205.sn
+            history = new ArrayList<SearchTrack>();//al20121205.en
         deepth += 1;
         SearchTrack st = new SearchTrack();
         st.setScrollX(scrollX);
@@ -775,7 +778,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         }
     }
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     // For tts init
     public void onInit(int i) {
         if (i == TextToSpeech.ERROR) {
@@ -807,7 +811,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void initSearchHistory() {
-        history.clear();
+    	if (history == null) //al20121205.sn
+            history = new ArrayList<SearchTrack>();
+    	else//al20121205.en
+    		history.clear();
         history = new ArrayList<SearchTrack>();
         contentView.getHtmlView().setPictureListener(null);
     }

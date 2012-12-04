@@ -16,6 +16,7 @@
 
 package cn.mdict.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -888,7 +889,8 @@ public class FloatingDictView extends SherlockFragment implements
         }
     }
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     // For tts init
     public void onInit(int i) {
         if (i == TextToSpeech.ERROR) {
