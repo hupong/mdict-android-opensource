@@ -16,16 +16,15 @@ public class WordSuggestion {
     private static Map<String, String> langModel;
 
     public static String getMdxSuggestWord(Context context, MdxDictBase dict,
-                                           String inputWord)  {
+                                           String inputWord) {
         DictEntry entry;
-        String irregularVerb=null;
-        if (langModel==null){
+        String irregularVerb = null;
+        if (langModel == null) {
             try {
-                langModel= buildLanguageModel(context,
+                langModel = buildLanguageModel(context,
                         "irregular_verbs.txt");
                 irregularVerb = langModel.get("input");
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

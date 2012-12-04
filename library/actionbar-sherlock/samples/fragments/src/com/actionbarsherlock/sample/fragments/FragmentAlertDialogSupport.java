@@ -41,10 +41,10 @@ public class FragmentAlertDialogSupport extends SherlockFragmentActivity {
         setContentView(R.layout.fragment_dialog);
 
         View tv = findViewById(R.id.text);
-        ((TextView)tv).setText("Example of displaying an alert dialog with a DialogFragment");
+        ((TextView) tv).setText("Example of displaying an alert dialog with a DialogFragment");
 
         // Watch for button clicks.
-        Button button = (Button)findViewById(R.id.show);
+        Button button = (Button) findViewById(R.id.show);
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 showDialog();
@@ -70,7 +70,6 @@ public class FragmentAlertDialogSupport extends SherlockFragmentActivity {
     }
 
 
-
     public static class MyAlertDialogFragment extends SherlockDialogFragment {
 
         public static MyAlertDialogFragment newInstance(int title) {
@@ -89,18 +88,18 @@ public class FragmentAlertDialogSupport extends SherlockFragmentActivity {
                     .setIcon(R.drawable.alert_dialog_icon)
                     .setTitle(title)
                     .setPositiveButton(R.string.alert_dialog_ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                ((FragmentAlertDialogSupport)getActivity()).doPositiveClick();
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    ((FragmentAlertDialogSupport) getActivity()).doPositiveClick();
+                                }
                             }
-                        }
                     )
                     .setNegativeButton(R.string.alert_dialog_cancel,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                ((FragmentAlertDialogSupport)getActivity()).doNegativeClick();
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    ((FragmentAlertDialogSupport) getActivity()).doNegativeClick();
+                                }
                             }
-                        }
                     )
                     .create();
         }

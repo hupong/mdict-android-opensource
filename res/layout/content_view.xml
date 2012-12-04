@@ -20,10 +20,9 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" android:background="@drawable/content_view_bg">
     <WebView
-         android:id="@+id/webview"
-         android:layout_height="wrap_content"
-         android:layout_width="match_parent" android:background="@null"/>
-
+            android:id="@+id/webview"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" android:background="@null"/>
 
 
 </RelativeLayout>

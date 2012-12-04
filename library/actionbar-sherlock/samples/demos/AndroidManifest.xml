@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="100" android:versionName="4.2.0" package="com.actionbarsherlock.sample.demos">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="100"
+          android:versionName="4.2.0" package="com.actionbarsherlock.sample.demos">
 
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16"/>
 
@@ -7,7 +8,8 @@
 
     <application android:icon="@drawable/icon" android:label="@string/application_name">
 
-        <activity android:label="@string/activity_name" android:name=".SampleList" android:theme="@style/Theme.Sherlock">
+        <activity android:label="@string/activity_name" android:name=".SampleList"
+                  android:theme="@style/Theme.Sherlock">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -121,7 +123,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:label="@string/split" android:name=".SplitActionItems" android:uiOptions="splitActionBarWhenNarrow">
+        <activity android:label="@string/split" android:name=".SplitActionItems"
+                  android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.actionbarsherlock.sample.demos.EXAMPLE"/>
@@ -130,12 +133,13 @@
 
         <activity android:label="@string/share_action_providers" android:name=".ShareActionProviders">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.actionbarsherlock.sample.demos.EXAMPLE"/>
             </intent-filter>
         </activity>
 
-        <activity android:label="@string/split_action_modes" android:name=".SplitActionModes" android:uiOptions="splitActionBarWhenNarrow">
+        <activity android:label="@string/split_action_modes" android:name=".SplitActionModes"
+                  android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.actionbarsherlock.sample.demos.EXAMPLE"/>
@@ -149,7 +153,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:label="@string/styled" android:name=".Styled" android:theme="@style/Theme.Styled" android:uiOptions="splitActionBarWhenNarrow">
+        <activity android:label="@string/styled" android:name=".Styled" android:theme="@style/Theme.Styled"
+                  android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.actionbarsherlock.sample.demos.EXAMPLE"/>

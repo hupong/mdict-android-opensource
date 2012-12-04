@@ -20,24 +20,28 @@ import roboguice.inject.InjectView;
 
 /**
  * This activity uses an AstroboyRemoteControl to control Astroboy remotely!
- *
+ * <p/>
  * What you'll learn in this class:
- *   - How to use @InjectView as a typesafe version of findViewById()
- *   - How to inject plain old java objects as well (POJOs)
- *   - When injection happens
- *   - Some basics about injection, including when injection results in a call to
- *     an object's default constructor, versus when it does something "special"
- *     like call getSystemService()
+ * - How to use @InjectView as a typesafe version of findViewById()
+ * - How to inject plain old java objects as well (POJOs)
+ * - When injection happens
+ * - Some basics about injection, including when injection results in a call to
+ * an object's default constructor, versus when it does something "special"
+ * like call getSystemService()
  */
 @ContentView(R.layout.main)
 public class AstroboyMasterConsole extends RoboSherlockActivity {
 
     // Various views that we inject into the activity.
     // Equivalent to calling findViewById() in your onCreate(), except more succinct
-    @InjectView(R.id.self_destruct) Button selfDestructButton;
-    @InjectView(R.id.say_text)      EditText sayText;
-    @InjectView(R.id.brush_teeth)   Button brushTeethButton;
-    @InjectView(tag="fightevil")    Button fightEvilButton;     // we can also use tags if we want
+    @InjectView(R.id.self_destruct)
+    Button selfDestructButton;
+    @InjectView(R.id.say_text)
+    EditText sayText;
+    @InjectView(R.id.brush_teeth)
+    Button brushTeethButton;
+    @InjectView(tag = "fightevil")
+    Button fightEvilButton;     // we can also use tags if we want
 
 
     // Standard Guice injection of Plain Old Java Objects (POJOs)
@@ -48,8 +52,10 @@ public class AstroboyMasterConsole extends RoboSherlockActivity {
     // Injecting a Vibrator will return a new instance of a Vibrator obtained by calling
     // context.getSystemService(VIBRATOR_SERVICE).  This is configured in DefaultRoboModule, which is
     // used by default to configure every RoboGuice injector.
-    @Inject AstroboyRemoteControl remoteControl;
-    @Inject Vibrator vibrator;
+    @Inject
+    AstroboyRemoteControl remoteControl;
+    @Inject
+    Vibrator vibrator;
 
 
     @Override
@@ -66,13 +72,13 @@ public class AstroboyMasterConsole extends RoboSherlockActivity {
             }
         });
 
-        brushTeethButton.setOnClickListener( new OnClickListener() {
+        brushTeethButton.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 remoteControl.brushTeeth();
             }
         });
 
-        selfDestructButton.setOnClickListener( new OnClickListener() {
+        selfDestructButton.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
 
                 // Self destruct the remoteControl
@@ -82,7 +88,7 @@ public class AstroboyMasterConsole extends RoboSherlockActivity {
         });
 
         // Fighting the forces of evil deserves its own activity
-        fightEvilButton.setOnClickListener( new OnClickListener() {
+        fightEvilButton.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 startActivity(new Intent(AstroboyMasterConsole.this, FightForcesOfEvilActivity.class));
             }

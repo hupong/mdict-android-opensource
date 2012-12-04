@@ -20,5 +20,5 @@
           android:icon="@drawable/ic_delete"
           android:title="@string/delete"
           android:showAsAction="always|withText"
-          />
+            />
 </menu>

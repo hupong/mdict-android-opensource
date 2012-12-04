@@ -16,7 +16,9 @@
      attribute brings in the Android platform namespace, and the package
      supplies a unique name for the application.  When writing your
      own application, the package name must be changed from "com.example.*"
-     to come from a domain that you own or have control over. --><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="100" android:versionName="4.2.0" package="com.actionbarsherlock.sample.fragments">
+     to come from a domain that you own or have control over. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="100"
+          android:versionName="4.2.0" package="com.actionbarsherlock.sample.fragments">
 
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16"/>
 
@@ -24,9 +26,11 @@
 
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
 
-    <application android:hardwareAccelerated="true" android:icon="@drawable/icon" android:label="@string/application_name">
+    <application android:hardwareAccelerated="true" android:icon="@drawable/icon"
+                 android:label="@string/application_name">
 
-        <activity android:label="@string/activity_sample_code" android:name=".SampleList" android:theme="@style/Theme.Sherlock">
+        <activity android:label="@string/activity_sample_code" android:name=".SampleList"
+                  android:theme="@style/Theme.Sherlock">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -52,14 +56,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:label="@string/fragment_custom_animation_support" android:name=".FragmentCustomAnimationSupport">
+        <activity android:label="@string/fragment_custom_animation_support"
+                  android:name=".FragmentCustomAnimationSupport">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.actionbarsherlock.sample.fragments.EXAMPLE"/>
             </intent-filter>
         </activity>
 
-        <activity android:label="@string/fragment_hide_show_support" android:name=".FragmentHideShowSupport" android:windowSoftInputMode="stateUnchanged">
+        <activity android:label="@string/fragment_hide_show_support" android:name=".FragmentHideShowSupport"
+                  android:windowSoftInputMode="stateUnchanged">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.actionbarsherlock.sample.fragments.EXAMPLE"/>
@@ -80,7 +86,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:label="@string/fragment_dialog_or_activity_support" android:name=".FragmentDialogOrActivitySupport">
+        <activity android:label="@string/fragment_dialog_or_activity_support"
+                  android:name=".FragmentDialogOrActivitySupport">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.actionbarsherlock.sample.fragments.EXAMPLE"/>
@@ -110,7 +117,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:label="@string/fragment_retain_instance_support" android:name=".FragmentRetainInstanceSupport">
+        <activity android:label="@string/fragment_retain_instance_support"
+                  android:name=".FragmentRetainInstanceSupport">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.actionbarsherlock.sample.fragments.EXAMPLE"/>
@@ -159,6 +167,7 @@
             </intent-filter>
         </activity>
 
-        <provider android:authorities="com.example.android.apis.supportv4.app.LoaderThrottle" android:name=".LoaderThrottleSupport$SimpleProvider"/>
+        <provider android:authorities="com.example.android.apis.supportv4.app.LoaderThrottle"
+                  android:name=".LoaderThrottleSupport$SimpleProvider"/>
     </application>
 </manifest>

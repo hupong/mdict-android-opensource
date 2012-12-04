@@ -31,11 +31,12 @@ public class MemoryFileUtil {
     private static final Method sMethodFromMemoryFile;
     private static final Method sMethodFromData;
     private static final Method sMethodDeactivate;
+
     static {
         sMethodGetParcelFileDescriptor = get(MemoryFile.class, "getParcelFileDescriptor");
         sMethodGetFileDescriptor = get(MemoryFile.class, "getFileDescriptor");
-        sMethodFromMemoryFile = get(AssetFileDescriptor.class, "fromMemoryFile", new Class[] {MemoryFile.class});
-        sMethodFromData = get(ParcelFileDescriptor.class, "fromData", new Class[] {byte[].class, String.class});
+        sMethodFromMemoryFile = get(AssetFileDescriptor.class, "fromMemoryFile", new Class[]{MemoryFile.class});
+        sMethodFromData = get(ParcelFileDescriptor.class, "fromData", new Class[]{byte[].class, String.class});
         sMethodDeactivate = get(MemoryFile.class, "deactivate");
     }
 
@@ -59,7 +60,7 @@ public class MemoryFileUtil {
         }
     }
 
-    public static AssetFileDescriptor fromMemoryFile(MemoryFile file){
+    public static AssetFileDescriptor fromMemoryFile(MemoryFile file) {
         try {
             return (AssetFileDescriptor) sMethodFromMemoryFile.invoke(AssetFileDescriptor.class, file);
         } catch (IllegalAccessException e) {
@@ -69,9 +70,9 @@ public class MemoryFileUtil {
         }
     }
 
-    public static void deactivate(MemoryFile file){
+    public static void deactivate(MemoryFile file) {
         try {
-            if ( sMethodDeactivate!=null )
+            if (sMethodDeactivate != null)
                 sMethodDeactivate.invoke(file);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
@@ -80,7 +81,7 @@ public class MemoryFileUtil {
         }
     }
 
-    public static ParcelFileDescriptor fromData(byte[] data, String name)  throws IOException {
+    public static ParcelFileDescriptor fromData(byte[] data, String name) throws IOException {
         try {
             return (ParcelFileDescriptor) sMethodFromData.invoke(ParcelFileDescriptor.class, data, name);
         } catch (IllegalAccessException e) {

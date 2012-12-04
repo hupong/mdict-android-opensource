@@ -46,7 +46,7 @@ public class Issue240 extends SherlockFragmentActivity implements OnPageChangeLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.issue240);
 
-        mPager = (ViewPager)findViewById(R.id.pager);
+        mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
         mPager.setOnPageChangeListener(this);
 
@@ -107,7 +107,7 @@ public class Issue240 extends SherlockFragmentActivity implements OnPageChangeLi
          * as an argument.
          */
         static BoringFragment newInstance(int num) {
-          BoringFragment f = new BoringFragment();
+            BoringFragment f = new BoringFragment();
 
             // Supply num input as an argument.
             Bundle args = new Bundle();

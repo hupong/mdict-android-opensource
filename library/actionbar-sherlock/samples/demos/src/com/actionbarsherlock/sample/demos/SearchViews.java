@@ -33,9 +33,9 @@ public class SearchViews extends SherlockActivity {
         searchView.setQueryHint("Search for countries…");
 
         menu.add("Search")
-            .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.abs__ic_search)
-            .setActionView(searchView)
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+                .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.abs__ic_search)
+                .setActionView(searchView)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
 
         return true;
     }
@@ -45,6 +45,6 @@ public class SearchViews extends SherlockActivity {
         setTheme(SampleList.THEME); //Used for theme switching in samples
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text);
-        ((TextView)findViewById(R.id.text)).setText(R.string.search_views_content);
+        ((TextView) findViewById(R.id.text)).setText(R.string.search_views_content);
     }
 }

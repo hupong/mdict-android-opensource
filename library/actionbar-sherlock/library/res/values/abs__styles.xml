@@ -191,16 +191,16 @@
     </style>
 
     <style name="Widget.Sherlock.Button.Small" parent="Widget">
-      <item name="android:textAppearance">?attr/textAppearanceSmall</item>
-      <item name="android:textColor">@color/abs__primary_text_holo_dark</item>
-      <item name="android:minHeight">48dip</item>
-      <item name="android:minWidth">48dip</item>
+        <item name="android:textAppearance">?attr/textAppearanceSmall</item>
+        <item name="android:textColor">@color/abs__primary_text_holo_dark</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
     </style>
     <style name="Widget.Sherlock.Light.Button.Small" parent="Widget">
-      <item name="android:textAppearance">?attr/textAppearanceSmall</item>
-      <item name="android:textColor">@color/abs__primary_text_holo_light</item>
-      <item name="android:minHeight">48dip</item>
-      <item name="android:minWidth">48dip</item>
+        <item name="android:textAppearance">?attr/textAppearanceSmall</item>
+        <item name="android:textColor">@color/abs__primary_text_holo_light</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
     </style>
 
 
@@ -252,7 +252,6 @@
     </style>
 
 
-
     <style name="Widget.Sherlock.ProgressBar" parent="android:Widget.ProgressBar">
         <item name="android:indeterminateDrawable">@drawable/abs__progress_medium_holo</item>
         <item name="android:animationResolution">33</item>
@@ -271,13 +270,11 @@
     </style>
 
 
-
     <style name="Widget.Sherlock.TextView.SpinnerItem" parent="Widget">
         <item name="android:textAppearance">@style/TextAppearance.Sherlock.Widget.TextView.SpinnerItem</item>
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingRight">8dp</item>
     </style>
-
 
 
     <style name="Sherlock.__Widget.SearchAutoCompleteTextView" parent="Widget">
@@ -295,11 +292,11 @@
         <item name="android:dropDownSelector">@drawable/abs__list_selector_holo_dark</item>
         <item name="android:popupBackground">@drawable/abs__menu_dropdown_panel_holo_dark</item>
     </style>
-    <style name="Widget.Sherlock.Light.SearchAutoCompleteTextView" parent="Sherlock.__Widget.SearchAutoCompleteTextView">
+    <style name="Widget.Sherlock.Light.SearchAutoCompleteTextView"
+           parent="Sherlock.__Widget.SearchAutoCompleteTextView">
         <item name="android:dropDownSelector">@drawable/abs__list_selector_holo_light</item>
         <item name="android:popupBackground">@drawable/abs__menu_dropdown_panel_holo_light</item>
     </style>
-
 
 
     <style name="DialogWindowTitle.Sherlock" parent="Widget">
@@ -318,7 +315,6 @@
         <item name="android:paddingLeft">16dip</item>
         <item name="android:paddingRight">16dip</item>
     </style>
-
 
 
     <style name="TextAppearance.Sherlock.Widget.ActionBar.Menu" parent="Widget">
@@ -367,12 +363,14 @@
     <style name="TextAppearance.Sherlock.Widget.PopupMenu.Large">
         <item name="android:textSize">18sp</item>
     </style>
-    <style name="TextAppearance.Sherlock.Light.Widget.PopupMenu.Large" parent="TextAppearance.Sherlock.Widget.PopupMenu.Large">
+    <style name="TextAppearance.Sherlock.Light.Widget.PopupMenu.Large"
+           parent="TextAppearance.Sherlock.Widget.PopupMenu.Large">
     </style>
     <style name="TextAppearance.Sherlock.Widget.PopupMenu.Small">
         <item name="android:textSize">14sp</item>
     </style>
-    <style name="TextAppearance.Sherlock.Light.Widget.PopupMenu.Small" parent="TextAppearance.Sherlock.Widget.PopupMenu.Small">
+    <style name="TextAppearance.Sherlock.Light.Widget.PopupMenu.Small"
+           parent="TextAppearance.Sherlock.Widget.PopupMenu.Small">
     </style>
 
     <style name="TextAppearance.Sherlock.Widget.TextView.SpinnerItem" parent="Widget">
@@ -397,8 +395,8 @@
     </style>
 
     <style name="Sherlock.__TextAppearance.Small" parent="Widget">
-      <item name="android:textSize">14sp</item>
-      <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
     <style name="TextAppearance.Sherlock.Small" parent="Sherlock.__TextAppearance.Small">
     </style>

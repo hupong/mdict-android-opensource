@@ -35,7 +35,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 public class FavoritesFrame extends BookmarkActivity {
-    private BookmarkAdapter adapter=null;
+    private BookmarkAdapter adapter = null;
 
     @Override
     public DictBookmarkRef getBookmarkMgr() {
@@ -59,8 +59,8 @@ public class FavoritesFrame extends BookmarkActivity {
 
     @Override
     public BookmarkAdapter getBookmarkAdapter() {
-        if (adapter==null)
-            adapter=new BookmarkAdapter(this, getBookmarkMgr(), true);
+        if (adapter == null)
+            adapter = new BookmarkAdapter(this, getBookmarkMgr(), true);
         return adapter;
     }
 

@@ -17,7 +17,7 @@ public class TabNavigation extends SherlockActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.tab_navigation);
-        mSelected = (TextView)findViewById(R.id.text);
+        mSelected = (TextView) findViewById(R.id.text);
 
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         for (int i = 1; i <= 3; i++) {

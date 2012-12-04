@@ -43,7 +43,7 @@ import java.io.OutputStreamWriter;
 public class EntryViewSingle implements MdxEntryView {
 
     EntryViewSingle(Context context, WebView wv) {        /*
-		 * ViewGroup.LayoutParams params= new
+         * ViewGroup.LayoutParams params= new
 		 * ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 		 * ViewGroup.LayoutParams.MATCH_PARENT); htmlView=new WebView(context);
 		 * htmlView.setFocusable(true);

@@ -15,12 +15,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-<STYLE TYPE="text/css">
-    @font-face {font-family: 'SimSun';
-                    font-style:  normal;
-                    font-weight: normal;
-                    src: url('content://cn.mdict.localfile/fonts/SimSun.ttf'); }
-   *{font-family:'SimSun', serif}
-    body{background-color: #CCE8CC!important;}
-</STYLE>
+<STYLE TYPE
+
+=
+"text/css"
+>
+@font-face {
+    font-family: 'SimSun';
+    font-style: normal;
+    font-weight: normal;
+    src: url('content://cn.mdict.localfile/fonts/SimSun.ttf');
+}
+
+* {
+    font-family: 'SimSun', serif
+}
+
+body {
+    background-color: #CCE8CC !important;
+}
+
+<
+
+/
+STYLE>
+
+
 -->

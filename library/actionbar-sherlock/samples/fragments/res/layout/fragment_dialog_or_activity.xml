@@ -17,9 +17,9 @@
 <!-- Top-level content view for the simple fragment sample. -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="4dip"
-    android:gravity="center_horizontal"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+              android:orientation="vertical" android:padding="4dip"
+              android:gravity="center_horizontal"
+              android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
             android:id="@+id/text"
@@ -29,18 +29,18 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="top|center_horizontal"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/fragment_dialog_or_activity_msg" />
+            android:text="@string/fragment_dialog_or_activity_msg"/>
 
     <Button android:id="@+id/show_dialog"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="@string/show">
-        <requestFocus />
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/show">
+        <requestFocus/>
     </Button>
 
     <View android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+          android:layout_height="wrap_content"
+          android:layout_weight="1"/>
 
     <TextView
             android:id="@+id/inline_text"
@@ -49,7 +49,7 @@
             android:layout_weight="0"
             android:layout_gravity="center_vertical|center_horizontal"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/fragment_dialog_or_activity_inline" />
+            android:text="@string/fragment_dialog_or_activity_inline"/>
 
     <FrameLayout
             android:id="@+id/embedded"
@@ -59,6 +59,6 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:padding="6dp"
             android:background="#ff303030"
-            android:gravity="top|center_horizontal" />
+            android:gravity="top|center_horizontal"/>
 
 </LinearLayout>

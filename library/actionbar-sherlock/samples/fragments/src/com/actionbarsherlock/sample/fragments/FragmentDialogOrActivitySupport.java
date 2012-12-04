@@ -46,7 +46,7 @@ public class FragmentDialogOrActivitySupport extends SherlockFragmentActivity {
         }
 
         // Watch for button clicks.
-        Button button = (Button)findViewById(R.id.show_dialog);
+        Button button = (Button) findViewById(R.id.show_dialog);
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 showDialog();
@@ -62,7 +62,6 @@ public class FragmentDialogOrActivitySupport extends SherlockFragmentActivity {
     }
 
 
-
     public static class MyDialogFragment extends SherlockDialogFragment {
         static MyDialogFragment newInstance() {
             return new MyDialogFragment();
@@ -70,10 +69,10 @@ public class FragmentDialogOrActivitySupport extends SherlockFragmentActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.hello_world, container, false);
             View tv = v.findViewById(R.id.text);
-            ((TextView)tv).setText("This is an instance of MyDialogFragment");
+            ((TextView) tv).setText("This is an instance of MyDialogFragment");
             return v;
         }
     }

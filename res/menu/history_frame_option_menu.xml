@@ -21,5 +21,5 @@
           android:icon="@drawable/ic_clear_all"
           android:title="@string/clear_all"
           android:showAsAction="always|withText"
-                />
+            />
 </menu>

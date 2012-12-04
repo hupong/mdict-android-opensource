@@ -25,8 +25,8 @@ public class FeatureToggles extends SherlockActivity implements ActionBar.TabLis
     public boolean onCreateOptionsMenu(Menu menu) {
         for (int i = 0; i < items; i++) {
             menu.add("Text")
-                .setIcon(R.drawable.ic_title_share_default)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+                    .setIcon(R.drawable.ic_title_share_default)
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         }
 
         return super.onCreateOptionsMenu(menu);
@@ -206,7 +206,7 @@ public class FeatureToggles extends SherlockActivity implements ActionBar.TabLis
             }
         });
 
-        Button tabAdd = (Button)findViewById(R.id.display_tab_add);
+        Button tabAdd = (Button) findViewById(R.id.display_tab_add);
         tabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -261,11 +261,14 @@ public class FeatureToggles extends SherlockActivity implements ActionBar.TabLis
     }
 
     @Override
-    public void onTabSelected(Tab tab, FragmentTransaction transaction) {}
+    public void onTabSelected(Tab tab, FragmentTransaction transaction) {
+    }
 
     @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction transaction) {}
+    public void onTabUnselected(Tab tab, FragmentTransaction transaction) {
+    }
 
     @Override
-    public void onTabReselected(Tab tab, FragmentTransaction transaction) {}
+    public void onTabReselected(Tab tab, FragmentTransaction transaction) {
+    }
 }

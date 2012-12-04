@@ -17,7 +17,9 @@ import com.actionbarsherlock.view.MenuItem;
 import static com.actionbarsherlock.ActionBarSherlock.OnActionModeFinishedListener;
 import static com.actionbarsherlock.ActionBarSherlock.OnActionModeStartedListener;
 
-/** @see {@link android.support.v4.app.Watson} */
+/**
+ * @see {@link android.support.v4.app.Watson}
+ */
 public class SherlockFragmentActivity extends Watson implements OnActionModeStartedListener, OnActionModeFinishedListener {
     private static final boolean DEBUG = false;
     private static final String TAG = "SherlockFragmentActivity";
@@ -48,10 +50,12 @@ public class SherlockFragmentActivity extends Watson implements OnActionModeStar
     }
 
     @Override
-    public void onActionModeStarted(ActionMode mode) {}
+    public void onActionModeStarted(ActionMode mode) {
+    }
 
     @Override
-    public void onActionModeFinished(ActionMode mode) {}
+    public void onActionModeFinished(ActionMode mode) {
+    }
 
 
     ///////////////////////////////////////////////////////////////////////////
@@ -273,7 +277,7 @@ public class SherlockFragmentActivity extends Watson implements OnActionModeStar
     }
 
     public void requestWindowFeature(long featureId) {
-        getSherlock().requestFeature((int)featureId);
+        getSherlock().requestFeature((int) featureId);
     }
 
 

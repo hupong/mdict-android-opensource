@@ -22,11 +22,11 @@ import cn.mdict.mdx.DictEntry;
  * 用来记录查询记录的通用类，收藏和历史记录都是使用该类作为存储
  *
  * @author rayman
- * Created on 11-12-31
+ *         Created on 11-12-31
  */
 public class DictBookmarkRef {
 
-	/**
+    /**
      * 加入条目
      *
      * @param entry 需要加入的条目
@@ -50,13 +50,12 @@ public class DictBookmarkRef {
      *
      * @return 如果有下一条记录，则返回记录，否则返回null
      */
-    public DictEntry getNext()
-    {
-    	int instance=getNextN();
-    	if (instance!=0)
-    		return new DictEntry(instance);
-    	else
-    		return null;
+    public DictEntry getNext() {
+        int instance = getNextN();
+        if (instance != 0)
+            return new DictEntry(instance);
+        else
+            return null;
     }
 
     /**
@@ -64,13 +63,12 @@ public class DictBookmarkRef {
      *
      * @return 如果有上一条记录，则返回记录，否则返回null
      */
-    public DictEntry getPrev()
-    {
-    	int instance=getPrevN();
-    	if (instance!=0)
-    		return new DictEntry(instance);
-    	else
-    		return null;
+    public DictEntry getPrev() {
+        int instance = getPrevN();
+        if (instance != 0)
+            return new DictEntry(instance);
+        else
+            return null;
     }
 
     /**
@@ -103,19 +101,23 @@ public class DictBookmarkRef {
     public native DictEntry getEntryByIndex(int index);
 
     /**
-     *  getNext()的JNI实现
+     * getNext()的JNI实现
      */
     private native int getNextN();
 
     /**
-     *  getPrev()的JNI实现
+     * getPrev()的JNI实现
      */
     private native int getPrevN();
 
-    /** JNI对象的句柄  */
+    /**
+     * JNI对象的句柄
+     */
     private int fInstance;
 
-    /** 记录的类型，内部使用  */
+    /**
+     * 记录的类型，内部使用
+     */
     private int fType;
 
 }

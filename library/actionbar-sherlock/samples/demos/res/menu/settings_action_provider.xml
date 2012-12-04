@@ -16,13 +16,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/menu_item_action_provider_action_bar"
-        android:showAsAction="ifRoom"
-        android:title="Settings"
-        android:actionProviderClass="com.actionbarsherlock.sample.demos.ActionProviders$SettingsActionProvider"/>
+          android:showAsAction="ifRoom"
+          android:title="Settings"
+          android:actionProviderClass="com.actionbarsherlock.sample.demos.ActionProviders$SettingsActionProvider"/>
 
     <item android:id="@+id/menu_item_action_provider_overflow"
-        android:showAsAction="never"
-        android:title="Settings"
-        android:actionProviderClass="com.actionbarsherlock.sample.demos.ActionProviders$SettingsActionProvider"/>
+          android:showAsAction="never"
+          android:title="Settings"
+          android:actionProviderClass="com.actionbarsherlock.sample.demos.ActionProviders$SettingsActionProvider"/>
 
 </menu>

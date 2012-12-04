@@ -67,7 +67,8 @@ public class LoaderCursorSupport extends SherlockFragmentActivity {
         // If non-null, this is the current filter the user has provided.
         String mCurFilter;
 
-        @Override public void onActivityCreated(Bundle savedInstanceState) {
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
 
             // Give some text to display if there is no data.  In a real
@@ -80,8 +81,8 @@ public class LoaderCursorSupport extends SherlockFragmentActivity {
             // Create an empty adapter we will use to display the loaded data.
             mAdapter = new SimpleCursorAdapter(getActivity(),
                     android.R.layout.simple_list_item_1, null,
-                    new String[] { People.DISPLAY_NAME },
-                    new int[] { android.R.id.text1}, 0);
+                    new String[]{People.DISPLAY_NAME},
+                    new int[]{android.R.id.text1}, 0);
             setListAdapter(mAdapter);
 
             // Start out with a progress indicator.
@@ -92,7 +93,8 @@ public class LoaderCursorSupport extends SherlockFragmentActivity {
             getLoaderManager().initLoader(0, null, this);
         }
 
-        @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        @Override
+        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             // Place an action bar item for searching.
             MenuItem item = menu.add("Search");
             item.setIcon(android.R.drawable.ic_menu_search);
@@ -101,29 +103,30 @@ public class LoaderCursorSupport extends SherlockFragmentActivity {
             if (searchView != null) {
                 SearchViewCompat.setOnQueryTextListener(searchView,
                         new OnQueryTextListenerCompat() {
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        // Called when the action bar search text has changed.  Update
-                        // the search filter, and restart the loader to do a new query
-                        // with this filter.
-                        mCurFilter = !TextUtils.isEmpty(newText) ? newText : null;
-                        getLoaderManager().restartLoader(0, null, CursorLoaderListFragment.this);
-                        return true;
-                    }
-                });
+                            @Override
+                            public boolean onQueryTextChange(String newText) {
+                                // Called when the action bar search text has changed.  Update
+                                // the search filter, and restart the loader to do a new query
+                                // with this filter.
+                                mCurFilter = !TextUtils.isEmpty(newText) ? newText : null;
+                                getLoaderManager().restartLoader(0, null, CursorLoaderListFragment.this);
+                                return true;
+                            }
+                        });
                 item.setActionView(searchView);
             }
         }
 
-        @Override public void onListItemClick(ListView l, View v, int position, long id) {
+        @Override
+        public void onListItemClick(ListView l, View v, int position, long id) {
             // Insert desired behavior here.
             Log.i("FragmentComplexList", "Item clicked: " + id);
         }
 
         // These are the Contacts rows that we will retrieve.
-        static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] {
-            People._ID,
-            People.DISPLAY_NAME,
+        static final String[] CONTACTS_SUMMARY_PROJECTION = new String[]{
+                People._ID,
+                People.DISPLAY_NAME,
         };
 
         public Loader<Cursor> onCreateLoader(int id, Bundle args) {

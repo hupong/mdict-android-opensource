@@ -25,5 +25,5 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:minHeight="?android:attr/listPreferredItemHeight"
             android:gravity="center_vertical"
-    />
+            />
 </com.actionbarsherlock.sample.fragments.CheckableFrameLayout>

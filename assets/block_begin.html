@@ -16,8 +16,10 @@
 
 <div style="border-radius:4px; margin:0px 0px 12px 0px; padding 2px;">
 
-<div onclick="ToggleShow('if_$dict_id$_$entry_no$', 'arrow_$dict_id$_$entry_no$')" id="ctrl_div_$dict_id$_$entry_no$"
-        style="background: #E0E0E0;padding:0.25em"> <span style="font-size: 1em;vertical-align:middle;">$headword$ - $title$ </span></div>
+    <div onclick="ToggleShow('if_$dict_id$_$entry_no$', 'arrow_$dict_id$_$entry_no$')"
+         id="ctrl_div_$dict_id$_$entry_no$"
+         style="background: #E0E0E0;padding:0.25em"><span style="font-size: 1em;vertical-align:middle;">$headword$ - $title$ </span>
+    </div>
     <!--
     <TABLE width="100%" border="0" cellspacing="0" cellpadding="0" align="left" class="__mdx_block_title">
         <tbody>
@@ -32,8 +34,10 @@
     <hr size="0" noshade color="#909090" />
 <div id="div_$dict_id$_$entry_no$" name="__mdx_block_div" class="__mdx_dict_block_collapse">
     -->
-    <iframe width="100%" name="__mdx_block_div" id="if_$dict_id$_$entry_no$" class="__mdx_dict_block_collapse" src1="content://mdx.mdict.cn/_$dict_id$/$entry_no$/"
-            frameborder="0" onload="javascript:iframe_mode=1;"></iframe><!-- onload="javascript:SetupIFrameEventListener('if_$dict_id$_$entry_no$');" -->
+    <iframe width="100%" name="__mdx_block_div" id="if_$dict_id$_$entry_no$" class="__mdx_dict_block_collapse"
+            src1="content://mdx.mdict.cn/_$dict_id$/$entry_no$/"
+            frameborder="0" onload="javascript:iframe_mode=1;"></iframe>
+    <!-- onload="javascript:SetupIFrameEventListener('if_$dict_id$_$entry_no$');" -->
 
 
 </div>

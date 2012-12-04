@@ -38,7 +38,7 @@ public class MdxAdapter extends BaseAdapter {
      *
      */
     private MdxDictBase dict = null;
-    private int dictId=DictPref.kInvalidDictPrefId;
+    private int dictId = DictPref.kInvalidDictPrefId;
     private String invalidDictPrompt = null;
     private String emptyListPrompt = null;
     private Context context = null;
@@ -52,10 +52,10 @@ public class MdxAdapter extends BaseAdapter {
 
     public void setDict(MdxDictBase dict, String emptyListPrompt, String invalidDictPrompt) {
         this.dict = dict;
-        if ( dict!=null && dict.isValid() )
-            dictId=dict.getDictPref().getDictId();
+        if (dict != null && dict.isValid())
+            dictId = dict.getDictPref().getDictId();
         else
-            dictId=DictPref.kInvalidDictPrefId;
+            dictId = DictPref.kInvalidDictPrefId;
         this.invalidDictPrompt = invalidDictPrompt;
         this.emptyListPrompt = emptyListPrompt;
 
@@ -147,22 +147,22 @@ public class MdxAdapter extends BaseAdapter {
         }
         if (convertView != null) {
             TextView textView = (TextView) convertView.findViewById(R.id.entry_headword);
-            TextView entryCount=(TextView) convertView.findViewById(R.id.item_count);
-            Object obj=getItem(position);
-            if ( obj!=null ){
-                DictEntry entry=(DictEntry)obj;
+            TextView entryCount = (TextView) convertView.findViewById(R.id.item_count);
+            Object obj = getItem(position);
+            if (obj != null) {
+                DictEntry entry = (DictEntry) obj;
                 textView.setText(entry.getHeadword());
-                int itemCount=entry.getSiblingCount();
-                if ( itemCount!=0 ){
-                    entryCount.setText("("+itemCount+")");
-                }else{
+                int itemCount = entry.getSiblingCount();
+                if (itemCount != 0) {
+                    entryCount.setText("(" + itemCount + ")");
+                } else {
                     entryCount.setText("");
                 }
-            }else{
-                if (dict==null || !dict.isValid())
+            } else {
+                if (dict == null || !dict.isValid())
                     textView.setText(invalidDictPrompt);
                 else
-                    textView.setText(emptyListPrompt );
+                    textView.setText(emptyListPrompt);
                 entryCount.setText("");
             }
         }

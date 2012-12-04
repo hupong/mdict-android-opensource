@@ -22,58 +22,61 @@ import cn.mdict.mdx.DictPref;
  * Class MdxLibraryMgrRef ...
  *
  * @author rayman
- * Created on 11-12-31
+ *         Created on 11-12-31
  */
 public class MdxLibraryMgrRef {
-	/** Field fInstance  */
+    /**
+     * Field fInstance
+     */
     private int fInstance;
 
 
-    public DictPref createDictPref(){
+    public DictPref createDictPref() {
         return new DictPref(createDictPrefN());
     }
 
-	/**
+    /**
      * Constructor MdxLibraryMgrRef creates a new MdxLibraryMgrRef instance.
      *
      * @param instance of type int
      */
     public MdxLibraryMgrRef(int instance) {
-		fInstance = instance;
-	}
+        fInstance = instance;
+    }
+
     /**
      * Method getRootDictPref returns the rootDictPref of this MdxLibraryMgrRef object.
-     *
-     *
      *
      * @return the rootDictPref (type DictPref) of this MdxLibraryMgrRef object.
      */
     public DictPref getRootDictPref() {
-    	return new DictPref(getRootDictPrefN());
+        return new DictPref(getRootDictPrefN());
     }
-	/**
+
+    /**
      * Method getRootDictPrefN returns the rootDictPrefN of this MdxLibraryMgrRef object.
-     *
-     *
      *
      * @return the rootDictPrefN (type int) of this MdxLibraryMgrRef object.
      */
     // Native declarations
     private native int getRootDictPrefN();
+
     /**
      * Method updateDictPref ...
      *
      * @param dictPref of type DictPref
      */
     public native void updateDictPref(DictPref dictPref);
+
     /**
      * Method moveTo ...
      *
-     * @param dictId of type int
+     * @param dictId   of type int
      * @param position of type int
      * @return boolean
      */
     public native boolean moveTo(int dictId, int position);
+
     /**
      * Method removeDictPref ...
      *

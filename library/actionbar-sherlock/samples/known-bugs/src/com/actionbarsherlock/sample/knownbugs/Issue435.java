@@ -40,11 +40,12 @@ public class Issue435 extends SherlockActivity implements View.OnClickListener, 
         ab.addTab(ab.newTab().setText("One").setTabListener(this));
         ab.addTab(ab.newTab().setText("One").setTabListener(this));
 
-        ab.setBackgroundDrawable(new GradientDrawable(TOP_BOTTOM, new int[] { 0xFF004400, 0xFF002200 }));
-        ab.setStackedBackgroundDrawable(new GradientDrawable(TOP_BOTTOM, new int[] { 0xFF440000, 0xFF220000 }));
+        ab.setBackgroundDrawable(new GradientDrawable(TOP_BOTTOM, new int[]{0xFF004400, 0xFF002200}));
+        ab.setStackedBackgroundDrawable(new GradientDrawable(TOP_BOTTOM, new int[]{0xFF440000, 0xFF220000}));
     }
 
-    @Override public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
         ActionMode am = startActionMode(new SuperSweetActionModeOfScience());
         am.setTitle("Hello, Broken?");
     }

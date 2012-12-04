@@ -42,10 +42,16 @@ import cn.mdict.mdx.MdxUtils;
  */
 public interface MdxEntryView {
     public void setMdxView(MdxView mdxView);
+
     public void setGestureListener(WebViewGestureFilter.GestureListener listener);
+
     public void showAllEntries(boolean show);
+
     public void zoomIn();
+
     public void zoomOut();
+
     public void displayEntry(DictEntry entry);
+
     public View getContainer();
 }

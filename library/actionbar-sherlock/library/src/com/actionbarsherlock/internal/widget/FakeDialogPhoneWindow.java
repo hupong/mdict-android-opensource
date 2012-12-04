@@ -1,6 +1,7 @@
 package com.actionbarsherlock.internal.widget;
 
 import static android.view.View.MeasureSpec.EXACTLY;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -42,9 +43,9 @@ public class FakeDialogPhoneWindow extends LinearLayout {
         if (tv.type != TypedValue.TYPE_NULL) {
             final int min;
             if (tv.type == TypedValue.TYPE_DIMENSION) {
-                min = (int)tv.getDimension(metrics);
+                min = (int) tv.getDimension(metrics);
             } else if (tv.type == TypedValue.TYPE_FRACTION) {
-                min = (int)tv.getFraction(metrics.widthPixels, metrics.widthPixels);
+                min = (int) tv.getFraction(metrics.widthPixels, metrics.widthPixels);
             } else {
                 min = 0;
             }

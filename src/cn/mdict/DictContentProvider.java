@@ -42,82 +42,80 @@ import cn.mdict.mdx.MdxEngine;
 
 
 public class DictContentProvider extends ContentProvider {
-    private static final String ContentHost ="mdict.cn";
-    private static final String SEARCH_PATH="/"+SearchManager.SUGGEST_URI_PATH_QUERY;
+    private static final String ContentHost = "mdict.cn";
+    private static final String SEARCH_PATH = "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 
     //private static final String URI_PREFIX = "file://";
-	private static MdxDictBase fCurrentDict;
-	private static String tmpDir;
+    private static MdxDictBase fCurrentDict;
+    private static String tmpDir;
     private static AssetManager assets;
 
-	public static void setDict(MdxDictBase dict) {
-		fCurrentDict = dict;
-	}
-
-	public static void setTmpDir(String dir){
-		tmpDir=dir;
-	}
-
-    public static void setAssetManager(AssetManager assetManager){
-        assets=assetManager;
+    public static void setDict(MdxDictBase dict) {
+        fCurrentDict = dict;
     }
 
-    ParcelFileDescriptor openLocalFile(String filePath) throws FileNotFoundException{
-        ParcelFileDescriptor parcel=null;
-        try{
-            File resFile=new File(MdxEngine.getResDir()+ filePath);
+    public static void setTmpDir(String dir) {
+        tmpDir = dir;
+    }
+
+    public static void setAssetManager(AssetManager assetManager) {
+        assets = assetManager;
+    }
+
+    ParcelFileDescriptor openLocalFile(String filePath) throws FileNotFoundException {
+        ParcelFileDescriptor parcel = null;
+        try {
+            File resFile = new File(MdxEngine.getResDir() + filePath);
             parcel = ParcelFileDescriptor.open(resFile, ParcelFileDescriptor.MODE_READ_ONLY);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return parcel;
     }
 
-    public static AssetFileDescriptor makeAssetFileDescriptorFromByteArray(String fileName, byte[] data){
+    public static AssetFileDescriptor makeAssetFileDescriptorFromByteArray(String fileName, byte[] data) {
         MemoryFile memFile;
-        try{
-            if (Build.VERSION.SDK_INT<Build.VERSION_CODES.ICE_CREAM_SANDWICH){
-                memFile=new MemoryFile(fileName, data.length);
-                memFile.writeBytes(data,0,0,data.length);
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                memFile = new MemoryFile(fileName, data.length);
+                memFile.writeBytes(data, 0, 0, data.length);
                 MemoryFileUtil.deactivate(memFile);
-                AssetFileDescriptor afd=MemoryFileUtil.fromMemoryFile(memFile);
+                AssetFileDescriptor afd = MemoryFileUtil.fromMemoryFile(memFile);
                 //memFile.close();
                 return afd;
-            }else{
-                ParcelFileDescriptor pfd=MemoryFileUtil.fromData(data, null);
+            } else {
+                ParcelFileDescriptor pfd = MemoryFileUtil.fromData(data, null);
                 //memFile.close();
                 return new AssetFileDescriptor(pfd, 0, AssetFileDescriptor.UNKNOWN_LENGTH);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
     AssetFileDescriptor openMDDMemoryFile(Uri uri) throws FileNotFoundException {
-        String tmpFileName= "/mdict"+uri.getPath();
-        StringBuffer mimeType=new StringBuffer();
-        byte[] data=getDataByUrl(fCurrentDict, uri, mimeType);
-        android.os.MemoryFile memFile=null;
-        if (data!=null && data.length>0) {
+        String tmpFileName = "/mdict" + uri.getPath();
+        StringBuffer mimeType = new StringBuffer();
+        byte[] data = getDataByUrl(fCurrentDict, uri, mimeType);
+        android.os.MemoryFile memFile = null;
+        if (data != null && data.length > 0) {
             return makeAssetFileDescriptorFromByteArray(tmpFileName, data);
         }
         return null;
     }
 
     ParcelFileDescriptor openMDDFile(String filePath) throws FileNotFoundException {
-        String tmpFileName= tmpDir+filePath;
+        String tmpFileName = tmpDir + filePath;
         String tmpDirName;
-        int namePos=tmpFileName.lastIndexOf('/');
-        tmpDirName=tmpFileName.substring(0, namePos);
-        tmpFileName=tmpFileName.substring(namePos+1);
-        File dir=new File(tmpDirName);
-        File path=new File(dir, tmpFileName);
-        if (!path.exists()){
-            byte[] data=fCurrentDict.getDictData(filePath, false);
-            if (data.length>0) {
+        int namePos = tmpFileName.lastIndexOf('/');
+        tmpDirName = tmpFileName.substring(0, namePos);
+        tmpFileName = tmpFileName.substring(namePos + 1);
+        File dir = new File(tmpDirName);
+        File path = new File(dir, tmpFileName);
+        if (!path.exists()) {
+            byte[] data = fCurrentDict.getDictData(filePath, false);
+            if (data.length > 0) {
                 OutputStream os = null;
                 try {
                     dir.mkdirs();
@@ -126,50 +124,47 @@ public class DictContentProvider extends ContentProvider {
                     os = new FileOutputStream(path);
                     os.write(data, 0, data.length);
                     os.close();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     try {
-                        if (os!=null)
+                        if (os != null)
                             os.close();
                         path.delete();
-                    }
-                    catch( Exception e1){
-                    }
-                    finally {
+                    } catch (Exception e1) {
+                    } finally {
                         return null;
                     }
                 }
             }
-        }else if ( path.isDirectory() )
+        } else if (path.isDirectory())
             return null;
 
         ParcelFileDescriptor parcel = ParcelFileDescriptor.open(path, ParcelFileDescriptor.MODE_READ_ONLY);
         return parcel;
     }
 
-    static  HashMap<String, byte[]> cache=new HashMap<String, byte[]>();
+    static HashMap<String, byte[]> cache = new HashMap<String, byte[]>();
 
     private static final Pattern LocalFilePattern = Pattern.compile("/localfile/(.*)"); //%1=name
     private static final Pattern AssetFilePattern = Pattern.compile("/res/(.*)"); //%1=name
 
     @Override
     public AssetFileDescriptor openAssetFile(Uri uri, String mode) throws FileNotFoundException {
-        if ( uri.getScheme().compareToIgnoreCase("content")==0 && uri.getHost().compareToIgnoreCase(ContentHost)==0 ){
-            String path=uri.getPath();
+        if (uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
+            String path = uri.getPath();
             Matcher matcher = LocalFilePattern.matcher(path);
-            if ( matcher.matches() && matcher.groupCount()==1 ){
+            if (matcher.matches() && matcher.groupCount() == 1) {
                 return new AssetFileDescriptor(openLocalFile(matcher.group(1)), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
             }
             matcher = AssetFilePattern.matcher(path);
-            if ( matcher.matches() && matcher.groupCount()==1 ) {
+            if (matcher.matches() && matcher.groupCount() == 1) {
                 try {
-                    String fileName=matcher.group(1);
+                    String fileName = matcher.group(1);
                     byte[] data;
-                    if ( cache.containsKey(fileName) )
-                        data= cache.get(fileName);
-                    else{
-                        data=AddonFuncUnt.loadBinFromAsset(assets, fileName, true);
-                        if ( data!=null )
+                    if (cache.containsKey(fileName))
+                        data = cache.get(fileName);
+                    else {
+                        data = AddonFuncUnt.loadBinFromAsset(assets, fileName, true);
+                        if (data != null)
                             cache.put(fileName, data);
                     }
                     return makeAssetFileDescriptorFromByteArray(fileName, data);
@@ -178,8 +173,7 @@ public class DictContentProvider extends ContentProvider {
                     //InputStream is=assets.open(fileName);
                     //AssetFileDescriptor afd= assets.openFd(fileName);
                     //return afd;
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     return null;
                 }
@@ -194,7 +188,7 @@ public class DictContentProvider extends ContentProvider {
     }
 
 /*
-	@Override
+    @Override
 	public ParcelFileDescriptor openFile(Uri uri, String mode)
 			throws FileNotFoundException {
 		String dataName = uri.getPath();
@@ -214,65 +208,64 @@ public class DictContentProvider extends ContentProvider {
 	}
 */
 
-	@Override
-	public int delete(Uri arg0, String arg1, String[] arg2) {
-		return 0;
-	}
+    @Override
+    public int delete(Uri arg0, String arg1, String[] arg2) {
+        return 0;
+    }
 
-	@Override
-	public String getType(Uri uri) {
-        if ( uri.getPath().startsWith(SEARCH_PATH) ) {
+    @Override
+    public String getType(Uri uri) {
+        if (uri.getPath().startsWith(SEARCH_PATH)) {
             return SearchManager.SUGGEST_MIME_TYPE;
         }
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public Uri insert(Uri uri, ContentValues values) {
-		return null;
-	}
+    @Override
+    public Uri insert(Uri uri, ContentValues values) {
+        return null;
+    }
 
-	@Override
-	public boolean onCreate() {
-		return true;
-	}
+    @Override
+    public boolean onCreate() {
+        return true;
+    }
 
-	@Override
-	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        Log.d("Search", "Got query:"+uri.toString());
-        if ( uri.getPath().startsWith(SEARCH_PATH) ) {
-            if ( fCurrentDict!=null && fCurrentDict.isValid() ){
-                List<String> pathSegments=uri.getPathSegments();
-                if ( pathSegments.size()>0 && pathSegments.get(0).compareToIgnoreCase(SearchManager.SUGGEST_URI_PATH_QUERY)==0 ){
-                    String query=null;
-                    if ( pathSegments.size()>1 )
-                        query=pathSegments.get(1);
-                    DictEntry entry=new DictEntry(0, "", fCurrentDict.getDictPref().getDictId());
-                    if ( query!=null && query.length()>0 )
+    @Override
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        Log.d("Search", "Got query:" + uri.toString());
+        if (uri.getPath().startsWith(SEARCH_PATH)) {
+            if (fCurrentDict != null && fCurrentDict.isValid()) {
+                List<String> pathSegments = uri.getPathSegments();
+                if (pathSegments.size() > 0 && pathSegments.get(0).compareToIgnoreCase(SearchManager.SUGGEST_URI_PATH_QUERY) == 0) {
+                    String query = null;
+                    if (pathSegments.size() > 1)
+                        query = pathSegments.get(1);
+                    DictEntry entry = new DictEntry(0, "", fCurrentDict.getDictPref().getDictId());
+                    if (query != null && query.length() > 0)
                         fCurrentDict.locateFirst(query, true, false, true, entry);
-                    if ( entry.isValid() ){
-                        String limit=uri.getQueryParameter(SearchManager.SUGGEST_PARAMETER_LIMIT);
-                        int maxResultCount=20;
-                        if (limit!=null && limit.length()>0){
-                            try{
-                                maxResultCount=Integer.parseInt(limit);
-                            }
-                            catch (NumberFormatException e){
+                    if (entry.isValid()) {
+                        String limit = uri.getQueryParameter(SearchManager.SUGGEST_PARAMETER_LIMIT);
+                        int maxResultCount = 20;
+                        if (limit != null && limit.length() > 0) {
+                            try {
+                                maxResultCount = Integer.parseInt(limit);
+                            } catch (NumberFormatException e) {
                             }
                         }
-                        ArrayList<DictEntry> entryList=new ArrayList<DictEntry>();
+                        ArrayList<DictEntry> entryList = new ArrayList<DictEntry>();
                         fCurrentDict.getEntries(entry, maxResultCount, entryList);
-                        String[] columns = new String[] {
+                        String[] columns = new String[]{
                                 BaseColumns._ID,
                                 SearchManager.SUGGEST_COLUMN_TEXT_1,
                                 SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID,
-                                SearchManager. SUGGEST_COLUMN_SHORTCUT_ID};
-                        MatrixCursor cursor= new MatrixCursor(columns, maxResultCount);
+                                SearchManager.SUGGEST_COLUMN_SHORTCUT_ID};
+                        MatrixCursor cursor = new MatrixCursor(columns, maxResultCount);
                         Object[] row;
-                        for(int i=0; i<entryList.size(); ++i){
-                            DictEntry cur_entry=entryList.get(i);
-                            String intentDataId=String.format("%d_%d_%s", cur_entry.getDictId(), cur_entry.getEntryNo(), cur_entry.getHeadword());
-                            row= new Object[]{ cur_entry.toString(), cur_entry.getHeadword(), intentDataId, SearchManager.SUGGEST_NEVER_MAKE_SHORTCUT};
+                        for (int i = 0; i < entryList.size(); ++i) {
+                            DictEntry cur_entry = entryList.get(i);
+                            String intentDataId = String.format("%d_%d_%s", cur_entry.getDictId(), cur_entry.getEntryNo(), cur_entry.getHeadword());
+                            row = new Object[]{cur_entry.toString(), cur_entry.getHeadword(), intentDataId, SearchManager.SUGGEST_NEVER_MAKE_SHORTCUT};
                             cursor.addRow(row);
                         }
                         return cursor;
@@ -280,91 +273,90 @@ public class DictContentProvider extends ContentProvider {
                 }
             }
         }
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public int update(Uri uri, ContentValues values, String selection,
-			String[] selectionArgs) {
-		return 0;
-	}
+    @Override
+    public int update(Uri uri, ContentValues values, String selection,
+                      String[] selectionArgs) {
+        return 0;
+    }
 
     private static final Pattern MddDataUrlPattern = Pattern.compile("/mdd/(\\d+)/(.*)"); //%1=dict_id, %2=name
-    private static final Pattern IFrameEntryUrlPattern =Pattern.compile("/mdx/_(\\d+)/(-?\\d+)/"); //Used by iframe view mode for sub-entryies, %1=dict_id, %2=entry_no
-    private static final Pattern ProgEntryUrlPattern =Pattern.compile("/mdx/(\\d+)/(-?\\d+)/(.*)/"); //Used by single view mode, %1=dict_id, %2=entry_no, %3=headword
-    private static final Pattern SearchViewUrlPattern =Pattern.compile("/searchView/(\\d+)_(-?\\d+)_(.*)"); //Used by search suggestion View action
+    private static final Pattern IFrameEntryUrlPattern = Pattern.compile("/mdx/_(\\d+)/(-?\\d+)/"); //Used by iframe view mode for sub-entryies, %1=dict_id, %2=entry_no
+    private static final Pattern ProgEntryUrlPattern = Pattern.compile("/mdx/(\\d+)/(-?\\d+)/(.*)/"); //Used by single view mode, %1=dict_id, %2=entry_no, %3=headword
+    private static final Pattern SearchViewUrlPattern = Pattern.compile("/searchView/(\\d+)_(-?\\d+)_(.*)"); //Used by search suggestion View action
 
 
-    public static byte[] getDataByUrl(MdxDictBase dict, String urlString, StringBuffer mimeType ){
+    public static byte[] getDataByUrl(MdxDictBase dict, String urlString, StringBuffer mimeType) {
         return getDataByUrl(dict, Uri.parse(urlString), mimeType);
     }
 
-    public static byte[] getDataByUrl(MdxDictBase dict, Uri uri, StringBuffer mimeType){
-        byte[] data=null;
-        if ( dict==null || !dict.isValid() )
+    public static byte[] getDataByUrl(MdxDictBase dict, Uri uri, StringBuffer mimeType) {
+        byte[] data = null;
+        if (dict == null || !dict.isValid())
             return null;
         try {
-            if (uri.getScheme().compareToIgnoreCase("content")==0 && uri.getHost().compareToIgnoreCase(ContentHost)==0 ){
+            if (uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
                 mimeType.setLength(0);
-                String url=uri.getPath();
+                String url = uri.getPath();
                 Matcher matcher = MddDataUrlPattern.matcher(url);
-                if ( matcher.matches() && matcher.groupCount()==2 ){
-                    int dictId=Integer.parseInt(matcher.group(1));
-                    String dataName=matcher.group(2);
+                if (matcher.matches() && matcher.groupCount() == 2) {
+                    int dictId = Integer.parseInt(matcher.group(1));
+                    String dataName = matcher.group(2);
                     mimeType.append("application/octet-stream");
                     return dict.getDictData(dictId, dataName, false);
                 }
                 matcher = IFrameEntryUrlPattern.matcher(url);
-                if ( matcher.matches() && matcher.groupCount()==2 ){
-                    Integer dictId=Integer.parseInt(matcher.group(1));
-                    Integer entryNo=Integer.parseInt(matcher.group(2));
-                    DictEntry entry=new DictEntry(entryNo, "", dictId);
+                if (matcher.matches() && matcher.groupCount() == 2) {
+                    Integer dictId = Integer.parseInt(matcher.group(1));
+                    Integer entryNo = Integer.parseInt(matcher.group(2));
+                    DictEntry entry = new DictEntry(entryNo, "", dictId);
                     mimeType.append("text/html");
-                    String htmlBegin="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\r\n"+
-                            "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" >"+
-                            "<script>function OnTouchStart(event){ top.OnTouchStartImpl(event, document, window);}"+
-                            "function OnTouchEnd(event){ top.OnTouchEndImpl(event, document, window);}"+
+                    String htmlBegin = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\r\n" +
+                            "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" >" +
+                            "<script>function OnTouchStart(event){ top.OnTouchStartImpl(event, document, window);}" +
+                            "function OnTouchEnd(event){ top.OnTouchEndImpl(event, document, window);}" +
                             "function SetupTouch(){document.body.addEventListener('touchstart', OnTouchStart, false);\n" +
-                            "document.body.addEventListener('touchend', OnTouchEnd,false);}\n</script>"+
+                            "document.body.addEventListener('touchend', OnTouchEnd,false);}\n</script>" +
                             "<style type=\"text/css\">\n@font-face {font-family: 'Droid Sans IPA'; font-style:  normal; font-weight: normal;\n" +
-                            "src: url('content://mdict.cn/assert/droid_sans.ttf');}\n*{font-family:'Droid Sans IPA', DroidSans, arial, sans-serif;}</style>"+
+                            "src: url('content://mdict.cn/assert/droid_sans.ttf');}\n*{font-family:'Droid Sans IPA', DroidSans, arial, sans-serif;}</style>" +
                             "</head><body onload=\"javascript:SetupTouch();\">";
 
-                    data= dict.getDictTextN(entry, false, false, htmlBegin, "</body></html>");
+                    data = dict.getDictTextN(entry, false, false, htmlBegin, "</body></html>");
                     return data;
                 }
                 matcher = ProgEntryUrlPattern.matcher(url);
-                boolean isProgEntryUrl=( matcher.matches() && matcher.groupCount()>=2);
-                boolean isSearchEntryUrl=false;
-                if (!isProgEntryUrl ){
-                    matcher= SearchViewUrlPattern.matcher(url);
-                    isSearchEntryUrl=( matcher.matches() && matcher.groupCount()>=2);
+                boolean isProgEntryUrl = (matcher.matches() && matcher.groupCount() >= 2);
+                boolean isSearchEntryUrl = false;
+                if (!isProgEntryUrl) {
+                    matcher = SearchViewUrlPattern.matcher(url);
+                    isSearchEntryUrl = (matcher.matches() && matcher.groupCount() >= 2);
                 }
 
-                if ( isSearchEntryUrl || isProgEntryUrl ){
-                    int dictId=Integer.parseInt(matcher.group(1));
-                    int entryNo=Integer.parseInt(matcher.group(2));
-                    DictEntry entry=new DictEntry(entryNo, "", dictId);
+                if (isSearchEntryUrl || isProgEntryUrl) {
+                    int dictId = Integer.parseInt(matcher.group(1));
+                    int entryNo = Integer.parseInt(matcher.group(2));
+                    DictEntry entry = new DictEntry(entryNo, "", dictId);
                     mimeType.append("text/html");
-                    String headWord="";
-                    if ( matcher.groupCount()==3 ){
-                        headWord=matcher.group(3);
+                    String headWord = "";
+                    if (matcher.groupCount() == 3) {
+                        headWord = matcher.group(3);
                         entry.setHeadword(headWord);
                     }
-                    if (  entry.isSysCmd() ){
-                        data=dict.getDictTextN(entry, true, false, null, null);
-                    }else if ( entry.isUnionDictEntry() ){
-                        if ( dict.locateFirst(headWord, isSearchEntryUrl, false, false, entry)==MdxDictBase.kMdxSuccess ){
-                            data=dict.getDictTextN(entry, true, true, null, null);
+                    if (entry.isSysCmd()) {
+                        data = dict.getDictTextN(entry, true, false, null, null);
+                    } else if (entry.isUnionDictEntry()) {
+                        if (dict.locateFirst(headWord, isSearchEntryUrl, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                            data = dict.getDictTextN(entry, true, true, null, null);
                         }
-                    }else {
-                        data=dict.getDictTextN(entry, true, false, null, null);
+                    } else {
+                        data = dict.getDictTextN(entry, true, false, null, null);
                     }
                     return data;
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return data;

@@ -17,7 +17,7 @@ public class ListNavigation extends SherlockActivity implements ActionBar.OnNavi
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.list_navigation);
-        mSelected = (TextView)findViewById(R.id.text);
+        mSelected = (TextView) findViewById(R.id.text);
 
         mLocations = getResources().getStringArray(R.array.locations);
 

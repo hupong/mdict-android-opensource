@@ -698,8 +698,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 : addToHistory);
     }
 
-    public void displayByHeadword(String headword, boolean addToHistory) {
-		/*
+    public void displayByHeadword(String headword, boolean addToHistory) {        /*
 		 * if (addToHistory) { deepth += 1; SearchTrack st = new SearchTrack();
 		 * st.setScrollX(0); st.setScrollY(0); history.add(new SearchTrack()); }
 		 */

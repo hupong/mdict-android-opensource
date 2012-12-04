@@ -38,7 +38,7 @@ public class FragmentStackSupport extends SherlockFragmentActivity {
         setContentView(R.layout.fragment_stack);
 
         // Watch for button clicks.
-        Button button = (Button)findViewById(R.id.new_fragment);
+        Button button = (Button) findViewById(R.id.new_fragment);
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 addFragmentToStack();
@@ -78,7 +78,6 @@ public class FragmentStackSupport extends SherlockFragmentActivity {
     }
 
 
-
     public static class CountingFragment extends SherlockFragment {
         int mNum;
 
@@ -112,10 +111,10 @@ public class FragmentStackSupport extends SherlockFragmentActivity {
          */
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.hello_world, container, false);
             View tv = v.findViewById(R.id.text);
-            ((TextView)tv).setText("Fragment #" + mNum);
+            ((TextView) tv).setText("Fragment #" + mNum);
             tv.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
             return v;
         }

@@ -35,46 +35,45 @@ import java.io.ByteArrayInputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MdxWebViewClient extends WebViewClient{ // implements WebView.PictureListener {
+public class MdxWebViewClient extends WebViewClient { // implements WebView.PictureListener {
     private MdxView mdxView;
     private ScrollView listContainer;
-    private String anchor=null;
+    private String anchor = null;
     private Handler jsHandler = new Handler();
 
-    private static final String UrlHost="mdict.cn";
-    private static final String  UrlScheme="content";
+    private static final String UrlHost = "mdict.cn";
+    private static final String UrlScheme = "content";
 
     private static final Pattern EntryUrlPattern = Pattern.compile("/entry/(\\d+)/(.*)");
     private static final Pattern EntryxUrlPattern = Pattern.compile("/entryx/(\\d+)/(\\d+)");
     private static final Pattern LookupUrlPattern = Pattern.compile("/lookup/(\\d+)/(\\d+)/(.*)");
     private static final Pattern SoundUrlPattern = Pattern.compile("/sound/(\\d+)/(.*)");
-    private static final Pattern HeadwordUrlPattern =Pattern.compile("/headword/(.*)"); //Used by word suggestion list
+    private static final Pattern HeadwordUrlPattern = Pattern.compile("/headword/(.*)"); //Used by word suggestion list
 
 
-
-    MdxWebViewClient(MdxView mdxView, ScrollView listContainer){
-        this.mdxView=mdxView;
+    MdxWebViewClient(MdxView mdxView, ScrollView listContainer) {
+        this.mdxView = mdxView;
         this.listContainer = listContainer;
     }
 
     @Override
-    public WebResourceResponse shouldInterceptRequest (WebView view, String url){
-        StringBuffer mimeType=new StringBuffer();
-        byte[] data= DictContentProvider.getDataByUrl(mdxView.getDict(), url, mimeType);
-        if (data!=null && data.length>0) {
-            WebResourceResponse response=new WebResourceResponse(mimeType.toString(), null, new ByteArrayInputStream(data));
+    public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+        StringBuffer mimeType = new StringBuffer();
+        byte[] data = DictContentProvider.getDataByUrl(mdxView.getDict(), url, mimeType);
+        if (data != null && data.length > 0) {
+            WebResourceResponse response = new WebResourceResponse(mimeType.toString(), null, new ByteArrayInputStream(data));
             return response;
-        }else
+        } else
             return null;
     }
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        Uri uri=Uri.parse(url);
-        if (uri.getScheme().compareToIgnoreCase(UrlScheme)!=0 || uri.getHost().compareToIgnoreCase(UrlHost)!=0 )
+        Uri uri = Uri.parse(url);
+        if (uri.getScheme().compareToIgnoreCase(UrlScheme) != 0 || uri.getHost().compareToIgnoreCase(UrlHost) != 0)
             return false;
 
-        String path=uri.getPath();
+        String path = uri.getPath();
         /*
         if (url.compareTo(MdxPageCompleteNotify)==0){
             jumpToAnchor(view);
@@ -82,40 +81,40 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
         }
         */
         Matcher matcher = EntryUrlPattern.matcher(path);
-        if ( matcher.matches() && matcher.groupCount()==2 ){
+        if (matcher.matches() && matcher.groupCount() == 2) {
             //String headWord=uri.getPath();
             //int dictId=Integer.parseInt(matcher.group(1));
-            String headWord= matcher.group(2);
-            anchor=uri.getFragment();
-            int fragPos=headWord.indexOf('#');
-            if ( fragPos>0 )
-                headWord=headWord.substring(0,fragPos);
-            if (headWord.length()>0 ){
-                if (headWord.charAt(0)!='#'){
+            String headWord = matcher.group(2);
+            anchor = uri.getFragment();
+            int fragPos = headWord.indexOf('#');
+            if (fragPos > 0)
+                headWord = headWord.substring(0, fragPos);
+            if (headWord.length() > 0) {
+                if (headWord.charAt(0) != '#') {
                     DictEntry entry = new DictEntry(0, "", mdxView.getDict().getDictPref().getDictId());
                     if (mdxView.getDict().locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
-                        mdxView.displayByEntry(entry,true);
-                    }else{
+                        mdxView.displayByEntry(entry, true);
+                    } else {
                         Toast.makeText(mdxView.getContext(),
                                 String.format(mdxView.getContext().getString(R.string.headword_not_found), headWord),
                                 Toast.LENGTH_SHORT).show();
                         return true;
                     }
-                }else{
+                } else {
                     return false;
                 }
             }
             return true;
         }
-        matcher= LookupUrlPattern.matcher(path);
-        if (matcher.matches() && matcher.groupCount()==3){
-            String headWord=matcher.group(3);
+        matcher = LookupUrlPattern.matcher(path);
+        if (matcher.matches() && matcher.groupCount() == 3) {
+            String headWord = matcher.group(3);
             mdxView.displayByHeadword(headWord, true);
             return true;
         }
         matcher = HeadwordUrlPattern.matcher(path);
-        if ( matcher.matches() && matcher.groupCount()==1 ){
-            String headWord=matcher.group(1);
+        if (matcher.matches() && matcher.groupCount() == 1) {
+            String headWord = matcher.group(1);
             mdxView.displayByHeadword(headWord, true);
             return true;
         }
@@ -130,13 +129,13 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
             return true;
         }
         */
-        matcher= SoundUrlPattern.matcher(path);
-        if (matcher.matches() && matcher.groupCount()==2){
-            String headWord=matcher.group(2);
-            if (headWord!=null && headWord.length()!=0){
-                headWord=headWord.replace('/', '\\');
-                if (headWord.charAt(0)!='\\' )
-                    headWord="\\"+headWord;
+        matcher = SoundUrlPattern.matcher(path);
+        if (matcher.matches() && matcher.groupCount() == 2) {
+            String headWord = matcher.group(2);
+            if (headWord != null && headWord.length() != 0) {
+                headWord = headWord.replace('/', '\\');
+                if (headWord.charAt(0) != '\\')
+                    headWord = "\\" + headWord;
                 mdxView.playAudio(headWord);
             }
             return true;
@@ -144,19 +143,19 @@ public class MdxWebViewClient extends WebViewClient{ // implements WebView.Pictu
         return false;
     }
 
-    void jumpToAnchor(WebView view){
-        if (anchor==null || anchor.length()==0 )
+    void jumpToAnchor(WebView view) {
+        if (anchor == null || anchor.length() == 0)
             return;
-        String js="javascript:window.location.hash=('" + anchor + "')";
+        String js = "javascript:window.location.hash=('" + anchor + "')";
         view.loadUrl(js);
-        if (listContainer !=null){
-            if ( view.getParent()!=null ) {
-                View pv=(View)view.getParent();
-                int vPos=view.getScrollY()+view.getTop();
-                listContainer.requestChildRectangleOnScreen(pv, new Rect(0,vPos, view.getWidth(), vPos+ listContainer.getHeight()), true);
+        if (listContainer != null) {
+            if (view.getParent() != null) {
+                View pv = (View) view.getParent();
+                int vPos = view.getScrollY() + view.getTop();
+                listContainer.requestChildRectangleOnScreen(pv, new Rect(0, vPos, view.getWidth(), vPos + listContainer.getHeight()), true);
             }
         }
-        anchor=null;
+        anchor = null;
     }
 
     @SuppressWarnings("unused")

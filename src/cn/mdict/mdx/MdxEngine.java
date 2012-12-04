@@ -32,37 +32,36 @@ import java.util.List;
  * Class MdxEngine ...
  *
  * @author rayman
- * Created on 11-12-31
+ *         Created on 11-12-31
  */
 public class MdxEngine {
     static {
         System.loadLibrary("iconv");
         System.loadLibrary("mdx");
     }
-    private MdxEngine() {
-		fInstance = getAppInstanceN();
-	}
 
-	/**
+    private MdxEngine() {
+        fInstance = getAppInstanceN();
+    }
+
+    /**
      * Method getSettings returns preference of the application.
      *
      * @return the view preference of the application.
      */
     static public MdxEngineSetting getSettings() {
         return appSetting;
-	}
+    }
 
 
-	/**
+    /**
      * Method getLibMgr returns the libMgr of this MdxEngine object.
-     *
-     *
      *
      * @return the libMgr (type MdxLibraryMgrRef) of this MdxEngine object.
      */
     static public MdxLibraryMgrRef getLibMgr() {
-		return  new MdxLibraryMgrRef(appOne.getLibMgrN());
-	}
+        return new MdxLibraryMgrRef(appOne.getLibMgrN());
+    }
 
     /**
      * Method opendDictById opens a dictionary by passing the dictId and a dict object reference.
@@ -72,25 +71,25 @@ public class MdxEngine {
      * @param dict
      * @return
      */
-    static public int openDictById(int dictId, boolean adjustDictOrder, MdxDictBase dict){
-        int res= appOne.openDictN(dictId, "", getSettings().getAppOwner().trim(), adjustDictOrder, dict);
-        if (res==MdxDictBase.kMdxSuccess){
+    static public int openDictById(int dictId, boolean adjustDictOrder, MdxDictBase dict) {
+        int res = appOne.openDictN(dictId, "", getSettings().getAppOwner().trim(), adjustDictOrder, dict);
+        if (res == MdxDictBase.kMdxSuccess) {
             rebuildHtmlSetting(dict, MdxEngine.getSettings().getPrefHighSpeedMode());
             MdxEngine.getSettings().setPrefLastDictId(dictId);
         }
         return res;
     }
 
-    static public int openDictByPref(DictPref dictPref, MdxDictBase dict){
-        int res= appOne.openDictByPrefN(dictPref, "", getSettings().getAppOwner().trim(), dict);
-        if (res==MdxDictBase.kMdxSuccess){
+    static public int openDictByPref(DictPref dictPref, MdxDictBase dict) {
+        int res = appOne.openDictByPrefN(dictPref, "", getSettings().getAppOwner().trim(), dict);
+        if (res == MdxDictBase.kMdxSuccess) {
             rebuildHtmlSetting(dict, MdxEngine.getSettings().getPrefHighSpeedMode());
         }
         return res;
     }
 
-    static public int openDictByName(String dictName, MdxDictBase dict){
-        DictPref dictPref=DictPref.createDictPref();
+    static public int openDictByName(String dictName, MdxDictBase dict) {
+        DictPref dictPref = DictPref.createDictPref();
         dictPref.setDictName(dictName);
         dictPref.setDictId(1);
         return openDictByPref(dictPref, dict);
@@ -101,49 +100,49 @@ public class MdxEngine {
      *
      * @param appContext The application context
      */
-    static public void initSettings(Context appContext){
-        if ( appSetting==null )
+    static public void initSettings(Context appContext) {
+        if (appSetting == null)
             appSetting = new MdxEngineSetting(appContext);
     }
 
-    static public void rebuildHtmlSetting(MdxDictBase dict, boolean highSpeedMode){
-        
-        String css="";
-        if ( MdxEngine.getSettings().getPrefUseBuiltInIPAFont() ){
-            css+=baseContext.getResources().getString(R.string.ipa_font_css);
+    static public void rebuildHtmlSetting(MdxDictBase dict, boolean highSpeedMode) {
+
+        String css = "";
+        if (MdxEngine.getSettings().getPrefUseBuiltInIPAFont()) {
+            css += baseContext.getResources().getString(R.string.ipa_font_css);
         }
 
-        StringBuffer css_buffer=new StringBuffer();
-        String mdictCSS="";
-        if ( AddonFuncUnt.loadStringFromFile(appOne.getDocDirN()+"mdict.css", css_buffer) ){
-            if ( css_buffer.length()!=0 )
-                css+=css_buffer.toString();
+        StringBuffer css_buffer = new StringBuffer();
+        String mdictCSS = "";
+        if (AddonFuncUnt.loadStringFromFile(appOne.getDocDirN() + "mdict.css", css_buffer)) {
+            if (css_buffer.length() != 0)
+                css += css_buffer.toString();
         }
 
-        StringBuffer htmlBlock=new StringBuffer();
+        StringBuffer htmlBlock = new StringBuffer();
 
         htmlBlock.setLength(0);
         AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), "html_begin.html", htmlBlock, true);
-        String htmlBegin =htmlBlock.toString()
+        String htmlBegin = htmlBlock.toString()
                 .replace("$start_expand_all$", MdxEngine.getSettings().getPrefMultiDictDefaultExpandAll().toString())
                 .replace("$expand_single$", MdxEngine.getSettings().getPrefMultiDictExpandOnlyOne().toString())
                 .replace("$extra_header$", css);
 
         htmlBlock.setLength(0);
         AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), "html_end.html", htmlBlock, true);
-        String htmlEnd =htmlBlock.toString();
+        String htmlEnd = htmlBlock.toString();
 
         htmlBlock.setLength(0);
-        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), highSpeedMode? "block_begin_h.html":"block_begin.html", htmlBlock, true);
-        String blockBegin=htmlBlock.toString();
+        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), highSpeedMode ? "block_begin_h.html" : "block_begin.html", htmlBlock, true);
+        String blockBegin = htmlBlock.toString();
 
         htmlBlock.setLength(0);
-        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), highSpeedMode?"block_end_h.html":"block_end.html", htmlBlock, true);
-        String blockEnd=htmlBlock.toString();
+        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), highSpeedMode ? "block_end_h.html" : "block_end.html", htmlBlock, true);
+        String blockEnd = htmlBlock.toString();
 
         htmlBlock.setLength(0);
         AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), "union_grp_title.html", htmlBlock, true);
-        String unionGroupTitle=htmlBlock.toString();
+        String unionGroupTitle = htmlBlock.toString();
 
         dict.setHtmlHeader(htmlBegin, htmlEnd);
         dict.setHtmlBlockHeader(blockBegin, blockEnd);
@@ -151,7 +150,7 @@ public class MdxEngine {
             dict.setUnionGroupTitle(unionGroupTitle);
     }
 
-    static public void registerNotification(){
+    static public void registerNotification() {
         NotificationManager nm = (NotificationManager) baseContext.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notification = new Notification(R.drawable.app_icon_medium, baseContext.getString(R.string.app_name), System.currentTimeMillis());
         notification.flags = Notification.FLAG_ONGOING_EVENT;
@@ -160,24 +159,25 @@ public class MdxEngine {
         PendingIntent contentIntent = PendingIntent.getActivity(
                 baseContext, R.string.app_name, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        notification.setLatestEventInfo( baseContext, baseContext.getString(R.string.app_name), "", contentIntent);
+        notification.setLatestEventInfo(baseContext, baseContext.getString(R.string.app_name), "", contentIntent);
         nm.notify(R.string.app_name, notification);
     }
 
-    static public void unregisterNotification(){
+    static public void unregisterNotification() {
         NotificationManager nm = (NotificationManager) baseContext.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(R.string.app_name);
     }
+
     /**
      * Method initApp ...
      *
      * @return boolean
      */
-    static public boolean initMDictEngine(Context context, String appHomeDir, String resDir, String tmpDir, ArrayList<String> extraSearchPath){
-        boolean res=appOne.initAppN(appHomeDir, resDir, tmpDir, extraSearchPath);
-        if (res){
-            baseContext=context;
-            if (getSettings().getPrefShowInNotification()){
+    static public boolean initMDictEngine(Context context, String appHomeDir, String resDir, String tmpDir, ArrayList<String> extraSearchPath) {
+        boolean res = appOne.initAppN(appHomeDir, resDir, tmpDir, extraSearchPath);
+        if (res) {
+            baseContext = context;
+            if (getSettings().getPrefShowInNotification()) {
                 registerNotification();
             }
         }
@@ -186,9 +186,10 @@ public class MdxEngine {
 
     /**
      * Method saveEngineSettings ...
+     *
      * @return int
      */
-    static public int saveEngineSettings(){
+    static public int saveEngineSettings() {
         return appOne.saveAllPreferenceN();
     }
 
@@ -197,7 +198,7 @@ public class MdxEngine {
      *
      * @return the favorites (type DictBookmarkRef) of this MdxEngine object.
      */
-    static public DictBookmarkRef getHistMgr(){
+    static public DictBookmarkRef getHistMgr() {
         return appOne.getHistoryN();
     }
 
@@ -206,78 +207,91 @@ public class MdxEngine {
      *
      * @return the favorites (type DictBookmarkRef) of this MdxEngine object.
      */
-    static public DictBookmarkRef getFavMgr(){
+    static public DictBookmarkRef getFavMgr() {
         return appOne.getFavoritesN();
     }
 
     /**
      * Method getSharedMdxData ...
      *
-     * @param dataName of type String
+     * @param dataName   of type String
      * @param convertKey of type boolean
      * @return byte[]
      */
-    static public byte[] getSharedMdxData(String dataName, boolean convertKey){
+    static public byte[] getSharedMdxData(String dataName, boolean convertKey) {
         return appOne.getGlobalDataN(dataName, convertKey);
     }
 
     /**
      * Method hasSharedMdxData ...
      *
-     * @param dataName of type String
+     * @param dataName   of type String
      * @param convertKey of type boolean
      * @return boolean
      */
-    static public boolean hasSharedMdxData(String dataName, boolean convertKey){
+    static public boolean hasSharedMdxData(String dataName, boolean convertKey) {
         return appOne.hasGlobalDataN(dataName, convertKey);
     }
 
     /**
      * Method refreshDictList ...
      */
-    static public void refreshDictList(){
+    static public void refreshDictList() {
         appOne.refreshLibListN();
     }
 
-    static public String getTempDir(){
+    static public String getTempDir() {
         return appOne.getTmpDirN();
     }
-    
-    static public String getDataHomeDir(){
+
+    static public String getDataHomeDir() {
         return appOne.getDataHomeDirN();
     }
 
-    static public String getDocDir(){
+    static public String getDocDir() {
         return appOne.getDocDirN();
     }
 
-    static public String getResDir(){
+    static public String getResDir() {
         return appOne.getResDirN();
     }
 
     // Native declarations
     private native int openDictN(int dictID, String deviceId, String email, boolean adjustDictOrder, MdxDictBase dict); // dict is java MdxDictBase
-    private native int openDictByPrefN( DictPref dictPref, String deviceId, String email, MdxDictBase dict );
+
+    private native int openDictByPrefN(DictPref dictPref, String deviceId, String email, MdxDictBase dict);
 
     private native int getAppInstanceN();
+
     private native int getLibMgrN();
+
     private native boolean initAppN(String appHomeDir, String resDir, String tmpDir, List<String> extraSearchPath);
+
     private native int saveAllPreferenceN();
+
     private native DictBookmarkRef getHistoryN();
+
     private native DictBookmarkRef getFavoritesN();
+
     private native byte[] getGlobalDataN(String dataName, boolean convertKey);
+
     private native boolean hasGlobalDataN(String dataName, boolean convertKey);
+
     private native void refreshLibListN();
+
     private native String getTmpDirN();
+
     private native String getDocDirN();
+
     private native String getDataHomeDirN();
+
     private native String getResDirN();
 
     private int fInstance;
-    
-    private static Context baseContext=null;
-    private static MdxEngine appOne=new MdxEngine();
-    private static MdxEngineSetting appSetting=null;
+
+    private static Context baseContext = null;
+    private static MdxEngine appOne = new MdxEngine();
+    private static MdxEngineSetting appSetting = null;
 
 
 }

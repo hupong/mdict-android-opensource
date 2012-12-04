@@ -52,8 +52,8 @@
     <string name="settings">设置</string>
     <string name="entry_prev">上一条</string>
     <string name="entry_next">下一条</string>
-    <string name="zoom_in">放  大</string>
-    <string name="zoom_out">缩  小</string>
+    <string name="zoom_in">放 大</string>
+    <string name="zoom_out">缩 小</string>
     <string name="delete">删除</string>
     <string name="system_default">系统默认</string>
     <string name="quit_prompt">再按一次返回键退出</string>
@@ -76,7 +76,7 @@
     <string name="search_setting_description">词典, 百科</string>
 
 
-<!-- string for setting frame -->
+    <!-- string for setting frame -->
     <string name="pref_cate_title_basic_setting">基础设置</string>
     <string name="pref_cate_title_multi_dict">多词典查询模设置</string>
 
@@ -112,7 +112,7 @@
 
     <string name="pref_title_use_tts">使用TTS进行发音</string>
     <string name="pref_summary_use_tts">当语音库中没有对应单词发音时，使用TTS引擎发音</string>
-    
+
     <string name="pref_title_tts_locale">TTS引擎的语言</string>
     <string name="pref_dialog_title_tts_locale">语言</string>
 

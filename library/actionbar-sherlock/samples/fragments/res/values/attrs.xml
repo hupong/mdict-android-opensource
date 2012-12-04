@@ -19,7 +19,7 @@
          app/FragmentArguments.java -->
 
     <declare-styleable name="FragmentArguments">
-        <attr name="android:label" />
+        <attr name="android:label"/>
     </declare-styleable>
 
 </resources>

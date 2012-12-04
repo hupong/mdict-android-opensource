@@ -29,29 +29,30 @@ import com.actionbarsherlock.view.MenuItem;
  * To change this template use File | Settings | File Templates.
  */
 public class SimpleActionModeCallbackAgent implements ActionMode.Callback {
-    public interface ActionItemClickListener{
+    public interface ActionItemClickListener {
         public boolean onActionItemClicked(ActionMode mode, MenuItem item);
     }
 
-    private ActionItemClickListener listener=null;
+    private ActionItemClickListener listener = null;
     private int menuResId;
     private ActionMode actionMode;
 
-    public SimpleActionModeCallbackAgent(int menuResId, ActionItemClickListener listener){
-        this.menuResId=menuResId;
-        this.listener=listener;
+    public SimpleActionModeCallbackAgent(int menuResId, ActionItemClickListener listener) {
+        this.menuResId = menuResId;
+        this.listener = listener;
     }
 
-    ActionMode getActionMode(){
+    ActionMode getActionMode() {
         return actionMode;
     }
+
     // Called when the action mode is created; startActionMode() was called
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
         // Inflate a menu resource providing context menu items
         mode.setCustomView(null);
         mode.getMenuInflater().inflate(menuResId, menu);
-        actionMode=mode;
+        actionMode = mode;
         return true;
     }
 
@@ -65,7 +66,7 @@ public class SimpleActionModeCallbackAgent implements ActionMode.Callback {
     // Called when the user selects a contextual menu item
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        if ( listener!=null && listener.onActionItemClicked(mode, item))
+        if (listener != null && listener.onActionItemClicked(mode, item))
             mode.finish(); // Action picked, so close the CAB
         return true;
     }
@@ -73,6 +74,6 @@ public class SimpleActionModeCallbackAgent implements ActionMode.Callback {
     // Called when the user exits the action mode
     @Override
     public void onDestroyActionMode(ActionMode mode) {
-        actionMode=null;
+        actionMode = null;
     }
 }

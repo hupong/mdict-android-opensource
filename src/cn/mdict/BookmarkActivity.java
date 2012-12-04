@@ -35,20 +35,24 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 public abstract class BookmarkActivity extends SherlockListActivity implements BookmarkAdapter.ItemCheckedChangeListener, SimpleActionModeCallbackAgent.ActionItemClickListener {
-    public final static String headwordName="Headword";
-    public final static String entryNoName="EntryNo";
-    public final static String dictIdName="LibId";
+    public final static String headwordName = "Headword";
+    public final static String entryNoName = "EntryNo";
+    public final static String dictIdName = "LibId";
 
     private SimpleActionModeCallbackAgent actionModeAgent;
 
     public abstract DictBookmarkRef getBookmarkMgr();
+
     public abstract int getLayoutResId();
+
     public abstract int getOptionMenuResId();
+
     public abstract int getItemOptionMenuResId();
-    public abstract  BookmarkAdapter getBookmarkAdapter();
+
+    public abstract BookmarkAdapter getBookmarkAdapter();
 
     @Override
-    public void onConfigurationChanged (Configuration newConfig){
+    public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
 
@@ -75,13 +79,13 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
         return true;
     }
 
-    private void deleteSelectedItem(){
-        SparseBooleanArray states= getBookmarkAdapter().getCheckStates();
-        DictBookmarkRef bookmarkMgr=getBookmarkMgr();
-        for( int i=states.size()-1; i>=0; --i){
-            int pos=states.keyAt(i);
-            boolean value=states.valueAt(i);
-            if ( value ){
+    private void deleteSelectedItem() {
+        SparseBooleanArray states = getBookmarkAdapter().getCheckStates();
+        DictBookmarkRef bookmarkMgr = getBookmarkMgr();
+        for (int i = states.size() - 1; i >= 0; --i) {
+            int pos = states.keyAt(i);
+            boolean value = states.valueAt(i);
+            if (value) {
                 bookmarkMgr.remove(pos);
             }
         }
@@ -91,16 +95,17 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.clear_all:
-                AlertDialog dialog=AddonFuncUnt.buildConfirmDialog(this,
+                AlertDialog dialog = AddonFuncUnt.buildConfirmDialog(this,
                         R.string.confirm_clear_all_record, 0,
                         new android.content.DialogInterface.OnClickListener() {
                             @Override
-                            public  void onClick(android.content.DialogInterface dialogInterface, int i) {
+                            public void onClick(android.content.DialogInterface dialogInterface, int i) {
                                 getBookmarkMgr().clear();
                                 getBookmarkAdapter().notifyDataSetChanged();
-                            }}, null);
+                            }
+                        }, null);
                 dialog.show();
                 return true;
             case R.id.delete:
@@ -117,12 +122,12 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
     }
 
     @Override
-    protected void onListItemClick (ListView l, View v, int position, long id){
+    protected void onListItemClick(ListView l, View v, int position, long id) {
         if (position < 0 || position >= MdxEngine.getHistMgr().getCount()) {
             return;
         }
         DictEntry entry = getBookmarkMgr().getEntryByIndex((int) id);
-        Intent intent=getIntent();
+        Intent intent = getIntent();
         intent.putExtra(headwordName, entry.getHeadword());
         intent.putExtra(entryNoName, entry.getEntryNo());
         intent.putExtra(dictIdName, entry.getDictId());
@@ -137,33 +142,33 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
 
     @Override
     public void OnItemCheckedChanged(int position, boolean checked) {
-        if ( getBookmarkAdapter().getCheckItemCount()>0 ){
-            if ( actionModeAgent.getActionMode()==null ){
+        if (getBookmarkAdapter().getCheckItemCount() > 0) {
+            if (actionModeAgent.getActionMode() == null) {
                 startActionMode(actionModeAgent);
             }
             actionModeAgent.getActionMode().setTitle(String.format(getResources().getString(R.string.entries_selected), getBookmarkAdapter().getCheckItemCount()));
-        }else{
-            if ( actionModeAgent.getActionMode()!=null )
+        } else {
+            if (actionModeAgent.getActionMode() != null)
                 actionModeAgent.getActionMode().finish();
         }
     }
 
 
-    protected void setupEnv(Intent intent){
+    protected void setupEnv(Intent intent) {
         ListView listView = getListView();
         //listView.setChoiceMode(ListView.);
         getBookmarkAdapter().setItemCheckedChangeListener(this);
         listView.setAdapter(getBookmarkAdapter());
         //adapter.notifyDataSetChanged();
 
-        actionModeAgent=new SimpleActionModeCallbackAgent(getItemOptionMenuResId(), this);
+        actionModeAgent = new SimpleActionModeCallbackAgent(getItemOptionMenuResId(), this);
 
     }
 
     @Override
-    protected void onPause(){
-    	MdxEngine.saveEngineSettings();
-    	super.onPause();
+    protected void onPause() {
+        MdxEngine.saveEngineSettings();
+        super.onPause();
     }
 
     @Override

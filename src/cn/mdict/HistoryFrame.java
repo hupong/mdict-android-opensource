@@ -38,7 +38,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 public class HistoryFrame extends BookmarkActivity {
-    private BookmarkAdapter adapter=null;
+    private BookmarkAdapter adapter = null;
 
     @Override
     public DictBookmarkRef getBookmarkMgr() {
@@ -62,31 +62,31 @@ public class HistoryFrame extends BookmarkActivity {
 
     @Override
     public BookmarkAdapter getBookmarkAdapter() {
-        if (adapter==null)
-            adapter=new BookmarkAdapter(this, getBookmarkMgr(), true);
+        if (adapter == null)
+            adapter = new BookmarkAdapter(this, getBookmarkMgr(), true);
         return adapter;
     }
 
-    private void addSelectedItemToFav(){
-        SparseBooleanArray states=adapter.getCheckStates();
-        DictBookmarkRef favMgr=MdxEngine.getFavMgr();
-        DictBookmarkRef histMgr=MdxEngine.getHistMgr();
-        for( int i=0; i<states.size(); ++i){
-            int pos=states.keyAt(i);
-            boolean value=states.valueAt(i);
-            if ( value ){
-                DictEntry entry=histMgr.getEntryByIndex(pos);
+    private void addSelectedItemToFav() {
+        SparseBooleanArray states = adapter.getCheckStates();
+        DictBookmarkRef favMgr = MdxEngine.getFavMgr();
+        DictBookmarkRef histMgr = MdxEngine.getHistMgr();
+        for (int i = 0; i < states.size(); ++i) {
+            int pos = states.keyAt(i);
+            boolean value = states.valueAt(i);
+            if (value) {
+                DictEntry entry = histMgr.getEntryByIndex(pos);
                 entry.makeJEntry();
                 favMgr.add(entry);
             }
         }
-        Toast.makeText(this,String.format(getResources().getString(R.string.entries_added), states.size()),Toast.LENGTH_LONG).show();
+        Toast.makeText(this, String.format(getResources().getString(R.string.entries_added), states.size()), Toast.LENGTH_LONG).show();
         getBookmarkAdapter().notifyDataSetChanged();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.add_to_fav:
                 addSelectedItemToFav();
                 return true;

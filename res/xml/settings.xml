@@ -19,8 +19,8 @@
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory  android:key="@string/pref_category_basic"
-            android:title="@string/pref_cate_title_basic_setting">
+    <PreferenceCategory android:key="@string/pref_category_basic"
+                        android:title="@string/pref_cate_title_basic_setting">
 
         <CheckBoxPreference
                 android:key="@string/pref_auto_lookup_clipboard"
@@ -41,7 +41,7 @@
         <CheckBoxPreference
                 android:key="@string/pref_use_finger_gesture"
                 android:title="@string/pref_title_use_finger_gesture"
-                android:defaultValue="@string/pref_default_use_finger_gesture" />
+                android:defaultValue="@string/pref_default_use_finger_gesture"/>
         <CheckBoxPreference
                 android:key="@string/pref_lock_rotation"
                 android:title="@string/pref_title_lock_rotation"
@@ -76,13 +76,13 @@
                 android:key="@string/pref_app_owner"
                 android:title="@string/pref_title_email"
                 android:summary="@string/pref_summary_email"
-                android:dialogTitle="@string/pref_dialog_title_email" />
+                android:dialogTitle="@string/pref_dialog_title_email"/>
 
         <Preference
                 android:key="@string/pref_extra_dict_dir"
                 android:title="@string/pref_title_extra_dict_dir"
                 android:summary="@string/pref_summary_extra_dict_dir"
-                android:dialogTitle="@string/pref_dialog_title_extra_dict_dir" />
+                android:dialogTitle="@string/pref_dialog_title_extra_dict_dir"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_cate_title_multi_dict">
         <CheckBoxPreference
@@ -115,7 +115,7 @@
                 android:key="@string/pref_use_tts"
                 android:title="@string/pref_title_use_tts"
                 android:summary="@string/pref_summary_use_tts"
-                android:defaultValue="@string/pref_default_use_tts" />
+                android:defaultValue="@string/pref_default_use_tts"/>
         <ListPreference
                 android:key="@string/pref_tts_locale"
                 android:title="@string/pref_title_tts_locale"
@@ -129,14 +129,14 @@
                 android:dialogTitle="@string/pref_title_tts_engine"
                 ></ListPreference>
 
-<!--        <ListPreference
-                android:key="list_preference"
-                android:title="title_list_preference"
-                android:summary="summary_list_preference"
-                android:entries="entries_list_preference"
-                android:entryValues="entryvalues_list_preference"
-                android:dialogTitle="dialog_title_list_preference" />
--->
+        <!--        <ListPreference
+                        android:key="list_preference"
+                        android:title="title_list_preference"
+                        android:summary="summary_list_preference"
+                        android:entries="entries_list_preference"
+                        android:entryValues="entryvalues_list_preference"
+                        android:dialogTitle="dialog_title_list_preference" />
+        -->
     </PreferenceCategory>
 
 </PreferenceScreen>

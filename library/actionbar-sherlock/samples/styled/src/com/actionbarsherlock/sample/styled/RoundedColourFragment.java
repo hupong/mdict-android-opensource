@@ -38,7 +38,7 @@ public class RoundedColourFragment extends SherlockFragment {
     }
 
     public RoundedColourFragment(int colour, float weight, int margin_left,
-            int margin_right, int margin_top, int margin_bottom) {
+                                 int margin_right, int margin_top, int margin_bottom) {
         mColour = colour;
         mWeight = weight;
         marginLeft = margin_left;
@@ -65,7 +65,7 @@ public class RoundedColourFragment extends SherlockFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         return mView;
     }
 

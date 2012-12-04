@@ -31,13 +31,14 @@ public class MdxUtils {
     /**
      * Method decodeSpeex ...
      *
-     * @param input of type byte[]
-     * @param output of type ByteArrayOutputStream
+     * @param input           of type byte[]
+     * @param output          of type ByteArrayOutputStream
      * @param appendWAVHeader of type boolean
      * @return boolean
      */
     // Native declarations
     public native static boolean decodeSpeex(byte[] input, ByteArrayOutputStream output, boolean appendWAVHeader);
+
     /**
      * Method punyCodeToUnicode ...
      *
@@ -45,25 +46,25 @@ public class MdxUtils {
      * @return String
      */
     public native static String punyCodeToUnicode(String input);
+
     /**
      * Method displayEntry ...
      *
      * @param webView of type WebView
-     * @param dict of type MdxDictBase
-     * @param entry of type DictEntry
+     * @param dict    of type MdxDictBase
+     * @param entry   of type DictEntry
      * @return int
      */
     public native static int displayEntry(WebView webView, MdxDictBase dict, DictEntry entry);
 
 
-    public static void displayEntryHtml(MdxDictBase dict, DictEntry entry, WebView wv){
-        byte[] data=dict.getDictTextN(entry, true, false, "", "");
-        if (data!=null){
-            try{
-                String html=new String(data, "utf-8");
+    public static void displayEntryHtml(MdxDictBase dict, DictEntry entry, WebView wv) {
+        byte[] data = dict.getDictTextN(entry, true, false, "", "");
+        if (data != null) {
+            try {
+                String html = new String(data, "utf-8");
                 wv.loadDataWithBaseURL("", html, "text/html", "utf-8", "");
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

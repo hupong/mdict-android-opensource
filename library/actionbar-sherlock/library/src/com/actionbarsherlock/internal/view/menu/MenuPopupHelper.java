@@ -17,6 +17,7 @@
 package com.actionbarsherlock.internal.view.menu;
 
 import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.DataSetObserver;
@@ -40,6 +41,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 /**
  * Presents a menu as a small, simple popup anchored to another view.
+ *
  * @hide
  */
 public class MenuPopupHelper implements AdapterView.OnItemClickListener, View.OnKeyListener,
@@ -75,7 +77,7 @@ public class MenuPopupHelper implements AdapterView.OnItemClickListener, View.On
     }
 
     public MenuPopupHelper(Context context, MenuBuilder menu,
-            View anchorView, boolean overflowOnly) {
+                           View anchorView, boolean overflowOnly) {
         mContext = context;
         mInflater = LayoutInflater.from(context);
         mMenu = menu;
@@ -118,7 +120,7 @@ public class MenuPopupHelper implements AdapterView.OnItemClickListener, View.On
             final boolean addGlobalListener = mTreeObserver == null;
             mTreeObserver = anchor.getViewTreeObserver(); // Refresh to latest
             if (addGlobalListener) mTreeObserver.addOnGlobalLayoutListener(this);
-            ((View_HasStateListenerSupport)anchor).addOnAttachStateChangeListener(this);
+            ((View_HasStateListenerSupport) anchor).addOnAttachStateChangeListener(this);
             mPopup.setAnchorView(anchor);
         } else {
             return false;
@@ -145,7 +147,7 @@ public class MenuPopupHelper implements AdapterView.OnItemClickListener, View.On
             mTreeObserver.removeGlobalOnLayoutListener(this);
             mTreeObserver = null;
         }
-        ((View_HasStateListenerSupport)mAnchorView).removeOnAttachStateChangeListener(this);
+        ((View_HasStateListenerSupport) mAnchorView).removeOnAttachStateChangeListener(this);
     }
 
     public boolean isShowing() {
@@ -172,9 +174,9 @@ public class MenuPopupHelper implements AdapterView.OnItemClickListener, View.On
         View itemView = null;
         int itemType = 0;
         final int widthMeasureSpec =
-            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         final int heightMeasureSpec =
-            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         final int count = adapter.getCount();
         for (int i = 0; i < count; i++) {
             final int positionType = adapter.getItemViewType(i);
@@ -215,7 +217,7 @@ public class MenuPopupHelper implements AdapterView.OnItemClickListener, View.On
             if (!mTreeObserver.isAlive()) mTreeObserver = v.getViewTreeObserver();
             mTreeObserver.removeGlobalOnLayoutListener(this);
         }
-        ((View_HasStateListenerSupport)v).removeOnAttachStateChangeListener(this);
+        ((View_HasStateListenerSupport) v).removeOnAttachStateChangeListener(this);
     }
 
     @Override

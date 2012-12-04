@@ -24,7 +24,7 @@
         <CheckBoxPreference
                 android:key="checkbox_preference"
                 android:title="@string/title_checkbox_preference"
-                android:summary="@string/summary_checkbox_preference" />
+                android:summary="@string/summary_checkbox_preference"/>
 
     </PreferenceCategory>
 
@@ -35,7 +35,7 @@
                 android:key="edittext_preference"
                 android:title="@string/title_edittext_preference"
                 android:summary="@string/summary_edittext_preference"
-                android:dialogTitle="@string/dialog_title_edittext_preference" />
+                android:dialogTitle="@string/dialog_title_edittext_preference"/>
 
         <ListPreference
                 android:key="list_preference"
@@ -43,7 +43,7 @@
                 android:summary="@string/summary_list_preference"
                 android:entries="@array/entries_list_preference"
                 android:entryValues="@array/entryvalues_list_preference"
-                android:dialogTitle="@string/dialog_title_list_preference" />
+                android:dialogTitle="@string/dialog_title_list_preference"/>
 
     </PreferenceCategory>
 
@@ -55,7 +55,7 @@
                 android:summary="@string/summary_intent_preference">
 
             <intent android:action="android.intent.action.VIEW"
-                    android:data="http://www.android.com" />
+                    android:data="http://www.android.com"/>
 
         </PreferenceScreen>
 
@@ -67,7 +67,7 @@
         <CheckBoxPreference
                 android:key="parent_checkbox_preference"
                 android:title="@string/title_parent_preference"
-                android:summary="@string/summary_parent_preference" />
+                android:summary="@string/summary_parent_preference"/>
 
         <!-- The visual style of a child is defined by this styled theme attribute. -->
         <CheckBoxPreference
@@ -75,7 +75,7 @@
                 android:dependency="parent_checkbox_preference"
                 android:layout="?android:attr/preferenceLayoutChild"
                 android:title="@string/title_child_preference"
-                android:summary="@string/summary_child_preference" />
+                android:summary="@string/summary_child_preference"/>
 
     </PreferenceCategory>
 

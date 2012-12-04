@@ -67,9 +67,9 @@ public class FragmentMenuSupport extends SherlockFragmentActivity {
         ft.commit();
 
         // Watch check box clicks.
-        mCheckBox1 = (CheckBox)findViewById(R.id.menu1);
+        mCheckBox1 = (CheckBox) findViewById(R.id.menu1);
         mCheckBox1.setOnClickListener(mClickListener);
-        mCheckBox2 = (CheckBox)findViewById(R.id.menu2);
+        mCheckBox2 = (CheckBox) findViewById(R.id.menu2);
         mCheckBox2.setOnClickListener(mClickListener);
 
         // Make sure fragments start out with correct visibility.

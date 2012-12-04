@@ -954,7 +954,7 @@ public class FloatingDictView extends SherlockFragment implements
                 jukuuHandler.sendMessage(msg);//向Handler发送消息，
             }
         }).start();        /*
-		while (jukuuWebContent.length() == 0) {
+        while (jukuuWebContent.length() == 0) {
 
 		}
 		if (jukuuWebContent != "ERROR") {

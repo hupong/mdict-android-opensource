@@ -5,6 +5,10 @@
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/gen" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/library/target/generated-sources/annotations" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/library/target/generated-test-sources/test-annotations" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/library/gen/com/example/Actionbar_Sherlock/BuildConfig.java" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/library/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>
@@ -23,7 +27,16 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Actionbar-Sherlock" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

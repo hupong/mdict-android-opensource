@@ -16,20 +16,20 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tlv="http://schemas.android.com/apk/res/cn.mdict"
-    android:id="@+id/library_view"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical">
+              xmlns:tlv="http://schemas.android.com/apk/res/cn.mdict"
+              android:id="@+id/library_view"
+              android:layout_width="fill_parent" android:layout_height="fill_parent"
+              android:orientation="vertical">
     <cn.mdict.widgets.TouchListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" android:background="#FFFFFF"
-        android:id="@+id/library_list" android:cacheColorHint="#00000000"
-        android:divider="#000000"
-        tlv:normal_height="40dp"
-        tlv:expanded_height="80dp"
-        tlv:grabber="@+id/grabber"
-        tlv:remove_mode="none"
-        tlv:dragndrop_background="@color/action_bar_selected_bg" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:background="#FFFFFF"
+            android:id="@+id/library_list" android:cacheColorHint="#00000000"
+            android:divider="#000000"
+            tlv:normal_height="40dp"
+            tlv:expanded_height="80dp"
+            tlv:grabber="@+id/grabber"
+            tlv:remove_mode="none"
+            tlv:dragndrop_background="@color/action_bar_selected_bg">
 
-     </cn.mdict.widgets.TouchListView>
+    </cn.mdict.widgets.TouchListView>
 </LinearLayout>

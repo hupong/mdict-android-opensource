@@ -16,25 +16,26 @@
   -->
 
 <cn.mdict.widgets.CheckableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="40dp" android:descendantFocusability="blocksDescendants">
+                                  android:layout_width="fill_parent" android:layout_height="40dp"
+                                  android:descendantFocusability="blocksDescendants">
     <TextView
-        android:id="@+id/item_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="20dp"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:singleLine="true"
-        android:layout_alignParentLeft="true"
-        android:textColor="#000000"
-    />
+            android:id="@+id/item_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="#000000"
+            />
     <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-    />
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            />
 </cn.mdict.widgets.CheckableLayout>
 

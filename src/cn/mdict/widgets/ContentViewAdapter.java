@@ -41,23 +41,24 @@ public class ContentViewAdapter extends BaseAdapter {
      */
     private Context context = null;
     private MdxDictBase dict;
-    private DictEntry currentEntry=null;
-    private View rowViewCache[]=null;
-    public ContentViewAdapter(Context context, MdxDictBase dict ) {
-        this.context=context;
-        this.dict=dict;
+    private DictEntry currentEntry = null;
+    private View rowViewCache[] = null;
+
+    public ContentViewAdapter(Context context, MdxDictBase dict) {
+        this.context = context;
+        this.dict = dict;
     }
 
-    public void setDict(MdxDictBase dict){
-        this.dict=dict;
+    public void setDict(MdxDictBase dict) {
+        this.dict = dict;
     }
 
-    public void setCurrentEntry(DictEntry entry){
-        currentEntry=new DictEntry(entry);
-        if (currentEntry.getSiblingCount()>0)
-            rowViewCache =new View[currentEntry.getSiblingCount()];
+    public void setCurrentEntry(DictEntry entry) {
+        currentEntry = new DictEntry(entry);
+        if (currentEntry.getSiblingCount() > 0)
+            rowViewCache = new View[currentEntry.getSiblingCount()];
         else
-            rowViewCache =new WebView[1];
+            rowViewCache = new WebView[1];
         notifyDataSetChanged();
     }
 
@@ -66,7 +67,7 @@ public class ContentViewAdapter extends BaseAdapter {
      */
     @Override
     public int getCount() {
-        if (currentEntry!=null)
+        if (currentEntry != null)
             return currentEntry.getSiblingCount();
         else
             return 0;
@@ -95,16 +96,16 @@ public class ContentViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = rowViewCache[position];
         if (convertView == null) {
-            convertView= LayoutInflater.from(context).inflate(R.layout.content_view, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.content_view, null);
         }
-        rowViewCache[position]=convertView;
-        WebView htmlView=(WebView)convertView.findViewById(R.id.webview);
-        if (htmlView!=null){
+        rowViewCache[position] = convertView;
+        WebView htmlView = (WebView) convertView.findViewById(R.id.webview);
+        if (htmlView != null) {
             htmlView.getSettings().setJavaScriptEnabled(true);
             //htmlView.getSettings().setBuiltInZoomControls(true);
             htmlView.getSettings().setSupportZoom(true);
             htmlView.clearView();
-            MdxUtils.displayEntry(htmlView, dict, (DictEntry)getItem(position));
+            MdxUtils.displayEntry(htmlView, dict, (DictEntry) getItem(position));
         }
         return convertView;
     }

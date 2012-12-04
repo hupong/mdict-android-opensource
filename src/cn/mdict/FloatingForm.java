@@ -145,7 +145,7 @@ public class FloatingForm extends SherlockFragmentActivity {
 
             View localView = findViewById(R.id.floating_frame);
             final Context context = this;            /*
-			 * localView.setOnClickListener(new View.OnClickListener() {
+             * localView.setOnClickListener(new View.OnClickListener() {
 			 * 
 			 * @Override public void onClick(View view) { ((FloatingForm)
 			 * context).finish(); } });

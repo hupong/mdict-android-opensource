@@ -29,9 +29,9 @@ public class CollapsibleActionItem extends SherlockActivity {
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
 
         menu.add("Search")
-            .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
-            .setActionView(R.layout.collapsible_edittext)
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+                .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+                .setActionView(R.layout.collapsible_edittext)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
 
         return true;
     }
@@ -41,6 +41,6 @@ public class CollapsibleActionItem extends SherlockActivity {
         setTheme(SampleList.THEME); //Used for theme switching in samples
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text);
-        ((TextView)findViewById(R.id.text)).setText(R.string.collapsible_content);
+        ((TextView) findViewById(R.id.text)).setText(R.string.collapsible_content);
     }
 }

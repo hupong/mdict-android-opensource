@@ -30,9 +30,6 @@
         -->
     </style>
 
-    <style name="Theme.MDict.ForceOverFlow" parent="@style/Theme.MDict">
-        <item name="absForceOverflow">true</item>
-    </style>
 
     <style name="Theme.MDict.Translucent">
         <item name="android:windowBackground">@color/transparent</item>

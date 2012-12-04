@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * or multiple mdx files joint to form a union-dictionary
  *
  * @author Rayman Zhang
- * Created on 2011-12-31
+ *         Created on 2011-12-31
  */
 public class MdxDictBase {
     public final static int kZDBSuccess = 0;
@@ -67,54 +67,57 @@ public class MdxDictBase {
     public final static int kMdxUnmatchedMDT = 19;
     public final static int kMdxErrorEnd = 20;
 
-	/** Ptr to JNI cpp object */
+    /**
+     * Ptr to JNI cpp object
+     */
     private int fInstance;
 
-	/**
+    /**
      * Dummy Constructor
      */
-    public MdxDictBase(){
-		
-	}
+    public MdxDictBase() {
+
+    }
 
     /**
      * Finalize function for resource cleanup
+     *
      * @throws Throwable when
      */
-	protected void finalize() throws Throwable {
-		releaseCppObject();
-		super.finalize();
-	}
-	
-	/**
+    protected void finalize() throws Throwable {
+        releaseCppObject();
+        super.finalize();
+    }
+
+    /**
      * Get settings of current dictionary
      *
      * @return the settings (type DictPref) of this MdxDictBase object.
      */
     public synchronized DictPref getDictPref() {
-		if ( isValid() ) {
-			int prefPtr=getDictPrefN();
-			if ( prefPtr!=0 )
-				return new DictPref(prefPtr);
-		}
-		return null;
-	}
+        if (isValid()) {
+            int prefPtr = getDictPrefN();
+            if (prefPtr != 0)
+                return new DictPref(prefPtr);
+        }
+        return null;
+    }
 
     /**
      * Locates the first entry that match the specified headword
      *
-     * @param headword Headword to be searched for
-     * @param convertKey Convert the given headword into different Chinese form according to dictionary settings?
+     * @param headword     Headword to be searched for
+     * @param convertKey   Convert the given headword into different Chinese form according to dictionary settings?
      * @param partialMatch Match partial of the headword. For example "abc" can be matched with "abd" headword search
-     * @param entry The matched entry if found
+     * @param entry        The matched entry if found
      * @return Return kMdxSuccess when succeed, otherwise return error codes.
      */
-    public synchronized int locateFirst(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, DictEntry entry){
-		if ( isValid() ) {
-			return locateFirstN(headword, convertKey, partialMatch, startWithMatch, entry);
-		}else {
-			return kMdxDatabaseNotInited;
-		}
+    public synchronized int locateFirst(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, DictEntry entry) {
+        if (isValid()) {
+            return locateFirstN(headword, convertKey, partialMatch, startWithMatch, entry);
+        } else {
+            return kMdxDatabaseNotInited;
+        }
     }
 
     /**
@@ -123,76 +126,74 @@ public class MdxDictBase {
      * @param entry The given entry no and the result
      * @return Return kMdxSuccess when succeed.
      */
-    public synchronized int getHeadword(DictEntry entry){
-		if ( isValid() ) {
-			return getHeadwordN(entry);
-		}else {
-			return kMdxDatabaseNotInited;
-		}
+    public synchronized int getHeadword(DictEntry entry) {
+        if (isValid()) {
+            return getHeadwordN(entry);
+        } else {
+            return kMdxDatabaseNotInited;
+        }
     }
 
     /**
      * Method getDictData ...
      *
-     * @param dataName of type String
+     * @param dataName   of type String
      * @param convertKey of type boolean
      * @return byte[]
      */
-    public synchronized byte[] getDictData(String dataName, boolean convertKey){
-		if ( isValid() ) {
-	    	return getDictDataN(dataName, convertKey);
-		}else {
-			return null;
-		}
+    public synchronized byte[] getDictData(String dataName, boolean convertKey) {
+        if (isValid()) {
+            return getDictDataN(dataName, convertKey);
+        } else {
+            return null;
+        }
     }
 
-    public synchronized byte[] getDictData(int dictId, String dataName, boolean convertKey){
-		if ( isValid() ) {
-	    	return getDictDataWithDictIdN(dictId, dataName, convertKey);
-		}else {
-			return null;
-		}
+    public synchronized byte[] getDictData(int dictId, String dataName, boolean convertKey) {
+        if (isValid()) {
+            return getDictDataWithDictIdN(dictId, dataName, convertKey);
+        } else {
+            return null;
+        }
     }
 
     /**
      * Method getEntries ...
      *
-     * @param startEntry of type DictEntry
+     * @param startEntry    of type DictEntry
      * @param maxEntryCount of type int
-     * @param entries of type ArrayList<DictEntry>
+     * @param entries       of type ArrayList<DictEntry>
      * @return int
      */
-    public synchronized int getEntries(DictEntry startEntry, int maxEntryCount, ArrayList<DictEntry> entries){
-		if ( isValid() ) {
-	    	return getEntriesN(startEntry, maxEntryCount, entries);
-		}else {
-			return kMdxDatabaseNotInited;
-		}
+    public synchronized int getEntries(DictEntry startEntry, int maxEntryCount, ArrayList<DictEntry> entries) {
+        if (isValid()) {
+            return getEntriesN(startEntry, maxEntryCount, entries);
+        } else {
+            return kMdxDatabaseNotInited;
+        }
     }
 
     /**
      * Method isValid returns the valid of this MdxDictBase object.
      *
-     *
-     *
      * @return the valid (type boolean) of this MdxDictBase object.
      */
-    public synchronized boolean isValid(){
-		if (fInstance==0)
-			return false;
-		else
-			return isValidN();
-	}
-	
-	/**
+    public synchronized boolean isValid() {
+        if (fInstance == 0)
+            return false;
+        else
+            return isValidN();
+    }
+
+    /**
      * Method releaseCppObject ...
+     *
      * @return int
      */
     public native int releaseCppObject();
+
     /**
      * Method getEntryCount returns the entryCount of this MdxDictBase object.
-     *
-     *
      *
      * @return the entryCount (type int) of this MdxDictBase object.
      */
@@ -200,14 +201,16 @@ public class MdxDictBase {
 
     /**
      * Method canRandomAccess ...
+     *
      * @return boolean
      */
 
     public native boolean canRandomAccess();
+
     /**
      * Method hasDataEntry ...
      *
-     * @param dataName of type String
+     * @param dataName   of type String
      * @param convertKey of type boolean
      * @return boolean
      */
@@ -215,11 +218,13 @@ public class MdxDictBase {
 
 
     public native byte[] getDictTextN(DictEntry entry, boolean addHtmlHeader, boolean headerOnly, String htmlBegin, String htmlEnd);
+
     public native int readDictTextN(DictEntry entry, boolean addHtmlHeader, boolean headerOnly, StringBuffer html);
+
     /**
      * Method getDictDataN ...
      *
-     * @param dataName of type String
+     * @param dataName   of type String
      * @param convertKey of type boolean
      * @return byte[]
      */
@@ -231,9 +236,9 @@ public class MdxDictBase {
     /**
      * Method getEntriesN ...
      *
-     * @param startEntry of type DictEntry
+     * @param startEntry    of type DictEntry
      * @param maxEntryCount of type int
-     * @param entries of type ArrayList<DictEntry>
+     * @param entries       of type ArrayList<DictEntry>
      * @return int
      */
     private native int getEntriesN(DictEntry startEntry, int maxEntryCount, ArrayList<DictEntry> entries);
@@ -249,42 +254,44 @@ public class MdxDictBase {
     /**
      * Method locateFirstN ...
      *
-     * @param headword of type String
-     * @param convertKey of type boolean
+     * @param headword     of type String
+     * @param convertKey   of type boolean
      * @param partialMatch of type boolean
-     * @param entry of type DictEntry
+     * @param entry        of type DictEntry
      * @return int
      */
     private native int locateFirstN(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, DictEntry entry);
-    
+
     /**
      * Method getDictPrefN returns the dictPrefN of this MdxDictBase object.
-     *
-     *
      *
      * @return the dictPrefN (type int) of this MdxDictBase object.
      */
     private native int getDictPrefN();
 
-	/**
+    /**
      * Method isValidN returns the validN of this MdxDictBase object.
-     *
-     *
      *
      * @return the validN (type boolean) of this MdxDictBase object.
      */
     private native boolean isValidN();
-    
+
     public native void setHtmlBlockHeader(String blockBegin, String blockEnd);
+
     public native void setHtmlHeader(String htmlBegin, String htmlEnd);
-/*
-    public native void setExtraHeader(String extraHeader);
-    public native void setCSS(String css);
-    public native void setJavaScript(String javaScript);
-     */
+
+    /*
+        public native void setExtraHeader(String extraHeader);
+        public native void setCSS(String css);
+        public native void setJavaScript(String javaScript);
+         */
     public native void setUnionGroupTitle(String unionGroupTitle);
+
     public native void setChnConversion(int chnConversion);
+
     public static native boolean isMdxCmd(String word);
+
     public native void setViewSetting(DictPref dictPref);
+
     public native String getTitle(int dictId);
 }

@@ -22,7 +22,7 @@ import android.view.View;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Window;
 
-public class Progress extends SherlockActivity  {
+public class Progress extends SherlockActivity {
     Handler mHandler = new Handler();
     Runnable mProgressRunner = new Runnable() {
         @Override

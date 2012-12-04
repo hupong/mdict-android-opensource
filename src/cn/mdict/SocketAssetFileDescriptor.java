@@ -37,15 +37,15 @@ public class SocketAssetFileDescriptor extends AssetFileDescriptor {
      *
      * @param fd          The underlying file descriptor.
      * @param startOffset The location within the file that the asset starts.
-     *                    This must be 0 if length is UNKNOWN_LENGTH.
+     * This must be 0 if length is UNKNOWN_LENGTH.
      * @param length      The number of bytes of the asset, or
-     *                    {@link #UNKNOWN_LENGTH} if it extends to the end of the file.
+     * {@link #UNKNOWN_LENGTH} if it extends to the end of the file.
      */
-    private long contentLength=UNKNOWN_LENGTH;
+    private long contentLength = UNKNOWN_LENGTH;
 
     public SocketAssetFileDescriptor(ParcelFileDescriptor fd, long startOffset, long length) {
         super(fd, startOffset, length);
-        contentLength=length;
+        contentLength = length;
     }
 
     @Override

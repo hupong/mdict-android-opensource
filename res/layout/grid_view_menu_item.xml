@@ -16,12 +16,12 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:paddingBottom="5dip">
-	<ImageView android:id="@+id/grid_menu_item_image"
-		android:layout_centerHorizontal="true" android:layout_width="wrap_content"
-		android:layout_height="wrap_content"></ImageView>
-	<TextView android:layout_below="@id/grid_menu_item_image" android:id="@+id/grid_menu_item_text"
-		android:layout_centerHorizontal="true" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="Option"></TextView>
+                android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:paddingBottom="5dip">
+    <ImageView android:id="@+id/grid_menu_item_image"
+               android:layout_centerHorizontal="true" android:layout_width="wrap_content"
+               android:layout_height="wrap_content"></ImageView>
+    <TextView android:layout_below="@id/grid_menu_item_image" android:id="@+id/grid_menu_item_text"
+              android:layout_centerHorizontal="true" android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:text="Option"></TextView>
 </RelativeLayout>

@@ -17,22 +17,22 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<!--
-    <item android:id="@+id/search"
-          android:icon="@drawable/ic_search"
-          android:title="@string/search"
-          android:showAsAction="always|collapseActionView"
-          android:actionViewClass="android.widget.EditText" />
-    <item android:id="@+id/speak"
-          android:icon="@drawable/ic_speak"
-          android:title="@string/speak"
-          android:showAsAction="always"/>
+    <!--
+        <item android:id="@+id/search"
+              android:icon="@drawable/ic_search"
+              android:title="@string/search"
+              android:showAsAction="always|collapseActionView"
+              android:actionViewClass="android.widget.EditText" />
+        <item android:id="@+id/speak"
+              android:icon="@drawable/ic_speak"
+              android:title="@string/speak"
+              android:showAsAction="always"/>
 
-    <item android:id="@+id/add_to_fav"
-          android:icon="@drawable/ic_add_to_fav"
-          android:title="@string/add_to_fav"
-          android:showAsAction="always"/>
--->
+        <item android:id="@+id/add_to_fav"
+              android:icon="@drawable/ic_add_to_fav"
+              android:title="@string/add_to_fav"
+              android:showAsAction="always"/>
+    -->
 
     <item android:id="@+id/library"
           android:icon="@drawable/ic_library"
@@ -67,26 +67,26 @@
                   android:icon="@drawable/ic_to_simp_chn"
                   android:title="@string/to_simp_chn"
                   android:showAsAction="never"
-                  android:checkable="true" />
+                  android:checkable="true"/>
             <item android:id="@+id/to_trad_chn"
                   android:icon="@drawable/ic_to_trad_chn"
                   android:title="@string/to_trad_chn"
                   android:showAsAction="never"
-                  android:checkable="true" />
+                  android:checkable="true"/>
             <item android:id="@+id/zoom_in"
                   android:icon="@drawable/ic_zoom_in"
                   android:showAsAction="never"
-                  android:title="@string/zoom_in" />
+                  android:title="@string/zoom_in"/>
             <item android:id="@+id/zoom_out"
                   android:icon="@drawable/ic_zoom_out"
                   android:showAsAction="never"
-                  android:title="@string/zoom_out" />
+                  android:title="@string/zoom_out"/>
             <item android:id="@+id/expand_all"
                   android:title="@string/expand_all"
-                  android:showAsAction="never" />
+                  android:showAsAction="never"/>
             <item android:id="@+id/collapse_all"
                   android:title="@string/collapse_all"
-                  android:showAsAction="never" />
+                  android:showAsAction="never"/>
 
             <!--    </group> -->
         </menu>

@@ -20,15 +20,15 @@
     <item android:id="@+id/dict_mode"
           android:icon="@drawable/ic_library"
           android:title="@string/dict_mode"
-          android:showAsAction="always" >
+          android:showAsAction="always">
         <menu>
             <group android:checkableBehavior="single">
                 <item android:id="@+id/multi_dict_mode"
                       android:title="@string/use_multi_dict_mode"
-                      android:showAsAction="always|withText" />
+                      android:showAsAction="always|withText"/>
                 <item android:id="@+id/single_dict_mode"
                       android:title="@string/use_single_dict_mode"
-                      android:showAsAction="always|withText" />
+                      android:showAsAction="always|withText"/>
             </group>
         </menu>
     </item>

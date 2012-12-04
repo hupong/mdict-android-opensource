@@ -31,6 +31,7 @@ public class NineHorizontalScrollView extends HorizontalScrollView {
             return super.getAlpha();
         }
     }
+
     public void setAlpha(float alpha) {
         if (AnimatorProxy.NEEDS_PROXY) {
             mProxy.setAlpha(alpha);
