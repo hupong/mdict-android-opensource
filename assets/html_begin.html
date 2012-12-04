@@ -91,6 +91,9 @@ function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
   allBlockDivs=document.getElementsByName("__mdx_block_div");
   for(i=0; i<allBlockDivs.length; ++i){
     if (allBlockDivs[i].id!=exceptElementId) {
+       if(i%2!=0)
+	  allBlockDivs[i].className=visible?"__mdx_dict_block_expand __mdx_dict_block_expand_alt":"__mdx_dict_block_collapse";
+	  else
       allBlockDivs[i].className=visible?"__mdx_dict_block_expand":"__mdx_dict_block_collapse";
       if ( visible )
         FixIFrameSrc(allBlockDivs[i]);
@@ -110,6 +113,11 @@ function SetupMdx(){
     var elements = document.getElementsByClassName("__mdx_block_title");
     for(var i = 0; i < elements.length; i++) {
       var elm = elements[i];
+       if(i%2!=0)
+	  {
+		//removeClass(elm,"__mdx_block_title");
+		addClass(elm,"__mdx_block_title_alt");
+	  }
       elm.addEventListener("touchstart", function(event) {
         addClass(this, "__mdx_block_title_active");event.cancelBubble=true;}, false);
       elm.addEventListener("touchmove", function() {
@@ -120,8 +128,44 @@ function SetupMdx(){
         removeClass(this, "__mdx_block_title_active");}, false);
     }
     //window.location="content://mdict.cn/notify/PageLoaded";
+    //window.MdxDict.onPageComplete();
+   	window.onscroll=function(oEvent){
+		var docBody=document.compatMode!="BackCompat" ? document.documentElement: document.body;
+     	var allBlockTitles = document.getElementsByName("__mdx_block_dict_title");
+    	var allBlockDivs =document.getElementsByName("__mdx_block_div");
+		var factor=1.0*Initail_window_width/top.window.innerWidth;
+		var pageY =  window.pageYOffset|| document.documentElement.scrollTop || document.body.scrollTop;
+		pageY = pageY  * factor + 30;
+		 for(i=0; i<allBlockDivs.length; i++){
+			var blockDiv = allBlockDivs[i];
+			var divOffsetTop = getElementTop(blockDiv);
+			var divOffsetBottom = (parseInt(getElementTop(blockDiv),10) + parseInt(blockDiv.offsetHeight,10));
+			if(pageY >= divOffsetTop && pageY <= divOffsetBottom)
+			{
+				for(var j = 0; j < allBlockTitles.length; j++) {
+					if(i!=j)
+					{
+						removeClass(allBlockTitles[j], "__mdx_block_title_fixed");
+					}
+				}
+				addClass(allBlockTitles[i], "__mdx_block_title_fixed");
+			}
+		}
+	}
     window.MdxDict.onPageComplete();
+	
 }
+function getElementTop(element){
+　　　　var actualTop = element.offsetTop;
+　　　　var current = element.offsetParent;
+
+　　　　while (current !== null){
+　　　　　　actualTop += current.offsetTop;
+　　　　　　current = current.offsetParent;
+　　　　}
+
+　　　　return actualTop;
+　　}
 -->
 </script>
 <style>
@@ -139,25 +183,51 @@ function SetupMdx(){
       border-color: #C43C35 #C43C35 #882A25;
       border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     }
-    .__mdx_block_title{
+   .__mdx_block_title{
         border-bottom:#ccc;
-        margin:0px 0px 0.5em 0px;
-        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ececec), to(#d6d6d6));
-        background-image: -webkit-linear-gradient(top, #ececec, #d6d6d6);
-        TABLE-LAYOUT:fixed;
+        margin:0px 0px 0px 0px;
+        background-color: #2e6a99;
+        width: 100%;
         word-break:break-all;
+		position: relative!important;;
+		z-index: 0!important;;
     }
+	
+	
+	
+	.__mdx_block_title_alt{
+        background-color: #e27a31;
+    }
+	
+	.__mdx_block_title_fixed
+	{
+		position: fixed!important;
+		z-index: 999!important;
+		top:0; left:0; width:100%;
+	}
     .__mdx_block_title_active {
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c0c0c0), to(#808080));
-    background-image: -webkit-linear-gradient(top, #c0c0c0, #808080);
+		
     }
     .__mdx_dict_block_expand{
         display: block
+		position: relative;
+		padding: 10px;
+		margin: 0px 0px 0px 0px;;
+		background-color: #fff;
+		 border-style: none solid solid solid;
+		border-width: 3px;
+		border-color: #2e6a99;
     }
+	
+	.__mdx_dict_block_expand_alt
+	{
+		border-color: #e27a31;
+	}
+
     .__mdx_dict_block_collapse{
         display: none
     }
 </style>
 </head>
-<body onload="javascript:SetupMdx();" style="margin:1px;padding:0px;">
+<body onload="javascript:SetupMdx();" style="margin:0px;padding:0px;">
 

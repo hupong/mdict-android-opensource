@@ -16,6 +16,7 @@
 
 package cn.mdict.widgets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
@@ -42,7 +43,8 @@ import java.io.OutputStreamWriter;
  */
 public class EntryViewSingle implements MdxEntryView {
 
-    EntryViewSingle(Context context, WebView wv) {        /*
+    @SuppressLint("NewApi")
+	EntryViewSingle(Context context, WebView wv) {        /*
 		 * ViewGroup.LayoutParams params= new
 		 * ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 		 * ViewGroup.LayoutParams.MATCH_PARENT); htmlView=new WebView(context);
@@ -93,7 +95,8 @@ public class EntryViewSingle implements MdxEntryView {
         });
 
         htmlView.setWebChromeClient(new WebChromeClient() {
-            public boolean onJsAlert(WebView view, String url, String message,
+            @SuppressLint("NewApi")
+			public boolean onJsAlert(WebView view, String url, String message,
                                      android.webkit.JsResult result) {
                 Log.d("JS", message);
                 result.confirm();
