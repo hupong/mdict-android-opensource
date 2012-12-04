@@ -32,419 +32,28 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="WARN" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc732384-6a3f-40ae-b631-7550406d1ccd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/ActionbarSherlock.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/1120.css" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/1120.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/AbsActionBarView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/AbsActionBarView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/ActionBar.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/ActionBar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/ActionBarContainer.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/ActionBarContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/ActionBarContextView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/ActionBarContextView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/app/ActionBarImpl.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/app/ActionBarImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/ActionBarSherlock.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/ActionBarSherlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/ActionBarSherlockCompat.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/ActionBarSherlockCompat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/ActionBarSherlockNative.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/ActionBarSherlockNative.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/ActionBarView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/ActionBarView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/app/ActionBarWrapper.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/app/ActionBarWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ActionItems.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ActionItems.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenu.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenuItem.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenuItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenuItemView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenuItemView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenuPresenter.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenuPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenuView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ActionMenuView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/ActionMode.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/ActionMode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ActionModes.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ActionModes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ActionModesNoActionBar.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ActionModesNoActionBar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/ActionProvider.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/ActionProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ActionProviders.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ActionProviders.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/ActivityChooserModel.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/ActivityChooserModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/ActivityChooserView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/ActivityChooserView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/AndroidManifest.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/AndroidManifest.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/AndroidManifest.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/AndroidManifest.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/AndroidManifest.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/AndroidManifest.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/Animator.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/Animator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/view/animation/AnimatorProxy.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/view/animation/AnimatorProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/AnimatorSet.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/AnimatorSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/controller/Astroboy.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/controller/Astroboy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/activity/AstroboyMasterConsole.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/activity/AstroboyMasterConsole.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/controller/AstroboyRemoteControl.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/controller/AstroboyRemoteControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/BaseMenuPresenter.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/BaseMenuPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/BookmarkActivity.java" afterPath="$PROJECT_DIR$/src/cn/mdict/BookmarkActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/BookmarkAdapter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/BookmarkAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/CapitalizingButton.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/CapitalizingButton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/CapitalizingTextView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/CapitalizingTextView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/CheckableLayout.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/CheckableLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/CollapsibleActionItem.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/CollapsibleActionItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/CollapsibleActionView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/CollapsibleActionView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/CollapsibleActionViewWrapper.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/CollapsibleActionViewWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/ContentViewAdapter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/ContentViewAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ContextMenus.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ContextMenus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/CustomNavigation.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/CustomNavigation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/DictBookmarkRef.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/DictBookmarkRef.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java" afterPath="$PROJECT_DIR$/src/cn/mdict/DictContentProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/DictEntry.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/DictEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/DictPref.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/DictPref.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/fragments/DictView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewList.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/EntryViewSingle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/FakeDialogPhoneWindow.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/FakeDialogPhoneWindow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/FavoritesFrame.java" afterPath="$PROJECT_DIR$/src/cn/mdict/FavoritesFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/FeatureToggles.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/FeatureToggles.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/activity/FightForcesOfEvilActivity.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/activity/FightForcesOfEvilActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatKeyframeSet.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatKeyframeSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/fragments/FloatingDictView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/fragments/FloatingDictView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/FloatingForm.java" afterPath="$PROJECT_DIR$/src/cn/mdict/FloatingForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentAlertDialogSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentAlertDialogSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentArgumentsSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentArgumentsSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentContextMenuSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentContextMenuSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentCustomAnimationSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentCustomAnimationSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentDialogOrActivitySupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentDialogOrActivitySupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentDialogSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentDialogSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentHideShowSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentHideShowSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentLayoutSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentLayoutSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentMenuSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentMenuSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentPagerSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentPagerSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentReceiveResultSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentReceiveResultSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentRetainInstanceSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentRetainInstanceSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentStackSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentStackSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentStatePagerSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentStatePagerSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentTabs.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentTabs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentTabsPager.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/FragmentTabsPager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/GridViewMenu.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/GridViewMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/HistoryFrame.java" afterPath="$PROJECT_DIR$/src/cn/mdict/HistoryFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsAbsSpinner.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsAbsSpinner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsAdapterView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsAdapterView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsColorDrawable.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsColorDrawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsLinearLayout.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsLinearLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsListPopupWindow.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsListPopupWindow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsProgressBar.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsProgressBar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsSpinner.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsSpinner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/IcsView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntEvaluator.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntEvaluator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntKeyframeSet.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntKeyframeSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/src/com/actionbarsherlock/sample/knownbugs/Issue240.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/src/com/actionbarsherlock/sample/knownbugs/Issue240.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/src/com/actionbarsherlock/sample/knownbugs/Issue379.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/src/com/actionbarsherlock/sample/knownbugs/Issue379.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/src/com/actionbarsherlock/sample/knownbugs/Issue435.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/src/com/actionbarsherlock/sample/knownbugs/Issue435.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/Keyframe.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/Keyframe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/KeyframeSet.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/KeyframeSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/LibraryAdapter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/LibraryAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/LibraryFrame.java" afterPath="$PROJECT_DIR$/src/cn/mdict/LibraryFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ListMenuItemView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/ListMenuItemView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ListNavigation.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ListNavigation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/LoaderCursorSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/LoaderCursorSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/LoaderCustomSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/LoaderCustomSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/LoaderThrottleSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/LoaderThrottleSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MDict.iml" afterPath="$PROJECT_DIR$/MDict.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/src/com/actionbarsherlock/sample/styled/MainActivity.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/src/com/actionbarsherlock/sample/styled/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/MainForm.java" afterPath="$PROJECT_DIR$/src/cn/mdict/MainForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxAdapter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxDictBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngine.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxEntryView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxEntryView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxLibraryMgrRef.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxLibraryMgrRef.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxUtils.java" afterPath="$PROJECT_DIR$/src/cn/mdict/mdx/MdxUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/MdxWebViewClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/MemoryFileUtil.java" afterPath="$PROJECT_DIR$/src/cn/mdict/MemoryFileUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/Menu.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuBuilder.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/MenuInflater.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/MenuInflater.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/MenuItem.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/MenuItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuItemImpl.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuItemImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuItemWrapper.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuItemWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuPopupHelper.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuPopupHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuPresenter.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuWrapper.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineFrameLayout.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineFrameLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineHorizontalScrollView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineHorizontalScrollView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineLinearLayout.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineLinearLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/view/NineViewGroup.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/view/NineViewGroup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/ObjectAnimator.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/ObjectAnimator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Overlay.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Overlay.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Preference.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Preference.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Progress.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Progress.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/PropertyValuesHolder.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/PropertyValuesHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/ResourcesCompat.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/ResourcesCompat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/src/com/actionbarsherlock/sample/styled/RoundedColourFragment.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/src/com/actionbarsherlock/sample/styled/RoundedColourFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/SampleList.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/SampleList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/SampleList.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/SampleList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/src/com/actionbarsherlock/sample/knownbugs/SampleList.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/src/com/actionbarsherlock/sample/knownbugs/SampleList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/ScrollingTabContainerView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/widget/ScrollingTabContainerView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/SearchView.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/SearchView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/SearchViews.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/SearchViews.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/SendResult.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/SendResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/SettingFrame.java" afterPath="$PROJECT_DIR$/src/cn/mdict/SettingFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/Shakespeare.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/src/com/actionbarsherlock/sample/fragments/Shakespeare.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/ShareActionProvider.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/ShareActionProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ShareActionProviders.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/ShareActionProviders.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockActivity.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockDialogFragment.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockExpandableListActivity.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockExpandableListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockFragment.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockFragmentActivity.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockFragmentActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockListActivity.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockListFragment.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockPreferenceActivity.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/app/SherlockPreferenceActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Simple.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Simple.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/SimpleActionModeCallbackAgent.java" afterPath="$PROJECT_DIR$/src/cn/mdict/SimpleActionModeCallbackAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/SimpleGestureFilter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/SimpleGestureFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/SocketAssetFileDescriptor.java" afterPath="$PROJECT_DIR$/src/cn/mdict/SocketAssetFileDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/SplitActionModes.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/SplitActionModes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/StandaloneActionMode.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/StandaloneActionMode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/StaticAttachment.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/StaticAttachment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Styled.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/Styled.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/SubMenu.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/SubMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/SubMenus.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/SubMenus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/SuggestionsAdapter.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/widget/SuggestionsAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/TabNavigation.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/src/com/actionbarsherlock/sample/demos/TabNavigation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/widgets/TouchListView.java" afterPath="$PROJECT_DIR$/src/cn/mdict/widgets/TouchListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/ValueAnimator.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/nineoldandroids/animation/ValueAnimator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/View_HasStateListenerSupport.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/View_HasStateListenerSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/View_OnAttachStateChangeListener.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/View_OnAttachStateChangeListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/android/support/v4/app/Watson.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/android/support/v4/app/Watson.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/WebViewGestureFilter.java" afterPath="$PROJECT_DIR$/src/cn/mdict/WebViewGestureFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Welcome.htm" afterPath="$PROJECT_DIR$/assets/Welcome.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/Window.java" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/view/Window.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/mdict/utils/WordSuggestion.java" afterPath="$PROJECT_DIR$/src/cn/mdict/utils/WordSuggestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_bar_home.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_bar_home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_bar_tab.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_bar_tab.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_bar_tab_bar_view.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_bar_tab_bar_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_bar_title_item.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_bar_title_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_menu_item_layout.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_menu_item_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_menu_layout.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_menu_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_mode_bar.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_mode_bar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_mode_close_item.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__action_mode_close_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-large/abs__action_mode_close_item.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-large/abs__action_mode_close_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__activated_background_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__activated_background_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__activated_background_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__activated_background_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__activity_chooser_view.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__activity_chooser_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__activity_chooser_view_list_item.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__activity_chooser_view_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__attrs.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__attrs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__btn_cab_done_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__btn_cab_done_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__btn_cab_done_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__btn_cab_done_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__dialog_title_holo.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__dialog_title_holo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values-sw600dp/abs__dimens.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values-sw600dp/abs__dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values-xlarge/abs__dimens.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values-xlarge/abs__dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__ic_clear.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__ic_clear.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__ic_clear_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__ic_clear_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__ic_menu_moreoverflow_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__ic_menu_moreoverflow_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__ic_menu_moreoverflow_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__ic_menu_moreoverflow_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__ids.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__ids.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__item_background_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__item_background_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__item_background_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__item_background_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__list_menu_item_checkbox.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__list_menu_item_checkbox.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__list_menu_item_icon.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__list_menu_item_icon.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__list_menu_item_layout.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__list_menu_item_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__list_menu_item_radio.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__list_menu_item_radio.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__list_selector_background_transition_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__list_selector_background_transition_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__list_selector_background_transition_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__list_selector_background_transition_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__list_selector_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__list_selector_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__list_selector_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__list_selector_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__popup_menu_item_layout.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__popup_menu_item_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/color/abs__primary_text_disable_only_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/color/abs__primary_text_disable_only_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/color/abs__primary_text_disable_only_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/color/abs__primary_text_disable_only_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/color/abs__primary_text_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/color/abs__primary_text_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/color/abs__primary_text_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/color/abs__primary_text_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__progress_horizontal_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__progress_horizontal_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__progress_horizontal_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__progress_horizontal_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__progress_medium_holo.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__progress_medium_holo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable-v11/abs__progress_medium_holo.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable-v11/abs__progress_medium_holo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__screen_action_bar.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__screen_action_bar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-xlarge/abs__screen_action_bar.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-xlarge/abs__screen_action_bar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__screen_action_bar_overlay.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__screen_action_bar_overlay.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-xlarge/abs__screen_action_bar_overlay.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-xlarge/abs__screen_action_bar_overlay.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__screen_simple.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__screen_simple.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__screen_simple_overlay_action_mode.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__screen_simple_overlay_action_mode.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__search_dropdown_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__search_dropdown_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__search_dropdown_item_icons_2line.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__search_dropdown_item_icons_2line.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__search_dropdown_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__search_dropdown_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__search_view.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__search_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__simple_dropdown_hint.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/abs__simple_dropdown_hint.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__spinner_ab_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__spinner_ab_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__spinner_ab_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__spinner_ab_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__strings.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__styles.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values-v14/abs__styles.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values-v14/abs__styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__tab_indicator_ab_holo.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__tab_indicator_ab_holo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__textfield_searchview_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__textfield_searchview_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__textfield_searchview_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__textfield_searchview_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__textfield_searchview_right_holo_dark.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__textfield_searchview_right_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__textfield_searchview_right_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/drawable/abs__textfield_searchview_right_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__themes.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values/abs__themes.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values-v14/abs__themes.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/values-v14/abs__themes.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/action_modes.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/action_modes.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/actionbar_tab_bg.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/actionbar_tab_bg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_action_bar_gradient_bak.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_action_bar_gradient_bak.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_btn_check_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_btn_check_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_btn_radio_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_btn_radio_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_selectable_background.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_selectable_background.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_spinner_background_holo_light.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/ad_spinner_background_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/values/arrays.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/values/arrays.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/values/attrs.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/values/attrs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/attrs.xml" afterPath="$PROJECT_DIR$/res/values/attrs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/drawable/bg_striped.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/drawable/bg_striped.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/drawable/bg_striped_split.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/drawable/bg_striped_split.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/block_begin.html" afterPath="$PROJECT_DIR$/assets/block_begin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/block_begin_h.html" afterPath="$PROJECT_DIR$/assets/block_begin_h.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/block_end.html" afterPath="$PROJECT_DIR$/assets/block_end.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/btn_add_to_fav.xml" afterPath="$PROJECT_DIR$/res/drawable/btn_add_to_fav.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/btn_speak.xml" afterPath="$PROJECT_DIR$/res/drawable/btn_speak.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/btn_view.xml" afterPath="$PROJECT_DIR$/res/drawable/btn_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/checkstyle.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/checkstyle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/collapsible_edittext.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/collapsible_edittext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/values/colors.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/values/colors.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/content_view.xml" afterPath="$PROJECT_DIR$/res/layout/content_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/content_view_bg.xml" afterPath="$PROJECT_DIR$/res/drawable/content_view_bg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/context_menus.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/context_menus.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/css3-mediaqueries.js" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/css3-mediaqueries.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/custom_view.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/custom_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/decelerate_quint.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/decelerate_quint.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/_layouts/default.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/_layouts/default.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/development.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/development.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/dict_view.xml" afterPath="$PROJECT_DIR$/res/layout/dict_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/dict_view_option_menu.xml" afterPath="$PROJECT_DIR$/res/menu/dict_view_option_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/download.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/download.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/entry_list_item_view.xml" afterPath="$PROJECT_DIR$/res/layout/entry_list_item_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/entry_view.xml" afterPath="$PROJECT_DIR$/res/layout/entry_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/res/anim/expletive_animation.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/res/anim/expletive_animation.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/faq.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/faq.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/favorites_frame.xml" afterPath="$PROJECT_DIR$/res/layout/favorites_frame.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/favorites_frame_item_option_menu.xml" afterPath="$PROJECT_DIR$/res/menu/favorites_frame_item_option_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/feature_toggles.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/feature_toggles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout-large-land/feature_toggles.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout-large-land/feature_toggles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/res/layout/fight_evil.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/res/layout/fight_evil.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/floating_bkground.xml" afterPath="$PROJECT_DIR$/res/drawable/floating_bkground.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/floating_dict_view.xml" afterPath="$PROJECT_DIR$/res/layout/floating_dict_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/floating_frame.xml" afterPath="$PROJECT_DIR$/res/layout/floating_frame.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_arguments_support.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_arguments_support.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout-land/fragment_arguments_support.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout-land/fragment_arguments_support.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_context_menu.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_context_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_dialog.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_dialog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_dialog_or_activity.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_dialog_or_activity.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_hide_show_support.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_hide_show_support.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_layout_support.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_layout_support.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout-land/fragment_layout_support.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout-land/fragment_layout_support.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_menu.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_pager.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_pager.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_pager_list.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_pager_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_retain_instance.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_retain_instance.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/fragment_slide_left_enter.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/fragment_slide_left_enter.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/fragment_slide_left_exit.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/fragment_slide_left_exit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/fragment_slide_right_enter.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/fragment_slide_right_enter.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/fragment_slide_right_exit.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/anim/fragment_slide_right_exit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_stack.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_stack.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_tabs.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_tabs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_tabs_pager.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/fragment_tabs_pager.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/grid_view_menu.xml" afterPath="$PROJECT_DIR$/res/layout/grid_view_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/grid_view_menu_item.xml" afterPath="$PROJECT_DIR$/res/layout/grid_view_menu_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/hello_world.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/hello_world.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/history_frame.xml" afterPath="$PROJECT_DIR$/res/layout/history_frame.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/history_frame_item_option_menu.xml" afterPath="$PROJECT_DIR$/res/menu/history_frame_item_option_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/history_frame_option_menu.xml" afterPath="$PROJECT_DIR$/res/menu/history_frame_option_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/html_begin.html" afterPath="$PROJECT_DIR$/assets/html_begin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/html_end.html" afterPath="$PROJECT_DIR$/assets/html_end.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/ic_clear.xml" afterPath="$PROJECT_DIR$/res/drawable/ic_clear.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/ie.css" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/ie.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/layout/indeterminate_progress_action.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/layout/indeterminate_progress_action.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/index.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/iprogress.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/iprogress.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/res/layout/issue240.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/res/layout/issue240.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/res/layout/issue272_fragment_pager.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/res/layout/issue272_fragment_pager.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/res/layout/issue272_fragment_pager_list.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/res/layout/issue272_fragment_pager_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/jquery.colorbox-min.js" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/jquery.colorbox-min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/jquery.cross-slide.min.js" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/jquery.cross-slide.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/labeled_text_edit.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/labeled_text_edit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/library.xml" afterPath="$PROJECT_DIR$/res/layout/library.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/library_frame_option_menu.xml" afterPath="$PROJECT_DIR$/res/menu/library_frame_option_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/library_list_item_view.xml" afterPath="$PROJECT_DIR$/res/layout/library_list_item_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/list_item_icon_text.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/list_item_icon_text.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/list_navigation.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/list_navigation.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/res/layout/main.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/res/layout/main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/layout/main.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/layout/main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main_frame.xml" afterPath="$PROJECT_DIR$/res/layout/main_frame.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/menu/main_menu.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/menu/main_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/mdict.css" afterPath="$PROJECT_DIR$/assets/mdict.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mdict.xml" afterPath="$PROJECT_DIR$/mdict.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/mdxview.xml" afterPath="$PROJECT_DIR$/res/layout/mdxview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/merch-and-donations.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/merch-and-donations.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module_mdict.xml" afterPath="$PROJECT_DIR$/module_mdict.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/overlay.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/overlay.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/pom.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/pom.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/pom.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/pom.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/pom.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/pom.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/known-bugs/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/pom.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/roboguice/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/pom.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/preferences.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/preferences.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/xml/preferences.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/xml/preferences.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/progress.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/progress.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/project.properties" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/project.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/receive_result.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/receive_result.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/round_background.xml" afterPath="$PROJECT_DIR$/res/drawable/round_background.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/rounded_rect.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/rounded_rect.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/samples.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/samples.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/searchable.xml" afterPath="$PROJECT_DIR$/res/xml/searchable.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/selected_background.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/styled/res/drawable/selected_background.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/send_result.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/send_result.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/settings.xml" afterPath="$PROJECT_DIR$/res/xml/settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/settings_action_provider.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/settings_action_provider.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/menu/settings_action_provider.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/menu/settings_action_provider.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/menu/share_action_provider.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/menu/share_action_provider.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/sherlock_spinner_dropdown_item.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/sherlock_spinner_dropdown_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-v14/sherlock_spinner_dropdown_item.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-v14/sherlock_spinner_dropdown_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/sherlock_spinner_item.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout/sherlock_spinner_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-v14/sherlock_spinner_item.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/library/res/layout-v14/sherlock_spinner_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/menu/shortcuts.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/menu/shortcuts.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/showdown.js" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/showdown.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/simple_list_item_checkable_1.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/layout/simple_list_item_checkable_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/simple_list_item_checked.xml" afterPath="$PROJECT_DIR$/res/layout/simple_list_item_checked.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/sitemap.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/sitemap.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/values/strings.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/values/strings.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/fragments/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" afterPath="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/styles.css" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/static/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/styles.xml" afterPath="$PROJECT_DIR$/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/support.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/support.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/tab_custom_view.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/tab_custom_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/tab_navigation.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/tab_navigation.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/text.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/layout/text.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/values/themes.xml" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/samples/demos/res/values/themes.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/theming.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/theming.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/actionbar-sherlock/website/usage.html" afterPath="$PROJECT_DIR$/library/actionbar-sherlock/website/usage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="cc732384-6a3f-40ae-b631-7550406d1ccd" name="Default" comment="" />
     <ignored path="MDict.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354629480447" ignored="false" />
-    <file path="/FloatingDictView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248568430" ignored="false" />
-    <file path="/DictView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248520433" ignored="false" />
-    <file path="/MdxDictBase.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248156536" ignored="false" />
-    <file path="/WordSuggestion.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248655296" ignored="false" />
-    <file path="/strings.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354249994915" ignored="false" />
-    <file path="/MainForm.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354089698280" ignored="false" />
-    <file path="/html_begin.html" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353858348874" ignored="false" />
-    <file path="/a.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353566771158" ignored="false" />
-    <file path="/sample.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353566767374" ignored="false" />
-    <file path="/a.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353566601786" ignored="false" />
-    <file path="/searchable.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354091948248" ignored="false" />
-    <file path="/fragment.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353767516884" ignored="false" />
-    <file path="/MdxView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248714271" ignored="false" />
-    <file path="/Welcome.htm" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353771232038" ignored="false" />
-    <file path="/union_grp_title.html" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353771259365" ignored="false" />
-    <file path="/DictContentProvider.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248464389" ignored="false" />
-    <file path="/MdxWebViewClient.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354250688843" ignored="false" />
+    <file path="/Dummy.txt" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354634013958" ignored="false" />
     <file path="/a.dummy" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354544401089" ignored="false" />
+    <file path="/MdxWebViewClient.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354250688843" ignored="false" />
+    <file path="/DictContentProvider.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248464389" ignored="false" />
+    <file path="/union_grp_title.html" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353771259365" ignored="false" />
+    <file path="/Welcome.htm" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353771232038" ignored="false" />
+    <file path="/MdxView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248714271" ignored="false" />
+    <file path="/fragment.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353767516884" ignored="false" />
+    <file path="/searchable.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354091948248" ignored="false" />
+    <file path="/a.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353566601786" ignored="false" />
+    <file path="/sample.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353566767374" ignored="false" />
+    <file path="/a.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353566771158" ignored="false" />
+    <file path="/html_begin.html" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1353858348874" ignored="false" />
+    <file path="/MainForm.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354089698280" ignored="false" />
+    <file path="/strings.xml" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354249994915" ignored="false" />
+    <file path="/WordSuggestion.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248655296" ignored="false" />
+    <file path="/MdxDictBase.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248156536" ignored="false" />
+    <file path="/DictView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248520433" ignored="false" />
+    <file path="/FloatingDictView.java" changelist="cc732384-6a3f-40ae-b631-7550406d1ccd" time="1354248568430" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -464,7 +73,8 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -499,8 +109,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -514,7 +123,7 @@
       <file leaf-file-name="styles.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="68" selection-start="975" selection-end="975" vertical-scroll-proportion="-5.76">
+            <state line="24" column="68" selection-start="975" selection-end="975" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -523,7 +132,7 @@
       <file leaf-file-name="dict_view_option_menu.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/menu/dict_view_option_menu.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="116" column="72" selection-start="4787" selection-end="4787" vertical-scroll-proportion="-0.96">
+            <state line="116" column="72" selection-start="4787" selection-end="4787" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -532,7 +141,7 @@
       <file leaf-file-name="search_edit.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/search_edit.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="38" selection-start="724" selection-end="724" vertical-scroll-proportion="-4.9038463">
+            <state line="17" column="38" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -589,7 +198,7 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values-zh-rCN/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="18" selection-start="1603" selection-end="1603" vertical-scroll-proportion="-6.44">
+            <state line="37" column="18" selection-start="1603" selection-end="1603" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -598,7 +207,7 @@
       <file leaf-file-name="settings.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="45" selection-start="1075" selection-end="1075" vertical-scroll-proportion="0.71146244">
+            <state line="40" column="72" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.46363637">
               <folding />
             </state>
           </provider>
@@ -745,16 +354,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -787,180 +386,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values-zh-rCN" />
+              <option name="myItemId" value="mdict" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-xhdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-mdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-ldpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-hdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MDict" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mdict-android-opensource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="library" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -970,20 +411,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="203" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="231" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="102" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="115" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="ExportedUnsignedApkPath" value="D:\ProjectHome\mdict-android\MDict.apk" />
     <property name="ExportedApkPath" value="$USER_HOME$/Desktop/MDict.apk" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="206" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="103" />
     <property name="ExportedModule" value="MDict" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="237" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1116" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1117" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="236" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="230" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="117" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="523" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="523" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="117" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="114" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="a22" />
     <property name="FullScreen" value="false" />
@@ -992,8 +433,8 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="AndroidProguardConfigPath" value="D:\ProjectHome\mdict-android\proguard.cfg" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="project.structure.side.proportion" value="0.2062937" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="AndroidRunProguardForReleaseBuild" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -1070,6 +511,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -1098,19 +552,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -1124,6 +565,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -1145,13 +593,6 @@
       </option>
       <envs />
       <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1242,7 +683,7 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="cc732384-6a3f-40ae-b631-7550406d1ccd" name="Default" comment="" />
       <created>1322918807418</created>
-      <timeSpent>39859000</timeSpent>
+      <timeSpent>40106000</timeSpent>
       <updated>1322918807418</updated>
     </task>
     <task id="LOCAL-00001" summary="try fix crash report in google play.">
@@ -1258,7 +699,7 @@
       <updated>1353574089436</updated>
     </task>
     <option name="localTasksCounter" value="4" />
-    <option name="myTotallyTimeSpent" value="39859000" />
+    <option name="myTotallyTimeSpent" value="40106000" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1283,27 +724,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1864" height="970" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26352942" sideWeight="0.49571735" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22933142" sideWeight="0.7094972" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33882353" sideWeight="0.38668868" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6613455" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31529412" sideWeight="0.5033003" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31529412" sideWeight="0.4928493" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26352942" sideWeight="0.50055003" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26352942" sideWeight="0.49776787" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2647059" sideWeight="0.2750275" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26352942" sideWeight="0.49559957" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39764705" sideWeight="0.46974698" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32853025" sideWeight="0.49567568" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25247526" sideWeight="0.1835294" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25247526" sideWeight="0.36941177" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976928" sideWeight="0.65802115" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39945945" sideWeight="0.67869616" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25247526" sideWeight="0.49294117" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25247526" sideWeight="0.35882354" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756963" sideWeight="0.48283625" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="452" y="311" width="1116" height="473" />
       <window_info id="Jindent" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949087" sideWeight="0.49776787" order="12" side_tool="false" content_ui="tabs" />
@@ -1313,6 +751,9 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22933142" sideWeight="0.7094972" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33882353" sideWeight="0.38668868" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2647059" sideWeight="0.2750275" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1394,18 +835,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/library/actionbar-sherlock/library/test/com/actionbarsherlock/internal/ManifestParsingTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="16" selection-start="57" selection-end="57" vertical-scroll-proportion="0.052173913">
-          <folding />
-        </state>
+        <state line="2" column="16" selection-start="57" selection-end="57" vertical-scroll-proportion="0.052173913" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/library/actionbar-sherlock/library/src/com/actionbarsherlock/internal/view/menu/MenuBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="39" selection-start="2615" selection-end="2615" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="77" column="39" selection-start="2615" selection-end="2615" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -1452,35 +887,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="85" selection-start="6708" selection-end="6708" vertical-scroll-proportion="4.183007">
-          <folding />
-        </state>
+        <state line="128" column="85" selection-start="6708" selection-end="6708" vertical-scroll-proportion="4.183007" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/attrs.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.1764706">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.1764706" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="68" selection-start="975" selection-end="975" vertical-scroll-proportion="-5.76">
+        <state line="24" column="68" selection-start="975" selection-end="975" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/menu/dict_view_option_menu.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="72" selection-start="4787" selection-end="4787" vertical-scroll-proportion="-0.96">
+        <state line="116" column="72" selection-start="4787" selection-end="4787" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/search_edit.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="38" selection-start="724" selection-end="724" vertical-scroll-proportion="-4.9038463">
+        <state line="17" column="38" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1490,14 +921,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values-zh-rCN/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="18" selection-start="1603" selection-end="1603" vertical-scroll-proportion="-6.44">
+        <state line="37" column="18" selection-start="1603" selection-end="1603" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="45" selection-start="1075" selection-end="1075" vertical-scroll-proportion="0.71146244">
+        <state line="40" column="72" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.46363637">
           <folding />
         </state>
       </provider>
