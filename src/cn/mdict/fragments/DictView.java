@@ -264,7 +264,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                     currentEntry.setEntryNo(-1);
                     if (dict != null && dict.isValid()) {
                         String headword = s.toString();
-                        dict.locateFirst(headword, true, true, true, currentEntry);
+                        DictEntry entry = new DictEntry();
+                        dict.locateFirst(headword, true, true, true, entry);
+                        currentEntry=entry;
                         if (!currentEntry.isValid())
                             adapter.setCurrentEntry(new DictEntry(0, "",
                                     dictPref != null ? dictPref.getDictId()
