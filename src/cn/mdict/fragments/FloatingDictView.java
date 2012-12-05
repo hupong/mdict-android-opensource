@@ -967,7 +967,7 @@ public class FloatingDictView extends SherlockFragment implements
 
 	private String captureJukuu(String headWord, StringBuffer template) {
 		// added by alex, test only
-		/*
+		
 		byte[] data = dict.getDictTextN(currentEntry, true, false, "", "");
 		if (data != null) {
 			try {
@@ -993,7 +993,7 @@ public class FloatingDictView extends SherlockFragment implements
 				// AddonFuncUnt.lo.
 			}
 		}
-		*/
+		
 		lastJukuuWord = headWord;
 		Pattern imgPattern = Pattern
 				.compile("<tr class=e>(.|\n)*?<tr class=s>");
