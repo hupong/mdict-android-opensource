@@ -147,7 +147,8 @@ public class MdxView extends RelativeLayout {
             } else {
                 int r = dict.locateFirst(headword, true, false, false, entry);
                 if (r != MdxDictBase.kMdxSuccess
-                        || (entry.getHeadword().indexOf(" ") != -1 && headword.indexOf(" ") == -1)) {
+                        //|| (entry.getHeadword().indexOf(" ") != -1 && headword.indexOf(" ") == -1)) {//alex20121205.o
+                		|| !entry.getHeadword().equals(headword)) {//alex20121205.n
                     String word = "";
                     word = WordSuggestion.getMdxSuggestWord(getContext(), dict, headword);
                     if (word.length() > 0) {

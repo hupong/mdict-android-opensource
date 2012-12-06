@@ -164,6 +164,7 @@ function SetupMdx(){
 	}
 	//alex20121205.en
     window.MdxDict.onPageComplete();
+    resizeImages();
 	
 }
 
@@ -212,6 +213,20 @@ function adjustDictTitle()
 	}
 }
 
+function resizeImages() {
+	   if(screen.width >= 1024 || screen.height >=1024)
+	   {
+			var w = top.window.innerWidth - 40;
+			for ( var i = 0; i < document.images.length; i++) {
+				var img = document.images[i];
+				if (img.width > w) {
+					img.height = Math.round(img.height * (w / img.width));
+					img.width = w;
+				}
+			}
+		}
+}
+	
 function getElementTop(element){
 　　　　var actualTop = element.offsetTop;
 　　　　var current = element.offsetParent;
