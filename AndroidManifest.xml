@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cn.mdict"
-          android:versionCode="14"
-          android:versionName="1.0.3">
+          android:versionCode="15"
+          android:versionName="1.0.4">
 
     <application
             android:icon="@drawable/app_icon"
