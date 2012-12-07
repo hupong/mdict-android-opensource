@@ -126,6 +126,7 @@ public class MdxEngine {
         String htmlBegin = htmlBlock.toString()
                 .replace("$start_expand_all$", MdxEngine.getSettings().getPrefMultiDictDefaultExpandAll().toString())
                 .replace("$expand_single$", MdxEngine.getSettings().getPrefMultiDictExpandOnlyOne().toString())
+                .replace("$fixed_dict_title$", MdxEngine.getSettings().getPrefFixedDictTitle().toString()) //alex20121207.n
                 .replace("$extra_header$", css);
 
         htmlBlock.setLength(0);

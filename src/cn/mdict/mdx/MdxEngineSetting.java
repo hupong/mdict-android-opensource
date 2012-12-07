@@ -56,6 +56,9 @@ public class MdxEngineSetting {
 
     public static String prefFloatingWindowHeight;
 
+    public static String prefGlobalClipboardMonitor;//Alex20121207.n
+    public static String prefFixedDictTitle;//Alex20121207.n
+    
     //Preference default values
     public static String prefDefaultTTSLocale;
     public static boolean prefDefaultAutoPlayPronunciation;
@@ -78,6 +81,9 @@ public class MdxEngineSetting {
 
     public static int prefDefaultFloatingWindowHeight;
 
+    public static boolean prefDefaultGlobalClipboardMonitor;//Alex20121207.n
+    public static boolean prefDefaultFixedDictTitle;//Alex20121207.n
+    
     /**
      * Constructor MdxEngineSetting creates a new MdxEngineSetting instance.
      */
@@ -111,7 +117,9 @@ public class MdxEngineSetting {
             prefUseLRUForDictOrder = res.getString(R.string.pref_use_lru_for_dict_order);
 
             prefFloatingWindowHeight = res.getString(R.string.pref_floating_window_height);
-
+            prefGlobalClipboardMonitor = res.getString(R.string.pref_global_clipboard_monitor);//Alex20121207.n
+            prefFixedDictTitle = res.getString(R.string.pref_fixed_dict_title);//Alex20121207.n
+            
             prefDefaultTTSLocale = res.getString(R.string.pref_default_tts_locale);
             prefDefaultAutoPlayPronunciation = Boolean.parseBoolean(res.getString(R.string.pref_default_auto_play_pronunciation));
             prefDefaultUseTTS = Boolean.parseBoolean(res.getString(R.string.pref_default_use_tts));
@@ -132,6 +140,9 @@ public class MdxEngineSetting {
             prefDefaultUseLRUForDictOrder = Boolean.parseBoolean(res.getString(R.string.pref_default_use_lru_for_dict_order));
 
             prefDefaultFloatingWindowHeight = Integer.parseInt(res.getString(R.string.pref_default_floating_window_height), 10);
+            prefDefaultGlobalClipboardMonitor = Boolean.parseBoolean(res.getString(R.string.pref_default_global_clipboard_monitor));//Alex20121207.n
+            prefDefaultFixedDictTitle = Boolean.parseBoolean(res.getString(R.string.pref_default_fixed_dict_title));//Alex20121207.n
+            
         }
         this.appPrefs = appContext.getApplicationContext().getSharedPreferences(preferenceName, 0);
     }
@@ -451,5 +462,42 @@ public class MdxEngineSetting {
         appPrefs.edit().putInt(prefFloatingWindowHeight, floatingWindowHeight).commit();
     }
 
+    //alex20121207.sn
+    /**
+     * Method getPrefGlobalClipboardMonitor returns the prefGlobalClipboardMonitor of this MdxEngineSetting object.
+     *
+     * @return the prefGlobalClipboardMonitor (type boolean) of this MdxEngineSetting object.
+     */
+    public Boolean getPrefGlobalClipboardMonitor() {
+        return appPrefs.getBoolean(prefGlobalClipboardMonitor, prefDefaultGlobalClipboardMonitor);
+    }
+
+    /**
+     * Method setPrefGlobalClipboardMonitor sets the prefGlobalClipboardMonitor of this MdxEngineSetting object.
+     *
+     * @param enable the prefGlobalClipboardMonitor of this MdxEngineSetting object.
+     */
+    public void setPrefGlobalClipboardMonitor(boolean enable) {
+        appPrefs.edit().putBoolean(prefGlobalClipboardMonitor, enable).commit();
+    }
+    
+    /**
+     * Method getPrefFixedDictTitle returns the prefFixedDictTitle of this MdxEngineSetting object.
+     *
+     * @return the prefFixedDictTitle (type boolean) of this MdxEngineSetting object.
+     */
+    public Boolean getPrefFixedDictTitle() {
+        return appPrefs.getBoolean(prefFixedDictTitle, prefDefaultFixedDictTitle);
+    }
+
+    /**
+     * Method setPrefFixedDictTitle sets the prefFixedDictTitle of this MdxEngineSetting object.
+     *
+     * @param enable the prefFixedDictTitle of this MdxEngineSetting object.
+     */
+    public void setPrefFixedDictTitle(boolean enable) {
+        appPrefs.edit().putBoolean(prefFixedDictTitle, enable).commit();
+    }
+    //alex20121207.en 
     private SharedPreferences appPrefs = null;
 }
