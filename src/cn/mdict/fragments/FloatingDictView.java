@@ -1057,6 +1057,7 @@ public class FloatingDictView extends SherlockFragment implements
 	public boolean onHeadWordNotFound(MdxView view, String headWord,
 			int scrollX, int scrollY) {
 		// TODO Auto-generated method stub
+            inputBox.setText(headWord);
 		return false;
 	}
 
