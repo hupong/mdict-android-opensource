@@ -431,8 +431,8 @@ public class WordSuggestion {
     public static boolean hasDoubleByteChar(final String s)
     {
        for(int i = 0;i < s.length();i ++){
-            String input = s.substring(i,i + 1);
-            if(s.getBytes().length>1)
+           int c=String.valueOf(s.charAt(i)).getBytes().length;
+            if(c==2)
             {
                 return true;
             }
