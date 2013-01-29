@@ -85,14 +85,17 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
         ttsSuportedLocale.setEntryValues(tts_locales);
         String[] tts_locales_name = getResources().getStringArray(R.array.tts_supported_language_name);
         ttsSuportedLocale.setEntries(tts_locales_name);
+        PreferenceGroup prefGrp = (PreferenceGroup) findPreference(getResources().getString(R.string.pref_category_sound));
 
         updateExtraDictDir();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            PreferenceGroup prefGrp = (PreferenceGroup) findPreference(getResources().getString(R.string.pref_category_sound));
-            if (prefGrp != null) {
+        if (prefGrp != null) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                 Preference prefTtsEngine = prefGrp.findPreference(getResources().getString(R.string.pref_preferred_tts_engine));
                 if (prefTtsEngine != null)
                     prefGrp.removePreference(prefTtsEngine);
+            }
+            if ( ttsSuportedLocale.getEntries()==null || ttsSuportedLocale.getEntries().length==0 ){
+                prefGrp.removePreference(ttsSuportedLocale);
             }
         }
 
@@ -242,7 +245,8 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                         ttsEngineName.setEntries(enginePackageName);
                         ttsEngineName.setEntryValues(engineLable);
                     }
-                } else if (prefGrp != null) {
+                }
+                if (prefGrp != null && (ttsEngineName==null || ttsEngineName.getEntries()==null || ttsEngineName.getEntries().length==0)) {
                     prefGrp.removePreference(ttsEngineName);
                 }
             }
