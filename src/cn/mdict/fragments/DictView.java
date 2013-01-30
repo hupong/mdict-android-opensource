@@ -95,6 +95,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     @Override
     public boolean onHeadWordNotFound(MdxView view, String headWord,
                                       int scrollX, int scrollY) {
+        inputBox.setText(headWord);
     	if (history == null) //al20121205.sn
             history = new ArrayList<SearchTrack>();//al20121205.en
         deepth += 1;

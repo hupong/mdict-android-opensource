@@ -92,6 +92,14 @@
         <provider
                 android:name=".DictContentProvider"
                 android:authorities="mdict.cn"/>
+        <receiver android:name=".services.ClipboardMonitorStarter" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".services.ClipboardMonitor" >
+        </service>
     </application>
     <uses-sdk
             android:minSdkVersion="7"
@@ -101,4 +109,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- <uses-permission android:name="android.permission.SET_ORIENTATION" /> -->
+    <uses-permission android:name="android.permission.GET_CLIPS" />
+    <uses-permission android:name="android.permission.READ_CLIPS" />
+    <uses-permission android:name="android.permission.WRITE_CLIPS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 </manifest> 

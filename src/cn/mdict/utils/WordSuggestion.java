@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class WordSuggestion {
 	private static final char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz"
@@ -17,6 +18,8 @@ public class WordSuggestion {
 
 	public static String getMdxSuggestWord(Context context, MdxDictBase dict,
 			String inputWord) {
+        if(hasDoubleByteChar(inputWord))
+            return "";
 		DictEntry entry;
 		String irregularVerb = null;
 		if (langModel == null) {
@@ -255,7 +258,9 @@ public class WordSuggestion {
 	}
 
 	public static String getMdxSuggestWordList(Context context,
-			MdxDictBase dict, String input) {
+			MdxDictBase dict, String inputWord) {
+        if(hasDoubleByteChar(inputWord))
+           return "";
 		if (dict != null && dict.isValid()) {
 
 			Set<String> dictionary = new HashSet<String>();
@@ -264,7 +269,7 @@ public class WordSuggestion {
 			// 3 wordsInEditDistance代表的是编辑距离
 			// buildEditDistance1Set是编辑距离为1的字符的集合
 			// buildEditDistance2Set是编辑距离为2的字符的集合
-			Set<String> wordsInEditDistance = buildEditDistance1Set(input);
+			Set<String> wordsInEditDistance = buildEditDistance1Set(inputWord);
 			for (String editDistance : wordsInEditDistance) {
 				entry = new DictEntry(DictEntry.kInvalidEntryNo, "", dict
 						.getDictPref().getDictId());
@@ -284,7 +289,7 @@ public class WordSuggestion {
 			 * (dictionary.isEmpty()) { return ""; // Not found } }
 			 */
 			entry = null;
-			List<String> guessWords = guessCorrectWord(input, dictionary);
+			List<String> guessWords = guessCorrectWord(inputWord, dictionary);
 
 			String guessHtml = "";
 			for (String guessWord : guessWords) {
@@ -411,5 +416,28 @@ public class WordSuggestion {
 		}
 		return langModel;
 	}
+
+    public static boolean isChinese(final String str) {
+        Pattern pattern = Pattern.compile("[\\u3400-\\u9FBF]+");// 是否中文表达式
+        if (str == null)
+            return false;
+
+        if (pattern.matcher(str.trim()).find())
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean hasDoubleByteChar(final String s)
+    {
+       for(int i = 0;i < s.length();i ++){
+           int c=String.valueOf(s.charAt(i)).getBytes().length;
+            if(c==2)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
