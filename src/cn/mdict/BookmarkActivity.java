@@ -68,6 +68,7 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MdxEngine.initSettings(getApplicationContext());
         setContentView(getLayoutResId());
         setupEnv(getIntent());
     }

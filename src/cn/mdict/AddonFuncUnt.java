@@ -46,6 +46,7 @@ import java.util.ArrayList;
 
 public class AddonFuncUnt implements MediaPlayer.OnBufferingUpdateListener {
     static MediaPlayer mediaPlayer = null;
+    static boolean  appInited=false;
 
     public static Boolean checkNetworkStatus(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context
@@ -246,6 +247,8 @@ public class AddonFuncUnt implements MediaPlayer.OnBufferingUpdateListener {
     }
 
     public static Boolean initApp(Context context, AssetManager assets, MdxDictBase dict) {
+        if ( appInited )
+            return true;
         //dict = new MdxDictBase();
         MdxEngine.initSettings(context.getApplicationContext());
         DictContentProvider.setAssetManager(assets);
@@ -291,6 +294,7 @@ public class AddonFuncUnt implements MediaPlayer.OnBufferingUpdateListener {
             extraSearchPath.add(mediaDir);
 
         if (MdxEngine.initMDictEngine(context, mdictHome, resDir, tmpDir, extraSearchPath)) {
+            appInited=true;
 
             int result = MdxDictBase.kMdxSuccess;
             MdxEngineSetting prefs = MdxEngine.getSettings();

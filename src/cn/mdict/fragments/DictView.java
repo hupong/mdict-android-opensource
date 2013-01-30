@@ -206,9 +206,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         focusChangeListener = new TextView.OnFocusChangeListener() {
             @Override
             public void onFocusChange(android.view.View view, boolean hasFocus) {
-                InputMethodManager imm = (InputMethodManager) getSherlockActivity()
-                        .getSystemService(
-                                android.content.Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
                 if (hasFocus) {
                     switchToListView();
                     // inputBox.setText("");

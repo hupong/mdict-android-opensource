@@ -68,6 +68,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MdxEngine.initSettings(getApplicationContext());
 
         getPreferenceManager().setSharedPreferencesName(MdxEngineSetting.preferenceName);
         addPreferencesFromResource(R.xml.settings);
