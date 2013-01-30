@@ -35,9 +35,6 @@ import android.view.Gravity;
 @SuppressLint("NewApi")
 public class ClipboardMonitor extends Service {
 
-	/** Image type to be monitored */
-	private static final String[] IMAGE_SUFFIXS = new String[] { ".jpg",
-			".jpeg", ".gif", ".png" };
 	/** Path to browser downloads */
 	private static final String BROWSER_DOWNLOAD_PATH = "/sdcard/download";
 
@@ -121,7 +118,6 @@ public class ClipboardMonitor extends Service {
 
 		private volatile boolean mKeepRunning = false;
 		private String mOldClip = null;
-		private BrowserDownloadMonitor mBDM = new BrowserDownloadMonitor();
 
 		public MonitorTask() {
 			super("ClipboardMonitor");
@@ -181,53 +177,6 @@ public class ClipboardMonitor extends Service {
 			intent.putExtra("EXTRA_MARGIN_BOTTOM", 4);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
-		}
-
-		/**
-		 * Monitor change of download directory of browser. It listens two
-		 * events: <tt>CREATE</tt> and <tt>CLOSE_WRITE</tt>. <tt>CREATE</tt>
-		 * event occurs when new file created in download directory. If this
-		 * file is image, new image clip will be inserted into database when
-		 * receiving <tt>CLOSE_WRITE</tt> event, meaning file is sucessfully
-		 * downloaded.
-		 */
-		private class BrowserDownloadMonitor extends FileObserver {
-
-			private Set<String> mFiles = new HashSet<String>();
-
-			public BrowserDownloadMonitor() {
-				super(BROWSER_DOWNLOAD_PATH, CREATE | CLOSE_WRITE);
-			}
-
-			private void doDownloadCompleteAction(String path) {
-				Log.i("ClipBoard", "new image clip inserted: " + path);
-			}
-
-			@Override
-			public void onEvent(int event, String path) {
-				switch (event) {
-				case CREATE:
-					for (String s : IMAGE_SUFFIXS) {
-						if (path.endsWith(s)) {
-							Log.i("ClipBoard", "detect new image: " + path);
-							mFiles.add(path);
-							break;
-						}
-					}
-					break;
-				case CLOSE_WRITE:
-					if (mFiles.remove(path)) { // File download completes
-						doDownloadCompleteAction(path);
-					}
-					break;
-				default:
-					Log.w("ClipBoard",
-							"BrowserDownloadMonitor go unexpected event: "
-									+ Integer.toHexString(event));
-					// throw new RuntimeException("BrowserDownloadMonitor" +
-					// " got unexpected event");
-				}
-			}
 		}
 	}
 

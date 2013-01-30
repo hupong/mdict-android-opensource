@@ -18,7 +18,7 @@ public class WordSuggestion {
 
 	public static String getMdxSuggestWord(Context context, MdxDictBase dict,
 			String inputWord) {
-        if(hasDoubleByteChar(inputWord))
+        if(hasDoubleByteChar(inputWord) || inputWord.length()>50)
             return "";
 		DictEntry entry;
 		String irregularVerb = null;
@@ -259,7 +259,7 @@ public class WordSuggestion {
 
 	public static String getMdxSuggestWordList(Context context,
 			MdxDictBase dict, String inputWord) {
-        if(hasDoubleByteChar(inputWord))
+        if(hasDoubleByteChar(inputWord) || inputWord.length()>50)
            return "";
 		if (dict != null && dict.isValid()) {
 
