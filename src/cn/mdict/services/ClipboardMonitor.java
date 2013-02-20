@@ -53,7 +53,7 @@ public class ClipboardMonitor extends Service {
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate() {
-		MdxEngine.initSettings(getApplicationContext());
+		MdxEngine.setupEnv(getApplicationContext());
 		// showNotification();
 		mCM = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 		mPrefs = getSharedPreferences(ClipboardPrefs.NAME, MODE_PRIVATE);

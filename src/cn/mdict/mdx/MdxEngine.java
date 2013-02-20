@@ -21,10 +21,16 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import cn.mdict.AddonFuncUnt;
+import android.content.res.AssetManager;
+import android.os.Environment;
+import android.util.Log;
+import cn.mdict.DictContentProvider;
 import cn.mdict.MainForm;
 import cn.mdict.R;
+import cn.mdict.utils.IOUtil;
+import cn.mdict.utils.SysUtil;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,14 +101,125 @@ public class MdxEngine {
         return openDictByPref(dictPref, dict);
     }
 
-    /**
-     * Method initSettings ...
-     *
-     * @param appContext The application context
-     */
-    static public void initSettings(Context appContext) {
+    static boolean checkInstalledVersionNumber(Context context, String versionFileName) {
+        boolean sameVersion = false;
+        BufferedReader reader = null;
+        try {
+            int versionNumber = SysUtil.getVersionCode(context);
+            File versionFile = new File(versionFileName);
+            if (versionFile.exists()) {
+                reader = new BufferedReader(new FileReader(versionFile));
+                String version = reader.readLine();
+                sameVersion = Integer.parseInt(version) == versionNumber;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return sameVersion;
+    }
+
+    static public boolean setupEnv(Context context){
         if (appSetting == null)
-            appSetting = new MdxEngineSetting(appContext);
+            appSetting = new MdxEngineSetting(context);
+        baseContext=context;
+
+        AssetManager assets=context.getAssets();
+        DictContentProvider.setAssetManager(assets);
+
+
+        String mdictHome = Environment.getExternalStorageDirectory().getAbsolutePath() + "/mdict";
+        //String mdictHome=context.getExternalFilesDir(null).getAbsolutePath();
+        String resDir = mdictHome + "/data"; //getFilesDir().getAbsolutePath();
+        String docDir = mdictHome + "/doc";
+        String tmpDir = mdictHome + "/tmp";
+        String mediaDir = MdxEngine.getSettings().getExtraDictDir();
+        String fontsDir = mdictHome + "/fonts";
+        String audioLibDir = mdictHome + "/audiolib";
+
+
+        IOUtil.createDir(mdictHome);
+        IOUtil.createDir(resDir);
+        IOUtil.createDir(docDir);
+        IOUtil.createDir(tmpDir);
+        IOUtil.createDir(fontsDir);
+        IOUtil.createDir(audioLibDir);
+
+        String versionFileName = resDir + "/version";
+
+        //Optimize copy action by write a version file after successful copy.
+        //Only overwritten asset files if different version found
+        if (!checkInstalledVersionNumber(context, versionFileName)) {
+            IOUtil.copyAssetToFile(assets, "ResDB.dat", true, resDir, null);
+            IOUtil.copyAssetToFile(assets, "html_begin.html", true, resDir, null);
+            IOUtil.copyAssetToFile(assets, "html_end.html", true, resDir, null);
+            IOUtil.copyAssetToFile(assets, "block_begin_h.html", true, resDir, null);
+            IOUtil.copyAssetToFile(assets, "block_end_h.html", true, resDir, null);
+            IOUtil.copyAssetToFile(assets, "union_grp_title.html", true, resDir, null);
+            IOUtil.copyAssetToFile(assets, "code.js", true, resDir, null);
+            IOUtil.copyAssetToFile(assets, "droid_sans.ttf", false, resDir, null);
+            IOUtil.copyAssetToFile(assets, "mdict.css", false, resDir, null);
+            IOUtil.saveStringToFile(versionFileName, (new Integer(SysUtil.getVersionCode(context))).toString(), "utf-8");
+        }
+
+        ArrayList<String> extraSearchPath = new ArrayList<String>();
+        //docDir is in the searchPath by default, so don't need to add it.
+        mediaDir = mediaDir.trim();
+        if (mediaDir != null && mediaDir.length() != 0 && mediaDir.compareTo(docDir) != 0)
+            extraSearchPath.add(mediaDir);
+
+        appInited = appOne.initAppN(mdictHome, resDir, tmpDir, extraSearchPath);
+        if (appInited) {
+            //Maybe we shall not register icon in notification center here, beacause it's setting up engine not app
+            if (getSettings().getPrefShowInNotification()) {
+                registerNotification();
+            }
+        }
+        DictContentProvider.setTmpDir(MdxEngine.getTempDir());
+        return appInited;
+    }
+
+    public static boolean openLastDict(MdxDictBase dict){
+        if ( !appInited )
+            return false;
+        int result = MdxDictBase.kMdxSuccess;
+        MdxEngineSetting prefs = MdxEngine.getSettings();
+        if (prefs.getPrefMultiDictLookkupMode()) {
+            DictPref dictPref = MdxEngine.getLibMgr().getRootDictPref();
+            dictPref.setUnionGroup(true);
+            MdxEngine.getLibMgr().updateDictPref(dictPref);
+        }
+
+        if (prefs.getPrefLastDictId() == DictPref.kInvalidDictPrefId
+                || (result = MdxEngine.openDictById(prefs.getPrefLastDictId(), prefs.getPrefsUseLRUForDictOrder(), dict)) != MdxDictBase.kMdxSuccess) {
+            if (MdxEngine.getLibMgr().getRootDictPref().getChildCount() > 0) {
+                DictPref dictPref = null;
+                if (prefs.getPrefMultiDictLookkupMode()) {
+                    dictPref = MdxEngine.getLibMgr().getRootDictPref();
+                } else
+                    dictPref = MdxEngine.getLibMgr().getRootDictPref().getChildDictPrefAtIndex(0);
+                if (dictPref != null) {
+                    result = MdxEngine.openDictById(dictPref.getDictId(), prefs.getPrefsUseLRUForDictOrder(), dict);
+                }
+            }
+        }
+        if (!dict.isValid()) {
+            Log.d("MDX", "Fail to open dictionary, error code:" + result);
+            return false;
+        } else {
+            saveEngineSettings();
+        }
+        return true;
     }
 
     static public void rebuildHtmlSetting(MdxDictBase dict, boolean highSpeedMode) {
@@ -114,7 +231,7 @@ public class MdxEngine {
 
         StringBuffer css_buffer = new StringBuffer();
         String mdictCSS = "";
-        if (AddonFuncUnt.loadStringFromFile(appOne.getDocDirN() + "mdict.css", css_buffer)) {
+        if (IOUtil.loadStringFromFile(appOne.getDocDirN() + "mdict.css", css_buffer)) {
             if (css_buffer.length() != 0)
                 css += css_buffer.toString();
         }
@@ -122,7 +239,7 @@ public class MdxEngine {
         StringBuffer htmlBlock = new StringBuffer();
 
         htmlBlock.setLength(0);
-        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), "html_begin.html", htmlBlock, true);
+        IOUtil.loadStringFromAsset(baseContext.getAssets(), "html_begin.html", htmlBlock, true);
         String htmlBegin = htmlBlock.toString()
                 .replace("$start_expand_all$", MdxEngine.getSettings().getPrefMultiDictDefaultExpandAll().toString())
                 .replace("$expand_single$", MdxEngine.getSettings().getPrefMultiDictExpandOnlyOne().toString())
@@ -130,19 +247,19 @@ public class MdxEngine {
                 .replace("$extra_header$", css);
 
         htmlBlock.setLength(0);
-        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), "html_end.html", htmlBlock, true);
+        IOUtil.loadStringFromAsset(baseContext.getAssets(), "html_end.html", htmlBlock, true);
         String htmlEnd = htmlBlock.toString();
 
         htmlBlock.setLength(0);
-        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), highSpeedMode ? "block_begin_h.html" : "block_begin.html", htmlBlock, true);
+        IOUtil.loadStringFromAsset(baseContext.getAssets(), highSpeedMode ? "block_begin_h.html" : "block_begin.html", htmlBlock, true);
         String blockBegin = htmlBlock.toString();
 
         htmlBlock.setLength(0);
-        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), highSpeedMode ? "block_end_h.html" : "block_end.html", htmlBlock, true);
+        IOUtil.loadStringFromAsset(baseContext.getAssets(), highSpeedMode ? "block_end_h.html" : "block_end.html", htmlBlock, true);
         String blockEnd = htmlBlock.toString();
 
         htmlBlock.setLength(0);
-        AddonFuncUnt.loadStringFromAsset(baseContext.getAssets(), "union_grp_title.html", htmlBlock, true);
+        IOUtil.loadStringFromAsset(baseContext.getAssets(), "union_grp_title.html", htmlBlock, true);
         String unionGroupTitle = htmlBlock.toString();
 
         dict.setHtmlHeader(htmlBegin, htmlEnd);
@@ -167,22 +284,6 @@ public class MdxEngine {
     static public void unregisterNotification() {
         NotificationManager nm = (NotificationManager) baseContext.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(R.string.app_name);
-    }
-
-    /**
-     * Method initApp ...
-     *
-     * @return boolean
-     */
-    static public boolean initMDictEngine(Context context, String appHomeDir, String resDir, String tmpDir, ArrayList<String> extraSearchPath) {
-        boolean res = appOne.initAppN(appHomeDir, resDir, tmpDir, extraSearchPath);
-        if (res) {
-            baseContext = context;
-            if (getSettings().getPrefShowInNotification()) {
-                registerNotification();
-            }
-        }
-        return res;
     }
 
     /**
@@ -293,6 +394,6 @@ public class MdxEngine {
     private static Context baseContext = null;
     private static MdxEngine appOne = new MdxEngine();
     private static MdxEngineSetting appSetting = null;
-
+    private static boolean appInited=false;
 
 }

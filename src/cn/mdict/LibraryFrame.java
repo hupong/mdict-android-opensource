@@ -140,7 +140,7 @@ public class LibraryFrame extends SherlockFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MdxEngine.initSettings(getApplicationContext());
+        MdxEngine.setupEnv(getApplicationContext());
 
         getSupportMenuInflater().inflate(R.menu.library_frame_option_menu, menu);
         super.onCreateOptionsMenu(menu);

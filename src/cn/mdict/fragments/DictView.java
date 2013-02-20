@@ -33,6 +33,8 @@ import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
+import cn.mdict.utils.IOUtil;
+import cn.mdict.utils.SysUtil;
 import cn.mdict.widgets.MdxAdapter;
 import cn.mdict.widgets.MdxView;
 import cn.mdict.widgets.MdxView.MdxViewListener;
@@ -689,10 +691,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     public void displayWelcome() {
         switchToContentView();
         StringBuffer welcome = new StringBuffer();
-        AddonFuncUnt.loadStringFromAsset(getSherlockActivity().getAssets(),
+        IOUtil.loadStringFromAsset(getSherlockActivity().getAssets(),
                 "Welcome.htm", welcome, true);
         String html = welcome.toString().replace("$version$",
-                AddonFuncUnt.getVersionName(getSherlockActivity()));
+                SysUtil.getVersionName(getSherlockActivity()));
         displayHtml(html);
     }
 

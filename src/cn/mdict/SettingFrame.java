@@ -68,7 +68,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MdxEngine.initSettings(getApplicationContext());
+        MdxEngine.setupEnv(getApplicationContext());
 
         getPreferenceManager().setSharedPreferencesName(MdxEngineSetting.preferenceName);
         addPreferencesFromResource(R.xml.settings);
@@ -185,7 +185,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference.getKey().compareToIgnoreCase(getBaseContext().getString(R.string.pref_use_tts)) == 0) {
+        if (preference.getKey().compareToIgnoreCase(getString(R.string.pref_use_tts)) == 0) {
             CheckBoxPreference useTTS = (CheckBoxPreference) preference;
             if (useTTS.isChecked() && ttsEngine == null) {
                 AlertDialog dialog = AddonFuncUnt.buildConfirmDialog(this,
@@ -204,7 +204,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                         }, null);
                 dialog.show();
             }
-        } else if (preference.getKey().compareToIgnoreCase(getBaseContext().getString(R.string.pref_extra_dict_dir)) == 0) {
+        } else if (preference.getKey().compareToIgnoreCase(getString(R.string.pref_extra_dict_dir)) == 0) {
             String dir = MdxEngine.getSettings().getExtraDictDir();
             if (dir == null || dir.length() == 0)
                 selectFolder(this, MdxEngine.getDocDir());

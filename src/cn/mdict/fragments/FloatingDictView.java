@@ -36,6 +36,8 @@ import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
+import cn.mdict.utils.IOUtil;
+import cn.mdict.utils.SysUtil;
 import cn.mdict.widgets.MdxAdapter;
 import cn.mdict.widgets.MdxView;
 import cn.mdict.widgets.MdxView.MdxViewListener;
@@ -130,16 +132,11 @@ public class FloatingDictView extends SherlockFragment implements
 			@Override
 			public void handleMessage(Message msg) {
 				switch (msg.arg1) {
-				case 100:
-					jukuuWebView.setVisibility(View.GONE);
-					dictViewContainer.setVisibility(ViewGroup.VISIBLE);
-					displayByHeadword(msg.obj.toString(), true);
-					break;
-				case 200:
-					if (msg.obj.toString() != "ERROR") {
-						jukuuWebView.loadDataWithBaseURL(null,
-								msg.obj.toString(), "text/html", "utf-8", null);
-					}
+				case 1:
+                    //Lookup online content failed.
+				case 0:
+                    jukuuWebView.loadDataWithBaseURL(null,
+                            msg.obj.toString(), "text/html", "utf-8", null);
 					break;
 
 				}
@@ -802,10 +799,10 @@ public class FloatingDictView extends SherlockFragment implements
 	public void displayWelcome() {
 		switchToContentView();
 		StringBuffer welcome = new StringBuffer();
-		AddonFuncUnt.loadStringFromAsset(getSherlockActivity().getAssets(),
-				"Welcome.htm", welcome, true);
+		IOUtil.loadStringFromAsset(getSherlockActivity().getAssets(),
+                "Welcome.htm", welcome, true);
 		String html = welcome.toString().replace("$version$",
-				AddonFuncUnt.getVersionName(getSherlockActivity()));
+				SysUtil.getVersionName(getSherlockActivity()));
 		displayHtml(html);
 	}
 
@@ -935,122 +932,7 @@ public class FloatingDictView extends SherlockFragment implements
 		// jukuuWebContent = "";
 		jukuuWebView.loadDataWithBaseURL(null, "Loading..., please wait!",
 				"text/html", "utf-8", null);
-		final StringBuffer template = new StringBuffer();
-		AddonFuncUnt.loadStringFromAsset(getSherlockActivity().getAssets(),
-				"JukuuTemplate.html", template, false);
 
-		if (!AddonFuncUnt.checkNetworkStatus(getActivity())) {
-			jukuuWebView.loadDataWithBaseURL(null,
-					"<font color=red><b>Network unavailable</b></font>",
-					"text/html", "utf-8", null);
-			return;
-		}
-		new Thread(new Runnable() {
-			public void run() {
-				String jukuuWebContent = captureJukuu(searchHeadword, template);
-				if (jukuuWebContent == "") {
-					jukuuWebContent = "ERROR";
-				}
-				Message msg = new Message();
-				msg.arg1 = 200;
-				msg.obj = jukuuWebContent;
-				jukuuHandler.sendMessage(msg);// 向Handler发送消息，
-			}
-		}).start(); /*
-					 * while (jukuuWebContent.length() == 0) {
-					 * 
-					 * } if (jukuuWebContent != "ERROR") {
-					 * jukuuWebView.loadDataWithBaseURL(null, jukuuWebContent,
-					 * "text/html", "utf-8", null); }
-					 */
-	}
-
-	private String captureJukuu(String headWord, StringBuffer template) {
-		// added by alex, test only
-		
-		byte[] data = dict.getDictTextN(currentEntry, true, false, "", "");
-		if (data != null) {
-			try {
-				String html = new String(data, "utf-8");
-				BufferedWriter bw;
-
-				String strFile = "/mnt/sdcard/mdict/temp/testWeb.html";
-				File f = new File(strFile);
-				if (f.exists()) {
-				} else {
-					f.createNewFile();
-				}
-				bw = new BufferedWriter(new OutputStreamWriter(
-						new FileOutputStream(strFile), "utf-8"));
-				bw.write(html);
-				bw.close();
-				// wv.loadDataWithBaseURL("", html, "text/html", "utf-8",
-				// "");
-			} catch (Exception e) {
-				AddonFuncUnt.saveStringToFile(
-						"/mnt/sdcard/mdict/temp/log.error.txt", e.getMessage(),
-						"utf-8");
-				// AddonFuncUnt.lo.
-			}
-		}
-		
-		lastJukuuWord = headWord;
-		Pattern imgPattern = Pattern
-				.compile("<tr class=e>(.|\n)*?<tr class=s>");
-		String searchStr = URLEncoder.encode(headWord.replace(" ", "+"));
-		// TODO Auto-generated method stub
-		HttpURLConnection connection = null;
-		InputStream is = null;
-		String content = "";
-		String result = "";
-		try {
-
-			for (int i = 0; i < 5; i++) {
-				String surl = "http://www.jukuu.com/show-" + searchStr + "-"
-						+ String.valueOf(i) + ".html";
-				if (i == 0)
-					surl = "http://www.jukuu.com/search.php?q=" + searchStr;
-				URL url = new URL(surl);
-				connection = (HttpURLConnection) url.openConnection();
-				connection.setConnectTimeout(10 * 1000); // set time out to 5
-				// mins
-				connection.setReadTimeout(20 * 1000); // set read time out
-				int code = connection.getResponseCode();
-				if (HttpURLConnection.HTTP_OK == code) {
-					connection.connect();
-					is = connection.getInputStream();
-					BufferedReader reader = new BufferedReader(
-							new InputStreamReader(is, "utf-8"));
-					StringBuilder buffer = new StringBuilder();
-					String line = null;
-					while ((line = reader.readLine()) != null) {
-						buffer.append(line);
-					}
-
-					content = buffer.toString();
-					Matcher matcher = imgPattern.matcher(content);
-
-					while (matcher.find()) {
-						result = result
-								+ matcher.group().replace("<tr class=s>", "")
-								+ "\n";
-					}
-					if (content
-							.indexOf("\u003e\u4e0b\u4e00\u9875\u003c\u002f\u0061\u003e") == -1)
-						break;
-				}
-			}
-		} catch (Exception e) {
-			AddonFuncUnt.showMessageDialog(getActivity(),
-					AddonFuncUnt.getErrorMessage(e), "Error");
-		} finally {
-			if (connection != null) {
-				connection.disconnect();
-			}
-		}
-		if (result.length() == 0)
-			result = "No data found for " + headWord;
-		return template.toString().replace("{DICT_CONTENT}", result);
 	}
 
 	@Override

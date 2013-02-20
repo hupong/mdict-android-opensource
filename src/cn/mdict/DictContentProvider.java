@@ -39,6 +39,7 @@ import android.util.Log;
 import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
+import cn.mdict.utils.IOUtil;
 
 
 public class DictContentProvider extends ContentProvider {
@@ -163,7 +164,7 @@ public class DictContentProvider extends ContentProvider {
                     if (cache.containsKey(fileName))
                         data = cache.get(fileName);
                     else {
-                        data = AddonFuncUnt.loadBinFromAsset(assets, fileName, true);
+                        data = IOUtil.loadBinFromAsset(assets, fileName, true);
                         if (data != null)
                             cache.put(fileName, data);
                     }

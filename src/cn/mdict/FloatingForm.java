@@ -82,7 +82,7 @@ public class FloatingForm extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
         try {
             sendBroadcast(new Intent("mdict.cn.KillMainUI"));
-            MdxEngine.initSettings(getApplicationContext());
+            MdxEngine.setupEnv(getApplicationContext());
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                 // this.setTheme(R.style.Theme_MDict_ForceOverFlow);
             }
@@ -93,7 +93,7 @@ public class FloatingForm extends SherlockFragmentActivity {
 
             dict = new MdxDictBase();
 
-            AddonFuncUnt.initApp(getApplicationContext(), getAssets(), dict);
+            MdxEngine.openLastDict(dict);
             dictView.setDict(dict);
 
             // dictView.displayWelcome();
