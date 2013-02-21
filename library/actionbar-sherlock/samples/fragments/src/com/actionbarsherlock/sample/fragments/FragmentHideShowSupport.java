@@ -48,7 +48,7 @@ public class FragmentHideShowSupport extends SherlockFragmentActivity {
     }
 
     void addShowHideListener(int buttonId, final Fragment fragment) {
-        final Button button = (Button) findViewById(buttonId);
+        final Button button = (Button)findViewById(buttonId);
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -71,13 +71,13 @@ public class FragmentHideShowSupport extends SherlockFragmentActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+                Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.labeled_text_edit, container, false);
             View tv = v.findViewById(R.id.msg);
-            ((TextView) tv).setText("The fragment saves and restores this text.");
+            ((TextView)tv).setText("The fragment saves and restores this text.");
 
             // Retrieve the text editor, and restore the last saved state if needed.
-            mTextView = (TextView) v.findViewById(R.id.saved);
+            mTextView = (TextView)v.findViewById(R.id.saved);
             if (savedInstanceState != null) {
                 mTextView.setText(savedInstanceState.getCharSequence("text"));
             }
@@ -97,16 +97,16 @@ public class FragmentHideShowSupport extends SherlockFragmentActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+                Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.labeled_text_edit, container, false);
             View tv = v.findViewById(R.id.msg);
-            ((TextView) tv).setText("The TextView saves and restores this text.");
+            ((TextView)tv).setText("The TextView saves and restores this text.");
 
             // Retrieve the text editor and tell it to save and restore its state.
             // Note that you will often set this in the layout XML, but since
             // we are sharing our layout with the other fragment we will customize
             // it here.
-            ((TextView) v.findViewById(R.id.saved)).setSaveEnabled(true);
+            ((TextView)v.findViewById(R.id.saved)).setSaveEnabled(true);
             return v;
         }
     }

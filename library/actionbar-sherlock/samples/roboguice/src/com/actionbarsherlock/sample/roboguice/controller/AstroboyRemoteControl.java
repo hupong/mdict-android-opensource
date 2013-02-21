@@ -10,20 +10,20 @@ import com.google.inject.Inject;
 
 /**
  * A class to control Astroboy remotely.
- * <p/>
+ *
  * This class uses the current context, so we must make it @ContextSingleton.
  * This means that there will be one AstroboyRemoteControl for every activity or
  * service that requires one.
  * Note that we actually ask for the Activity, rather than the Context (which is
  * the same thing), because we need access to some activity-related methods and this
  * saves us from having to downcast to an Activity manually.
- * <p/>
+ *
  * It also asks RoboGuice to inject the Astroboy instance so we can control him.
- * <p/>
+ *
  * What you'll learn in this class
- * - What @ContextScope means and when to use it
- * - How to inject an Activity instead of a Context (which is really the same thing)
- * - How to use RoboGuice's convenient and flexible logging facility, Ln.
+ *   - What @ContextScope means and when to use it
+ *   - How to inject an Activity instead of a Context (which is really the same thing)
+ *   - How to use RoboGuice's convenient and flexible logging facility, Ln.
  */
 @ContextSingleton
 public class AstroboyRemoteControl {
@@ -34,10 +34,9 @@ public class AstroboyRemoteControl {
     // Injecting an Activity is basically equivalent to "@Inject Context context",
     // and thus also requires @ContextScope. If you wanted, you could also
     // @Inject Application, Service, etc. wherever appropriate.
-    @Inject
-    Astroboy astroboy;
-    @Inject
-    Activity activity;
+    @Inject Astroboy astroboy;
+    @Inject Activity activity;
+
 
 
     public void brushTeeth() {
@@ -46,8 +45,8 @@ public class AstroboyRemoteControl {
         astroboy.brushTeeth();
     }
 
-    public void say(String something) {
-        Ln.d("Sent say(%s) command to Astroboy", something);
+    public void say( String something ) {
+        Ln.d("Sent say(%s) command to Astroboy",something);
         astroboy.say(something);
     }
 

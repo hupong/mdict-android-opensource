@@ -47,7 +47,7 @@ public class ShareActionProviders extends SherlockActivity {
         setTheme(SampleList.THEME); //Used for theme switching in samples
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text);
-        ((TextView) findViewById(R.id.text)).setText(R.string.share_action_providers_content);
+        ((TextView)findViewById(R.id.text)).setText(R.string.share_action_providers_content);
         copyPrivateRawResuorceToPubliclyAccessibleFile();
     }
 
@@ -105,7 +105,7 @@ public class ShareActionProviders extends SherlockActivity {
             byte[] buffer = new byte[1024];
             int length = 0;
             try {
-                while ((length = inputStream.read(buffer)) > 0) {
+                while ((length = inputStream.read(buffer)) > 0){
                     outputStream.write(buffer, 0, length);
                 }
             } catch (IOException ioe) {

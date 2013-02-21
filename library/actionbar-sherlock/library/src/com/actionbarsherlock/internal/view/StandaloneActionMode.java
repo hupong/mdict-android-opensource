@@ -41,7 +41,7 @@ public class StandaloneActionMode extends ActionMode implements MenuBuilder.Call
     private MenuBuilder mMenu;
 
     public StandaloneActionMode(Context context, ActionBarContextView view,
-                                ActionMode.Callback callback, boolean isFocusable) {
+            ActionMode.Callback callback, boolean isFocusable) {
         mContext = context;
         mContextView = view;
         mCallback = callback;

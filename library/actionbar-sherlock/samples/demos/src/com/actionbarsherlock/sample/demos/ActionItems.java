@@ -29,15 +29,15 @@ public class ActionItems extends SherlockActivity {
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
 
         menu.add("Save")
-                .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         menu.add("Search")
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         menu.add("Refresh")
-                .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return true;
     }
@@ -47,7 +47,7 @@ public class ActionItems extends SherlockActivity {
         setTheme(SampleList.THEME); //Used for theme switching in samples
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text);
-        setContent((TextView) findViewById(R.id.text));
+        setContent((TextView)findViewById(R.id.text));
     }
 
     protected void setContent(TextView view) {

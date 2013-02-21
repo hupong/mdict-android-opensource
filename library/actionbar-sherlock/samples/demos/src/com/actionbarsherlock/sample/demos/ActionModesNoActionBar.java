@@ -39,13 +39,13 @@ public class ActionModesNoActionBar extends SherlockActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.action_modes);
 
-        ((Button) findViewById(R.id.start)).setOnClickListener(new View.OnClickListener() {
+        ((Button)findViewById(R.id.start)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMode = startActionMode(new AnActionModeOfEpicProportions());
             }
         });
-        ((Button) findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
+        ((Button)findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mMode != null) {
@@ -62,28 +62,28 @@ public class ActionModesNoActionBar extends SherlockActivity {
             boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
 
             menu.add("Save")
-                    .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+                .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
             menu.add("Search")
-                    .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+                .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
             menu.add("Refresh")
-                    .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+                .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
             menu.add("Save")
-                    .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+                .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
             menu.add("Search")
-                    .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+                .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
             menu.add("Refresh")
-                    .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+                .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
             return true;
         }

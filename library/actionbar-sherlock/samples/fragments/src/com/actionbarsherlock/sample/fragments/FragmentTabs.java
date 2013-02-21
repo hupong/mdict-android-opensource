@@ -17,7 +17,6 @@ package com.actionbarsherlock.sample.fragments;
 
 
 import java.util.HashMap;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,7 +41,7 @@ public class FragmentTabs extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_tabs);
-        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+        mTabHost = (TabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup();
 
         mTabManager = new TabManager(this, mTabHost, R.id.realtabcontent);

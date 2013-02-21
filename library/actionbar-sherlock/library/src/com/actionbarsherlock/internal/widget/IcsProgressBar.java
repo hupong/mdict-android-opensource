@@ -60,18 +60,18 @@ import android.widget.RemoteViews.RemoteView;
  * which is useful for displaying intermediate progress, such as the buffer
  * level during a streaming playback progress bar.
  * </p>
- * <p/>
+ *
  * <p>
  * A progress bar can also be made indeterminate. In indeterminate mode, the
  * progress bar shows a cyclic animation without an indication of progress. This mode is used by
  * applications when the length of the task is unknown. The indeterminate progress bar can be either
  * a spinning wheel or a horizontal bar.
  * </p>
- * <p/>
+ *
  * <p>The following code example shows how a progress bar can be used from
  * a worker thread to update the user interface to notify the user of progress:
  * </p>
- * <p/>
+ *
  * <pre>
  * public class MyActivity extends Activity {
  *     private static final int PROGRESS = 0x1;
@@ -189,22 +189,22 @@ public class IcsProgressBar extends View {
     private static final int ANIMATION_RESOLUTION = 200;
     private static final int TIMEOUT_SEND_ACCESSIBILITY_EVENT = 200;
 
-    private static final int[] ProgressBar = new int[]{
-            android.R.attr.maxWidth,
-            android.R.attr.maxHeight,
-            android.R.attr.max,
-            android.R.attr.progress,
-            android.R.attr.secondaryProgress,
-            android.R.attr.indeterminate,
-            android.R.attr.indeterminateOnly,
-            android.R.attr.indeterminateDrawable,
-            android.R.attr.progressDrawable,
-            android.R.attr.indeterminateDuration,
-            android.R.attr.indeterminateBehavior,
-            android.R.attr.minWidth,
-            android.R.attr.minHeight,
-            android.R.attr.interpolator,
-            android.R.attr.animationResolution,
+    private static final int[] ProgressBar = new int[] {
+        android.R.attr.maxWidth,
+        android.R.attr.maxHeight,
+        android.R.attr.max,
+        android.R.attr.progress,
+        android.R.attr.secondaryProgress,
+        android.R.attr.indeterminate,
+        android.R.attr.indeterminateOnly,
+        android.R.attr.indeterminateDrawable,
+        android.R.attr.progressDrawable,
+        android.R.attr.indeterminateDuration,
+        android.R.attr.indeterminateBehavior,
+        android.R.attr.minWidth,
+        android.R.attr.minHeight,
+        android.R.attr.interpolator,
+        android.R.attr.animationResolution,
     };
     private static final int ProgressBar_maxWidth = 0;
     private static final int ProgressBar_maxHeight = 1;
@@ -259,7 +259,6 @@ public class IcsProgressBar extends View {
 
     /**
      * Create a new progress bar with range 0...100 and initial progress of 0.
-     *
      * @param context the application environment
      */
     public IcsProgressBar(Context context) {
@@ -283,7 +282,7 @@ public class IcsProgressBar extends View {
         initProgressBar();
 
         TypedArray a =
-                context.obtainStyledAttributes(attrs, /*R.styleable.*/ProgressBar, defStyle, styleRes);
+            context.obtainStyledAttributes(attrs, /*R.styleable.*/ProgressBar, defStyle, styleRes);
 
         mNoInvalidate = true;
 
@@ -338,7 +337,7 @@ public class IcsProgressBar extends View {
 
         a.recycle();
 
-        mAccessibilityManager = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        mAccessibilityManager = (AccessibilityManager)context.getSystemService(Context.ACCESSIBILITY_SERVICE);
     }
 
     /**
@@ -395,7 +394,7 @@ public class IcsProgressBar extends View {
     }
 
     Shape getDrawableShape() {
-        final float[] roundedCorners = new float[]{5, 5, 5, 5, 5, 5, 5, 5};
+        final float[] roundedCorners = new float[] { 5, 5, 5, 5, 5, 5, 5, 5 };
         return new RoundRectShape(roundedCorners, null, null);
     }
 
@@ -462,7 +461,7 @@ public class IcsProgressBar extends View {
      * <p>Change the indeterminate mode for this progress bar. In indeterminate
      * mode, the progress is ignored and the progress bar shows an infinite
      * animation instead.</p>
-     * <p/>
+     *
      * If this progress bar's style only supports indeterminate mode (such as the circular
      * progress bars), then this will be ignored.
      *
@@ -488,6 +487,7 @@ public class IcsProgressBar extends View {
      * indeterminate mode.</p>
      *
      * @return a {@link android.graphics.drawable.Drawable} instance
+     *
      * @see #setIndeterminateDrawable(android.graphics.drawable.Drawable)
      * @see #setIndeterminate(boolean)
      */
@@ -500,6 +500,7 @@ public class IcsProgressBar extends View {
      * indeterminate mode.</p>
      *
      * @param d the new drawable
+     *
      * @see #getIndeterminateDrawable()
      * @see #setIndeterminate(boolean)
      */
@@ -519,6 +520,7 @@ public class IcsProgressBar extends View {
      * progress mode.</p>
      *
      * @return a {@link android.graphics.drawable.Drawable} instance
+     *
      * @see #setProgressDrawable(android.graphics.drawable.Drawable)
      * @see #setIndeterminate(boolean)
      */
@@ -531,6 +533,7 @@ public class IcsProgressBar extends View {
      * progress mode.</p>
      *
      * @param d the new drawable
+     *
      * @see #getProgressDrawable()
      * @see #setIndeterminate(boolean)
      */
@@ -621,7 +624,7 @@ public class IcsProgressBar extends View {
     }
 
     private synchronized void doRefreshProgress(int id, int progress, boolean fromUser,
-                                                boolean callBackToApp) {
+            boolean callBackToApp) {
         float scale = mMax > 0 ? (float) progress / (float) mMax : 0;
         final Drawable d = mCurrentDrawable;
         if (d != null) {
@@ -672,6 +675,7 @@ public class IcsProgressBar extends View {
      * if the progress bar is in indeterminate mode.</p>
      *
      * @param progress the new progress, between 0 and {@link #getMax()}
+     *
      * @see #setIndeterminate(boolean)
      * @see #isIndeterminate()
      * @see #getProgress()
@@ -736,6 +740,7 @@ public class IcsProgressBar extends View {
      * progress bar is in indeterminate mode.</p>
      *
      * @return the current progress, between 0 and {@link #getMax()}
+     *
      * @see #setIndeterminate(boolean)
      * @see #isIndeterminate()
      * @see #setProgress(int)
@@ -752,6 +757,7 @@ public class IcsProgressBar extends View {
      * progress bar is in indeterminate mode.</p>
      *
      * @return the current secondary progress, between 0 and {@link #getMax()}
+     *
      * @see #setIndeterminate(boolean)
      * @see #isIndeterminate()
      * @see #setSecondaryProgress(int)
@@ -767,6 +773,7 @@ public class IcsProgressBar extends View {
      * <p>Return the upper limit of this progress bar's range.</p>
      *
      * @return a positive integer
+     *
      * @see #setMax(int)
      * @see #getProgress()
      * @see #getSecondaryProgress()
@@ -780,6 +787,7 @@ public class IcsProgressBar extends View {
      * <p>Set the range of the progress bar to 0...<tt>max</tt>.</p>
      *
      * @param max the upper range of this progress bar
+     *
      * @see #getMax()
      * @see #setProgress(int)
      * @see #setSecondaryProgress(int)
@@ -803,6 +811,7 @@ public class IcsProgressBar extends View {
      * <p>Increase the progress bar's progress by the specified amount.</p>
      *
      * @param diff the amount by which the progress must be increased
+     *
      * @see #setProgress(int)
      */
     public synchronized final void incrementProgressBy(int diff) {
@@ -813,6 +822,7 @@ public class IcsProgressBar extends View {
      * <p>Increase the progress bar's secondary progress by the specified amount.</p>
      *
      * @param diff the amount by which the secondary progress must be increased
+     *
      * @see #setSecondaryProgress(int)
      */
     public synchronized final void incrementSecondaryProgressBy(int diff) {
@@ -864,7 +874,7 @@ public class IcsProgressBar extends View {
      * The interpolator is loaded as a resource from the specified context.
      *
      * @param context The application environment
-     * @param resID   The resource identifier of the interpolator to load
+     * @param resID The resource identifier of the interpolator to load
      */
     public void setInterpolator(Context context, int resID) {
         setInterpolator(AnimationUtils.loadInterpolator(context, resID));
@@ -937,11 +947,13 @@ public class IcsProgressBar extends View {
 
     /**
      * @hide
-     * @Override public int getResolvedLayoutDirection(Drawable who) {
-     * return (who == mProgressDrawable || who == mIndeterminateDrawable) ?
-     * getResolvedLayoutDirection() : super.getResolvedLayoutDirection(who);
-     * }
-     */
+     *
+    @Override
+    public int getResolvedLayoutDirection(Drawable who) {
+        return (who == mProgressDrawable || who == mIndeterminateDrawable) ?
+            getResolvedLayoutDirection() : super.getResolvedLayoutDirection(who);
+    }
+    */
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -1136,7 +1148,7 @@ public class IcsProgressBar extends View {
         if (mIndeterminate) {
             stopAnimation();
         }
-        if (mRefreshProgressRunnable != null) {
+        if(mRefreshProgressRunnable != null) {
             removeCallbacks(mRefreshProgressRunnable);
         }
         if (mAccessibilityEventSender != null) {
@@ -1158,8 +1170,8 @@ public class IcsProgressBar extends View {
      * Schedule a command for sending an accessibility event.
      * </br>
      * Note: A command is used to ensure that accessibility events
-     * are sent at most one in a given time frame to save
-     * system resources while the progress changes quickly.
+     *       are sent at most one in a given time frame to save
+     *       system resources while the progress changes quickly.
      */
     private void scheduleAccessibilityEventSender() {
         if (mAccessibilityEventSender == null) {

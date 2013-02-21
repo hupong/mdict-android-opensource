@@ -16,5 +16,4 @@
 package com.actionbarsherlock.sample.demos;
 
 //We're the same! Manifest changes only.
-public class SplitActionModes extends ActionModes {
-}
+public class SplitActionModes extends ActionModes {}

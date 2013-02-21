@@ -48,7 +48,7 @@ public class StaticAttachment extends Activity implements OnCreateOptionsMenuLis
         mSherlock.setUiOptions(ActivityInfo.UIOPTION_SPLIT_ACTION_BAR_WHEN_NARROW);
         mSherlock.setContentView(R.layout.text);
 
-        ((TextView) findViewById(R.id.text)).setText(R.string.static_attach_content);
+        ((TextView)findViewById(R.id.text)).setText(R.string.static_attach_content);
     }
 
     /*
@@ -78,16 +78,16 @@ public class StaticAttachment extends Activity implements OnCreateOptionsMenuLis
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
 
         menu.add("Save")
-                .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         menu.add("Search")
-                .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         menu.add("Refresh")
-                .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return true;
     }

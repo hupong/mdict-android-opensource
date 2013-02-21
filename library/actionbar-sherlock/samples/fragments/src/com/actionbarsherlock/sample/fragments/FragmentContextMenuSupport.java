@@ -48,7 +48,7 @@ public class FragmentContextMenuSupport extends SherlockFragmentActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+                Bundle savedInstanceState) {
             View root = inflater.inflate(R.layout.fragment_context_menu, container, false);
             registerForContextMenu(root.findViewById(R.id.long_press));
             return root;

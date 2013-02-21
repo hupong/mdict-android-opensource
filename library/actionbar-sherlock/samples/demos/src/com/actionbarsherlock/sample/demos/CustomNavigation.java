@@ -31,13 +31,13 @@ public class CustomNavigation extends SherlockActivity {
         setTheme(SampleList.THEME); //Used for theme switching in samples
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text);
-        ((TextView) findViewById(R.id.text)).setText(R.string.custom_navigation_content);
+        ((TextView)findViewById(R.id.text)).setText(R.string.custom_navigation_content);
 
         //Inflate the custom view
         View customNav = LayoutInflater.from(this).inflate(R.layout.custom_view, null);
 
         //Bind to its state change
-        ((RadioGroup) customNav.findViewById(R.id.radio_nav)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        ((RadioGroup)customNav.findViewById(R.id.radio_nav)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 Toast.makeText(CustomNavigation.this, "Navigation selection changed.", Toast.LENGTH_SHORT).show();

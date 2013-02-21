@@ -24,7 +24,7 @@ public class SherlockDialogFragment extends DialogFragment implements OnCreateOp
         if (!(activity instanceof SherlockFragmentActivity)) {
             throw new IllegalStateException(getClass().getSimpleName() + " must be attached to a SherlockFragmentActivity.");
         }
-        mActivity = (SherlockFragmentActivity) activity;
+        mActivity = (SherlockFragmentActivity)activity;
 
         super.onAttach(activity);
     }

@@ -52,9 +52,7 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
     final RecycleBin mRecycler = new RecycleBin();
     private DataSetObserver mDataSetObserver;
 
-    /**
-     * Temporary frame to hold a child View's frame rectangle
-     */
+    /** Temporary frame to hold a child View's frame rectangle */
     private Rect mTouchFrame;
 
     public IcsAbsSpinner(Context context) {
@@ -99,7 +97,6 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
      * The Adapter is used to provide the data which backs this Spinner.
      * It also provides methods to transform spinner items based on their position
      * relative to the selected item.
-     *
      * @param adapter The SpinnerAdapter to use for this Spinner
      */
     @Override
@@ -160,11 +157,11 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
 
     /**
      * @see android.view.View#measure(int, int)
-     *      <p/>
-     *      Figure out the dimensions of this Spinner. The width comes from
-     *      the widthMeasureSpec as Spinnners can't have their width set to
-     *      UNSPECIFIED. The height is based on the height of the selected item
-     *      plus padding.
+     *
+     * Figure out the dimensions of this Spinner. The width comes from
+     * the widthMeasureSpec as Spinnners can't have their width set to
+     * UNSPECIFIED. The height is based on the height of the selected item
+     * plus padding.
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -297,12 +294,13 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
      * Makes the item at the supplied position selected.
      *
      * @param position Position to select
-     * @param animate  Should the transition be animated
+     * @param animate Should the transition be animated
+     *
      */
     void setSelectionInt(int position, boolean animate) {
         if (position != mOldSelectedPosition) {
             mBlockLayoutRequests = true;
-            int delta = position - mSelectedPosition;
+            int delta  = position - mSelectedPosition;
             setNextSelectedPositionInt(position);
             layout(delta, animate);
             mBlockLayoutRequests = false;

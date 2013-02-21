@@ -41,8 +41,7 @@ public class Issue379 extends SherlockActivity implements ActionBar.TabListener 
         setContentView(tv);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Test").setShowAsAction(SHOW_AS_ACTION_ALWAYS | SHOW_AS_ACTION_WITH_TEXT);
         return true;
     }

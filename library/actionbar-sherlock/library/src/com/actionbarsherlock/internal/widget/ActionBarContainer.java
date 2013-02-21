@@ -35,7 +35,6 @@ import com.actionbarsherlock.internal.nineoldandroids.widget.NineFrameLayout;
 /**
  * This class acts as a container for the action bar view and action mode context views.
  * It applies special styles as needed to help handle animated transitions between them.
- *
  * @hide
  */
 public class ActionBarContainer extends NineFrameLayout {

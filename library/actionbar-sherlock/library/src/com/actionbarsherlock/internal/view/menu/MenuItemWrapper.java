@@ -243,7 +243,7 @@ public class MenuItemWrapper implements MenuItem, android.view.MenuItem.OnMenuIt
     public View getActionView() {
         View actionView = mNativeItem.getActionView();
         if (actionView instanceof CollapsibleActionViewWrapper) {
-            return ((CollapsibleActionViewWrapper) actionView).unwrap();
+            return ((CollapsibleActionViewWrapper)actionView).unwrap();
         }
         return actionView;
     }
@@ -258,7 +258,7 @@ public class MenuItemWrapper implements MenuItem, android.view.MenuItem.OnMenuIt
     public ActionProvider getActionProvider() {
         android.view.ActionProvider nativeProvider = mNativeItem.getActionProvider();
         if (nativeProvider != null && nativeProvider instanceof ActionProviderWrapper) {
-            return ((ActionProviderWrapper) nativeProvider).unwrap();
+            return ((ActionProviderWrapper)nativeProvider).unwrap();
         }
         return null;
     }

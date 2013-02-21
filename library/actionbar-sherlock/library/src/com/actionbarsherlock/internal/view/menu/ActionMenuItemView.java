@@ -18,7 +18,6 @@ package com.actionbarsherlock.internal.view.menu;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;

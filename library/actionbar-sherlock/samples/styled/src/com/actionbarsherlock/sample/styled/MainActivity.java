@@ -37,9 +37,7 @@ public class MainActivity extends SherlockFragmentActivity implements ActionBar.
     private boolean useLogo = false;
     private boolean showHomeUp = false;
 
-    /**
-     * Called when the activity is first created.
-     */
+    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +59,7 @@ public class MainActivity extends SherlockFragmentActivity implements ActionBar.
                         R.layout.sherlock_spinner_dropdown_item),
                 new OnNavigationListener() {
                     public boolean onNavigationItemSelected(int itemPosition,
-                                                            long itemId) {
+                            long itemId) {
                         // FIXME add proper implementation
                         rotateLeftFrag();
                         return false;
@@ -109,58 +107,58 @@ public class MainActivity extends SherlockFragmentActivity implements ActionBar.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                // TODO handle clicking the app icon/logo
-                return false;
-            case R.id.menu_refresh:
-                // switch to a progress animation
-                item.setActionView(R.layout.indeterminate_progress_action);
-                return true;
-            case R.id.menu_both:
-                // rotation animation of green fragment
-                rotateLeftFrag();
-                return true;
-            case R.id.menu_text:
-                // alpha animation of blue fragment
-                ObjectAnimator alpha = ObjectAnimator.ofFloat(rightFrag.getView(),
-                        "alpha", 1f, 0f);
-                alpha.setRepeatMode(ObjectAnimator.REVERSE);
-                alpha.setRepeatCount(1);
-                alpha.setDuration(800);
-                alpha.start();
-                return true;
-            case R.id.menu_logo:
-                useLogo = !useLogo;
-                item.setChecked(useLogo);
-                getSupportActionBar().setDisplayUseLogoEnabled(useLogo);
-                return true;
-            case R.id.menu_up:
-                showHomeUp = !showHomeUp;
-                item.setChecked(showHomeUp);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeUp);
-                return true;
-            case R.id.menu_nav_tabs:
-                item.setChecked(true);
-                showTabsNav();
-                return true;
-            case R.id.menu_nav_label:
-                item.setChecked(true);
-                showStandardNav();
-                return true;
-            case R.id.menu_nav_drop_down:
-                item.setChecked(true);
-                showDropDownNav();
-                return true;
-            case R.id.menu_bak_none:
-                item.setChecked(true);
-                getSupportActionBar().setBackgroundDrawable(null);
-                return true;
-            case R.id.menu_bak_gradient:
-                item.setChecked(true);
-                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ad_action_bar_gradient_bak));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        case android.R.id.home:
+            // TODO handle clicking the app icon/logo
+            return false;
+        case R.id.menu_refresh:
+            // switch to a progress animation
+            item.setActionView(R.layout.indeterminate_progress_action);
+            return true;
+        case R.id.menu_both:
+            // rotation animation of green fragment
+            rotateLeftFrag();
+            return true;
+        case R.id.menu_text:
+            // alpha animation of blue fragment
+            ObjectAnimator alpha = ObjectAnimator.ofFloat(rightFrag.getView(),
+                    "alpha", 1f, 0f);
+            alpha.setRepeatMode(ObjectAnimator.REVERSE);
+            alpha.setRepeatCount(1);
+            alpha.setDuration(800);
+            alpha.start();
+            return true;
+        case R.id.menu_logo:
+            useLogo = !useLogo;
+            item.setChecked(useLogo);
+            getSupportActionBar().setDisplayUseLogoEnabled(useLogo);
+            return true;
+        case R.id.menu_up:
+            showHomeUp = !showHomeUp;
+            item.setChecked(showHomeUp);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeUp);
+            return true;
+        case R.id.menu_nav_tabs:
+            item.setChecked(true);
+            showTabsNav();
+            return true;
+        case R.id.menu_nav_label:
+            item.setChecked(true);
+            showStandardNav();
+            return true;
+        case R.id.menu_nav_drop_down:
+            item.setChecked(true);
+            showDropDownNav();
+            return true;
+        case R.id.menu_bak_none:
+            item.setChecked(true);
+            getSupportActionBar().setBackgroundDrawable(null);
+            return true;
+        case R.id.menu_bak_gradient:
+            item.setChecked(true);
+            getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ad_action_bar_gradient_bak));
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
         }
     }
 

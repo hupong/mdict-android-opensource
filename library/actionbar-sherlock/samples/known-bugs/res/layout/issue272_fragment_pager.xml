@@ -18,9 +18,9 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical" android:padding="4dip"
-              android:gravity="center_horizontal"
-              android:layout_width="match_parent" android:layout_height="match_parent">
+        android:orientation="vertical" android:padding="4dip"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent" android:layout_height="match_parent">
 
     <android.support.v4.view.ViewPager
             android:id="@+id/pager"
@@ -30,22 +30,22 @@
     </android.support.v4.view.ViewPager>
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Simple Fragment based ViewPager whose Fragments provide menu actions to the host Activity. Swipe once on pre ICS to load in a new fragment. New action menu items become unresponsive and appear to be rendered twice. Swipe again and the actions pressed previously will fire on the new fragment."/>
-
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Simple Fragment based ViewPager whose Fragments provide menu actions to the host Activity. Swipe once on pre ICS to load in a new fragment. New action menu items become unresponsive and appear to be rendered twice. Swipe again and the actions pressed previously will fire on the new fragment."/>
+    
     <LinearLayout android:orientation="horizontal"
-                  android:gravity="center" android:measureWithLargestChild="true"
-                  android:layout_width="match_parent" android:layout_height="wrap_content"
-                  android:layout_weight="0">
+            android:gravity="center" android:measureWithLargestChild="true"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_weight="0">
         <Button android:id="@+id/goto_first"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="First">
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="First">
         </Button>
         <Button android:id="@+id/goto_last"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Last">
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Last">
         </Button>
     </LinearLayout>
 </LinearLayout>

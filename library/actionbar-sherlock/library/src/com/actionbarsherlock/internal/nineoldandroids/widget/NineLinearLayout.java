@@ -33,7 +33,6 @@ public class NineLinearLayout extends LinearLayout {
             return super.getAlpha();
         }
     }
-
     public void setAlpha(float alpha) {
         if (AnimatorProxy.NEEDS_PROXY) {
             mProxy.setAlpha(alpha);
@@ -41,7 +40,6 @@ public class NineLinearLayout extends LinearLayout {
             super.setAlpha(alpha);
         }
     }
-
     public float getTranslationX() {
         if (AnimatorProxy.NEEDS_PROXY) {
             return mProxy.getTranslationX();
@@ -49,7 +47,6 @@ public class NineLinearLayout extends LinearLayout {
             return super.getTranslationX();
         }
     }
-
     public void setTranslationX(float translationX) {
         if (AnimatorProxy.NEEDS_PROXY) {
             mProxy.setTranslationX(translationX);

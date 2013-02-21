@@ -101,7 +101,7 @@
                   android:dropDownVerticalOffset="0dip"
                   android:dropDownHorizontalOffset="0dip"
                   android:contentDescription="@string/abs__searchview_description_query"
-                    />
+                  />
 
             <ImageView
                     android:id="@+id/abs__search_close_btn"

@@ -77,7 +77,7 @@ public class SampleList extends SherlockListActivity implements ActionBar.TabLis
         /* Empty */
     }
 
-    private class IntentAdapter extends BaseAdapter {
+  private class IntentAdapter extends BaseAdapter {
         private final List<CharSequence> mNames;
         private final Map<CharSequence, Intent> mIntents;
 
@@ -106,29 +106,29 @@ public class SampleList extends SherlockListActivity implements ActionBar.TabLis
             notifyDataSetChanged();
         }
 
-        @Override
-        public int getCount() {
-            return mNames.size();
-        }
+      @Override
+      public int getCount() {
+          return mNames.size();
+      }
 
-        @Override
-        public Intent getItem(int position) {
-            return mIntents.get(mNames.get(position));
-        }
+      @Override
+      public Intent getItem(int position) {
+          return mIntents.get(mNames.get(position));
+      }
 
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
+      @Override
+      public long getItemId(int position) {
+          return position;
+      }
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TextView tv = (TextView) convertView;
-            if (convertView == null) {
-                tv = (TextView) LayoutInflater.from(SampleList.this).inflate(android.R.layout.simple_list_item_1, parent, false);
-            }
-            tv.setText(mNames.get(position));
-            return tv;
-        }
+      @Override
+      public View getView(int position, View convertView, ViewGroup parent) {
+          TextView tv = (TextView)convertView;
+          if (convertView == null) {
+              tv = (TextView) LayoutInflater.from(SampleList.this).inflate(android.R.layout.simple_list_item_1, parent, false);
+          }
+          tv.setText(mNames.get(position));
+          return tv;
+      }
     }
 }

@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -118,8 +117,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
                     android.R.drawable.sym_def_app_icon);
         }
 
-        @Override
-        public String toString() {
+        @Override public String toString() {
             return mLabel;
         }
 
@@ -149,7 +147,6 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
      */
     public static final Comparator<AppEntry> ALPHA_COMPARATOR = new Comparator<AppEntry>() {
         private final Collator sCollator = Collator.getInstance();
-
         @Override
         public int compare(AppEntry object1, AppEntry object2) {
             return sCollator.compare(object1.getLabel(), object2.getLabel());
@@ -167,8 +164,8 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
         boolean applyNewConfig(Resources res) {
             int configChanges = mLastConfiguration.updateFrom(res.getConfiguration());
             boolean densityChanged = mLastDensity != res.getDisplayMetrics().densityDpi;
-            if (densityChanged || (configChanges & (ActivityInfo.CONFIG_LOCALE
-                    | ActivityInfoCompat.CONFIG_UI_MODE | ActivityInfo.CONFIG_SCREEN_LAYOUT)) != 0) {
+            if (densityChanged || (configChanges&(ActivityInfo.CONFIG_LOCALE
+                    |ActivityInfoCompat.CONFIG_UI_MODE|ActivityInfo.CONFIG_SCREEN_LAYOUT)) != 0) {
                 mLastDensity = res.getDisplayMetrics().densityDpi;
                 return true;
             }
@@ -197,8 +194,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
             mLoader.getContext().registerReceiver(this, sdFilter);
         }
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
+        @Override public void onReceive(Context context, Intent intent) {
             // Tell the loader about the change.
             mLoader.onContentChanged();
         }
@@ -228,12 +224,11 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
          * called in a background thread and should generate a new set of
          * data to be published by the loader.
          */
-        @Override
-        public List<AppEntry> loadInBackground() {
+        @Override public List<AppEntry> loadInBackground() {
             // Retrieve all known applications.
             List<ApplicationInfo> apps = mPm.getInstalledApplications(
                     PackageManager.GET_UNINSTALLED_PACKAGES |
-                            PackageManager.GET_DISABLED_COMPONENTS);
+                    PackageManager.GET_DISABLED_COMPONENTS);
             if (apps == null) {
                 apps = new ArrayList<ApplicationInfo>();
             }
@@ -242,7 +237,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
 
             // Create corresponding array of entries and load their labels.
             List<AppEntry> entries = new ArrayList<AppEntry>(apps.size());
-            for (int i = 0; i < apps.size(); i++) {
+            for (int i=0; i<apps.size(); i++) {
                 AppEntry entry = new AppEntry(this, apps.get(i));
                 entry.loadLabel(context);
                 entries.add(entry);
@@ -260,8 +255,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
          * super class will take care of delivering it; the implementation
          * here just adds a little more logic.
          */
-        @Override
-        public void deliverResult(List<AppEntry> apps) {
+        @Override public void deliverResult(List<AppEntry> apps) {
             if (isReset()) {
                 // An async query came in while the loader is stopped.  We
                 // don't need the result.
@@ -289,8 +283,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
         /**
          * Handles a request to start the Loader.
          */
-        @Override
-        protected void onStartLoading() {
+        @Override protected void onStartLoading() {
             if (mApps != null) {
                 // If we currently have a result available, deliver it
                 // immediately.
@@ -316,8 +309,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
         /**
          * Handles a request to stop the Loader.
          */
-        @Override
-        protected void onStopLoading() {
+        @Override protected void onStopLoading() {
             // Attempt to cancel the current load task if possible.
             cancelLoad();
         }
@@ -325,8 +317,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
         /**
          * Handles a request to cancel a load.
          */
-        @Override
-        public void onCanceled(List<AppEntry> apps) {
+        @Override public void onCanceled(List<AppEntry> apps) {
             super.onCanceled(apps);
 
             // At this point we can release the resources associated with 'apps'
@@ -337,8 +328,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
         /**
          * Handles a request to completely reset the Loader.
          */
-        @Override
-        protected void onReset() {
+        @Override protected void onReset() {
             super.onReset();
 
             // Ensure the loader is stopped
@@ -369,12 +359,13 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
     }
 
 
+
     public static class AppListAdapter extends ArrayAdapter<AppEntry> {
         private final LayoutInflater mInflater;
 
         public AppListAdapter(Context context) {
             super(context, android.R.layout.simple_list_item_2);
-            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         public void setData(List<AppEntry> data) {
@@ -389,8 +380,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
         /**
          * Populate new items in the list.
          */
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        @Override public View getView(int position, View convertView, ViewGroup parent) {
             View view;
 
             if (convertView == null) {
@@ -400,8 +390,8 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
             }
 
             AppEntry item = getItem(position);
-            ((ImageView) view.findViewById(R.id.icon)).setImageDrawable(item.getIcon());
-            ((TextView) view.findViewById(R.id.text)).setText(item.getLabel());
+            ((ImageView)view.findViewById(R.id.icon)).setImageDrawable(item.getIcon());
+            ((TextView)view.findViewById(R.id.text)).setText(item.getLabel());
 
             return view;
         }
@@ -418,8 +408,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
 
         OnQueryTextListenerCompat mOnQueryTextListenerCompat;
 
-        @Override
-        public void onActivityCreated(Bundle savedInstanceState) {
+        @Override public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
 
             // Give some text to display if there is no data.  In a real
@@ -441,8 +430,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
             getLoaderManager().initLoader(0, null, this);
         }
 
-        @Override
-        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             // Place an action bar item for searching.
             MenuItem item = menu.add("Search");
             item.setIcon(android.R.drawable.ic_menu_search);
@@ -451,34 +439,31 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
             if (searchView != null) {
                 SearchViewCompat.setOnQueryTextListener(searchView,
                         new OnQueryTextListenerCompat() {
-                            @Override
-                            public boolean onQueryTextChange(String newText) {
-                                // Called when the action bar search text has changed.  Since this
-                                // is a simple array adapter, we can just have it do the filtering.
-                                mCurFilter = !TextUtils.isEmpty(newText) ? newText : null;
-                                mAdapter.getFilter().filter(mCurFilter);
-                                return true;
-                            }
-                        });
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        // Called when the action bar search text has changed.  Since this
+                        // is a simple array adapter, we can just have it do the filtering.
+                        mCurFilter = !TextUtils.isEmpty(newText) ? newText : null;
+                        mAdapter.getFilter().filter(mCurFilter);
+                        return true;
+                    }
+                });
                 item.setActionView(searchView);
             }
         }
 
-        @Override
-        public void onListItemClick(ListView l, View v, int position, long id) {
+        @Override public void onListItemClick(ListView l, View v, int position, long id) {
             // Insert desired behavior here.
             Log.i("LoaderCustom", "Item clicked: " + id);
         }
 
-        @Override
-        public Loader<List<AppEntry>> onCreateLoader(int id, Bundle args) {
+        @Override public Loader<List<AppEntry>> onCreateLoader(int id, Bundle args) {
             // This is called when a new Loader needs to be created.  This
             // sample only has one Loader with no arguments, so it is simple.
             return new AppListLoader(getActivity());
         }
 
-        @Override
-        public void onLoadFinished(Loader<List<AppEntry>> loader, List<AppEntry> data) {
+        @Override public void onLoadFinished(Loader<List<AppEntry>> loader, List<AppEntry> data) {
             // Set the new data in the adapter.
             mAdapter.setData(data);
 
@@ -490,8 +475,7 @@ public class LoaderCustomSupport extends SherlockFragmentActivity {
             }
         }
 
-        @Override
-        public void onLoaderReset(Loader<List<AppEntry>> loader) {
+        @Override public void onLoaderReset(Loader<List<AppEntry>> loader) {
             // Clear the data in the adapter.
             mAdapter.setData(null);
         }

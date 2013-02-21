@@ -35,7 +35,6 @@ public interface MenuView {
 
     /**
      * Returns the default animations to be used for this menu when entering/exiting.
-     *
      * @return A resource ID for the default animations to be used for this menu.
      */
     public int getWindowAnimations();
@@ -48,31 +47,27 @@ public interface MenuView {
         /**
          * Initializes with the provided MenuItemData.  This should be called after the view is
          * inflated.
-         *
          * @param itemData The item that this ItemView should display.
          * @param menuType The type of this menu, one of
-         *                 {@link MenuBuilder#TYPE_ICON}, {@link MenuBuilder#TYPE_EXPANDED},
-         *                 {@link MenuBuilder#TYPE_DIALOG}).
+         *            {@link MenuBuilder#TYPE_ICON}, {@link MenuBuilder#TYPE_EXPANDED},
+         *            {@link MenuBuilder#TYPE_DIALOG}).
          */
         public void initialize(MenuItemImpl itemData, int menuType);
 
         /**
          * Gets the item data that this view is displaying.
-         *
          * @return the item data, or null if there is not one
          */
         public MenuItemImpl getItemData();
 
         /**
          * Sets the title of the item view.
-         *
          * @param title The title to set.
          */
         public void setTitle(CharSequence title);
 
         /**
          * Sets the enabled state of the item view.
-         *
          * @param enabled Whether the item view should be enabled.
          */
         public void setEnabled(boolean enabled);
@@ -80,7 +75,6 @@ public interface MenuView {
         /**
          * Displays the checkbox for the item view.  This does not ensure the item view will be
          * checked, for that use {@link #setChecked}.
-         *
          * @param checkable Whether to display the checkbox or to hide it
          */
         public void setCheckable(boolean checkable);
@@ -88,23 +82,20 @@ public interface MenuView {
         /**
          * Checks the checkbox for the item view.  If the checkbox is hidden, it will NOT be
          * made visible, call {@link #setCheckable(boolean)} for that.
-         *
          * @param checked Whether the checkbox should be checked
          */
         public void setChecked(boolean checked);
 
         /**
          * Sets the shortcut for the item.
-         *
          * @param showShortcut Whether a shortcut should be shown(if false, the value of
-         *                     shortcutKey should be ignored).
-         * @param shortcutKey  The shortcut key that should be shown on the ItemView.
+         * shortcutKey should be ignored).
+         * @param shortcutKey The shortcut key that should be shown on the ItemView.
          */
         public void setShortcut(boolean showShortcut, char shortcutKey);
 
         /**
          * Set the icon of this item view.
-         *
          * @param icon The icon of this item. null to hide the icon.
          */
         public void setIcon(Drawable icon);

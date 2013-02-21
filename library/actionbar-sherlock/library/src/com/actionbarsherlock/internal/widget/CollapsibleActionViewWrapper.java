@@ -16,13 +16,11 @@ public class CollapsibleActionViewWrapper extends FrameLayout implements android
         addView(child);
     }
 
-    @Override
-    public void onActionViewExpanded() {
+    @Override public void onActionViewExpanded() {
         child.onActionViewExpanded();
     }
 
-    @Override
-    public void onActionViewCollapsed() {
+    @Override public void onActionViewCollapsed() {
         child.onActionViewCollapsed();
     }
 

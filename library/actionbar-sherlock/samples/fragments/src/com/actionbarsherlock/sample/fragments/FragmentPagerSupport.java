@@ -49,20 +49,20 @@ public class FragmentPagerSupport extends SherlockFragmentActivity {
 
         mAdapter = new MyAdapter(getSupportFragmentManager());
 
-        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
         // Watch for button clicks.
-        Button button = (Button) findViewById(R.id.goto_first);
+        Button button = (Button)findViewById(R.id.goto_first);
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 mPager.setCurrentItem(0);
             }
         });
-        button = (Button) findViewById(R.id.goto_last);
+        button = (Button)findViewById(R.id.goto_last);
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                mPager.setCurrentItem(NUM_ITEMS - 1);
+                mPager.setCurrentItem(NUM_ITEMS-1);
             }
         });
     }
@@ -116,10 +116,10 @@ public class FragmentPagerSupport extends SherlockFragmentActivity {
          */
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+                Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.fragment_pager_list, container, false);
             View tv = v.findViewById(R.id.text);
-            ((TextView) tv).setText("Fragment #" + mNum);
+            ((TextView)tv).setText("Fragment #" + mNum);
             return v;
         }
 
