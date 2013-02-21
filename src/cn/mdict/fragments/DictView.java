@@ -207,9 +207,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         focusChangeListener = new TextView.OnFocusChangeListener() {
             @Override
             public void onFocusChange(android.view.View view, boolean hasFocus) {
-                InputMethodManager imm = (InputMethodManager) getSherlockActivity()
-                        .getSystemService(
-                                android.content.Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+
+
                 if (hasFocus) {
                     switchToListView();
                     // inputBox.setText("");
@@ -662,20 +662,32 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void switchToListView() {
-        contentView.setVisibility(View.GONE);
-        headwordList.setVisibility(View.VISIBLE);
+        //no action for tablet
+        if (!getResources().getBoolean(R.bool.screen_xlarge))
+        {
+            contentView.setVisibility(View.GONE);
+            headwordList.setVisibility(View.VISIBLE);
+        }
         if (MdxEngine.getSettings().getPrefAutoSIP() && !inputBox.hasFocus())
             inputBox.requestFocus();
         currentView = headwordList;
     }
 
     public void switchToContentView() {
-        contentView.setVisibility(View.VISIBLE);
+        //no action for tablet
+        if (!getResources().getBoolean(R.bool.screen_xlarge))
+        {
+            contentView.setVisibility(View.VISIBLE);
+        }
         contentView.requestFocus();
         // InputMethodManager imm = (InputMethodManager)
         // getSupportActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
         // imm.hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
-        headwordList.setVisibility(View.INVISIBLE);
+        //no action for tablet
+        if (!getResources().getBoolean(R.bool.screen_xlarge))
+        {
+            headwordList.setVisibility(View.INVISIBLE);
+        }
         currentView = contentView;
     }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <!--
   ~ Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
   ~
@@ -129,7 +129,7 @@ function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
 }
 
 function SetupMdx(){
-    if ( typeof(iframe_mode)=="undefined" || !iframe_mode ) {
+    if ( typeof(iframe_mode)=="undefined" || !iframe_mode ) {
         SetupTouchEventListener();
     } else{
         //document.body.style.background='black';
@@ -220,29 +220,40 @@ function resizeImages() {
 			var w = top.window.innerWidth - 40;
 			for ( var i = 0; i < document.images.length; i++) {
 				var img = document.images[i];
-				if (img.width > w) {
-					img.height = Math.round(img.height * (w / img.width));
-					img.width = w;
-				}
+				img.style.maxWidth="90%";
+				img.style.maxHeight="50%";
+				//if (img.width > w) {
+				//	img.height = Math.round(img.height * (w / img.width));
+				//	img.width = w;
+				//}
 			}
 		}
 }
 	
 function getElementTop(element){
-　　　　var actualTop = element.offsetTop;
-　　　　var current = element.offsetParent;
-
-　　　　while (current !== null){
-　　　　　　actualTop += current.offsetTop;
-　　　　　　current = current.offsetParent;
-　　　　}
-
-　　　　return actualTop;
-　　}
+		var actualTop = element.offsetTop;
+		var current = element.offsetParent;
+		while (current !== null){
+			actualTop += current.offsetTop;
+			current = current.offsetParent;
+		}
+		return actualTop;
+}
 //alex20121205.en
 -->
 </script>
+    <style type="text/css" media="screen">
+        html, body{
+        height: 100%;
+        }
+
+        body {
+        margin: 0;
+        padding: 0;
+        }
+    </style>
 <style>
+
     .__mdx_btn {
       font-size: 1em;
       line-height: normal;
@@ -284,6 +295,7 @@ function getElementTop(element){
         position: relative;
         padding: 10px;
         margin: 0px 0px 0px 0px;
+        overflow-x:hidden;
         background-color: #fff;
         border-style: none solid solid solid;
         border-width: 3px;

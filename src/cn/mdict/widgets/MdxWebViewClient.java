@@ -70,7 +70,7 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Uri uri = Uri.parse(url);
-        if (uri.getScheme().compareToIgnoreCase(UrlScheme) != 0 || uri.getHost().compareToIgnoreCase(UrlHost) != 0)
+        if (uri.getScheme()==null || uri.getScheme().compareToIgnoreCase(UrlScheme) != 0 || uri.getHost()==null || uri.getHost().compareToIgnoreCase(UrlHost) != 0)
             return false;
 
         String path = uri.getPath();

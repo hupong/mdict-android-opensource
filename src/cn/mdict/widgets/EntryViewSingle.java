@@ -174,7 +174,7 @@ public class EntryViewSingle implements MdxEntryView {
         // htmlView.clearView();
         MdxUtils.displayEntry(htmlView, mdxView.getDict(), entry);
         htmlView.scrollTo(0, 0);
-        //htmlView.loadUrl("javascript:window.MdxDict.saveSource(document.getElementsByTagName('html')[0].innerHTML);");
+        htmlView.loadUrl("javascript:window.MdxDict.saveSource(document.getElementsByTagName('html')[0].innerHTML);");
         // htmlView.//
     }
 
