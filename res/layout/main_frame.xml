@@ -16,10 +16,11 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:dv="http://schemas.android.com/apk/res/cn.mdict"
              android:layout_width="match_parent" android:layout_height="match_parent"
              android:orientation="vertical" android:id="@+id/main_frame">
     <fragment android:id="@+id/dict_view_fragment"
-              android:name="cn.mdict.fragments.DictView"
+              android:name="cn.mdict.fragments.DictView" dv:has_toolbar="false"
               android:layout_width="match_parent" android:layout_height="match_parent"
             />
     <ImageView android:id="@+id/splash_view"

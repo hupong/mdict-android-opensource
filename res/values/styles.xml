@@ -25,16 +25,16 @@
         <!--
             <item name="android:actionButtonStyle">@style/Widget.MDict.ActionButton</item>
             <item name="absForceOverflow">true</item>
-            <item name="customNavigationLayout">@layout/search_edit</item>
+            <item name="customNavigationLayout">@layout/search_view</item>
             <item name="windowSplitActionBar">true</item>
         -->
     </style>
 
 
-    <style name="Theme.MDict.Translucent">
+    <style name="Theme.MDict.Translucent" parent="Theme.MDict">
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
+<!--        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item> -->
     </style>
 
 </resources>

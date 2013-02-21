@@ -120,7 +120,7 @@ public class FloatingDictView extends SherlockFragment implements
 		actionBar.hide();
 
 		// customViewForDictView = (ViewGroup)
-		// rootView.findViewById(R.layout.search_edit);
+		// rootView.findViewById(R.layout.search_view);
 
 		dictViewContainer = (FrameLayout) rootView
 				.findViewById(R.id.dict_view_container);

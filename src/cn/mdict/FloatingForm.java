@@ -31,6 +31,7 @@ import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import cn.mdict.fragments.DictView;
 import cn.mdict.fragments.FloatingDictView;
 import cn.mdict.mdx.*;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -66,7 +67,7 @@ public class FloatingForm extends SherlockFragmentActivity {
 
     private boolean skipOnResume = false;
     private Handler handler;
-    private FloatingDictView dictView;
+    private DictView dictView;
 
     // private WindowManager wm = null;
     // private WindowManager.LayoutParams wmParams = null;
@@ -88,8 +89,7 @@ public class FloatingForm extends SherlockFragmentActivity {
             }
 
             setContentView(R.layout.floating_frame);
-            dictView = (FloatingDictView) getSupportFragmentManager()
-                    .findFragmentById(R.id.floating_dict_view_fragment);
+            dictView = (DictView) getSupportFragmentManager().findFragmentById(R.id.floating_dict_view_fragment);
 
             dict = new MdxDictBase();
 
@@ -227,17 +227,12 @@ public class FloatingForm extends SherlockFragmentActivity {
                                     if (adjustMode == SCROLL_WEBVIEW) {
                                         int scrollOffsetY = (lastY
                                                 - (int) event.getRawY()) * 2;
-                                        int currentY = dictView.getHtmlView()
-                                                .getScrollY();
+                                        int currentY = dictView.getHtmlView().getScrollY();
                                         if (scrollOffsetY < 0
                                                 && Math.abs(scrollOffsetY) > currentY) {
                                             scrollOffsetY = -currentY;
                                         }
-                                        dictView.getHtmlView()
-                                                .scrollBy(
-                                                        dictView.getHtmlView()
-                                                                .getScrollX(),
-                                                        scrollOffsetY);
+                                        dictView.getHtmlView().scrollBy(dictView.getHtmlView().getScrollX(),scrollOffsetY);
                                         //final int actualOffsetY = scrollOffsetY;
                                         // if (scrollOffsetY > 0
                                         // && currentY + scrollOffsetY >
@@ -296,7 +291,7 @@ public class FloatingForm extends SherlockFragmentActivity {
             };
             localView.setOnTouchListener(gestureListener);
 
-            dictView.setViewContainer(layout);
+            //dictView.setViewContainer(layout);
 
             // Get intent, action and MIME type
             String action = intent.getAction();

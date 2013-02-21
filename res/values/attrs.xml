@@ -28,4 +28,8 @@
             <enum name="slideLeft" value="2"/>
         </attr>
     </declare-styleable>
+    <declare-styleable name="DictView">
+        <attr name="has_toolbar" format="boolean" />
+    </declare-styleable>
+
 </resources>

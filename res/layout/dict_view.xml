@@ -15,16 +15,23 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
-             android:layout_height="match_parent">
-    <ListView android:id="@+id/headword_list"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:id="@+id/dict_view_container"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+        <ListView android:id="@+id/headword_list"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:fastScrollEnabled="true"
               android:background="#FFFFFF"
               android:cacheColorHint="#00000000"/>
-    <cn.mdict.widgets.MdxView android:id="@+id/mdx_view"
+        <cn.mdict.widgets.MdxView android:id="@+id/mdx_view"
                               android:layout_height="match_parent" android:layout_width="match_parent"
                               android:background="#FFFFFF"/>
-</FrameLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -17,11 +17,15 @@
 package cn.mdict.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Picture;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.speech.tts.TextToSpeech;
-import android.text.Editable;
+import android.util.AttributeSet;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
@@ -33,6 +37,8 @@ import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
+import cn.mdict.online.Jukuu;
+import cn.mdict.online.OnlineReference;
 import cn.mdict.utils.IOUtil;
 import cn.mdict.utils.SysUtil;
 import cn.mdict.widgets.MdxAdapter;
@@ -65,7 +71,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                                   boolean addToHistory) {
         // added by alex start
         if (addToHistory) {
-            deepth += 1;
+            depth += 1;
             if (history == null)
                 history = new ArrayList<SearchTrack>();
             SearchTrack st = new SearchTrack();
@@ -97,10 +103,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     @Override
     public boolean onHeadWordNotFound(MdxView view, String headWord,
                                       int scrollX, int scrollY) {
-        inputBox.setText(headWord);
+        searchView.setQuery(headWord, false);
     	if (history == null) //al20121205.sn
             history = new ArrayList<SearchTrack>();//al20121205.en
-        deepth += 1;
+        depth += 1;
         SearchTrack st = new SearchTrack();
         st.setScrollX(scrollX);
         st.setScrollY(scrollY);
@@ -114,6 +120,15 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     @Override
+    public void onInflate(Activity activity, AttributeSet attrs,
+                          Bundle savedInstanceState) {
+        super.onInflate(activity, attrs, savedInstanceState);
+        TypedArray a = activity.obtainStyledAttributes(attrs, R.styleable.DictView);
+        hasToolbar = a.getBoolean(R.styleable.DictView_has_toolbar, false);
+        a.recycle();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.dict_view,
@@ -121,17 +136,18 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
         setHasOptionsMenu(true);
         rootView.setFocusable(true);
-
-        // Inflate the custom ic_view
-        ActionBar actionBar = getSherlockActivity().getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setHomeButtonEnabled(true);
-
-        customViewForDictView = (ViewGroup) inflater.inflate(
-                R.layout.search_edit, null);
-        actionBar.setCustomView(customViewForDictView);
-
+        ViewGroup searchViewContainer = (ViewGroup) inflater.inflate(hasToolbar?R.layout.float_search_view:R.layout.search_view, null);
+        if (!hasToolbar){
+            ActionBar actionBar = getSherlockActivity().getSupportActionBar();
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setCustomView(searchViewContainer);
+        }else{
+            ActionBar actionBar = getSherlockActivity().getSupportActionBar();
+            actionBar.hide();
+            rootView.addView(searchViewContainer,0);
+        }
         contentView = (MdxView) rootView.findViewById(R.id.mdx_view);
         // contentView = new MdxView(rootView.getContext());
         contentView.setMdxViewListener(this);
@@ -140,7 +156,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
         // actionModeAgent=new SimpleActionModeCallbackAgent(R.menu.app_menu,
         // this);
-        btnSpeak = (ImageButton) customViewForDictView.findViewById(R.id.speak);
+        btnSpeak = (ImageButton) searchViewContainer.findViewById(R.id.speak);
         if (btnSpeak != null) {
             btnSpeak.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -151,8 +167,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             btnSpeak.setEnabled(false);
         }
 
-        btnAddToFav = (ImageButton) customViewForDictView
-                .findViewById(R.id.add_to_fav);
+        btnAddToFav = (ImageButton) searchViewContainer.findViewById(R.id.add_to_fav);
         if (btnAddToFav != null) {
             btnAddToFav.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -163,10 +178,40 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             btnAddToFav.setEnabled(false);
         }
 
-        inputBox = (EditText) (customViewForDictView
-                .findViewById(R.id.search_field));
-        btnClear = (ImageButton) actionBar.getCustomView().findViewById(
-                R.id.search_clear_btn);
+        onlineReference=new Jukuu(getSherlockActivity());
+        onlineReferenceHandler=new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.arg1) {
+                    case 1:
+                        //Lookup online content failed.
+                    case 0:
+                        displayHtml(msg.obj.toString());
+                        break;
+
+                }
+                super.handleMessage(msg);
+            }
+        };
+
+        btnJukuu = (ImageButton) rootView.findViewById(R.id.jukuu_btn);
+        if (btnJukuu != null) {
+            btnJukuu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String searchHeadword="";
+                    if (searchView.getQuery().length() > 0) {
+                        searchHeadword = searchView.getQuery().toString();
+                    }
+                    displayHtml(getString(R.string.online_reference_loading));
+                    onlineReference.lookup(searchHeadword, getSherlockActivity(), onlineReferenceHandler);
+                }
+            });
+            // btnJukuu.setEnabled(false);
+        }
+
+        searchView = (SearchView) (searchViewContainer.findViewById(R.id.search_view));
+        //btnClear = (ImageButton) actionBar.getCustomView().findViewById(R.id.search_clear_btn);
 
         enableFingerGesture(MdxEngine.getSettings().getPrefUseFingerGesture());
 
@@ -188,15 +233,15 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 InputMethodManager imm = (InputMethodManager) getSherlockActivity()
                         .getSystemService(
                                 android.content.Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
                 if (entry != null) {
                     displayByEntry(entry, true);
-                    deepth = 0; // added by alex
+                    depth = 0; // added by alex
                     initSearchHistory();// added by alex
                 }
             }
         });
-
+        /*
         btnClear.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
@@ -205,66 +250,33 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             }
 
         });
-
-        focusChangeListener = new TextView.OnFocusChangeListener() {
+        */
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onFocusChange(android.view.View view, boolean hasFocus) {
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
-                if (hasFocus) {
-                    switchToListView();
-                    // inputBox.setText("");
-                    if (MdxEngine.getSettings().getPrefAutoSIP())
-                        imm.showSoftInput(inputBox, 0);
-                    inputBox.selectAll();
-                } else {
-                    if (MdxEngine.getSettings().getPrefAutoSIP())
-                        imm.hideSoftInputFromWindow(inputBox.getWindowToken(),
-                                0);
-                    // imm.hideSoftInputFromWindow(inputBox.getWindowToken(),
-                    // 0);
-                }
-                btnClear.setVisibility(inputBox.getText().length() != 0 ? View.VISIBLE
-                        : View.INVISIBLE);
-                getSherlockActivity().invalidateOptionsMenu();
-
-            }
-
-        };
-
-        inputBox.setOnFocusChangeListener(focusChangeListener);
-        // Handle the enter key action
-        inputBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId,
-                                          KeyEvent event) {
-                String word = v.getText().toString();
-                if (word.compareToIgnoreCase(":aboutapp") == 0) {
+            public boolean onQueryTextSubmit(String query) {
+                if (query.compareToIgnoreCase(":aboutapp") == 0) {
                     displayWelcome();
-                    deepth = 0;
+                    depth = 0;
                     history = new ArrayList<SearchTrack>();// added by alex
-                } else if (MdxDictBase.isMdxCmd(word)
+                } else if (MdxDictBase.isMdxCmd(query)
                         || !currentEntry.isValid()) {
-                    displayByHeadword(word, false);
-                    deepth = 0;
+                    displayByHeadword(query, false);
+                    depth = 0;
                     initSearchHistory();// added by alex
                 } else {
                     displayByEntry(currentEntry, true);
-                    deepth = 0;
+                    depth = 0;
                     initSearchHistory();// added by alex
                 }
-                return false;
+                return true;
             }
-        });
 
-        inputBox.addTextChangedListener(new android.text.TextWatcher() {
             @Override
-            public void afterTextChanged(Editable s) {
-                btnClear.setVisibility(inputBox.getText().length() != 0 ? View.VISIBLE
-                        : View.INVISIBLE);
+            public boolean onQueryTextChange(String newText) {
                 if (!skipUpdateEntryList) {
                     currentEntry.setEntryNo(-1);
                     if (dict != null && dict.isValid()) {
-                        String headword = s.toString();
+                        String headword = newText;
                         DictEntry entry = new DictEntry();
                         dict.locateFirst(headword, true, true, true, entry);
                         currentEntry=entry;
@@ -281,19 +293,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                     }
                 }
                 skipUpdateEntryList = false;
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
+                return true; //return false if want the system provide a suggestion list?
             }
         });
-
         return rootView;
     }
 
@@ -413,11 +415,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            getSherlockActivity().getSupportActionBar()
-                    .setDisplayShowCustomEnabled(true);
-            getSherlockActivity().getSupportActionBar().setCustomView(
-                    customViewForDictView);
+        if (item.getItemId() == android.R.id.home && !hasToolbar) {
+            getSherlockActivity().getSupportActionBar().setDisplayShowCustomEnabled(true);
+            //getSherlockActivity().getSupportActionBar().setCustomView(searchView);
             return true;
         } else {
             getSherlockActivity().onOptionsItemSelected(item);
@@ -531,6 +531,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         currentEntry.makeJEntry();
     }
 
+    public WebView getHtmlView() {
+        return contentView.getHtmlView();
+    }
+
     void updateDictWithRefresh(DictPref pref) {
         MdxEngine.getLibMgr().updateDictPref(pref);
         currentEntry.makeJEntry();
@@ -577,7 +581,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     public void setInputText(String text, boolean updateEntryList) {
         skipUpdateEntryList = !updateEntryList;
-        inputBox.setText(text);
+        searchView.setQuery(text, false);
     }
 
     public void enableFingerGesture(boolean enable) {
@@ -592,10 +596,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             // } else {
             DictEntry entry = MdxEngine.getHistMgr().getPrev();
 
-            if (entry != null && entry.isValid() && deepth > 0) {
+            if (entry != null && entry.isValid() && depth > 0) {
                 SearchTrack st = history.get(history.size() - 1); // added by
                 // alex
-                deepth -= 1;// added by alex
+                depth -= 1;// added by alex
                 displayByEntry(entry, false);
                 final int sX = st.getScrollX();
                 final int sY = st.getScrollY();
@@ -629,7 +633,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void selectDict(int dictId) {
-        String currentInput = inputBox.getText().toString();
+        String currentInput = searchView.getQuery().toString();
         int result = MdxEngine.openDictById(dictId, MdxEngine.getSettings()
                 .getPrefsUseLRUForDictOrder(), dict);
         setDict(dict);
@@ -664,8 +668,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     public void switchToListView() {
         contentView.setVisibility(View.GONE);
         headwordList.setVisibility(View.VISIBLE);
-        if (MdxEngine.getSettings().getPrefAutoSIP() && !inputBox.hasFocus())
-            inputBox.requestFocus();
+        if (MdxEngine.getSettings().getPrefAutoSIP() && !searchView.hasFocus())
+            searchView.requestFocus();
         currentView = headwordList;
     }
 
@@ -680,7 +684,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public boolean isInputing() {
-        return (currentView == headwordList && inputBox.isFocused());
+        return (currentView == headwordList && searchView.isFocused());
     }
 
     public void syncSearchView() {
@@ -700,12 +704,11 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     public void displayByEntry(DictEntry entry, boolean addToHistory) {
         switchToContentView();
-        contentView.displayByEntry(entry, entry.isSysCmd() ? false
-                : addToHistory);
+        contentView.displayByEntry(entry, entry.isSysCmd() ? false : addToHistory);
     }
 
     public void displayByHeadword(String headword, boolean addToHistory) {        /*
-		 * if (addToHistory) { deepth += 1; SearchTrack st = new SearchTrack();
+		 * if (addToHistory) { depth += 1; SearchTrack st = new SearchTrack();
 		 * st.setScrollX(0); st.setScrollY(0); history.add(new SearchTrack()); }
 		 */
         switchToContentView();
@@ -823,29 +826,28 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     private MdxDictBase dict = null;
     private DictPref dictPref = null;
-
-    private EditText inputBox;
-    private ViewGroup customViewForDictView;
-    private View.OnFocusChangeListener focusChangeListener;
-    // private ViewGroup customViewForAppView;
-    private ImageButton btnClear;
+    private SearchView searchView;
     private DictEntry currentEntry = new DictEntry();
     private MdxAdapter adapter = null;
     private MdxView contentView = null;
     private ListView headwordList;
     private View currentView = null;
-    private boolean skipUpdateEntryList = false;
-    private boolean skipChangeFocus = false;
-    // private SimpleActionModeCallbackAgent actionModeAgent;
+
     private ImageButton btnSpeak = null;
     private ImageButton btnAddToFav = null;
+    private ImageButton btnJukuu = null;
 
     private boolean lastZoomActionIsZoomIn = false;
+    private boolean hasToolbar =false;
+    private boolean skipUpdateEntryList = false;
 
     private TextToSpeech ttsEngine = null;
     public static final int kCheckTTSData = 0;
 
-    private int deepth = 0;
+    private int depth = 0;
+
+    private OnlineReference onlineReference=null;
+    private Handler onlineReferenceHandler=null;
 
     private ArrayList<SearchTrack> history;
 }
