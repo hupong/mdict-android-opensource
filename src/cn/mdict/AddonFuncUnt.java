@@ -30,6 +30,7 @@ import android.net.NetworkInfo;
 import android.speech.tts.TextToSpeech;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
 import cn.mdict.mdx.*;
@@ -355,7 +356,24 @@ public class AddonFuncUnt implements MediaPlayer.OnBufferingUpdateListener {
         return decodedUrl;
     }
 
-
+    public static void replaceViewInLayoutById(ViewGroup container, int id, View view){
+        View dummy=container.findViewById(id);
+        if (dummy==null || container==null)
+            return;
+        ViewGroup viewParent=(ViewGroup)dummy.getParent();
+        int v_index=viewParent.indexOfChild(dummy);
+        if (v_index>=0){
+            if (view!=null ){
+                view.setId(dummy.getId());
+                view.setLayoutParams(dummy.getLayoutParams());
+                viewParent.removeViewAt(v_index);
+                viewParent.addView(view,v_index);
+            }else{
+                viewParent.removeViewAt(v_index);
+            }
+            container.requestLayout();
+        }
+    }
     /*
     public static View getItemViewForActionItem(ActionBarImpl actionBar, MenuItem item){
         View actionView=item.getActionView();

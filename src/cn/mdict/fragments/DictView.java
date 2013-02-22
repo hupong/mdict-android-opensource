@@ -18,6 +18,7 @@ package cn.mdict.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Picture;
@@ -52,6 +53,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
+import com.actionbarsherlock.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -125,29 +127,45 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         super.onInflate(activity, attrs, savedInstanceState);
         TypedArray a = activity.obtainStyledAttributes(attrs, R.styleable.DictView);
         hasToolbar = a.getBoolean(R.styleable.DictView_has_toolbar, false);
+        showHomeButtonInToolbar = a.getBoolean(R.styleable.DictView_show_home_button_in_toolbar, true);
         a.recycle();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.dict_view,
-                container);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.dict_view, container);
 
         setHasOptionsMenu(true);
         rootView.setFocusable(true);
-        ViewGroup searchViewContainer = (ViewGroup) inflater.inflate(hasToolbar?R.layout.float_search_view:R.layout.search_view, null);
         if (!hasToolbar){
             ActionBar actionBar = getSherlockActivity().getSupportActionBar();
             actionBar.setDisplayShowCustomEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
+            //actionBar.setDisplayShowHomeEnabled(false);
             actionBar.setHomeButtonEnabled(true);
-            actionBar.setCustomView(searchViewContainer);
+            searchView = new com.actionbarsherlock.widget.SearchView(getSherlockActivity().getSupportActionBar().getThemedContext());
+            searchView.setIconifiedByDefault(false);
+            actionBar.setCustomView(searchView);
+            AddonFuncUnt.replaceViewInLayoutById(rootView, R.id.toolbar_container, null);
+
         }else{
             ActionBar actionBar = getSherlockActivity().getSupportActionBar();
             actionBar.hide();
-            rootView.addView(searchViewContainer,0);
+            ViewGroup searchViewContainer=(ViewGroup)rootView.findViewById(R.id.toolbar_container);
+            AddonFuncUnt.replaceViewInLayoutById(searchViewContainer, R.id.search_view, searchView);
         }
+        //Create the search view and replace the dummy view.
+
+        //Hide search hint icon
+        View searchHintIcon=searchView.findViewById(R.id.abs__search_mag_icon);
+        ViewGroup.MarginLayoutParams params=(ViewGroup.MarginLayoutParams)searchHintIcon.getLayoutParams();
+        params.width=0;
+        params.height=0;
+        params.leftMargin=0;
+        params.rightMargin=0;
+        searchHintIcon.setLayoutParams(params);
+
         contentView = (MdxView) rootView.findViewById(R.id.mdx_view);
         // contentView = new MdxView(rootView.getContext());
         contentView.setMdxViewListener(this);
@@ -156,6 +174,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
         // actionModeAgent=new SimpleActionModeCallbackAgent(R.menu.app_menu,
         // this);
+        /*
         btnSpeak = (ImageButton) searchViewContainer.findViewById(R.id.speak);
         if (btnSpeak != null) {
             btnSpeak.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +195,15 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 }
             });
             btnAddToFav.setEnabled(false);
+        }
+        */
+        ImageButton btnHome = (ImageButton) rootView
+                .findViewById(R.id.home_btn);
+        if ( btnHome!=null ) {
+            if (showHomeButtonInToolbar)
+                btnHome.setOnTouchListener(logoIconTouchListener);
+            else
+                btnHome.setVisibility(View.GONE);
         }
 
         onlineReference=new Jukuu(getSherlockActivity());
@@ -209,8 +237,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             });
             // btnJukuu.setEnabled(false);
         }
+        //searchView = (SearchView) (searchViewContainer.findViewById(R.id.search_view));
 
-        searchView = (SearchView) (searchViewContainer.findViewById(R.id.search_view));
+
         //btnClear = (ImageButton) actionBar.getCustomView().findViewById(R.id.search_clear_btn);
 
         enableFingerGesture(MdxEngine.getSettings().getPrefUseFingerGesture());
@@ -294,6 +323,33 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 }
                 skipUpdateEntryList = false;
                 return true; //return false if want the system provide a suggestion list?
+            }
+        });
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Context context=getSherlockActivity();
+                InputMethodManager imm=null;
+                if ( context!=null )
+                    imm= (InputMethodManager) context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+                if (imm==null)
+                    return;
+                if (hasFocus) {
+                    switchToListView();
+                    // inputBox.setText("");
+                    if (MdxEngine.getSettings().getPrefAutoSIP())
+                        imm.showSoftInput(searchView, 0);
+                    AutoCompleteTextView editField= (AutoCompleteTextView)(searchView.findViewById(R.id.abs__search_src_text));
+                    editField.selectAll(); //TODO This line has no effect, need more works.
+                } else {
+                    if (MdxEngine.getSettings().getPrefAutoSIP())
+                        imm.hideSoftInputFromWindow(searchView.getWindowToken(),
+                                0);
+                    // imm.hideSoftInputFromWindow(inputBox.getWindowToken(),
+                    // 0);
+                }
+                getSherlockActivity().invalidateOptionsMenu();
+
             }
         });
         return rootView;
@@ -533,6 +589,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     public WebView getHtmlView() {
         return contentView.getHtmlView();
+    }
+
+    public void setFragmentContainer(ViewGroup container) {
+        fragmentContainer= container;
     }
 
     void updateDictWithRefresh(DictPref pref) {
@@ -824,6 +884,81 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         contentView.getHtmlView().setPictureListener(null);
     }
 
+    private View.OnTouchListener logoIconTouchListener = new View.OnTouchListener() {
+        int lastX, lastY;
+        int initX, initY;
+
+        @Override
+        public boolean onTouch(View view, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    lastX = (int) event.getRawX();
+                    lastY = (int) event.getRawY();
+                    initX = lastX;
+                    initY = lastY;
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    if (Math.abs(initX - (int) event.getRawX()) > 10
+                            || Math.abs(initY - (int) event.getRawY()) > 10) {
+                        int dx = (int) event.getRawX() - lastX;
+                        int dy = (int) event.getRawY() - lastY;
+
+                        int left = fragmentContainer.getLeft() + dx;
+                        int top = fragmentContainer.getTop() + dy;
+                        int right = fragmentContainer.getRight() + dx;
+                        int bottom = fragmentContainer.getBottom() + dy;
+                        // 设置不能出界
+                        if (left < 0) {
+                            left = 0;
+                            right = left + fragmentContainer.getWidth();
+                        }
+
+                        // if (right > screenWidth) {
+                        // right = screenWidth;
+                        // left = right - viewContainer.getWidth();
+                        // }
+
+                        if (top < 0) {
+                            top = 0;
+                            bottom = top + fragmentContainer.getHeight();
+                        }
+
+                        // if (bottom > screenHeight) {
+                        // bottom = screenHeight;
+                        // top = bottom - viewContainer.getHeight();
+                        // }
+                        // RelativeLayout layout = (RelativeLayout) viewContainer;
+                        // Gets the layout params that will allow you to resize the
+                        // layout
+                        // FrameLayout.LayoutParams params =
+                        // (FrameLayout.LayoutParams) viewContainer
+                        // .getLayoutParams();
+                        // Changes the height and width to the specified *pixels*
+                        // params.gravity = Gravity.LEFT;
+                        // viewContainer.setLayoutParams(params);
+
+                        fragmentContainer.layout(left, top, right, bottom);
+
+                        lastX = (int) event.getRawX();
+                        lastY = (int) event.getRawY();
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if (Math.abs(initX - (int) event.getRawX()) < 10
+                            && Math.abs(initY - (int) event.getRawY()) < 10) {
+                        fragmentContainer.setVisibility(View.GONE);
+                        Intent mIntent = new Intent();
+                        mIntent.putExtra("HEADWORD", currentEntry.getHeadword());
+                        mIntent.setClass(fragmentContainer.getContext(), MainForm.class);
+                        startActivity(mIntent);
+                        ((FloatingForm) fragmentContainer.getContext()).finish();
+                    }
+                    break;
+            }
+            return true;
+        }
+    };
+
     private MdxDictBase dict = null;
     private DictPref dictPref = null;
     private SearchView searchView;
@@ -832,6 +967,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     private MdxView contentView = null;
     private ListView headwordList;
     private View currentView = null;
+    private ViewGroup fragmentContainer=null;
 
     private ImageButton btnSpeak = null;
     private ImageButton btnAddToFav = null;
@@ -839,6 +975,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     private boolean lastZoomActionIsZoomIn = false;
     private boolean hasToolbar =false;
+    private boolean showHomeButtonInToolbar=true;
     private boolean skipUpdateEntryList = false;
 
     private TextToSpeech ttsEngine = null;

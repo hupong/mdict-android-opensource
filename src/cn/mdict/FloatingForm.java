@@ -24,7 +24,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.ClipboardManager;
 import android.text.format.Time;
 import android.view.*;
 import android.view.View.OnTouchListener;
@@ -32,7 +31,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import cn.mdict.fragments.DictView;
-import cn.mdict.fragments.FloatingDictView;
 import cn.mdict.mdx.*;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -291,7 +289,7 @@ public class FloatingForm extends SherlockFragmentActivity {
             };
             localView.setOnTouchListener(gestureListener);
 
-            //dictView.setViewContainer(layout);
+            dictView.setFragmentContainer(layout);
 
             // Get intent, action and MIME type
             String action = intent.getAction();

@@ -15,13 +15,16 @@
   -->
 
 <resources>
-
+    <!--
     <style name="Widget.MDict.ActionButton" parent="Widget.Sherlock.ActionButton">
         <item name="android:width">40dp</item>
     </style>
+    -->
 
     <style name="Theme.MDict" parent="@style/Theme.Sherlock">
         <item name="icon">@drawable/app_icon_medium</item>
+        <item name="android:icon">@drawable/app_icon_medium</item>
+        <item name="searchViewSearchIcon">@android:color/transparent</item>
         <!--
             <item name="android:actionButtonStyle">@style/Widget.MDict.ActionButton</item>
             <item name="absForceOverflow">true</item>

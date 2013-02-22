@@ -30,6 +30,7 @@
     </declare-styleable>
     <declare-styleable name="DictView">
         <attr name="has_toolbar" format="boolean" />
+        <attr name="show_home_button_in_toolbar" format="boolean" />
     </declare-styleable>
 
 </resources>

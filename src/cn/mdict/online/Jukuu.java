@@ -61,6 +61,7 @@ public class Jukuu implements OnlineReference{
     }
 
     private boolean captureJukuu(String headWord, StringBuffer resultText) {
+        //TODO Output is empty when there is no matched headword, need more works
         boolean result=false;
         Pattern imgPattern = Pattern
                 .compile("<tr class=e>(.|\n)*?<tr class=s>");

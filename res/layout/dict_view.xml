@@ -18,11 +18,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:orientation="vertical">
+             android:orientation="vertical"
+             android:id="@+id/dict_view_container"
+             >
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    >
+        <ImageButton
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dip"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/app_icon_medium"/>
+        <ImageButton
+            android:id="@+id/jukuu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_jukuu"/>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                 android:id="@+id/dict_view_container"
-                 android:layout_width="match_parent"
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/home_btn"
+            android:layout_toLeftOf="@id/jukuu_btn"
+            android:imeOptions="actionSearch|flagNoExtractUi"
+            android:inputType="textFilter"
+            android:singleLine="true"
+            android:textColor="#ffffffff"
+            android:iconifiedByDefault="false"/>
+
+    </RelativeLayout>
+    </FrameLayout>
+    <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent">
         <ListView android:id="@+id/headword_list"
               android:layout_width="match_parent"
