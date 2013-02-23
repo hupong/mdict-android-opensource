@@ -726,20 +726,30 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void switchToListView() {
-        contentView.setVisibility(View.GONE);
-        headwordList.setVisibility(View.VISIBLE);
+        //no action for tablet
+        if (!getResources().getBoolean(R.bool.screen_xlarge))
+        {
+            contentView.setVisibility(View.GONE);
+            headwordList.setVisibility(View.VISIBLE);
+        }
         if (MdxEngine.getSettings().getPrefAutoSIP() && !searchView.hasFocus())
             searchView.requestFocus();
         currentView = headwordList;
     }
 
     public void switchToContentView() {
-        contentView.setVisibility(View.VISIBLE);
+        //no action for tablet
+        if (!getResources().getBoolean(R.bool.screen_xlarge)){
+            contentView.setVisibility(View.VISIBLE);
+        }
         contentView.requestFocus();
         // InputMethodManager imm = (InputMethodManager)
         // getSupportActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
         // imm.hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
-        headwordList.setVisibility(View.INVISIBLE);
+        //no action for tablet
+        if (!getResources().getBoolean(R.bool.screen_xlarge)){
+            headwordList.setVisibility(View.INVISIBLE);
+        }
         currentView = contentView;
     }
 
