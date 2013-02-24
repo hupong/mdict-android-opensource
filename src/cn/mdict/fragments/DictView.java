@@ -138,14 +138,14 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
         setHasOptionsMenu(true);
         rootView.setFocusable(true);
+        searchView = new com.actionbarsherlock.widget.SearchView(getSherlockActivity().getSupportActionBar().getThemedContext());
+        searchView.setIconifiedByDefault(false);
         if (!hasToolbar){
             ActionBar actionBar = getSherlockActivity().getSupportActionBar();
             actionBar.setDisplayShowCustomEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
             //actionBar.setDisplayShowHomeEnabled(false);
             actionBar.setHomeButtonEnabled(true);
-            searchView = new com.actionbarsherlock.widget.SearchView(getSherlockActivity().getSupportActionBar().getThemedContext());
-            searchView.setIconifiedByDefault(false);
             actionBar.setCustomView(searchView);
             AddonFuncUnt.replaceViewInLayoutById(rootView, R.id.toolbar_container, null);
 

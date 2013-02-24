@@ -27,7 +27,7 @@
                 android:name=".MainForm"
                 android:theme="@style/Theme.MDict"
                 android:configChanges="orientation|keyboardHidden"
-                android:launchMode="singleTop"
+                android:launchMode="singleInstance"
                 android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -41,7 +41,7 @@
         <activity
                 android:name=".FloatingForm"
                 android:configChanges="keyboard|keyboardHidden|orientation"
-                android:launchMode="singleTask"
+                android:launchMode="singleInstance"
                 android:theme="@style/Theme.MDict.Translucent"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
