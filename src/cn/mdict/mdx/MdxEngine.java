@@ -130,6 +130,8 @@ public class MdxEngine {
     }
 
     static public boolean setupEnv(Context context){
+        if (appInited)
+            return true;
         if (appSetting == null)
             appSetting = new MdxEngineSetting(context);
         baseContext=context;

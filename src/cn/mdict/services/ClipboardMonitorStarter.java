@@ -1,6 +1,5 @@
 package cn.mdict.services;
 
-import cn.mdict.LogTag;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,11 +10,11 @@ import android.util.Log;
  * When booting is completed, it starts {@link ClipboardMonitor} service to
  * monitor the states of clipboard.
  */
-public class ClipboardMonitorStarter extends BroadcastReceiver
-        implements LogTag {
+public class ClipboardMonitorStarter extends BroadcastReceiver {
     /* This class should be public; otherwise, the system don't have privilege
      * to instantiate it and cause exception occurs.
      */
+    private static final String TAG="MDict.ClipboardMonitorStarter";
 
     @Override
     public void onReceive(Context context, Intent intent) {

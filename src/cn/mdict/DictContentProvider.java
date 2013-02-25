@@ -45,6 +45,7 @@ import cn.mdict.utils.IOUtil;
 public class DictContentProvider extends ContentProvider {
     private static final String ContentHost = "mdict.cn";
     private static final String SEARCH_PATH = "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+    private static final String TAG="MDict.DictContentProvider";
 
     //private static final String URI_PREFIX = "file://";
     private static MdxDictBase fCurrentDict;
@@ -150,6 +151,7 @@ public class DictContentProvider extends ContentProvider {
 
     @Override
     public AssetFileDescriptor openAssetFile(Uri uri, String mode) throws FileNotFoundException {
+        Log.d(TAG, "openAssetFile:"+uri.toString());
         if (uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
             String path = uri.getPath();
             Matcher matcher = LocalFilePattern.matcher(path);
@@ -229,12 +231,14 @@ public class DictContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
+        MDictApp.getInstance().setupAppEnv(getContext());
+        Log.d(TAG, "Content Provider Created");
         return true;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        Log.d("Search", "Got query:" + uri.toString());
+        Log.d(TAG, "Got query:" + uri.toString());
         if (uri.getPath().startsWith(SEARCH_PATH)) {
             if (fCurrentDict != null && fCurrentDict.isValid()) {
                 List<String> pathSegments = uri.getPathSegments();

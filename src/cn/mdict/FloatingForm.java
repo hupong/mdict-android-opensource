@@ -25,6 +25,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.*;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
@@ -46,12 +47,8 @@ import java.util.regex.Pattern;
 //import android.view.WindowManager.LayoutParams;
 
 public class FloatingForm extends SherlockFragmentActivity {
-    static {
-        System.loadLibrary("iconv");
-        System.loadLibrary("mdx");
-    }
 
-    private MdxDictBase dict;
+    private static final String TAG="MDict.FloatingForm";
 
     public Timer mScrollTimer = null;
     public static final int kHistoryIntentId = 0;
@@ -66,6 +63,7 @@ public class FloatingForm extends SherlockFragmentActivity {
     private boolean skipOnResume = false;
     private Handler handler;
     private DictView dictView;
+    private MDictApp theApp;
 
     // private WindowManager wm = null;
     // private WindowManager.LayoutParams wmParams = null;
@@ -80,20 +78,17 @@ public class FloatingForm extends SherlockFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            sendBroadcast(new Intent("mdict.cn.KillMainUI"));
-            MdxEngine.setupEnv(getApplicationContext());
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                // this.setTheme(R.style.Theme_MDict_ForceOverFlow);
-            }
+            Log.d(TAG, "Begin Init");
+            //sendBroadcast(new Intent("mdict.cn.KillMainUI"));
+            theApp=MDictApp.getInstance();
+            theApp.setupAppEnv(getApplicationContext());
 
             setContentView(R.layout.floating_frame);
             dictView = (DictView) getSupportFragmentManager().findFragmentById(R.id.floating_dict_view_fragment);
 
-            dict = new MdxDictBase();
 
-            MdxEngine.openLastDict(dict);
-            dictView.setDict(dict);
-
+            theApp.openMainDictById(DictPref.kInvalidDictPrefId);
+            dictView.changeDict(theApp.getMainDict());
             // dictView.displayWelcome();
             // setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 
@@ -121,7 +116,7 @@ public class FloatingForm extends SherlockFragmentActivity {
             .compile("content://mdx[.]mdict[.]cn/(\\d+)_(-?\\d+)_(.*)");
 
     private void handleIntent(Intent intent) {
-        if (dict != null && dict.isValid()) {
+        if (theApp.getMainDict()!= null && theApp.getMainDict().isValid()) {
 
             // Set windows to floating
             WindowManager manager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
@@ -150,15 +145,10 @@ public class FloatingForm extends SherlockFragmentActivity {
 			 */
 
             OnTouchListener gestureListener = new View.OnTouchListener() {
-                int lastX
-                        ,
-                        lastY;
-                int initX
-                        ,
-                        initY;
+                int lastX, lastY;
+                int initX, initY;
                 int ignoreOffset = 30;
-                int webViewHeight = (int) (dictView.getHtmlView()
-                        .getContentHeight() * dictView.getHtmlView().getScale());
+                int webViewHeight = (int) (dictView.getHtmlView().getContentHeight() * dictView.getHtmlView().getScale());
                 final int ADJUST_HEIGHT = 1;
                 final int SCROLL_WEBVIEW = 2;
                 int adjustMode = -1;
@@ -380,6 +370,7 @@ public class FloatingForm extends SherlockFragmentActivity {
 	 */
 
     public void quitProcess() {
+        Log.d(TAG, "Quiting process");
         // MdxEngine.unregisterNotification();
         MdxEngine.saveEngineSettings();
         FloatingForm.this.finish();
@@ -493,9 +484,7 @@ public class FloatingForm extends SherlockFragmentActivity {
                         }
                     }
                 }
-                if (dict != null)
-                    MdxEngine.rebuildHtmlSetting(dict, MdxEngine.getSettings()
-                            .getPrefHighSpeedMode());
+                theApp.rebuildAllDictSetting();
                 if (MdxEngine.getSettings().getPrefShowInNotification())
                     MdxEngine.registerNotification();
                 else
@@ -574,6 +563,7 @@ public class FloatingForm extends SherlockFragmentActivity {
 
     @Override
     protected void onDestroy() {
+        Log.d(TAG, "Destroying");
         MdxEngine.saveEngineSettings();
         super.onDestroy();
     }

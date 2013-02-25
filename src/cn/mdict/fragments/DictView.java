@@ -283,7 +283,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (query.compareToIgnoreCase(":aboutapp") == 0) {
+                if (query.compareToIgnoreCase(":aboutApp") == 0) {
                     displayWelcome();
                     depth = 0;
                     history = new ArrayList<SearchTrack>();// added by alex
@@ -305,14 +305,14 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 if (!skipUpdateEntryList) {
                     currentEntry.setEntryNo(-1);
                     if (dict != null && dict.isValid()) {
-                        String headword = newText;
-                        DictEntry entry = new DictEntry();
-                        dict.locateFirst(headword, true, true, true, entry);
-                        currentEntry=entry;
-                        if (!currentEntry.isValid())
-                            adapter.setCurrentEntry(new DictEntry(0, "",
-                                    dictPref != null ? dictPref.getDictId()
-                                            : DictPref.kInvalidDictPrefId));
+                        if ( MdxDictBase.isMdxCmd(newText) ){
+                            currentEntry.setEntryNo(DictEntry.kSystemCmdEntryNo);
+                        }else{
+                            String headword = newText;
+                            dict.locateFirst(headword, true, true, true, currentEntry);
+                            if (currentEntry.isValid() )
+                                dict.getHeadword(currentEntry);
+                        }
                         adapter.setCurrentEntry(currentEntry);
                         if (dict.canRandomAccess() && currentEntry.isValid()) {
                             headwordList.setSelection(currentEntry.getEntryNo());
@@ -558,7 +558,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         return hasSound;
     }
 
-    public void setDict(MdxDictBase dict) {
+    public void changeDict(MdxDictBase dict) {
+        String currentInput = searchView.getQuery().toString();
         this.dict = dict;
         lastZoomActionIsZoomIn = false;
 
@@ -570,15 +571,22 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         DictContentProvider.setDict(dict);
         if (dict != null && dict.isValid()) {
             dictPref = dict.getDictPref();
-            currentEntry = new DictEntry(0, "", dictPref.getDictId());
-            dict.getHeadword(currentEntry);
-            if (adapter != null)
-                adapter.setCurrentEntry(currentEntry);
+            if (currentInput != null && currentInput.length() != 0) {
+                DictEntry entry = new DictEntry();
+                if (dict.locateFirst(currentInput, true, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                    displayByEntry(entry, true);
+                } else {
+                    setInputText(currentInput, false);
+                    switchToListView();
+                }
+            } else {
+                displayByHeadword(":about", false);
+            }
         } else {
             dictPref = null;
             currentEntry = new DictEntry(-1, "", DictPref.kInvalidDictPrefId);
+            getSherlockActivity().invalidateOptionsMenu();
         }
-        getSherlockActivity().invalidateOptionsMenu();
     }
 
     //
@@ -599,7 +607,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         MdxEngine.getLibMgr().updateDictPref(pref);
         currentEntry.makeJEntry();
         DictEntry entry = new DictEntry(currentEntry);
-        // setDict(dict); //setDict may change the value of currentEntry.
+        // changeDict(dict); //changeDict may change the value of currentEntry.
         displayByEntry(entry, false);
     }
 
@@ -696,7 +704,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         String currentInput = searchView.getQuery().toString();
         int result = MdxEngine.openDictById(dictId, MdxEngine.getSettings()
                 .getPrefsUseLRUForDictOrder(), dict);
-        setDict(dict);
+        changeDict(dict);
         if (result == MdxDictBase.kMdxSuccess) {
             if (currentInput != null && currentInput.length() != 0) {
                 DictEntry entry = new DictEntry();
@@ -989,7 +997,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     private boolean skipUpdateEntryList = false;
 
     private TextToSpeech ttsEngine = null;
-    public static final int kCheckTTSData = 0;
+    private static final int kCheckTTSData = 0;
 
     private int depth = 0;
 
@@ -997,4 +1005,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     private Handler onlineReferenceHandler=null;
 
     private ArrayList<SearchTrack> history;
+
+    private static final String TAG="MDict.DictView";
+
 }
