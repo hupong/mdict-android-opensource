@@ -31,7 +31,6 @@ import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -188,7 +187,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
         if (preference.getKey().compareToIgnoreCase(getString(R.string.pref_use_tts)) == 0) {
             CheckBoxPreference useTTS = (CheckBoxPreference) preference;
             if (useTTS.isChecked() && ttsEngine == null) {
-                AlertDialog dialog = AddonFuncUnt.buildConfirmDialog(this,
+                AlertDialog dialog = MiscUtils.buildConfirmDialog(this,
                         R.string.confirm_install_tts, R.string.install_tts,
                         new android.content.DialogInterface.OnClickListener() {
                             @Override

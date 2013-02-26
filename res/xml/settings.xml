@@ -72,14 +72,21 @@
                 android:title="@string/pref_title_use_lru_for_dict_order"
                 android:summary="@string/pref_summary_use_lru_for_dict_order"
                 android:defaultValue="@string/pref_default_use_lru_for_dict_order"/>
-        <!--
+        <ListPreference
+            android:key="@string/pref_split_view_mode"
+            android:title="@string/pref_title_split_view_mode"
+            android:dialogTitle="@string/pref_title_split_view_mode"
+            android:defaultValue="@string/pref_default_split_view_mode"
+            ></ListPreference>
 
-                <CheckBoxPreference
-                        android:key="ShakeForRandomEntry"
-                        android:title="@string/pref_title_shake_for_random_entry"
-                        android:summary="@string/pref_summary_shake_for_random_entry"
-                        android:defaultValue="@string/pref_default_shake_for_random_entry"/>
-        -->
+    <!--
+
+            <CheckBoxPreference
+                    android:key="ShakeForRandomEntry"
+                    android:title="@string/pref_title_shake_for_random_entry"
+                    android:summary="@string/pref_summary_shake_for_random_entry"
+                    android:defaultValue="@string/pref_default_shake_for_random_entry"/>
+    -->
 
         <CheckBoxPreference
                 android:key="@string/pref_show_splash"

@@ -98,7 +98,7 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.clear_all:
-                AlertDialog dialog = AddonFuncUnt.buildConfirmDialog(this,
+                AlertDialog dialog = MiscUtils.buildConfirmDialog(this,
                         R.string.confirm_clear_all_record, 0,
                         new android.content.DialogInterface.OnClickListener() {
                             @Override

@@ -171,7 +171,7 @@ public class DictContentProvider extends ContentProvider {
                             cache.put(fileName, data);
                     }
                     return makeAssetFileDescriptorFromByteArray(fileName, data);
-                    //AddonFuncUnt.copyAssetToFile(assets, fileName, false, MdxEngine.getDataHomeDir()+"/data");
+                    //MiscUtils.copyAssetToFile(assets, fileName, false, MdxEngine.getDataHomeDir()+"/data");
                     //return new AssetFileDescriptor(ParcelFileDescriptor.open(new File(MdxEngine.getDataHomeDir()+"/data/"+fileName), ParcelFileDescriptor.MODE_READ_ONLY),0,AssetFileDescriptor.UNKNOWN_LENGTH);
                     //InputStream is=assets.open(fileName);
                     //AssetFileDescriptor afd= assets.openFd(fileName);

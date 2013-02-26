@@ -19,7 +19,7 @@ package cn.mdict.online;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import cn.mdict.AddonFuncUnt;
+import cn.mdict.MiscUtils;
 import cn.mdict.utils.IOUtil;
 
 import java.io.*;
@@ -46,7 +46,7 @@ public class Jukuu implements OnlineReference{
     public void lookup(String headword, Context context, final Handler resultHandler) {
         String result;
         final String search=headword;
-        if (!AddonFuncUnt.checkNetworkStatus(context)) {
+        if (!MiscUtils.checkNetworkStatus(context)) {
             result="<font color=red><b>Network unavailable</b></font>";
         }
         new Thread(new Runnable() {
@@ -106,7 +106,7 @@ public class Jukuu implements OnlineReference{
                 }
             }
         } catch (Exception e) {
-            resultText.append(AddonFuncUnt.getErrorMessage(e)); //TODO: should promote user about error instead of displaying it as normal result?
+            resultText.append(MiscUtils.getErrorMessage(e)); //TODO: should promote user about error instead of displaying it as normal result?
         } finally {
             if (connection != null) {
                 connection.disconnect();

@@ -15,6 +15,13 @@
   -->
 
 <resources>
+    <string name="pref_default_split_view_mode">自动</string>
+    <string-array name="split_view_mode_values">
+        <item>禁用</item>
+        <item>使用</item>
+        <item>自动</item>
+    </string-array>
+
     <string-array name="tts_supported_language_name">
         <item>英式英语</item>
         <item>美式英语</item>

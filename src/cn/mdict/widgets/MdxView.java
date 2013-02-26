@@ -27,15 +27,13 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
-import cn.mdict.AddonFuncUnt;
+import cn.mdict.MiscUtils;
 import cn.mdict.R;
 import cn.mdict.WebViewGestureFilter;
 import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
 import cn.mdict.utils.WordSuggestion;
-
-import java.io.IOException;
 
 public class MdxView extends RelativeLayout {
 
@@ -242,7 +240,7 @@ public class MdxView extends RelativeLayout {
                 boolean showSpeak = (ttsEngine != null)
                         && MdxEngine.getSettings().getPrefUseTTS();
                 showSpeak = showSpeak
-                        || AddonFuncUnt.hasSpeechForWord(dict,
+                        || MiscUtils.hasSpeechForWord(dict,
                         entry.getHeadword());
                 show = showSpeak ? View.VISIBLE : View.INVISIBLE;
                 btnSpeak.setVisibility(show);
@@ -371,7 +369,7 @@ public class MdxView extends RelativeLayout {
     public void playPronunciationForCurrentEntry() {
         if (currentEntry != null && currentEntry.isValid()
                 && currentEntry.getHeadword().length() != 0) {
-            if (!AddonFuncUnt
+            if (!MiscUtils
                     .playAudioForWord(dict, currentEntry.getHeadword())
                     && ttsEngine != null
                     && MdxEngine.getSettings().getPrefUseTTS()) {
@@ -396,7 +394,7 @@ public class MdxView extends RelativeLayout {
     public void playAudio(String path) {
         if (mdxViewListener != null) {
             if (!mdxViewListener.onPlayAudio(this, path)) {
-                AddonFuncUnt.playAudio(dict, path);
+                MiscUtils.playAudio(dict, path);
             }
         }
     }

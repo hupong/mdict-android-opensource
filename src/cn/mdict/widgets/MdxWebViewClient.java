@@ -25,7 +25,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ScrollView;
 import android.widget.Toast;
-import cn.mdict.AddonFuncUnt;
 import cn.mdict.DictContentProvider;
 import cn.mdict.R;
 import cn.mdict.mdx.DictEntry;

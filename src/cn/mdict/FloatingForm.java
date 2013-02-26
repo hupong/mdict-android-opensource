@@ -21,7 +21,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.Time;
@@ -87,8 +86,8 @@ public class FloatingForm extends SherlockFragmentActivity {
             dictView = (DictView) getSupportFragmentManager().findFragmentById(R.id.floating_dict_view_fragment);
 
 
-            theApp.openMainDictById(DictPref.kInvalidDictPrefId);
-            dictView.changeDict(theApp.getMainDict());
+            theApp.openPopupDictById(DictPref.kInvalidDictPrefId);
+            dictView.changeDict(theApp.getPopupDict());
             // dictView.displayWelcome();
             // setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 
@@ -102,7 +101,7 @@ public class FloatingForm extends SherlockFragmentActivity {
                 fos = new FileOutputStream(new File(
                         "/mnt/sdcard/mdict/doc/mdict_j.log"));
             } catch (FileNotFoundException e1) {
-                AddonFuncUnt.showMessageDialog(this,
+                MiscUtils.showMessageDialog(this,
                         "Fail to log stack trace to file", "Error");
             }
             if (fos != null) {
@@ -378,7 +377,7 @@ public class FloatingForm extends SherlockFragmentActivity {
     }
 
     public void onQuit() {
-        AlertDialog dialog = AddonFuncUnt.buildConfirmDialog(this,
+        AlertDialog dialog = MiscUtils.buildConfirmDialog(this,
                 R.string.confirm_quit, R.string.quit,
                 new android.content.DialogInterface.OnClickListener() {
                     @Override
@@ -500,14 +499,14 @@ public class FloatingForm extends SherlockFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         InputMethodManager imm = (InputMethodManager) getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
-            AddonFuncUnt.hideSIP(this);
+            MiscUtils.hideSIP(this);
         }
         // Handle item selection
 		/*
 		 * QuickActionBar qbar=new QuickActionBar(this); qbar.addQuickAction(new
 		 * QuickAction(this, R.drawable.ic_search, R.string.quit)); View
 		 * itemView
-		 * =AddonFuncUnt.getItemViewForActionItem((ActionBarImpl)getSupportActionBar
+		 * =MiscUtils.getItemViewForActionItem((ActionBarImpl)getSupportActionBar
 		 * (), item); qbar.show(itemView);
 		 */
         switch (item.getItemId()) {

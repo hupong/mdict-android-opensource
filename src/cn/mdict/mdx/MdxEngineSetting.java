@@ -28,6 +28,12 @@ import cn.mdict.R;
  *         Created on 11-12-31
  */
 public class MdxEngineSetting {
+    public static final int kSplitViewModeOff=0;
+    public static final int kSplitViewModeOn=1;
+    public static final int kSplitViewModeAuto=2;
+
+    private String[] splitViewModeValues;
+
     public static String preferenceName = null;
     public static String prefLastDictId;
     public static String prefAppOwner;
@@ -53,7 +59,7 @@ public class MdxEngineSetting {
     public static String prefMonitorClipboard;
     public static String prefShowInNotification;
     public static String prefUseLRUForDictOrder;
-
+    public static String prefSplitViewMode;
     public static String prefFloatingWindowHeight;
 
     public static String prefGlobalClipboardMonitor;//Alex20121207.n
@@ -78,6 +84,7 @@ public class MdxEngineSetting {
     public static boolean prefDefaultMonitorClipboard;
     public static boolean prefDefaultShowInNotification;
     public static boolean prefDefaultUseLRUForDictOrder;
+    public static String prefDefaultSplitViewMode;
 
     public static int prefDefaultFloatingWindowHeight;
 
@@ -115,6 +122,7 @@ public class MdxEngineSetting {
             prefMonitorClipboard = res.getString(R.string.pref_monitor_clipboard);
             prefShowInNotification = res.getString(R.string.pref_show_in_notification);
             prefUseLRUForDictOrder = res.getString(R.string.pref_use_lru_for_dict_order);
+            prefSplitViewMode = res.getString(R.string.pref_split_view_mode);
 
             prefFloatingWindowHeight = res.getString(R.string.pref_floating_window_height);
             prefGlobalClipboardMonitor = res.getString(R.string.pref_global_clipboard_monitor);//Alex20121207.n
@@ -138,6 +146,8 @@ public class MdxEngineSetting {
             prefDefaultShowInNotification = Boolean.parseBoolean(res.getString(R.string.pref_default_show_in_notification));
             prefDefaultHighSpeedMode = Boolean.parseBoolean(res.getString(R.string.pref_default_high_speed_mode));
             prefDefaultUseLRUForDictOrder = Boolean.parseBoolean(res.getString(R.string.pref_default_use_lru_for_dict_order));
+            prefDefaultSplitViewMode = res.getString(R.string.pref_default_split_view_mode);
+            splitViewModeValues=res.getStringArray(R.array.split_view_mode_values);
 
             prefDefaultFloatingWindowHeight = Integer.parseInt(res.getString(R.string.pref_default_floating_window_height), 10);
             prefDefaultGlobalClipboardMonitor = Boolean.parseBoolean(res.getString(R.string.pref_default_global_clipboard_monitor));//Alex20121207.n
@@ -454,6 +464,24 @@ public class MdxEngineSetting {
         appPrefs.edit().putBoolean(prefUseLRUForDictOrder, useLRU).commit();
     }
 
+    public int getPrefSplitViewMode() {
+        String viewMode= appPrefs.getString(prefSplitViewMode, prefDefaultSplitViewMode);
+        if (viewMode.compareToIgnoreCase(splitViewModeValues[kSplitViewModeOff])==0){
+            return kSplitViewModeOff;
+        } else if ( viewMode.compareToIgnoreCase(splitViewModeValues[kSplitViewModeOn])==0){
+            return kSplitViewModeOn;
+        } else if ( viewMode.compareToIgnoreCase(splitViewModeValues[kSplitViewModeAuto])==0){
+            return kSplitViewModeAuto;
+        }else
+            return kSplitViewModeAuto;
+    }
+
+    public void setPrefSplitViewMode(int splitViewMode) {
+        if (splitViewMode>kSplitViewModeAuto)
+            splitViewMode=kSplitViewModeAuto;
+        appPrefs.edit().putString(prefSplitViewMode, splitViewModeValues[splitViewMode]).commit();
+    }
+
     public int getPrefFloatingWindowHeight() {
         return appPrefs.getInt(prefFloatingWindowHeight, prefDefaultFloatingWindowHeight);
     }
@@ -499,5 +527,7 @@ public class MdxEngineSetting {
         appPrefs.edit().putBoolean(prefFixedDictTitle, enable).commit();
     }
     //alex20121207.en 
+
+
     private SharedPreferences appPrefs = null;
 }
