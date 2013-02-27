@@ -76,6 +76,8 @@
             android:key="@string/pref_split_view_mode"
             android:title="@string/pref_title_split_view_mode"
             android:dialogTitle="@string/pref_title_split_view_mode"
+            android:entries="@array/split_view_mode_entries"
+            android:entryValues="@array/split_view_mode_values"
             android:defaultValue="@string/pref_default_split_view_mode"
             ></ListPreference>
 

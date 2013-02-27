@@ -64,23 +64,26 @@ public class MDictApp {
         return mainDict;
     }
 
-    public MdxDictBase openMainDictById(int dictId){
+    public int openMainDictById(int dictId){
+        int retCode;
         if (dictId!= DictPref.kInvalidDictPrefId)
-            MdxEngine.openDictById(dictId, MdxEngine.getSettings().getPrefsUseLRUForDictOrder(), mainDict);
+            retCode=MdxEngine.openDictById(dictId, MdxEngine.getSettings().getPrefsUseLRUForDictOrder(), mainDict);
         else
-            MdxEngine.openLastDict(mainDict);
-        return mainDict;
+            retCode=MdxEngine.openLastDict(mainDict);
+        return retCode;
     }
 
     public MdxDictBase getPopupDict(){
         return popupDict;
     }
 
-    public MdxDictBase openPopupDictById(int dictId){
+    public int openPopupDictById(int dictId){
+        int retCode=MdxDictBase.kMdxDatabaseNotInited;
         if (!popupDict.isValid()){
-            popupDict=openMainDictById(dictId);
+            retCode=openMainDictById(dictId);
+            popupDict=mainDict;
         }
-        return popupDict;
+        return retCode;
     }
 
     public void rebuildAllDictSetting(){

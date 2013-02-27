@@ -19,7 +19,6 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:orientation="vertical"
-             android:id="@+id/dict_view_container"
              >
     <FrameLayout
         android:id="@+id/toolbar_container"
@@ -75,8 +74,9 @@
     </RelativeLayout>
     </FrameLayout>
     <LinearLayout android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  android:id="@+id/dict_view_container"  >
         <ListView android:id="@+id/headword_list"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -84,6 +84,10 @@
               android:background="#FFFFFF"
               android:cacheColorHint="#00000000"
               android:layout_weight="2"/>
+        <View android:layout_width="1dip"
+              android:layout_height="fill_parent"
+              android:background="#FF0000FF"
+              android:id="@+id/split_view_divider"/>
         <cn.mdict.widgets.MdxView android:id="@+id/mdx_view"
                               android:layout_height="match_parent" android:layout_width="match_parent"
                               android:background="#FFFFFF"

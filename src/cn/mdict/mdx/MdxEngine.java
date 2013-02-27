@@ -191,10 +191,10 @@ public class MdxEngine {
         return appInited;
     }
 
-    public static boolean openLastDict(MdxDictBase dict){
+    public static int openLastDict(MdxDictBase dict){
         if ( !appInited )
-            return false;
-        int result = MdxDictBase.kMdxSuccess;
+            return MdxDictBase.kMdxDatabaseNotInited;
+        int result = MdxDictBase.kMdxDatabaseNotInited;
         MdxEngineSetting prefs = MdxEngine.getSettings();
         if (prefs.getPrefMultiDictLookkupMode()) {
             DictPref dictPref = MdxEngine.getLibMgr().getRootDictPref();
@@ -215,13 +215,13 @@ public class MdxEngine {
                 }
             }
         }
+
         if (!dict.isValid()) {
             Log.d("MDX", "Fail to open dictionary, error code:" + result);
-            return false;
         } else {
             saveEngineSettings();
         }
-        return true;
+        return result;
     }
 
     static public void rebuildHtmlSetting(MdxDictBase dict, boolean highSpeedMode) {

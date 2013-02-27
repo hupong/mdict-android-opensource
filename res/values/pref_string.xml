@@ -68,11 +68,17 @@
     <string name="pref_default_show_in_notification">false</string>
     <string name="pref_default_use_lru_for_dict_order">false</string>
 
-    <string name="pref_default_split_view_mode">auto</string>
-    <string-array name="split_view_mode_values">
+    <string-array name="split_view_mode_entries">
         <item>Off</item>
         <item>On</item>
         <item>Auto</item>
+    </string-array>
+
+    <string name="pref_default_split_view_mode">2</string>
+    <string-array name="split_view_mode_values">
+        <item>0</item> <!-- Off -->
+        <item>1</item> <!-- On -->
+        <item>2</item> <!-- Auto -->
     </string-array>
 
     <string name="pref_default_floating_window_height">-1</string>

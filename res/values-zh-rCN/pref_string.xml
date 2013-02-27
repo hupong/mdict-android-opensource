@@ -15,8 +15,7 @@
   -->
 
 <resources>
-    <string name="pref_default_split_view_mode">自动</string>
-    <string-array name="split_view_mode_values">
+    <string-array name="split_view_mode_entries">
         <item>禁用</item>
         <item>使用</item>
         <item>自动</item>

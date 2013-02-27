@@ -22,17 +22,16 @@
     -->
 
     <style name="Theme.MDict" parent="@style/Theme.Sherlock">
-        <item name="icon">@drawable/app_icon_medium</item>
-        <item name="android:icon">@drawable/app_icon_medium</item>
         <item name="searchViewSearchIcon">@android:color/transparent</item>
         <!--
+            <item name="icon">@drawable/app_icon_medium</item>
+            <item name="android:icon">@drawable/app_icon_medium</item>
             <item name="android:actionButtonStyle">@style/Widget.MDict.ActionButton</item>
             <item name="absForceOverflow">true</item>
             <item name="customNavigationLayout">@layout/search_view</item>
             <item name="windowSplitActionBar">true</item>
         -->
     </style>
-
 
     <style name="Theme.MDict.Translucent" parent="Theme.MDict">
         <item name="android:windowBackground">@color/transparent</item>

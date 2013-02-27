@@ -26,8 +26,8 @@
                 android:label="@string/app_name"
                 android:name=".MainForm"
                 android:theme="@style/Theme.MDict"
-                android:configChanges="orientation|keyboardHidden"
-                android:launchMode="singleInstance"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:launchMode="singleTask"
                 android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -40,7 +40,6 @@
         </activity>
         <activity
                 android:name=".FloatingForm"
-                android:configChanges="keyboard|keyboardHidden|orientation"
                 android:launchMode="singleInstance"
                 android:theme="@style/Theme.MDict.Translucent"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
@@ -71,23 +70,19 @@
         <activity
                 android:name=".LibraryFrame"
                 android:theme="@style/Theme.MDict"
-                android:label="@string/library"
-                android:configChanges="orientation|keyboardHidden"></activity>
+                android:label="@string/library"></activity>
         <activity
                 android:name=".FavoritesFrame"
                 android:theme="@style/Theme.MDict"
-                android:label="@string/favorites"
-                android:configChanges="orientation|keyboardHidden"></activity>
+                android:label="@string/favorites"></activity>
         <activity
                 android:name=".HistoryFrame"
                 android:theme="@style/Theme.MDict"
-                android:label="@string/history"
-                android:configChanges="orientation|keyboardHidden"></activity>
+                android:label="@string/history"></activity>
         <activity
                 android:name=".SettingFrame"
                 android:theme="@style/Theme.MDict"
-                android:label="@string/settings"
-                android:configChanges="orientation|keyboardHidden"></activity>
+                android:label="@string/settings"></activity>
 
         <provider
                 android:name=".DictContentProvider"

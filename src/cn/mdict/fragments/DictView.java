@@ -27,7 +27,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.speech.tts.TextToSpeech;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.*;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.webkit.WebView.PictureListener;
@@ -135,8 +137,11 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
         setHasOptionsMenu(true);
         rootView.setFocusable(true);
+        updateViewMode(rootView);
         searchView = new com.actionbarsherlock.widget.SearchView(getSherlockActivity().getSupportActionBar().getThemedContext());
         searchView.setIconifiedByDefault(false);
+        searchView.setInputType(searchView.getInputType()&(~android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE));
+        searchView.setImeOptions(searchView.getImeOptions()| EditorInfo.IME_FLAG_NO_EXTRACT_UI|EditorInfo.IME_FLAG_NO_FULLSCREEN);
         if (!hasToolbar){
             ActionBar actionBar = getSherlockActivity().getSupportActionBar();
             actionBar.setDisplayShowCustomEnabled(true);
@@ -555,15 +560,33 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         return hasSound;
     }
 
-    public void updateViewMode(){
-        boolean useSplitView=MiscUtils.shouldUseSplitViewMode(getSherlockActivity());
-        if (useSplitView){
-            LinearLayout newContainer=new LinearLayout(getSherlockActivity());
+    public void updateViewMode(ViewGroup rootView){
+        useSplitViewMode=MiscUtils.shouldUseSplitViewMode(getSherlockActivity());
+        Log.d(TAG, "Update view mode, use split view mode:"+String.valueOf(useSplitViewMode));
+        if ( rootView==null )
+            rootView=(ViewGroup)getView();
+        ViewGroup newContainer;
+        ViewGroup.LayoutParams layoutParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        if (useSplitViewMode){
+            LinearLayout layout=new LinearLayout(getSherlockActivity());
+            layout.setLayoutParams(layoutParams);
+            layout.setOrientation(LinearLayout.HORIZONTAL);
+            layout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+            newContainer=layout;
         }else{
-
+            FrameLayout layout=new FrameLayout(getSherlockActivity());
+            layout.setLayoutParams(layoutParams);
+            newContainer=layout;
         }
+        View divider= rootView.findViewById(R.id.split_view_divider);
+        if ( divider!=null )
+            divider.setVisibility(useSplitViewMode?View.VISIBLE:View.INVISIBLE);
+        newContainer.setId(R.id.dict_view_container);
+        MiscUtils.changeContainer(rootView, R.id.dict_view_container, newContainer);
+        rootView.requestLayout();
     }
-    public void changeDict(MdxDictBase dict) {
+
+    public void changeDict(MdxDictBase dict, boolean showDictAbout) {
         String currentInput = searchView.getQuery().toString();
         this.dict = dict;
         lastZoomActionIsZoomIn = false;
@@ -584,8 +607,11 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                     setInputText(currentInput, false);
                     switchToListView();
                 }
-            } else {
+            } else if (showDictAbout) {
                 displayByHeadword(":about", false);
+            } else {
+                setInputText("", true);
+                displayHtml("");
             }
         } else {
             dictPref = null;
@@ -704,7 +730,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         }
         return false;
     }
-
+    /*
     public void selectDict(int dictId) {
         String currentInput = searchView.getQuery().toString();
         int result = MdxEngine.openDictById(dictId, MdxEngine.getSettings()
@@ -730,7 +756,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                     getString(R.string.error));
         }
     }
-
+    */
     public void toggleView() {
         if (currentView == headwordList)
             switchToContentView();
@@ -998,6 +1024,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     private boolean lastZoomActionIsZoomIn = false;
     private boolean hasToolbar =false;
     private boolean showHomeButtonInToolbar=true;
+    private boolean useSplitViewMode=false;
     private boolean skipUpdateEntryList = false;
 
     private TextToSpeech ttsEngine = null;

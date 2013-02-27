@@ -32,8 +32,6 @@ public class MdxEngineSetting {
     public static final int kSplitViewModeOn=1;
     public static final int kSplitViewModeAuto=2;
 
-    private String[] splitViewModeValues;
-
     public static String preferenceName = null;
     public static String prefLastDictId;
     public static String prefAppOwner;
@@ -147,7 +145,6 @@ public class MdxEngineSetting {
             prefDefaultHighSpeedMode = Boolean.parseBoolean(res.getString(R.string.pref_default_high_speed_mode));
             prefDefaultUseLRUForDictOrder = Boolean.parseBoolean(res.getString(R.string.pref_default_use_lru_for_dict_order));
             prefDefaultSplitViewMode = res.getString(R.string.pref_default_split_view_mode);
-            splitViewModeValues=res.getStringArray(R.array.split_view_mode_values);
 
             prefDefaultFloatingWindowHeight = Integer.parseInt(res.getString(R.string.pref_default_floating_window_height), 10);
             prefDefaultGlobalClipboardMonitor = Boolean.parseBoolean(res.getString(R.string.pref_default_global_clipboard_monitor));//Alex20121207.n
@@ -465,21 +462,13 @@ public class MdxEngineSetting {
     }
 
     public int getPrefSplitViewMode() {
-        String viewMode= appPrefs.getString(prefSplitViewMode, prefDefaultSplitViewMode);
-        if (viewMode.compareToIgnoreCase(splitViewModeValues[kSplitViewModeOff])==0){
-            return kSplitViewModeOff;
-        } else if ( viewMode.compareToIgnoreCase(splitViewModeValues[kSplitViewModeOn])==0){
-            return kSplitViewModeOn;
-        } else if ( viewMode.compareToIgnoreCase(splitViewModeValues[kSplitViewModeAuto])==0){
-            return kSplitViewModeAuto;
-        }else
-            return kSplitViewModeAuto;
+        return Integer.parseInt(appPrefs.getString(prefSplitViewMode, prefDefaultSplitViewMode));
     }
 
     public void setPrefSplitViewMode(int splitViewMode) {
         if (splitViewMode>kSplitViewModeAuto)
             splitViewMode=kSplitViewModeAuto;
-        appPrefs.edit().putString(prefSplitViewMode, splitViewModeValues[splitViewMode]).commit();
+        appPrefs.edit().putString(prefSplitViewMode, new Integer(splitViewMode).toString()).commit();
     }
 
     public int getPrefFloatingWindowHeight() {

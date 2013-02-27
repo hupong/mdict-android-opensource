@@ -49,18 +49,11 @@ public class FloatingForm extends SherlockFragmentActivity {
 
     private static final String TAG="MDict.FloatingForm";
 
-    public Timer mScrollTimer = null;
     public static final int kHistoryIntentId = 0;
     public static final int kFavoritesIntentId = 1;
     public static final int kLibraryIntentId = 2;
     public static final int kSettingIntentId = 3;
 
-    private boolean startBySearch = false;
-    //private String lastClipboardText = "";
-    private Time lastBackPressedTime = null;
-
-    private boolean skipOnResume = false;
-    private Handler handler;
     private DictView dictView;
     private MDictApp theApp;
 
@@ -87,7 +80,7 @@ public class FloatingForm extends SherlockFragmentActivity {
 
 
             theApp.openPopupDictById(DictPref.kInvalidDictPrefId);
-            dictView.changeDict(theApp.getPopupDict());
+            dictView.changeDict(theApp.getPopupDict(), false);
             // dictView.displayWelcome();
             // setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 
@@ -427,7 +420,6 @@ public class FloatingForm extends SherlockFragmentActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.setClass(this, cls);
         startActivityForResult(intent, requestCode);
-        skipOnResume = true;
     }
 
     @Override
@@ -440,7 +432,13 @@ public class FloatingForm extends SherlockFragmentActivity {
                     int libId = data.getIntExtra(LibraryFrame.SELECTED_LIB_ID,
                             DictPref.kInvalidDictPrefId);
                     if (libId != DictPref.kInvalidDictPrefId) {
-                        dictView.selectDict(libId);
+                        int result=MDictApp.getInstance().openPopupDictById(libId);
+                        if (result==MdxDictBase.kMdxSuccess){;
+                            dictView.changeDict(MDictApp.getInstance().getMainDict(), true);
+                        }else {
+                            String info = String.format(getString(R.string.fail_to_open_dict), result);
+                            MiscUtils.showMessageDialog(this, info, getString(R.string.error));
+                        }
                     }
                 }
                 break;
@@ -538,26 +536,6 @@ public class FloatingForm extends SherlockFragmentActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         else
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-
-       /* if (!skipOnResume) {
-            if (MdxEngine.getSettings().getPrefAutoLookupClipboard()) {
-                try {
-                    String clipboardText = ((ClipboardManager) getSystemService("clipboard"))
-                            .getText().toString();
-                    if (clipboardText != null) {
-                        if (lastClipboardText == null
-                                || !clipboardText
-                                .contentEquals(lastClipboardText)) {
-                            lastClipboardText = clipboardText;
-                            dictView.displayByHeadword(lastClipboardText, true);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }*/
-        skipOnResume = false;
     }
 
     @Override

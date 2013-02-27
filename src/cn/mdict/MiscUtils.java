@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -28,6 +29,8 @@ import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.speech.tts.TextToSpeech;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +47,8 @@ import java.nio.ByteOrder;
 public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
     static MediaPlayer mediaPlayer = null;
     static boolean  appInited=false;
+    private static final String TAG="MDict.MiscUtil";
+
 
     public static Boolean checkNetworkStatus(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context
@@ -375,7 +380,10 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
         }
     }
 
-    public static void changeContainer(ViewGroup container, ViewGroup newContainer){
+    public static void changeContainer(ViewGroup rootView, int containerId, ViewGroup newContainer){
+        ViewGroup container=(ViewGroup)rootView.findViewById(containerId);
+        if ( container==null )
+            return;
         ViewGroup parentView=(ViewGroup)container.getParent();
         int index=parentView.indexOfChild(container);
         for( int i=container.getChildCount()-1; i>=0; --i ){
@@ -385,6 +393,17 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
         }
         parentView.removeViewAt(index);
         parentView.addView(newContainer, index);
+        parentView.requestLayout();
+    }
+
+    public static float getScreenSize(Context context) {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        float screenWidth  = dm.widthPixels / dm.xdpi;
+        float screenHeight = dm.heightPixels / dm.ydpi;
+        double size = Math.sqrt(Math.pow(screenWidth, 2) +
+                Math.pow(screenHeight, 2));
+        // Tablet devices should have a screen size greater than 6 inches
+        return (float)size;
     }
 
     public static boolean shouldUseSplitViewMode(Context context){
@@ -394,8 +413,10 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
             case MdxEngineSetting.kSplitViewModeOn:
                 return true;
             case MdxEngineSetting.kSplitViewModeAuto:
-
-                break;
+                //Should change this according screen size and resolution.
+                Log.d(TAG, "Screen size:"+String.valueOf(getScreenSize(context)));
+                Log.d(TAG, "Orientation:"+String.valueOf(context.getResources().getConfiguration().orientation));
+                return (getScreenSize(context)>3.8) && context.getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE;
         }
         return false;
     }
