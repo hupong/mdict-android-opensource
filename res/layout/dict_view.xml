@@ -58,7 +58,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/icon_jukuu"/>
 
-        <SearchView
+        <com.actionbarsherlock.widget.SearchView
             android:id="@+id/search_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

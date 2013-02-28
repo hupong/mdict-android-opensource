@@ -571,7 +571,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             LinearLayout layout=new LinearLayout(getSherlockActivity());
             layout.setLayoutParams(layoutParams);
             layout.setOrientation(LinearLayout.HORIZONTAL);
-            layout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+            //layout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
             newContainer=layout;
         }else{
             FrameLayout layout=new FrameLayout(getSherlockActivity());
@@ -583,7 +583,21 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             divider.setVisibility(useSplitViewMode?View.VISIBLE:View.INVISIBLE);
         newContainer.setId(R.id.dict_view_container);
         MiscUtils.changeContainer(rootView, R.id.dict_view_container, newContainer);
-        rootView.requestLayout();
+        if (useSplitViewMode && headwordList!=null && contentView!=null){
+            LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)headwordList.getLayoutParams();
+            params.weight=2;
+            headwordList.setLayoutParams(params);
+            params=(LinearLayout.LayoutParams)contentView.getLayoutParams();
+            params.weight=1;
+            contentView.setLayoutParams(params);
+        }
+        if ( (contentView!=null) && (headwordList!=null)){
+            if (currentView==contentView )
+                switchToContentView();
+            else
+                switchToListView();
+        }
+        //rootView.requestLayout();
     }
 
     public void changeDict(MdxDictBase dict, boolean showDictAbout) {
@@ -765,29 +779,20 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void switchToListView() {
-        //no action for tablet
-        if (!MiscUtils.shouldUseSplitViewMode(getSherlockActivity())) {
-            contentView.setVisibility(View.GONE);
-            headwordList.setVisibility(View.VISIBLE);
-        }
+        headwordList.setVisibility(View.VISIBLE);
+        contentView.setVisibility(useSplitViewMode?View.VISIBLE:View.INVISIBLE);
         if (MdxEngine.getSettings().getPrefAutoSIP() && !searchView.hasFocus())
             searchView.requestFocus();
         currentView = headwordList;
     }
 
     public void switchToContentView() {
-        //no action for tablet
-        if (!MiscUtils.shouldUseSplitViewMode(getSherlockActivity())){
-            contentView.setVisibility(View.VISIBLE);
-        }
+        headwordList.setVisibility(useSplitViewMode?View.VISIBLE:View.INVISIBLE);
+        contentView.setVisibility(View.VISIBLE);
         contentView.requestFocus();
         // InputMethodManager imm = (InputMethodManager)
         // getSupportActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
         // imm.hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
-        //no action for tablet
-        if (!MiscUtils.shouldUseSplitViewMode(getSherlockActivity())){
-            headwordList.setVisibility(View.INVISIBLE);
-        }
         currentView = contentView;
     }
 
