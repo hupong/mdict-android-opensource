@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
+ * Copyright (C) 2013. Rayman Zhang <raymanzhang@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -394,6 +394,10 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
         parentView.removeViewAt(index);
         parentView.addView(newContainer, index);
         parentView.requestLayout();
+    }
+
+    public static boolean isTablet(Context context){
+        return getScreenSize(context)>6.0f;
     }
 
     public static float getScreenSize(Context context) {
