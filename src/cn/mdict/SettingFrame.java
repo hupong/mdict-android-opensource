@@ -277,6 +277,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                 dirList = new String[1];
             dirList[0] = "..";
         }
+        java.util.Arrays.sort(dirList, java.text.Collator.getInstance());
         return dirList;
     }
 
