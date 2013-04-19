@@ -67,7 +67,7 @@ public class DictContentProvider extends ContentProvider {
     ParcelFileDescriptor openLocalFile(String filePath) throws FileNotFoundException {
         ParcelFileDescriptor parcel = null;
         try {
-            File resFile = new File(MdxEngine.getResDir() + filePath);
+            File resFile = new File(MdxEngine.getDataHomeDir()+"/" + filePath);
             parcel = ParcelFileDescriptor.open(resFile, ParcelFileDescriptor.MODE_READ_ONLY);
         } catch (Exception e) {
             e.printStackTrace();
@@ -156,6 +156,7 @@ public class DictContentProvider extends ContentProvider {
             String path = uri.getPath();
             Matcher matcher = LocalFilePattern.matcher(path);
             if (matcher.matches() && matcher.groupCount() == 1) {
+//                return new AssetFileDescriptor(openLocalFile(MdxEngine.getDataHomeDir()+"/"+matcher.group(1)), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
                 return new AssetFileDescriptor(openLocalFile(matcher.group(1)), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
             }
             matcher = AssetFilePattern.matcher(path);

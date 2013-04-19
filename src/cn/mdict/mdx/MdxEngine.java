@@ -237,7 +237,6 @@ public class MdxEngine {
             if (css_buffer.length() != 0)
                 css += css_buffer.toString();
         }
-
         StringBuffer htmlBlock = new StringBuffer();
 
         htmlBlock.setLength(0);
@@ -265,6 +264,7 @@ public class MdxEngine {
         String unionGroupTitle = htmlBlock.toString();
 
         dict.setHtmlHeader(htmlBegin, htmlEnd);
+        //IOUtil.saveStringToFile(MdxEngine.getDocDir()+"/hb.html", htmlBegin, "utf8");
         dict.setHtmlBlockHeader(blockBegin, blockEnd);
         if (!dict.canRandomAccess())
             dict.setUnionGroupTitle(unionGroupTitle);
