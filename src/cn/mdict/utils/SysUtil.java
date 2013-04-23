@@ -39,7 +39,7 @@ public class SysUtil {
         return versionNumber;
     }
 
-    public static String getVersionName(Context context) {
+    public static String getVersionName(Context context, boolean withBuildNo) {
         String versionName = "";
         try {
             // ---get the package info---
@@ -47,7 +47,10 @@ public class SysUtil {
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
             versionName = pi.versionName;
             if (versionName == null || versionName.length() <= 0) {
-                return "";
+                versionName="";
+            }
+            if ( withBuildNo ){
+                versionName+=" (build "+pi.versionCode+")";
             }
         } catch (Exception e) {
             Log.e("VersionInfo", "Exception", e);

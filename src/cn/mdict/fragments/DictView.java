@@ -289,6 +289,13 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                     displayWelcome();
                     depth = 0;
                     history = new ArrayList<SearchTrack>();// added by alex
+                } else if (query.compareToIgnoreCase(":verify")==0){
+                    DictEntry entryTest=new DictEntry(-1,"", dict.getDictPref().getDictId());
+                    for (int i=0; i<dict.getEntryCount(); ++i){
+                        entryTest.setEntryNo(i);
+                        dict.getDictTextN(entryTest, false, false,"","");
+                    }
+                    displayHtml("Dict verified!");
                 } else if (MdxDictBase.isMdxCmd(query)
                         || !currentEntry.isValid()) {
                     displayByHeadword(query, false);
@@ -811,7 +818,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         IOUtil.loadStringFromAsset(getSherlockActivity().getAssets(),
                 "Welcome.htm", welcome, true);
         String html = welcome.toString().replace("$version$",
-                SysUtil.getVersionName(getSherlockActivity()));
+                SysUtil.getVersionName(getSherlockActivity(), true));
         displayHtml(html);
     }
 
