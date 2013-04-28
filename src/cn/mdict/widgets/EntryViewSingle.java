@@ -120,7 +120,6 @@ public class EntryViewSingle implements MdxEntryView {
         wvClient = new MdxWebViewClient(mdxView, null);
         htmlView.setWebViewClient(wvClient);
         // htmlView.addJavascriptInterface(wvClient, "MdxClient");
-        /*
         htmlView.addJavascriptInterface(new Object() {
             @SuppressWarnings("unused")
             // This is a call back from javascript
@@ -159,7 +158,6 @@ public class EntryViewSingle implements MdxEntryView {
 
             }
         }, "MdxDict");
-*/
         // htmlView.setPictureListener(wvClient);
     }
 
