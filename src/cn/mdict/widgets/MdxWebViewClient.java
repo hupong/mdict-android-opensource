@@ -18,7 +18,6 @@ package cn.mdict.widgets;
 
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.Handler;
 import android.view.View;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
@@ -38,7 +37,6 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
     private MdxView mdxView;
     private ScrollView listContainer;
     private String anchor = null;
-    private Handler jsHandler = new Handler();
 
     private static final String UrlHost = "mdict.cn";
     private static final String UrlScheme = "content";
@@ -60,8 +58,7 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
         StringBuffer mimeType = new StringBuffer();
         byte[] data = DictContentProvider.getDataByUrl(mdxView.getDict(), url, mimeType);
         if (data != null && data.length > 0) {
-            WebResourceResponse response = new WebResourceResponse(mimeType.toString(), null, new ByteArrayInputStream(data));
-            return response;
+            return new WebResourceResponse(mimeType.toString(), null, new ByteArrayInputStream(data));
         } else
             return null;
     }
@@ -69,7 +66,7 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Uri uri = Uri.parse(url);
-        if (uri.getScheme()==null || uri.getScheme().compareToIgnoreCase(UrlScheme) != 0 || uri.getHost()==null || uri.getHost().compareToIgnoreCase(UrlHost) != 0)
+        if (uri.getScheme() == null || uri.getScheme().compareToIgnoreCase(UrlScheme) != 0 || uri.getHost() == null || uri.getHost().compareToIgnoreCase(UrlHost) != 0)
             return false;
 
         String path = uri.getPath();
@@ -108,6 +105,15 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
         matcher = LookupUrlPattern.matcher(path);
         if (matcher.matches() && matcher.groupCount() == 3) {
             String headWord = matcher.group(3);
+            MdxView.MdxViewListener listener = mdxView.getMdxViewListener();
+            if (listener != null) {
+                try {
+                    if (listener.onSearchText(mdxView, headWord, Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2))))
+                        return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             mdxView.displayByHeadword(headWord, true);
             return true;
         }

@@ -39,15 +39,12 @@ public class MdxView extends RelativeLayout {
 
     public interface MdxViewListener {
         // If events were handled by listener, the listener should return true.
-        // Otherwise should return true.
-        boolean onSearchText(MdxView view, String text, int touchPointX,
-                             int touchPointY);
+        // Otherwise should return false.
+        boolean onSearchText(MdxView view, String text, int touchPointX, int touchPointY);
 
-        boolean onDisplayEntry(MdxView view, DictEntry entry,
-                               boolean addToHistory);
+        boolean onDisplayEntry(MdxView view, DictEntry entry, boolean addToHistory);
 
-        boolean onHeadWordNotFound(MdxView view, String headWord,
-                                   int touchPointX, int touchPointY);// added by alex
+        boolean onHeadWordNotFound(MdxView view, String headWord, int touchPointX, int touchPointY);// added by alex
 
         boolean onPlayAudio(MdxView view, String path);
     }
@@ -83,6 +80,10 @@ public class MdxView extends RelativeLayout {
 
     public void setMdxViewListener(MdxViewListener listener) {
         mdxViewListener = listener;
+    }
+
+    public MdxViewListener getMdxViewListener() {
+        return mdxViewListener;
     }
 
     public void setGestureListener(WebViewGestureFilter.GestureListener listener) {
@@ -146,9 +147,8 @@ public class MdxView extends RelativeLayout {
                 int r = dict.locateFirst(headword, true, false, false, entry);
                 if (r != MdxDictBase.kMdxSuccess
                         //|| (entry.getHeadword().indexOf(" ") != -1 && headword.indexOf(" ") == -1)) {//alex20121205.o
-                		|| !entry.getHeadword().equals(headword)) {//alex20121205.n
-                    String word = "";
-                    word = WordSuggestion.getMdxSuggestWord(getContext(), dict, headword);
+                        || !entry.getHeadword().equals(headword)) {//alex20121205.n
+                    String word = WordSuggestion.getMdxSuggestWord(getContext(), dict, headword);
                     if (word.length() > 0) {
                         entry.setHeadword(word);
                         dict.locateFirst(word, true, false, false, entry);
