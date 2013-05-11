@@ -16,28 +16,30 @@
 
 package cn.mdict.widgets;
 
-import android.graphics.Rect;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.view.View;
+import android.os.Handler;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ScrollView;
 import android.widget.Toast;
 import cn.mdict.DictContentProvider;
 import cn.mdict.R;
 import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.MdxDictBase;
 
-import java.io.ByteArrayInputStream;
+import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MdxWebViewClient extends WebViewClient { // implements WebView.PictureListener {
     private MdxView mdxView;
-    private ScrollView listContainer;
+    private Handler jsHandler = new Handler();
+
+    //private ScrollView listContainer;
     private String anchor = null;
 
+    private static final String JavaScriptInterface = "MdxDict";
     private static final String UrlHost = "mdict.cn";
     private static final String UrlScheme = "content";
 
@@ -48,9 +50,8 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
     private static final Pattern HeadwordUrlPattern = Pattern.compile("/headword/(.*)"); //Used by word suggestion list
 
 
-    MdxWebViewClient(MdxView mdxView, ScrollView listContainer) {
+    MdxWebViewClient(MdxView mdxView) {
         this.mdxView = mdxView;
-        this.listContainer = listContainer;
     }
 
     @Override
@@ -61,6 +62,45 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
             return new WebResourceResponse(mimeType.toString(), null, new ByteArrayInputStream(data));
         } else
             return null;
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        view.removeJavascriptInterface(JavaScriptInterface);
+        view.addJavascriptInterface(new Object() {
+            @SuppressWarnings("unused")
+            // This is a call back from javascript
+            public void onPageComplete() {
+                jsHandler.post(new Runnable() {
+                    public void run() {
+                        onPageComplete();
+                    }
+                });
+            }
+
+            public void saveSource(String fileContent) {
+                String UTF8 = "gb2312";
+                BufferedWriter bw;
+
+                try {
+                    String strFile = "/mnt/sdcard/mdict/temp/testWeb.html";
+                    File f = new File(strFile);
+                    if (!f.exists()) {
+                        f.createNewFile();
+                    }
+                    bw = new BufferedWriter(new OutputStreamWriter(
+                            new FileOutputStream(strFile),
+                            UTF8));
+                    bw.write(fileContent);
+                    bw.close();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        }, JavaScriptInterface);
+
     }
 
     @Override
@@ -153,19 +193,13 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
             return;
         String js = "javascript:window.location.hash=('" + anchor + "')";
         view.loadUrl(js);
-        if (listContainer != null) {
-            if (view.getParent() != null) {
-                View pv = (View) view.getParent();
-                int vPos = view.getScrollY() + view.getTop();
-                listContainer.requestChildRectangleOnScreen(pv, new Rect(0, vPos, view.getWidth(), vPos + listContainer.getHeight()), true);
-            }
-        }
         anchor = null;
     }
 
-    @SuppressWarnings("unused")
-    //Called by javascript to be notified of page loaded event
+    //To be notified of page loaded event
     public void onPageComplete(WebView view) {
+        if (mdxView.onPageLoadCompleted(view))
+            return;
         jumpToAnchor(view);
     }
 

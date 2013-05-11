@@ -19,7 +19,6 @@ package cn.mdict.widgets;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.webkit.ConsoleMessage;
@@ -29,23 +28,17 @@ import cn.mdict.WebViewGestureFilter;
 import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.MdxUtils;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Rayman
  * Date: 12-5-18
  * Time: 下午3:19
- * To change this template use File | Settings | File Templates.
  */
 public class EntryViewSingle implements MdxEntryView {
 
     @SuppressLint("NewApi")
-	EntryViewSingle(Context context, WebView wv) {        /*
-		 * ViewGroup.LayoutParams params= new
+    EntryViewSingle(Context context, WebView wv) {        /*
+         * ViewGroup.LayoutParams params= new
 		 * ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 		 * ViewGroup.LayoutParams.MATCH_PARENT); htmlView=new WebView(context);
 		 * htmlView.setFocusable(true);
@@ -78,14 +71,6 @@ public class EntryViewSingle implements MdxEntryView {
             }
         }
 
-		/*
-		 * htmlView.addJavascriptInterface( new Object(){
-		 * 
-		 * @SuppressWarnings("unused") //This is a call back from javascript
-		 * public void onLookupWord(final String word, final int x, final int
-		 * y){ jsHandler.post( new Runnable() { public void run() {
-		 * mdxView.displayByHeadword(word, true); }; }); } }, "MdxDict");
-		 */
         htmlView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -96,7 +81,7 @@ public class EntryViewSingle implements MdxEntryView {
 
         htmlView.setWebChromeClient(new WebChromeClient() {
             @SuppressLint("NewApi")
-			public boolean onJsAlert(WebView view, String url, String message,
+            public boolean onJsAlert(WebView view, String url, String message,
                                      android.webkit.JsResult result) {
                 Log.d("JS", message);
                 result.confirm();
@@ -117,48 +102,8 @@ public class EntryViewSingle implements MdxEntryView {
     @Override
     public void setMdxView(MdxView mdxView) {
         this.mdxView = mdxView;
-        wvClient = new MdxWebViewClient(mdxView, null);
+        wvClient = new MdxWebViewClient(mdxView);
         htmlView.setWebViewClient(wvClient);
-        // htmlView.addJavascriptInterface(wvClient, "MdxClient");
-        htmlView.addJavascriptInterface(new Object() {
-            @SuppressWarnings("unused")
-            // This is a call back from javascript
-            public void onPageComplete() {
-                jsHandler.post(new Runnable() {
-                    public void run() {
-                        if (wvClient != null) {
-                            wvClient.onPageComplete(htmlView);
-                        }
-                    }
-
-                    ;
-                });
-            }
-
-            public void saveSource(String fileContnet) {
-                String UTF8 = "gb2312";
-                BufferedWriter bw;
-
-                try {
-                    String strFile = "/mnt/sdcard/mdict/temp/testWeb.html";
-                    File f = new File(strFile);
-                    if (f.exists()) {
-                    } else {
-                        f.createNewFile();
-                    }
-                    bw = new BufferedWriter(new OutputStreamWriter(
-                            new FileOutputStream(strFile),
-                            UTF8));
-                    bw.write(fileContnet);
-                    bw.close();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-            }
-        }, "MdxDict");
-        // htmlView.setPictureListener(wvClient);
     }
 
     @Override
@@ -218,7 +163,6 @@ public class EntryViewSingle implements MdxEntryView {
         htmlView.loadUrl(url);
     }
 
-    private Handler jsHandler = new Handler();
     private MdxView mdxView = null;
     private WebView htmlView = null;
     MdxWebViewClient wvClient = null;

@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import cn.mdict.R;
@@ -40,10 +39,23 @@ public class EntryViewList implements MdxEntryView {
             viewList = (LinearLayout) scrollView.findViewById(R.id.entryList);
     }
 
+    /*
+    public boolean onPageLoadCompleted(WebView view) {
+        if (view.getParent() != null) {
+            View pv = (View) view.getParent();
+            int vPos = view.getScrollY() + view.getTop();
+            scrollView.requestChildRectangleOnScreen(pv, new Rect(0, vPos, view.getWidth(), vPos + scrollView.getHeight()), true);
+            return mdxView.onPageLoadCompleted(view);
+        }
+
+        return false;
+    }
+    */
+
     @Override
     public void setMdxView(MdxView mdxView) {
         this.mdxView = mdxView;
-        webViewClient = new MdxWebViewClient(mdxView, scrollView);
+        webViewClient = new MdxWebViewClient(mdxView);
         resetAllBlockPlugin();
     }
 
@@ -99,7 +111,6 @@ public class EntryViewList implements MdxEntryView {
                 wv = (WebView) ll.findViewById(R.id.entry_content);
                 wv.setWebViewClient(webViewClient);
                 wv.setOnTouchListener(new WebViewGestureFilter(wv, gestureListener));
-                //wv.setPictureListener(wvClient);
                 wv.setVerticalScrollbarOverlay(true);
                 wv.getSettings().setJavaScriptEnabled(true);
                 wv.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
@@ -220,4 +231,5 @@ public class EntryViewList implements MdxEntryView {
     private LinearLayout[] blockCache = null; //new LinearLayout[30];
     private int blockCacheCount = 0;
     private Context context;
+
 }

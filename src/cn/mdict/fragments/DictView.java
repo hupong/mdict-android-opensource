@@ -21,7 +21,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Picture;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -35,7 +34,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
-import android.webkit.WebView.PictureListener;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import cn.mdict.*;
@@ -81,7 +79,6 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             st.setScrollX(view.getHtmlView().getScrollX());
             st.setScrollY(view.getHtmlView().getScrollY());
             history.add(st);
-            contentView.getHtmlView().setPictureListener(null);
         }// added by alex end
 
         setCurrentEntry(entry);
@@ -119,6 +116,15 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     @Override
     public boolean onPlayAudio(MdxView view, String path) {
         return false;
+    }
+
+    @Override
+    public boolean onPageLoadCompleted(WebView view) {
+        if (lastTrack != null) {
+            view.scrollTo(lastTrack.getScrollX(), lastTrack.getScrollY());
+            lastTrack = null;
+        }
+        return true; //return true to suppress "jump to anchor"
     }
 
     @Override
@@ -716,31 +722,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             DictEntry entry = MdxEngine.getHistMgr().getPrev();
 
             if (entry != null && entry.isValid() && depth > 0) {
-                SearchTrack st = history.get(history.size() - 1); // added by
-                // alex
+                lastTrack = history.get(history.size() - 1); // added by alex
                 depth -= 1;// added by alex
                 displayByEntry(entry, false);
-                final int sX = st.getScrollX();
-                final int sY = st.getScrollY();
-
-                contentView.getHtmlView().setPictureListener(
-                        new PictureListener() {
-                            @Override
-                            public void onNewPicture(WebView view,
-                                                     Picture picture) {
-                                view.scrollTo(sX, sY);
-                                view.setPictureListener(null);
-                            }
-                        });
-
-				/*
-                 * contentView.getHtmlView().post(new Runnable() {
-				 * 
-				 * @Override public void run() {
-				 * contentView.getHtmlView().scrollTo(sX, sY); } });
-				 */
-                // contentView.getHtmlView().scrollTo(st.getScrollX(),
-                // st.getScrollY()); //added by alex
                 history.remove(history.size() - 1); // added by alex
             } else {
                 switchToListView();
@@ -941,7 +925,6 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         else//al20121205.en
             history.clear();
         history = new ArrayList<SearchTrack>();
-        contentView.getHtmlView().setPictureListener(null);
     }
 
     private View.OnTouchListener logoIconTouchListener = new View.OnTouchListener() {
@@ -1033,6 +1016,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     private View currentView = null;
     private ViewGroup fragmentContainer = null;
 
+
     private ImageButton btnSpeak = null;
     private ImageButton btnAddToFav = null;
     private ImageButton btnJukuu = null;
@@ -1052,6 +1036,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     private Handler onlineReferenceHandler = null;
 
     private ArrayList<SearchTrack> history;
+    private SearchTrack lastTrack = null;
 
     private static final String TAG = "MDict.DictView";
 

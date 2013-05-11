@@ -38,7 +38,7 @@ import cn.mdict.utils.WordSuggestion;
 public class MdxView extends RelativeLayout {
 
     public interface MdxViewListener {
-        // If events were handled by listener, the listener should return true.
+        // If events listener want to suppress the default action, it should return true.
         // Otherwise should return false.
         boolean onSearchText(MdxView view, String text, int touchPointX, int touchPointY);
 
@@ -47,7 +47,18 @@ public class MdxView extends RelativeLayout {
         boolean onHeadWordNotFound(MdxView view, String headWord, int touchPointX, int touchPointY);// added by alex
 
         boolean onPlayAudio(MdxView view, String path);
+
+        //Default action is "jump to anchor"
+        boolean onPageLoadCompleted(WebView view);
     }
+
+    public boolean onPageLoadCompleted(WebView view) {
+        if (mdxViewListener != null) {
+            return mdxViewListener.onPageLoadCompleted(view);
+        }
+        return false;
+    }
+
 
     public MdxView(Context context) {
         this(context, null);
@@ -192,6 +203,7 @@ public class MdxView extends RelativeLayout {
                         if (currentEntry.isUnionDictEntry()) {
                             switchViewMode(true);
                             entryViewList.displayEntry(currentEntry);
+                            //TODO: should scroll view to webview if "Show only one entry"
                         } else {
                             switchViewMode(false);
                             entryViewSingle.loadUrl(String.format(
