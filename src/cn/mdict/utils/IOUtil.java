@@ -22,17 +22,16 @@ import cn.mdict.mdx.MdxEngine;
 import java.io.*;
 
 /**
- * Created with IntelliJ IDEA.
  * User: rayman
  * Date: 13-2-20
  * Time: 上午11:20
- * To change this template use File | Settings | File Templates.
  */
 public class IOUtil {
     public static boolean createDir(String dir) {
         File dirFile = new File(dir);
         return dirFile.mkdir();
     }
+
     public static boolean copyAssetToFile(AssetManager assets, String filename, boolean overWrite, String targetDir, String newFileName) {
 
         boolean result = false;
@@ -99,7 +98,7 @@ public class IOUtil {
         BufferedReader in = null;
         try {
             in = new BufferedReader(new InputStreamReader(inputStream, encoding));
-            int read_size = 0;
+            int read_size;
             while ((read_size = in.read(char_buf)) != -1) {
                 str.append(char_buf, 0, read_size);
             }

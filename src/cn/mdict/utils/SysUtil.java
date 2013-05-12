@@ -22,11 +22,9 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 
 /**
- * Created with IntelliJ IDEA.
  * User: rayman
  * Date: 13-2-20
  * Time: 上午11:25
- * To change this template use File | Settings | File Templates.
  */
 public class SysUtil {
     public static int getVersionCode(Context context) {
@@ -47,10 +45,10 @@ public class SysUtil {
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
             versionName = pi.versionName;
             if (versionName == null || versionName.length() <= 0) {
-                versionName="";
+                versionName = "";
             }
-            if ( withBuildNo ){
-                versionName+=" (build "+pi.versionCode+")";
+            if (withBuildNo) {
+                versionName += " (build " + pi.versionCode + ")";
             }
         } catch (Exception e) {
             Log.e("VersionInfo", "Exception", e);

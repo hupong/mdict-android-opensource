@@ -75,7 +75,7 @@
     <string name="mdict_search_hint">查找</string>
     <string name="search_setting_description">词典, 百科</string>
     <string name="online_reference_loading">加载中...,请稍候!</string>
-
+    <string name="network_not_available"><![CDATA[<font color=red><b>无可用网络</b></font>]]></string>
 
     <!-- string for setting frame -->
     <string name="pref_cate_title_basic_setting">基础设置</string>
@@ -140,10 +140,10 @@
     <string name="pref_title_use_popover_for_lookup">用弹出窗口显示词典内查找</string>
 
     <!-- alex 2012-12-07 start -->
-      <string name="pref_title_fixed_dict_title">固定辞典标题</string>
-      <string name="pref_summary_fixed_dict_title">当滚动辞典窝内空时固定辞典标题</string>
-      
-      <string name="pref_title_global_clipboard_monitor">监视系统剪贴板</string>
-      <string name="pref_summary_global_clipboard_monitor">当用户在任何地方复制文字时自动弹出浮动窗口翻译</string>
+    <string name="pref_title_fixed_dict_title">固定辞典标题</string>
+    <string name="pref_summary_fixed_dict_title">当滚动辞典窝内空时固定辞典标题</string>
+
+    <string name="pref_title_global_clipboard_monitor">监视系统剪贴板</string>
+    <string name="pref_summary_global_clipboard_monitor">当用户在任何地方复制文字时自动弹出浮动窗口翻译</string>
     <!-- alex 2012-12-07 end -->
 </resources>

@@ -19,9 +19,6 @@
  */
 package cn.mdict.widgets;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,6 +31,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 import cn.mdict.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Rayman
@@ -80,7 +80,7 @@ public class GridViewMenu {
         gridViewDialog.setView(gridLayout);
 
         gridMenu = (GridView) gridLayout.findViewById(R.id.grid_view_menu);
-        if (menuNameArray.length > 0) {
+        if (menuNameArray != null && menuNameArray.length > 0) {
             setupMenuAdapter(context);
         }
         //FrameLayout fl = (FrameLayout) findViewById(android.R.id.custom);

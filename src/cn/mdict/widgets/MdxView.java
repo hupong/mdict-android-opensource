@@ -53,16 +53,7 @@ public class MdxView extends RelativeLayout {
     }
 
     public boolean onPageLoadCompleted(WebView view) {
-        if (mdxViewListener != null) {
-            return mdxViewListener.onPageLoadCompleted(view);
-        }
-        return false;
-    }
-
-
-    public MdxView(Context context) {
-        this(context, null);
-        // Inflate the ic_view from the layout resource.
+        return mdxViewListener != null && mdxViewListener.onPageLoadCompleted(view);
     }
 
     public MdxView(Context context, AttributeSet attrs) {
@@ -386,7 +377,7 @@ public class MdxView extends RelativeLayout {
                     && ttsEngine != null
                     && MdxEngine.getSettings().getPrefUseTTS()) {
                 String headword = currentEntry.getHeadword().trim();
-                StringBuffer hw = new StringBuffer(currentEntry.getHeadword()
+                StringBuilder hw = new StringBuilder(currentEntry.getHeadword()
                         .length());
                 char c;
                 for (int i = 0; i < headword.length(); ++i) {

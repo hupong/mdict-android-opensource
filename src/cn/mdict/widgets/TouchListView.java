@@ -22,13 +22,7 @@ import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
-import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -145,7 +139,7 @@ public class TouchListView extends ListView {
                         break;
                     }
 
-                    View item = (View) getChildAt(itemnum - getFirstVisiblePosition());
+                    View item = getChildAt(itemnum - getFirstVisiblePosition());
 
                     if (isDraggableRow(item)) {
                         mDragPoint = y - item.getTop();

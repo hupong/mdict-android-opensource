@@ -120,6 +120,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     @Override
     public boolean onPageLoadCompleted(WebView view) {
+        //TODO: should add support for non-highspeed view mode of MdxView
         if (lastTrack != null) {
             view.scrollTo(lastTrack.getScrollX(), lastTrack.getScrollY());
             lastTrack = null;

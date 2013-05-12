@@ -22,11 +22,9 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 /**
- * Created by IntelliJ IDEA.
  * User: Rayman
  * Date: 12-2-2
  * Time: 下午4:24
- * To change this template use File | Settings | File Templates.
  */
 public class SimpleActionModeCallbackAgent implements ActionMode.Callback {
     public interface ActionItemClickListener {

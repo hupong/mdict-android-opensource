@@ -17,17 +17,13 @@
 package cn.mdict;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 /**
- * Created by IntelliJ IDEA.
  * User: Rayman
  * Date: 11-12-20
  * Time: 下午2:33
- * To change this template use File | Settings | File Templates.
  */
 public class SimpleGestureFilter extends GestureDetector.SimpleOnGestureListener {
 
@@ -164,7 +160,6 @@ public class SimpleGestureFilter extends GestureDetector.SimpleOnGestureListener
     @Override
     public boolean onDoubleTap(MotionEvent arg0) {
         this.listener.onDoubleTap();
-        ;
         return true;
     }
 

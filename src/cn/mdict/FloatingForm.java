@@ -22,8 +22,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.*;
 import android.view.View.OnTouchListener;
@@ -40,14 +38,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Timer;
 import java.util.regex.Pattern;
 
 //import android.view.WindowManager.LayoutParams;
 
 public class FloatingForm extends SherlockFragmentActivity {
 
-    private static final String TAG="MDict.FloatingForm";
+    private static final String TAG = "MDict.FloatingForm";
 
     public static final int kHistoryIntentId = 0;
     public static final int kFavoritesIntentId = 1;
@@ -72,7 +69,7 @@ public class FloatingForm extends SherlockFragmentActivity {
         try {
             Log.d(TAG, "Begin Init");
             //sendBroadcast(new Intent("mdict.cn.KillMainUI"));
-            theApp=MDictApp.getInstance();
+            theApp = MDictApp.getInstance();
             theApp.setupAppEnv(getApplicationContext());
 
             setContentView(R.layout.floating_frame);
@@ -108,7 +105,7 @@ public class FloatingForm extends SherlockFragmentActivity {
             .compile("content://mdx[.]mdict[.]cn/(\\d+)_(-?\\d+)_(.*)");
 
     private void handleIntent(Intent intent) {
-        if (theApp.getMainDict()!= null && theApp.getMainDict().isValid()) {
+        if (theApp.getMainDict() != null && theApp.getMainDict().isValid()) {
 
             // Set windows to floating
             WindowManager manager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
@@ -137,8 +134,12 @@ public class FloatingForm extends SherlockFragmentActivity {
 			 */
 
             OnTouchListener gestureListener = new View.OnTouchListener() {
-                int lastX, lastY;
-                int initX, initY;
+                int lastX
+                        ,
+                        lastY;
+                int initX
+                        ,
+                        initY;
                 int ignoreOffset = 30;
                 int webViewHeight = (int) (dictView.getHtmlView().getContentHeight() * dictView.getHtmlView().getScale());
                 final int ADJUST_HEIGHT = 1;
@@ -182,8 +183,8 @@ public class FloatingForm extends SherlockFragmentActivity {
                                         // int dy = (int) event.getRawY() - lastY;
                                         int height = params.height
                                                 + ((int) event.getRawX() - lastX);
-                                        if (height < display.getHeight() * 1 / 10) {
-                                            height = display.getHeight() * 1 / 10;
+                                        if (height < display.getHeight() / 10) {
+                                            height = display.getHeight() / 10;
                                         }
                                         if (height > display.getHeight() * 9 / 10) {
                                             height = display.getHeight() * 9 / 10;
@@ -212,7 +213,7 @@ public class FloatingForm extends SherlockFragmentActivity {
                                                 && Math.abs(scrollOffsetY) > currentY) {
                                             scrollOffsetY = -currentY;
                                         }
-                                        dictView.getHtmlView().scrollBy(dictView.getHtmlView().getScrollX(),scrollOffsetY);
+                                        dictView.getHtmlView().scrollBy(dictView.getHtmlView().getScrollX(), scrollOffsetY);
                                         //final int actualOffsetY = scrollOffsetY;
                                         // if (scrollOffsetY > 0
                                         // && currentY + scrollOffsetY >
@@ -220,7 +221,7 @@ public class FloatingForm extends SherlockFragmentActivity {
                                         // scrollOffsetY = webViewHeight - currentY;
                                         // }
                                         // dictView.getHtmlView().get
-									/*
+                                    /*
 									TimerTask task = new TimerTask() {           
 							            float t = 0;
 							            float sig = -Math.signum(actualOffsetY);
@@ -432,10 +433,10 @@ public class FloatingForm extends SherlockFragmentActivity {
                     int libId = data.getIntExtra(LibraryFrame.SELECTED_LIB_ID,
                             DictPref.kInvalidDictPrefId);
                     if (libId != DictPref.kInvalidDictPrefId) {
-                        int result=MDictApp.getInstance().openPopupDictById(libId);
-                        if (result==MdxDictBase.kMdxSuccess){;
+                        int result = MDictApp.getInstance().openPopupDictById(libId);
+                        if (result == MdxDictBase.kMdxSuccess) {
                             dictView.changeDict(MDictApp.getInstance().getMainDict(), true);
-                        }else {
+                        } else {
                             String info = String.format(getString(R.string.fail_to_open_dict), result);
                             MiscUtils.showMessageDialog(this, info, getString(R.string.error));
                         }

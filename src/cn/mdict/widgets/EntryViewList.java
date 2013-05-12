@@ -95,12 +95,12 @@ public class EntryViewList implements MdxEntryView {
             if (wv != null) {
                 wv.destroy();
             }
-            wv = null;
+            wv = null; //Release reference
         }
 
         viewList.removeAllViews();
         for (int i = 0; i < entry.getSiblingCount(); ++i) {
-            LinearLayout ll = null;
+            LinearLayout ll;
             WebView wv;
             if (i >= blockCacheCount) {
                 ll = new LinearLayout(context);

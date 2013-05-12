@@ -36,18 +36,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
-import cn.mdict.mdx.*;
+import cn.mdict.mdx.MdxDictBase;
+import cn.mdict.mdx.MdxEngine;
+import cn.mdict.mdx.MdxEngineSetting;
+import cn.mdict.mdx.MdxUtils;
 import cn.mdict.utils.IOUtil;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 
 public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
     static MediaPlayer mediaPlayer = null;
-    static boolean  appInited=false;
-    private static final String TAG="MDict.MiscUtil";
+    static boolean appInited = false;
+    private static final String TAG = "MDict.MiscUtil";
 
 
     public static Boolean checkNetworkStatus(Context context) {
@@ -60,7 +64,7 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
     }
 
     public static String getAudioFileNameForWord(String word, String extension) {
-        StringBuffer audioFileName = new StringBuffer("\\");
+        StringBuilder audioFileName = new StringBuilder("\\");
         if (word.length() == 0) return audioFileName.toString();
 
         String stripedWord = word.trim();
@@ -69,7 +73,7 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
         return audioFileName.toString();
     }
 
-    public static final String getErrorMessage(Throwable e) {
+    public static String getErrorMessage(Throwable e) {
         if (e.getMessage() == null)
             return e.toString();
         else
@@ -187,7 +191,7 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
             mediaPlayer.prepare();
             mediaPlayer.start();
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
     }
 
@@ -229,7 +233,6 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
             dataOffset += curBufSize;
             audioSize -= curBufSize;
         }
-        ;
         outTrack.stop();
     }
 
@@ -270,10 +273,7 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
 
     public static boolean playAudioForWord(MdxDictBase dict, String headword) {
         if (headword.length() > 0) {
-            if (!playAudio(dict, getAudioFileNameForWord(headword, ".spx"))) {
-                return playAudio(dict, getAudioFileNameForWord(headword, ".wav"));
-            }
-            return true;
+            return playAudio(dict, getAudioFileNameForWord(headword, ".spx")) || playAudio(dict, getAudioFileNameForWord(headword, ".wav"));
         } else
             return false;
     }
@@ -308,10 +308,7 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
     public static boolean hasSpeechForWord(MdxDictBase dict, String headword) {
         if (headword.length() == 0)
             return false;
-        if (findSpeechForWord(dict, headword, ".spx"))
-            return true;
-        else
-            return findSpeechForWord(dict, headword, ".wav");
+        return findSpeechForWord(dict, headword, ".spx") || findSpeechForWord(dict, headword, ".wav");
     }
 
     public static void showMessageDialog(Context context, String message, String title) {
@@ -356,38 +353,40 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
         try {
             decodedUrl = new String(URLUtil.decode(url.getBytes("UTF-8")), "UTF-8");
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return decodedUrl;
     }
 
-    public static void replaceViewInLayoutById(ViewGroup container, int id, View view){
-        View dummy=container.findViewById(id);
-        if (dummy==null || container==null)
-            return;
-        ViewGroup viewParent=(ViewGroup)dummy.getParent();
-        int v_index=viewParent.indexOfChild(dummy);
-        if (v_index>=0){
-            if (view!=null ){
-                view.setId(dummy.getId());
-                view.setLayoutParams(dummy.getLayoutParams());
-                viewParent.removeViewAt(v_index);
-                viewParent.addView(view,v_index);
-            }else{
-                viewParent.removeViewAt(v_index);
+    public static void replaceViewInLayoutById(ViewGroup container, int id, View view) {
+        if (container != null) {
+            View dummy = container.findViewById(id);
+            if (dummy != null) {
+                ViewGroup viewParent = (ViewGroup) dummy.getParent();
+                int v_index = viewParent.indexOfChild(dummy);
+                if (v_index >= 0) {
+                    if (view != null) {
+                        view.setId(dummy.getId());
+                        view.setLayoutParams(dummy.getLayoutParams());
+                        viewParent.removeViewAt(v_index);
+                        viewParent.addView(view, v_index);
+                    } else {
+                        viewParent.removeViewAt(v_index);
+                    }
+                    container.requestLayout();
+                }
             }
-            container.requestLayout();
         }
     }
 
-    public static void changeContainer(ViewGroup rootView, int containerId, ViewGroup newContainer){
-        ViewGroup container=(ViewGroup)rootView.findViewById(containerId);
-        if ( container==null )
+    public static void changeContainer(ViewGroup rootView, int containerId, ViewGroup newContainer) {
+        ViewGroup container = (ViewGroup) rootView.findViewById(containerId);
+        if (container == null)
             return;
-        ViewGroup parentView=(ViewGroup)container.getParent();
-        int index=parentView.indexOfChild(container);
-        for( int i=container.getChildCount()-1; i>=0; --i ){
-            View view=container.getChildAt(i);
+        ViewGroup parentView = (ViewGroup) container.getParent();
+        int index = parentView.indexOfChild(container);
+        for (int i = container.getChildCount() - 1; i >= 0; --i) {
+            View view = container.getChildAt(i);
             container.removeViewAt(i);
             newContainer.addView(view, 0);
         }
@@ -396,31 +395,30 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
         parentView.requestLayout();
     }
 
-    public static boolean isTablet(Context context){
-        return getScreenSize(context)>6.0f;
+    public static boolean isTablet(Context context) {
+        return getScreenSize(context) > 6.0f;
     }
 
     public static float getScreenSize(Context context) {
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        float screenWidth  = dm.widthPixels / dm.xdpi;
+        float screenWidth = dm.widthPixels / dm.xdpi;
         float screenHeight = dm.heightPixels / dm.ydpi;
-        double size = Math.sqrt(Math.pow(screenWidth, 2) +
-                Math.pow(screenHeight, 2));
+        double size = Math.sqrt(screenWidth * screenWidth + screenHeight * screenHeight);
         // Tablet devices should have a screen size greater than 6 inches
-        return (float)size;
+        return (float) size;
     }
 
-    public static boolean shouldUseSplitViewMode(Context context){
-        switch( MdxEngine.getSettings().getPrefSplitViewMode() ){
+    public static boolean shouldUseSplitViewMode(Context context) {
+        switch (MdxEngine.getSettings().getPrefSplitViewMode()) {
             case MdxEngineSetting.kSplitViewModeOff:
                 return false;
             case MdxEngineSetting.kSplitViewModeOn:
                 return true;
             case MdxEngineSetting.kSplitViewModeAuto:
                 //Should change this according screen size and resolution.
-                Log.d(TAG, "Screen size:"+String.valueOf(getScreenSize(context)));
-                Log.d(TAG, "Orientation:"+String.valueOf(context.getResources().getConfiguration().orientation));
-                return (getScreenSize(context)>3.8) && context.getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE;
+                Log.d(TAG, "Screen size:" + String.valueOf(getScreenSize(context)));
+                Log.d(TAG, "Orientation:" + String.valueOf(context.getResources().getConfiguration().orientation));
+                return (getScreenSize(context) > 3.8) && context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         }
         return false;
     }

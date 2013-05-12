@@ -14,7 +14,7 @@ public class ClipboardMonitorStarter extends BroadcastReceiver {
     /* This class should be public; otherwise, the system don't have privilege
      * to instantiate it and cause exception occurs.
      */
-    private static final String TAG="MDict.ClipboardMonitorStarter";
+    private static final String TAG = "MDict.ClipboardMonitorStarter";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -26,7 +26,7 @@ public class ClipboardMonitorStarter extends BroadcastReceiver {
                         + ClipboardMonitor.class.getName());
             }
         } else {
-            Log.e(TAG, "Recieved unexpected intent " + intent.toString());
+            Log.e(TAG, "Received unexpected intent " + intent.toString());
         }
     }
 }

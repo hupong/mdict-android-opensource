@@ -20,11 +20,9 @@ import android.content.Context;
 import android.os.Handler;
 
 /**
- * Created with IntelliJ IDEA.
  * User: rayman
  * Date: 13-2-20
  * Time: 下午4:33
- * To change this template use File | Settings | File Templates.
  */
 public interface OnlineReference {
     public void lookup(String headword, Context context, final Handler resultHandler);

@@ -16,13 +16,6 @@
 
 package cn.mdict;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.app.SearchManager;
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -41,11 +34,21 @@ import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
 import cn.mdict.utils.IOUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class DictContentProvider extends ContentProvider {
     private static final String ContentHost = "mdict.cn";
     private static final String SEARCH_PATH = "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-    private static final String TAG="MDict.DictContentProvider";
+    private static final String TAG = "MDict.DictContentProvider";
 
     //private static final String URI_PREFIX = "file://";
     private static MdxDictBase fCurrentDict;
@@ -67,7 +70,7 @@ public class DictContentProvider extends ContentProvider {
     ParcelFileDescriptor openLocalFile(String filePath) throws FileNotFoundException {
         ParcelFileDescriptor parcel = null;
         try {
-            File resFile = new File(MdxEngine.getDataHomeDir()+"/" + filePath);
+            File resFile = new File(MdxEngine.getDataHomeDir() + "/" + filePath);
             parcel = ParcelFileDescriptor.open(resFile, ParcelFileDescriptor.MODE_READ_ONLY);
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,7 +103,6 @@ public class DictContentProvider extends ContentProvider {
         String tmpFileName = "/mdict" + uri.getPath();
         StringBuffer mimeType = new StringBuffer();
         byte[] data = getDataByUrl(fCurrentDict, uri, mimeType);
-        android.os.MemoryFile memFile = null;
         if (data != null && data.length > 0) {
             return makeAssetFileDescriptorFromByteArray(tmpFileName, data);
         }
@@ -132,16 +134,19 @@ public class DictContentProvider extends ContentProvider {
                             os.close();
                         path.delete();
                     } catch (Exception e1) {
+                        e1.printStackTrace();
                     } finally {
-                        return null;
+                        path = null;
                     }
                 }
             }
         } else if (path.isDirectory())
             return null;
 
-        ParcelFileDescriptor parcel = ParcelFileDescriptor.open(path, ParcelFileDescriptor.MODE_READ_ONLY);
-        return parcel;
+        if (path != null)
+            return ParcelFileDescriptor.open(path, ParcelFileDescriptor.MODE_READ_ONLY);
+        else
+            return null;
     }
 
     static HashMap<String, byte[]> cache = new HashMap<String, byte[]>();
@@ -151,7 +156,7 @@ public class DictContentProvider extends ContentProvider {
 
     @Override
     public AssetFileDescriptor openAssetFile(Uri uri, String mode) throws FileNotFoundException {
-        Log.d(TAG, "openAssetFile:"+uri.toString());
+        Log.d(TAG, "openAssetFile:" + uri.toString());
         if (uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
             String path = uri.getPath();
             Matcher matcher = LocalFilePattern.matcher(path);
@@ -257,6 +262,7 @@ public class DictContentProvider extends ContentProvider {
                             try {
                                 maxResultCount = Integer.parseInt(limit);
                             } catch (NumberFormatException e) {
+                                e.printStackTrace();
                             }
                         }
                         ArrayList<DictEntry> entryList = new ArrayList<DictEntry>();
@@ -268,8 +274,7 @@ public class DictContentProvider extends ContentProvider {
                                 SearchManager.SUGGEST_COLUMN_SHORTCUT_ID};
                         MatrixCursor cursor = new MatrixCursor(columns, maxResultCount);
                         Object[] row;
-                        for (int i = 0; i < entryList.size(); ++i) {
-                            DictEntry cur_entry = entryList.get(i);
+                        for (DictEntry cur_entry : entryList) {
                             String intentDataId = String.format("%d_%d_%s", cur_entry.getDictId(), cur_entry.getEntryNo(), cur_entry.getHeadword());
                             row = new Object[]{cur_entry.toString(), cur_entry.getHeadword(), intentDataId, SearchManager.SUGGEST_NEVER_MAKE_SHORTCUT};
                             cursor.addRow(row);

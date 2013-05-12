@@ -16,9 +16,6 @@
 
 package cn.mdict.mdx;
 
-import cn.mdict.mdx.DictEntry;
-import cn.mdict.mdx.DictPref;
-
 import java.util.ArrayList;
 
 /**
@@ -179,10 +176,7 @@ public class MdxDictBase {
      * @return the valid (type boolean) of this MdxDictBase object.
      */
     public synchronized boolean isValid() {
-        if (fInstance == 0)
-            return false;
-        else
-            return isValidN();
+        return fInstance != 0 && isValidN();
     }
 
     /**

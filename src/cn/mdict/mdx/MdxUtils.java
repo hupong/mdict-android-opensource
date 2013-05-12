@@ -21,11 +21,9 @@ import android.webkit.WebView;
 import java.io.ByteArrayOutputStream;
 
 /**
- * Created by IntelliJ IDEA.
  * User: rayman
  * Date: 11-12-17
  * Time: 下午10:52
- * To change this template use File | Settings | File Templates.
  */
 public class MdxUtils {
     /**

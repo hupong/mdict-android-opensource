@@ -16,13 +16,15 @@
 
 package cn.mdict;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxEngine;
 import cn.mdict.widgets.LibraryAdapter;
@@ -135,7 +137,6 @@ public class LibraryFrame extends SherlockFragmentActivity {
             }
         }
         finish();
-        return;
     }
 
     @Override

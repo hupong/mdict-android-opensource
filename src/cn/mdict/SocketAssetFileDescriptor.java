@@ -21,14 +21,11 @@ import android.os.ParcelFileDescriptor;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.Socket;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Rayman
  * Date: 12-4-27
  * Time: 下午2:57
- * To change this template use File | Settings | File Templates.
  */
 public class SocketAssetFileDescriptor extends AssetFileDescriptor {
 

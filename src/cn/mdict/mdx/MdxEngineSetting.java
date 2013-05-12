@@ -28,9 +28,9 @@ import cn.mdict.R;
  *         Created on 11-12-31
  */
 public class MdxEngineSetting {
-    public static final int kSplitViewModeOff=0;
-    public static final int kSplitViewModeOn=1;
-    public static final int kSplitViewModeAuto=2;
+    public static final int kSplitViewModeOff = 0;
+    public static final int kSplitViewModeOn = 1;
+    public static final int kSplitViewModeAuto = 2;
 
     public static String preferenceName = null;
     public static String prefLastDictId;
@@ -62,7 +62,7 @@ public class MdxEngineSetting {
 
     public static String prefGlobalClipboardMonitor;//Alex20121207.n
     public static String prefFixedDictTitle;//Alex20121207.n
-    
+
     //Preference default values
     public static String prefDefaultTTSLocale;
     public static boolean prefDefaultAutoPlayPronunciation;
@@ -88,7 +88,7 @@ public class MdxEngineSetting {
 
     public static boolean prefDefaultGlobalClipboardMonitor;//Alex20121207.n
     public static boolean prefDefaultFixedDictTitle;//Alex20121207.n
-    
+
     /**
      * Constructor MdxEngineSetting creates a new MdxEngineSetting instance.
      */
@@ -125,7 +125,7 @@ public class MdxEngineSetting {
             prefFloatingWindowHeight = res.getString(R.string.pref_floating_window_height);
             prefGlobalClipboardMonitor = res.getString(R.string.pref_global_clipboard_monitor);//Alex20121207.n
             prefFixedDictTitle = res.getString(R.string.pref_fixed_dict_title);//Alex20121207.n
-            
+
             prefDefaultTTSLocale = res.getString(R.string.pref_default_tts_locale);
             prefDefaultAutoPlayPronunciation = Boolean.parseBoolean(res.getString(R.string.pref_default_auto_play_pronunciation));
             prefDefaultUseTTS = Boolean.parseBoolean(res.getString(R.string.pref_default_use_tts));
@@ -149,7 +149,7 @@ public class MdxEngineSetting {
             prefDefaultFloatingWindowHeight = Integer.parseInt(res.getString(R.string.pref_default_floating_window_height), 10);
             prefDefaultGlobalClipboardMonitor = Boolean.parseBoolean(res.getString(R.string.pref_default_global_clipboard_monitor));//Alex20121207.n
             prefDefaultFixedDictTitle = Boolean.parseBoolean(res.getString(R.string.pref_default_fixed_dict_title));//Alex20121207.n
-            
+
         }
         this.appPrefs = appContext.getApplicationContext().getSharedPreferences(preferenceName, 0);
     }
@@ -466,9 +466,9 @@ public class MdxEngineSetting {
     }
 
     public void setPrefSplitViewMode(int splitViewMode) {
-        if (splitViewMode>kSplitViewModeAuto)
-            splitViewMode=kSplitViewModeAuto;
-        appPrefs.edit().putString(prefSplitViewMode, new Integer(splitViewMode).toString()).commit();
+        if (splitViewMode > kSplitViewModeAuto)
+            splitViewMode = kSplitViewModeAuto;
+        appPrefs.edit().putString(prefSplitViewMode, Integer.toString(splitViewMode)).commit();
     }
 
     public int getPrefFloatingWindowHeight() {
@@ -480,6 +480,7 @@ public class MdxEngineSetting {
     }
 
     //alex20121207.sn
+
     /**
      * Method getPrefGlobalClipboardMonitor returns the prefGlobalClipboardMonitor of this MdxEngineSetting object.
      *
@@ -497,7 +498,7 @@ public class MdxEngineSetting {
     public void setPrefGlobalClipboardMonitor(boolean enable) {
         appPrefs.edit().putBoolean(prefGlobalClipboardMonitor, enable).commit();
     }
-    
+
     /**
      * Method getPrefFixedDictTitle returns the prefFixedDictTitle of this MdxEngineSetting object.
      *

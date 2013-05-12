@@ -16,29 +16,14 @@
 
 package cn.mdict.widgets;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import cn.mdict.R;
 import cn.mdict.WebViewGestureFilter;
 import cn.mdict.mdx.DictEntry;
-import cn.mdict.mdx.MdxDictBase;
-import cn.mdict.mdx.MdxEngine;
-import cn.mdict.mdx.MdxUtils;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Rayman
  * Date: 12-5-18
  * Time: 下午3:19
- * To change this template use File | Settings | File Templates.
  */
 public interface MdxEntryView {
     public void setMdxView(MdxView mdxView);

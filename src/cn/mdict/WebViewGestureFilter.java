@@ -16,22 +16,16 @@
 
 package cn.mdict;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.text.format.Time;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
 
 /**
- * Created by IntelliJ IDEA.
  * User: Rayman
  * Date: 11-12-20
  * Time: 下午3:20
- * To change this template use File | Settings | File Templates.
  */
 public class WebViewGestureFilter implements View.OnTouchListener {
     private boolean flinged;
@@ -58,8 +52,8 @@ public class WebViewGestureFilter implements View.OnTouchListener {
     }
 
     public WebViewGestureFilter(View view, GestureListener gestureListener) {
-        int swipeLeft = 0;
-        int swipeRight = 0;
+        //int swipeLeft = 0;
+        //int swipeRight = 0;
         this.targetView = view;
         gd = new GestureDetector(view.getContext(), sogl);
         listener = gestureListener;
@@ -91,7 +85,7 @@ public class WebViewGestureFilter implements View.OnTouchListener {
     }
 
     private int calculateTouchPointCount(MotionEvent currentEvent, boolean reset) {
-        int pointerCount = 0;
+        int pointerCount;
         if (currentEvent.getEventTime() - lastPointerCountChangeTime < 300 && lastPointerCount != 0) {
             pointerCount = lastPointerCount;
         } else
@@ -147,10 +141,7 @@ public class WebViewGestureFilter implements View.OnTouchListener {
 
         @Override
         public boolean onDoubleTapEvent(android.view.MotionEvent event) {
-            if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
-                return doNotifyDoubleTap(event);
-            } else
-                return false;
+            return (event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP && doNotifyDoubleTap(event);
         }
 
 /*

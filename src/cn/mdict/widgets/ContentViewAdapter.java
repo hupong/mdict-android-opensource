@@ -28,17 +28,12 @@ import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxUtils;
 
 /**
- * Created by IntelliJ IDEA.
  * User: Rayman
  * Date: 12-3-2
  * Time: 上午11:06
- * To change this template use File | Settings | File Templates.
  */
 public class ContentViewAdapter extends BaseAdapter {
 
-    /**
-     *
-     */
     private Context context = null;
     private MdxDictBase dict;
     private DictEntry currentEntry = null;

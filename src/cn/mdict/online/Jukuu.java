@@ -20,9 +20,12 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import cn.mdict.MiscUtils;
+import cn.mdict.R;
 import cn.mdict.utils.IOUtil;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -30,45 +33,50 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created with IntelliJ IDEA.
  * User: rayman
  * Date: 13-2-20
  * Time: 下午4:33
- * To change this template use File | Settings | File Templates.
  */
-public class Jukuu implements OnlineReference{
-    public Jukuu(Context context){
-        template = new StringBuffer();
+public class Jukuu implements OnlineReference {
+    public Jukuu(Context context) {
+        StringBuffer temp = new StringBuffer();
         IOUtil.loadStringFromAsset(context.getAssets(),
-                "JukuuTemplate.html", template, false);
+                "JukuuTemplate.html", temp, false);
+        template = temp.toString();
     }
+
+    private void notifyResult(Handler handler, int retCode, String resultMsg) {
+        Message msg = new Message();
+        msg.arg1 = retCode;
+        msg.obj = resultMsg;
+        handler.sendMessage(msg);
+
+    }
+
     @Override
     public void lookup(String headword, Context context, final Handler resultHandler) {
-        String result;
-        final String search=headword;
+        final String search = headword;
         if (!MiscUtils.checkNetworkStatus(context)) {
-            result="<font color=red><b>Network unavailable</b></font>";
+            notifyResult(resultHandler, 1, context.getResources().getString(R.string.network_not_available));
         }
         new Thread(new Runnable() {
             public void run() {
-                StringBuffer resultText=new StringBuffer();
-                Message msg = new Message();
-                msg.arg1 =captureJukuu(search, resultText)?1:0;
-                msg.obj = template.toString().replace("{DICT_CONTENT}", resultText.toString()); //TODO very low efficiency
-                resultHandler.sendMessage(msg);// 向Handler发送消息，
+                StringBuffer resultText = new StringBuffer();
+                int retCode = captureJukuu(search, resultText) ? 1 : 0;
+                notifyResult(resultHandler, retCode, template.replace("{DICT_CONTENT}", resultText.toString()));
             }
         }).start();
     }
 
     private boolean captureJukuu(String headWord, StringBuffer resultText) {
         //TODO Output is empty when there is no matched headword, need more works
-        boolean result=false;
+        boolean result = false;
         Pattern imgPattern = Pattern
                 .compile("<tr class=e>(.|\n)*?<tr class=s>");
         String searchStr = URLEncoder.encode(headWord.replace(" ", "+"));
         HttpURLConnection connection = null;
-        InputStream is = null;
-        String content = "";
+        InputStream is;
+        String content;
         try {
 
             for (int i = 0; i < 5; i++) {
@@ -88,7 +96,7 @@ public class Jukuu implements OnlineReference{
                     BufferedReader reader = new BufferedReader(
                             new InputStreamReader(is, "utf-8"));
                     StringBuilder buffer = new StringBuilder();
-                    String line = null;
+                    String line;
                     while ((line = reader.readLine()) != null) {
                         buffer.append(line);
                     }
@@ -99,8 +107,8 @@ public class Jukuu implements OnlineReference{
                     while (matcher.find()) {
                         resultText.append(matcher.group().replace("<tr class=s>", "")).append("\n");
                     }
-                    if (content.indexOf("\u003e\u4e0b\u4e00\u9875\u003c\u002f\u0061\u003e") == -1){
-                        result=true;
+                    if (!content.contains("\u003e\u4e0b\u4e00\u9875\u003c\u002f\u0061\u003e")) {
+                        result = true;
                         break;
                     }
                 }
@@ -115,5 +123,5 @@ public class Jukuu implements OnlineReference{
         return result;
     }
 
-    private StringBuffer template=null;
+    private String template;
 }

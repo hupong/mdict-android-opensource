@@ -129,14 +129,14 @@ public class MdxEngine {
         return sameVersion;
     }
 
-    static public boolean setupEnv(Context context){
+    static public boolean setupEnv(Context context) {
         if (appInited)
             return true;
         if (appSetting == null)
             appSetting = new MdxEngineSetting(context);
-        baseContext=context;
+        baseContext = context;
 
-        AssetManager assets=context.getAssets();
+        AssetManager assets = context.getAssets();
         DictContentProvider.setAssetManager(assets);
 
 
@@ -171,7 +171,7 @@ public class MdxEngine {
             IOUtil.copyAssetToFile(assets, "code.js", true, resDir, null);
             IOUtil.copyAssetToFile(assets, "droid_sans.ttf", false, resDir, null);
             IOUtil.copyAssetToFile(assets, "mdict.css", false, resDir, null);
-            IOUtil.saveStringToFile(versionFileName, (new Integer(SysUtil.getVersionCode(context))).toString(), "utf-8");
+            IOUtil.saveStringToFile(versionFileName, Integer.valueOf(SysUtil.getVersionCode(context)).toString(), "utf-8");
         }
 
         ArrayList<String> extraSearchPath = new ArrayList<String>();
@@ -191,8 +191,8 @@ public class MdxEngine {
         return appInited;
     }
 
-    public static int openLastDict(MdxDictBase dict){
-        if ( !appInited )
+    public static int openLastDict(MdxDictBase dict) {
+        if (!appInited)
             return MdxDictBase.kMdxDatabaseNotInited;
         int result = MdxDictBase.kMdxDatabaseNotInited;
         MdxEngineSetting prefs = MdxEngine.getSettings();
@@ -205,7 +205,7 @@ public class MdxEngine {
         if (prefs.getPrefLastDictId() == DictPref.kInvalidDictPrefId
                 || (result = MdxEngine.openDictById(prefs.getPrefLastDictId(), prefs.getPrefsUseLRUForDictOrder(), dict)) != MdxDictBase.kMdxSuccess) {
             if (MdxEngine.getLibMgr().getRootDictPref().getChildCount() > 0) {
-                DictPref dictPref = null;
+                DictPref dictPref;
                 if (prefs.getPrefMultiDictLookkupMode()) {
                     dictPref = MdxEngine.getLibMgr().getRootDictPref();
                 } else
@@ -232,7 +232,6 @@ public class MdxEngine {
         }
 
         StringBuffer css_buffer = new StringBuffer();
-        String mdictCSS = "";
         if (IOUtil.loadStringFromFile(appOne.getDocDirN() + "mdict.css", css_buffer)) {
             if (css_buffer.length() != 0)
                 css += css_buffer.toString();
@@ -396,6 +395,6 @@ public class MdxEngine {
     private static Context baseContext = null;
     private static MdxEngine appOne = new MdxEngine();
     private static MdxEngineSetting appSetting = null;
-    private static boolean appInited=false;
+    private static boolean appInited = false;
 
 }

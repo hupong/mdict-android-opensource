@@ -175,7 +175,6 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
     @Override
     public void onBackPressed() {
         finish();
-        return;
     }
 
 }

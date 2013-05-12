@@ -94,7 +94,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                 if (prefTtsEngine != null)
                     prefGrp.removePreference(prefTtsEngine);
             }
-            if ( ttsSuportedLocale.getEntries()==null || ttsSuportedLocale.getEntries().length==0 ){
+            if (ttsSuportedLocale.getEntries() == null || ttsSuportedLocale.getEntries().length == 0) {
                 prefGrp.removePreference(ttsSuportedLocale);
             }
         }
@@ -218,36 +218,37 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     public void onInit(int i) {
         try {
             PreferenceGroup prefGrp = (PreferenceGroup) findPreference(getResources().getString(R.string.pref_category_sound));
-            ListPreference ttsEngineName = (ListPreference) prefGrp.findPreference(MdxEngineSetting.prefPreferredTTSEngine);
-
-            if (i == TextToSpeech.ERROR) {
-                if (ttsEngine != null) {
-                    ttsEngine.shutdown();
-                    ttsEngine = null;
-                    CheckBoxPreference useTTS = (CheckBoxPreference) findPreference(MdxEngineSetting.prefUseTTS);
-                    if (useTTS != null)
-                        useTTS.setChecked(false); //No TTS engine installed, so we turn it off.
-                    if (prefGrp != null && ttsEngineName != null) {
+            if (prefGrp != null) {
+                ListPreference ttsEngineName = (ListPreference) prefGrp.findPreference(MdxEngineSetting.prefPreferredTTSEngine);
+                if (i == TextToSpeech.ERROR) {
+                    if (ttsEngine != null) {
+                        ttsEngine.shutdown();
+                        ttsEngine = null;
+                        CheckBoxPreference useTTS = (CheckBoxPreference) findPreference(MdxEngineSetting.prefUseTTS);
+                        if (useTTS != null)
+                            useTTS.setChecked(false); //No TTS engine installed, so we turn it off.
+                        if (ttsEngineName != null) {
+                            prefGrp.removePreference(ttsEngineName);
+                        }
+                    }
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && ttsEngine != null && ttsEngineName != null) {
+                        List<TextToSpeech.EngineInfo> engines = ttsEngine.getEngines();
+                        if (!engines.isEmpty()) {
+                            String[] enginePackageName = new String[engines.size()];
+                            String[] engineLable = new String[engines.size()];
+                            int n = 0;
+                            for (TextToSpeech.EngineInfo ei : engines) {
+                                enginePackageName[n] = ei.name;
+                                engineLable[n++] = ei.label;
+                            }
+                            ttsEngineName.setEntries(enginePackageName);
+                            ttsEngineName.setEntryValues(engineLable);
+                        }
+                    }
+                    if (ttsEngineName == null || ttsEngineName.getEntries() == null || ttsEngineName.getEntries().length == 0) {
                         prefGrp.removePreference(ttsEngineName);
                     }
-                }
-            } else {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && ttsEngine != null && ttsEngineName != null) {
-                    List<TextToSpeech.EngineInfo> engines = ttsEngine.getEngines();
-                    if (!engines.isEmpty()) {
-                        String[] enginePackageName = new String[engines.size()];
-                        String[] engineLable = new String[engines.size()];
-                        int n = 0;
-                        for (TextToSpeech.EngineInfo ei : engines) {
-                            enginePackageName[n] = ei.name;
-                            engineLable[n++] = ei.label;
-                        }
-                        ttsEngineName.setEntries(enginePackageName);
-                        ttsEngineName.setEntryValues(engineLable);
-                    }
-                }
-                if (prefGrp != null && (ttsEngineName==null || ttsEngineName.getEntries()==null || ttsEngineName.getEntries().length==0)) {
-                    prefGrp.removePreference(ttsEngineName);
                 }
             }
         } catch (Exception e) {
