@@ -170,7 +170,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
             if (requestCode == kCheckTTS) {
-                if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
+                if (resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_FAIL || resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_BAD_DATA) {
                     // success, create the TTS instance
                     ttsEngine = new TextToSpeech(this, this);
                 }
