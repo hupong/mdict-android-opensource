@@ -16,21 +16,29 @@
 
 package cn.mdict.widgets;
 
+import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cn.mdict.DictContentProvider;
 import cn.mdict.R;
 import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.MdxDictBase;
-
-import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import cn.mdict.mdx.MdxEngine;
 
 public class MdxWebViewClient extends WebViewClient { // implements WebView.PictureListener {
     private MdxView mdxView;
@@ -54,6 +62,7 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
         this.mdxView = mdxView;
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
         StringBuffer mimeType = new StringBuffer();
@@ -66,10 +75,13 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        view.removeJavascriptInterface(JavaScriptInterface);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            //noinspection AndroidLintNewApi
+            view.removeJavascriptInterface(JavaScriptInterface);
+        }
         view.addJavascriptInterface(new Object() {
-            @SuppressWarnings("unused")
             // This is a call back from javascript
+//            @JavascriptInterface
             public void onPageComplete() {
                 jsHandler.post(new Runnable() {
                     public void run() {
@@ -78,12 +90,13 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
                 });
             }
 
+            //            @JavascriptInterface
             public void saveSource(String fileContent) {
                 String UTF8 = "gb2312";
                 BufferedWriter bw;
 
                 try {
-                    String strFile = "/mnt/sdcard/mdict/temp/testWeb.html";
+                    String strFile = MdxEngine.getTempDir() + "testWeb.html";
                     File f = new File(strFile);
                     if (!f.exists()) {
                         f.createNewFile();

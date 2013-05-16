@@ -23,13 +23,17 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.*;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import cn.mdict.fragments.DictView;
-import cn.mdict.mdx.*;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 
@@ -39,6 +43,13 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+
+import cn.mdict.fragments.DictView;
+import cn.mdict.mdx.DictEntry;
+import cn.mdict.mdx.DictPref;
+import cn.mdict.mdx.MdxDictBase;
+import cn.mdict.mdx.MdxEngine;
+import cn.mdict.mdx.MdxEngineSetting;
 
 //import android.view.WindowManager.LayoutParams;
 
@@ -88,8 +99,7 @@ public class FloatingForm extends SherlockFragmentActivity {
         } catch (Exception e) {
             FileOutputStream fos = null;
             try {
-                fos = new FileOutputStream(new File(
-                        "/mnt/sdcard/mdict/doc/mdict_j.log"));
+                fos = new FileOutputStream(new File(MdxEngine.getDocDir() + "mdict_j.log"));
             } catch (FileNotFoundException e1) {
                 MiscUtils.showMessageDialog(this,
                         "Fail to log stack trace to file", "Error");
@@ -222,7 +232,7 @@ public class FloatingForm extends SherlockFragmentActivity {
                                         // }
                                         // dictView.getHtmlView().get
                                     /*
-									TimerTask task = new TimerTask() {           
+                                    TimerTask task = new TimerTask() {
 							            float t = 0;
 							            float sig = -Math.signum(actualOffsetY);
 							            float v0 = Math.abs(actualOffsetY)/50;

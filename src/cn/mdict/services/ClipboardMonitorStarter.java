@@ -18,7 +18,7 @@ public class ClipboardMonitorStarter extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+        if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
             ComponentName service = context.startService(
                     new Intent(context, ClipboardMonitor.class));
             if (service == null) {

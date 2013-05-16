@@ -29,10 +29,6 @@ import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 import android.provider.BaseColumns;
 import android.util.Log;
-import cn.mdict.mdx.DictEntry;
-import cn.mdict.mdx.MdxDictBase;
-import cn.mdict.mdx.MdxEngine;
-import cn.mdict.utils.IOUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,6 +39,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import cn.mdict.mdx.DictEntry;
+import cn.mdict.mdx.MdxDictBase;
+import cn.mdict.mdx.MdxEngine;
+import cn.mdict.utils.IOUtil;
 
 
 public class DictContentProvider extends ContentProvider {
@@ -157,7 +158,7 @@ public class DictContentProvider extends ContentProvider {
     @Override
     public AssetFileDescriptor openAssetFile(Uri uri, String mode) throws FileNotFoundException {
         Log.d(TAG, "openAssetFile:" + uri.toString());
-        if (uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
+        if (uri.getScheme() != null && uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost() != null && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
             String path = uri.getPath();
             Matcher matcher = LocalFilePattern.matcher(path);
             if (matcher.matches() && matcher.groupCount() == 1) {
@@ -224,7 +225,7 @@ public class DictContentProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        if (uri.getPath().startsWith(SEARCH_PATH)) {
+        if (uri.getPath() != null && uri.getPath().startsWith(SEARCH_PATH)) {
             return SearchManager.SUGGEST_MIME_TYPE;
         }
         return null;
@@ -245,10 +246,10 @@ public class DictContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Log.d(TAG, "Got query:" + uri.toString());
-        if (uri.getPath().startsWith(SEARCH_PATH)) {
+        if (uri.getPath() != null && uri.getPath().startsWith(SEARCH_PATH)) {
             if (fCurrentDict != null && fCurrentDict.isValid()) {
                 List<String> pathSegments = uri.getPathSegments();
-                if (pathSegments.size() > 0 && pathSegments.get(0).compareToIgnoreCase(SearchManager.SUGGEST_URI_PATH_QUERY) == 0) {
+                if (pathSegments != null && pathSegments.size() > 0 && pathSegments.get(0).compareToIgnoreCase(SearchManager.SUGGEST_URI_PATH_QUERY) == 0) {
                     String query = null;
                     if (pathSegments.size() > 1)
                         query = pathSegments.get(1);
@@ -308,7 +309,7 @@ public class DictContentProvider extends ContentProvider {
         if (dict == null || !dict.isValid())
             return null;
         try {
-            if (uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
+            if (uri.getScheme() != null && uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost() != null && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
                 mimeType.setLength(0);
                 String url = uri.getPath();
                 Matcher matcher = MddDataUrlPattern.matcher(url);

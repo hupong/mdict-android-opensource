@@ -34,9 +34,33 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
-import android.widget.*;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import cn.mdict.*;
+import android.widget.AutoCompleteTextView;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.ActionMode;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
+import com.actionbarsherlock.widget.SearchView;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
+import cn.mdict.DictContentProvider;
+import cn.mdict.FloatingForm;
+import cn.mdict.MainForm;
+import cn.mdict.MiscUtils;
+import cn.mdict.R;
+import cn.mdict.SimpleActionModeCallbackAgent;
+import cn.mdict.WebViewGestureFilter;
 import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxDictBase;
@@ -49,13 +73,6 @@ import cn.mdict.widgets.MdxAdapter;
 import cn.mdict.widgets.MdxView;
 import cn.mdict.widgets.MdxView.MdxViewListener;
 import cn.mdict.widgets.SearchTrack;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.*;
-import com.actionbarsherlock.widget.SearchView;
-
-import java.util.ArrayList;
-import java.util.Locale;
 
 public class DictView extends SherlockFragment implements MdxViewListener,
         SimpleActionModeCallbackAgent.ActionItemClickListener,

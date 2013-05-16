@@ -23,16 +23,22 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.*;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceGroup;
+import android.preference.PreferenceScreen;
 import android.speech.tts.TextToSpeech;
-import cn.mdict.mdx.MdxEngine;
-import cn.mdict.mdx.MdxEngineSetting;
+
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.mdict.mdx.MdxEngine;
+import cn.mdict.mdx.MdxEngineSetting;
 
 public class SettingFrame extends SherlockPreferenceActivity implements TextToSpeech.OnInitListener {
     public final static String prefChanged = "PrefChanged";
@@ -170,7 +176,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
             if (requestCode == kCheckTTS) {
-                if (resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_FAIL || resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_BAD_DATA) {
+                if (resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_FAIL) {
                     // success, create the TTS instance
                     ttsEngine = new TextToSpeech(this, this);
                 }
@@ -233,17 +239,18 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                     }
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && ttsEngine != null && ttsEngineName != null) {
+                        //noinspection AndroidLintNewApi
                         List<TextToSpeech.EngineInfo> engines = ttsEngine.getEngines();
                         if (!engines.isEmpty()) {
                             String[] enginePackageName = new String[engines.size()];
-                            String[] engineLable = new String[engines.size()];
+                            String[] engineLabel = new String[engines.size()];
                             int n = 0;
                             for (TextToSpeech.EngineInfo ei : engines) {
                                 enginePackageName[n] = ei.name;
-                                engineLable[n++] = ei.label;
+                                engineLabel[n++] = ei.label;
                             }
                             ttsEngineName.setEntries(enginePackageName);
-                            ttsEngineName.setEntryValues(engineLable);
+                            ttsEngineName.setEntryValues(engineLabel);
                         }
                     }
                     if (ttsEngineName == null || ttsEngineName.getEntries() == null || ttsEngineName.getEntries().length == 0) {

@@ -1,15 +1,23 @@
 package cn.mdict.utils;
 
 import android.content.Context;
-import cn.mdict.mdx.DictEntry;
-import cn.mdict.mdx.MdxDictBase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
+
+import cn.mdict.mdx.DictEntry;
+import cn.mdict.mdx.MdxDictBase;
 
 public class WordSuggestion {
     private static final char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz"
@@ -375,7 +383,7 @@ public class WordSuggestion {
         Collections.sort(words, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
-                return Double.valueOf(((String) o1).length()).compareTo(Double.valueOf(((String) o2).length()));
+                return Double.valueOf(((String) o1).length()).compareTo((double) ((String) o2).length());
             }
         });
         // 若符合条件的集合中元素个数大于5个，则仅输出概率最高的前五个单词
@@ -413,10 +421,8 @@ public class WordSuggestion {
 
     public static boolean isChinese(final String str) {
         Pattern pattern = Pattern.compile("[\\u3400-\\u9FBF]+");// 是否中文表达式
-        if (str == null)
-            return false;
+        return str != null && pattern.matcher(str.trim()).find();
 
-        return pattern.matcher(str.trim()).find();
     }
 
     public static boolean hasDoubleByteChar(final String s) {

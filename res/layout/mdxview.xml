@@ -17,30 +17,58 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_height="match_parent" android:layout_width="match_parent" android:background="#ffffff">
-    <WebView android:id="@+id/entrySingleView" android:layout_width="match_parent" android:layout_height="match_parent"
-             android:focusable="true" android:background="#ffffff"/>
-    <ScrollView android:id="@+id/entryListView" android:layout_width="match_parent" android:layout_height="match_parent"
-                android:visibility="gone">
-        <LinearLayout android:id="@+id/entryList" android:layout_width="match_parent"
-                      android:layout_height="match_parent" android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:background="#ffffff">
+
+    <WebView
+            android:id="@+id/entrySingleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:background="#ffffff"/>
+
+    <ScrollView
+            android:id="@+id/entryListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+        <LinearLayout
+                android:id="@+id/entryList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
         </LinearLayout>
     </ScrollView>
-    <TableLayout android:id="@+id/toolbar"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_alignParentBottom="true"
-                 android:layout_alignParentRight="true"
-                 android:layout_marginRight="5dp"
-                 android:layout_marginBottom="5dp">
-        <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
-            <ImageButton android:id="@+id/speak" android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:src="@drawable/btn_speak" android:background="@null"
-                         android:layout_marginRight="8dp"/>
-            <ImageButton android:id="@+id/add_to_fav" android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:src="@drawable/btn_add_to_fav" android:background="@null"/>
+
+    <TableLayout
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp">
+
+        <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <ImageButton
+                    android:id="@+id/speak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_speak"
+                    android:background="@null"
+                    android:layout_marginRight="8dp"/>
+
+            <ImageButton
+                    android:id="@+id/add_to_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_add_to_fav"
+                    android:background="@null"/>
         </TableRow>
     </TableLayout>
 </RelativeLayout>
