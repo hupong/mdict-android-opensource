@@ -33,17 +33,35 @@ $jscode$
 -->
 
 <!--
+var css_block_base="__mdx_dict_block";
+var css_title_div="__mdx_block_title";
 
-//alex20121205.sn
-String.prototype.endsWith = function(str) {
-	return (this.match(str + "$") == str)
+if (typeof String.prototype.startsWith !== 'function') {
+    String.prototype.startsWith = function(prefix){
+        return (this.lastIndexOf(str, 0) === 0);
+    }
 }
+
+if (typeof String.prototype.endsWith !== 'function') {
+    String.prototype.endsWith = function(suffix) {
+        return (this.indexOf(suffix, this.length - suffix.length) !== -1);
+    }
+}
+
+if (typeof String.prototype.contains !== 'function') {
+    String.prototype.contains = function(txt){
+        return (this.indexOf(txt) >= 0);
+    }
+}
+
 //alex20121205.en
 var expand_single=$expand_single$;
 var fixed_dict_title = $fixed_dict_title$; //alex20121207.n
+
 function hasClass(ele,cls) {
   return ele.className.match(new RegExp("(\\s|^)"+cls+"(\\s|$)"));
 }
+
 function addClass(ele,cls) {
   if (!this.hasClass(ele,cls)) ele.className += " "+cls;
 }
@@ -65,26 +83,15 @@ function ToggleShow(titleEle, elemId, arrowId){
 	{
 	    var elem = document.getElementById(elemId);
 	    var arrow = document.getElementById(arrowId)
-	
-	    //var visible= (elem.className == "__mdx_dict_block_collapse");//alex20121205.o
-	    //alex20121205.sn
-	    var visible= (elem.className == "__mdx_dict_block_collapse" 
-				|| elem.className == "__mdx_dict_block_collapse_alt"  
-				|| (titleEle.className.endsWith("_fixed") && !titleEle.isCurrentDict)); //alex20121205.en
+
+	    var visible= elem.style.display=="none"	|| (titleEle.className.endsWith("_fixed") && !titleEle.isCurrentDict); //alex20121205.en
 	    if ( visible && expand_single ){
 	        ShowAllBlock(false, false, elemId);
 	    }
 	    if (elem){
 	        if ( visible )
 	             FixIFrameSrc(elem);
-	        //alert("scroll into view:"+elem.offsetLeft+","+elem.offsetTop);
-	        //elem.className=visible? "__mdx_dict_block_expand":"__mdx_dict_block_collapse"; //alex20121205.o
-	        //alex20121205.sn
-	        if(visible)
-	            elem.className = elem.className.endsWith("_alt")?"__mdx_dict_block_expand __mdx_dict_block_expand_alt":"__mdx_dict_block_expand";
-	        else
-	            elem.className = elem.className.endsWith("_alt")?"__mdx_dict_block_collapse_alt":"__mdx_dict_block_collapse"; 
-			//alex20121205.en
+            elem.style.display=visible?"block":"none";
 	        if (visible){
 	            elem = document.getElementById(elemId);
 	            elem.scrollIntoView(true);
@@ -104,28 +111,29 @@ function ToggleShow(titleEle, elemId, arrowId){
 
 
 function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
-  allArrowImgs=document.getElementsByName("__mdx_arrow_img");
-  for(i=0; i<allArrowImgs.length; ++i){
-    allArrowImgs[i].src=visible?"content://mdict.cn/res/arrow_down.png":"content://mdict.cn/res/arrow_up.png";
-    if (onlyFirstOne)
-      break;
-  }
-
-  allBlockDivs=document.getElementsByName("__mdx_block_div");
-  for(i=0; i<allBlockDivs.length; ++i){
-    if (allBlockDivs[i].id!=exceptElementId) {
-     if(i%2!=0) //alex20121205.sn
-		allBlockDivs[i].className=visible?"__mdx_dict_block_expand __mdx_dict_block_expand_alt":"__mdx_dict_block_collapse_alt";
-	  else
-		allBlockDivs[i].className=visible?"__mdx_dict_block_expand":"__mdx_dict_block_collapse"; //alex20121205.en
-      if ( visible )
-        FixIFrameSrc(allBlockDivs[i]);
+    allArrowImgs=document.getElementsByName("__mdx_arrow_img");
+    for(i=0; i<allArrowImgs.length; ++i){
+        allArrowImgs[i].src=visible?"content://mdict.cn/res/arrow_down.png":"content://mdict.cn/res/arrow_up.png";
+        if (onlyFirstOne)
+            break;
     }
-    if (onlyFirstOne)
-      break;
-  }
-   if(visible) //alex20121205.sn
-     adjustDictTitle(); //alex20121205.en
+
+    allBlockDivs=document.getElementsByName("__mdx_block_div");
+    for(i=0; i<allBlockDivs.length; ++i){
+        if (allBlockDivs[i].id!=exceptElementId) {
+            if(i%2!=0) //alex20121205.sn
+                allBlockDivs[i].className="__mdx_dict_block_alt";
+            else
+                allBlockDivs[i].className="__mdx_dict_block";
+            allBlockDivs[i].style.display=visible?"block":"none";
+            if ( visible )
+                FixIFrameSrc(allBlockDivs[i]);
+        }
+        if (onlyFirstOne)
+            break;
+    }
+    if(visible) //alex20121205.sn
+        adjustDictTitle(); //alex20121205.en
 }
 
 function SetupMdx(){
@@ -205,7 +213,7 @@ function adjustDictTitle()
 		
 		var divOffsetTop = getElementTop(blockDiv);
 		var divOffsetBottom = (parseInt(getElementTop(blockDiv),10) + parseInt(blockDiv.offsetHeight,10));
-		if(pageY >= divOffsetTop && pageY <= divOffsetBottom && !foundCurrentDict && !(blockDiv.className == "__mdx_dict_block_collapse" || blockDiv.className == "__mdx_dict_block_collapse_alt"))
+		if(pageY >= divOffsetTop && pageY <= divOffsetBottom && !foundCurrentDict && blockDiv.style.display != "none")
 		{
 			foundCurrentDict = true;
 			allBlockTitles[i].isCurrentDict = "true";
@@ -290,7 +298,7 @@ function getElementTop(element){
     .__mdx_block_title_active {
 
     }
-    .__mdx_dict_block_expand {
+    .__mdx_dict_block {
         display: block;
         position: relative;
         padding: 10px;
@@ -302,18 +310,10 @@ function getElementTop(element){
         border-color: #24acd6;
     }
 
-    .__mdx_dict_block_expand_alt {
+    .__mdx_dict_block_alt {
         border-color: #a0c93a;
     }
 
-    .__mdx_dict_block_collapse {
-        display: none;
-        
-    }
-     .__mdx_dict_block_collapse_alt {
-        display: none;
-        
-    }
 </style>
 </head>
 <body onload="javascript:SetupMdx();" style="margin:0px;padding:0px;">
