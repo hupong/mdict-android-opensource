@@ -287,5 +287,7 @@ public class MdxDictBase {
 
     public native void setViewSetting(DictPref dictPref);
 
-    public native String getTitle(int dictId);
+    public native String getTitle(int dictId, boolean htmlEscaped);
+
+    public native void setDefaultIconUrl(String iconUrl);
 }

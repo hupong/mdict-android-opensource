@@ -178,7 +178,7 @@ public class EntryViewList implements MdxEntryView {
             wv.setLayoutParams(params);
             wv.requestLayout();
 */
-            title.setText(entry.getHeadword() + " - " + mdxView.getDict().getTitle(entry.getSiblingAt(i).getDictId()));
+            title.setText(entry.getHeadword() + " - " + mdxView.getDict().getTitle(entry.getSiblingAt(i).getDictId(), false));
         }
         scrollView.scrollTo(0, 0);
     }

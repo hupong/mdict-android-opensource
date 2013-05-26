@@ -46,6 +46,8 @@ public class MdxEngine {
         System.loadLibrary("mdx");
     }
 
+    private static final String dictIconDefault="content://mdict.cn/res/book.png";
+
     private MdxEngine() {
         fInstance = getAppInstanceN();
     }
@@ -82,6 +84,7 @@ public class MdxEngine {
         if (res == MdxDictBase.kMdxSuccess) {
             rebuildHtmlSetting(dict, MdxEngine.getSettings().getPrefHighSpeedMode());
             MdxEngine.getSettings().setPrefLastDictId(dictId);
+            dict.setDefaultIconUrl(dictIconDefault);
         }
         return res;
     }
@@ -90,6 +93,7 @@ public class MdxEngine {
         int res = appOne.openDictByPrefN(dictPref, "", getSettings().getAppOwner().trim(), dict);
         if (res == MdxDictBase.kMdxSuccess) {
             rebuildHtmlSetting(dict, MdxEngine.getSettings().getPrefHighSpeedMode());
+            dict.setDefaultIconUrl(dictIconDefault);
         }
         return res;
     }

@@ -121,10 +121,6 @@ function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
     allBlockDivs=document.getElementsByName("__mdx_block_div");
     for(i=0; i<allBlockDivs.length; ++i){
         if (allBlockDivs[i].id!=exceptElementId) {
-            if(i%2!=0) //alex20121205.sn
-                allBlockDivs[i].className="__mdx_dict_block_alt";
-            else
-                allBlockDivs[i].className="__mdx_dict_block";
             allBlockDivs[i].style.display=visible?"block":"none";
             if ( visible )
                 FixIFrameSrc(allBlockDivs[i]);
@@ -148,22 +144,31 @@ function SetupMdx(){
     var expand_all=$start_expand_all$;
     ShowAllBlock(true, !expand_all, "");
 
-    var elements = document.getElementsByClassName("__mdx_block_title");
+    var elements = document.getElementsByClassName(css_title_div);
+    css_title_div_active=css_title_div+"_active";
     for(var i = 0; i < elements.length; i++) {
-      var elm = elements[i];
-      if(i%2!=0)//alex20121205.sn
-	  {
-		addClass(elm,"__mdx_block_title_alt");
-	  }//alex20121205.en
-      elm.addEventListener("touchstart", function(event) {
-        addClass(this, "__mdx_block_title_active");event.cancelBubble=true;}, false);
-      elm.addEventListener("touchmove", function() {
-        removeClass(this, "__mdx_block_title_active");}, false);
-      elm.addEventListener("touchend", function() {
-        removeClass(this, "__mdx_block_title_active");event.cancelBubble=true;}, false);
-      elm.addEventListener("touchcancel", function() {
-        removeClass(this, "__mdx_block_title_active");}, false);
+        var elm = elements[i];
+        if(i%2!=0){
+		    addClass(elm,css_title_div+"_alt");
+	    }//alex20121205.en
+        elm.addEventListener("touchstart", function(event) {
+            addClass(this, css_title_div_active);event.cancelBubble=true;}, false);
+        elm.addEventListener("touchmove", function() {
+            removeClass(this, css_title_div_active);}, false);
+        elm.addEventListener("touchend", function() {
+            removeClass(this, css_title_div_active);event.cancelBubble=true;}, false);
+        elm.addEventListener("touchcancel", function() {
+            removeClass(this, css_title_div_active);}, false);
     }
+
+    var elements = document.getElementsByClassName(css_block_base);
+    for(var i = 0; i < elements.length; i++) {
+        var elm = elements[i];
+        if(i%2!=0){
+		    addClass(elm,css_block_base+"_alt");
+	    }
+    }
+
     //window.location="content://mdict.cn/notify/PageLoaded";
     //window.MdxDict.onPageComplete();
     //alex20121205.sn
@@ -173,7 +178,7 @@ function SetupMdx(){
 	//alex20121205.en
     window.MdxDict.onPageComplete();
     resizeImages();
-	
+
 }
 
 //alex20121205.sn
@@ -200,17 +205,17 @@ function adjustDictTitle()
 			offsetHeight = offsetHeight + (i==0?0:allBlockTitles[i-1].offsetHeight);
 			contendPaddingTop = contendPaddingTop + (i==0?0:allBlockTitles[i].offsetHeight);
 			pageY = pageY + prevTitleOffsetHeight;
-			
+
 			//allBlockTitles[j].style.position = 'fixed';
-            addClass(allBlockTitles[i], "__mdx_block_title_fixed");
+            addClass(allBlockTitles[i], css_title_div+"_fixed");
             allBlockTitles[i].style.top = offsetHeight + 'px';
 		}
 		else
 		{
 		    allBlockTitles[i].style.top = null;
-            removeClass(allBlockTitles[i], "__mdx_block_title_fixed");
+            removeClass(allBlockTitles[i], css_title_div_active+"_fixed");
 		}
-		
+
 		var divOffsetTop = getElementTop(blockDiv);
 		var divOffsetBottom = (parseInt(getElementTop(blockDiv),10) + parseInt(blockDiv.offsetHeight,10));
 		if(pageY >= divOffsetTop && pageY <= divOffsetBottom && !foundCurrentDict && blockDiv.style.display != "none")
@@ -237,7 +242,7 @@ function resizeImages() {
 			}
 		}
 }
-	
+
 function getElementTop(element){
 		var actualTop = element.offsetTop;
 		var current = element.offsetParent;
@@ -279,6 +284,7 @@ function getElementTop(element){
    .__mdx_block_title {
         border-bottom: #ccc;
         margin: 0px 0px 0px 0px;
+        color: #ffffff;
         background-color: #24acd6;
         width: 100%;
         word-break: break-all;
@@ -306,7 +312,7 @@ function getElementTop(element){
         overflow-x:hidden;
         background-color: #fff;
         border-style: none solid solid solid;
-        border-width: 3px;
+        border-width: 2px;
         border-color: #24acd6;
     }
 
