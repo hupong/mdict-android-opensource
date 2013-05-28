@@ -53,7 +53,7 @@ public class MdxUtils {
      * @param entry   of type DictEntry
      * @return int
      */
-    public native static int displayEntry(WebView webView, MdxDictBase dict, DictEntry entry);
+    public native static int displayEntry(WebView webView, MdxDictBase dict, DictEntry entry, boolean headerOnly);
 
 
     public static void displayEntryHtml(MdxDictBase dict, DictEntry entry, WebView wv) {

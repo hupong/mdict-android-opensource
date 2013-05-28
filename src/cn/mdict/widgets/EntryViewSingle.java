@@ -26,6 +26,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import cn.mdict.WebViewGestureFilter;
 import cn.mdict.mdx.DictEntry;
+import cn.mdict.mdx.MdxEngine;
 import cn.mdict.mdx.MdxUtils;
 
 /**
@@ -116,7 +117,7 @@ public class EntryViewSingle implements MdxEntryView {
         // MdxUtils.displayEntryHtml(mdxView.getDict(),entry, htmlView);
         // htmlView.loadData("","text/html","");
         // htmlView.clearView();
-        MdxUtils.displayEntry(htmlView, mdxView.getDict(), entry);
+        MdxUtils.displayEntry(htmlView, mdxView.getDict(), entry, !MdxEngine.getSettings().getPrefHighSpeedMode()&&!mdxView.getDict().canRandomAccess());
         htmlView.scrollTo(0, 0);
         //htmlView.loadUrl("javascript:window.MdxDict.saveSource(document.getElementsByTagName('html')[0].innerHTML);");
         // htmlView.//

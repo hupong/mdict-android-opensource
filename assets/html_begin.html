@@ -33,8 +33,10 @@ $jscode$
 -->
 
 <!--
-var css_block_base="__mdx_dict_block";
-var css_title_div="__mdx_block_title";
+var css_content="__mdx_css_content";
+var css_title="__mdx_css_title";
+var name_content_block="__mdx_name_content_block";
+var name_title_block="__mdx_name_title_block";
 
 if (typeof String.prototype.startsWith !== 'function') {
     String.prototype.startsWith = function(prefix){
@@ -77,7 +79,16 @@ function FixIFrameSrc(elem){
     if ( elem.tagName=='IFRAME' && ( elem.src==null || elem.src=="" )){
         elem.src=elem.attributes["src1"].value;
     }
+    iframes=elem.getElementsByTagName('iframe');
+	if (iframes){
+        for(i=0; i<iframes.length; ++i){
+            if ( iframes[i].tagName=='IFRAME' && ( iframes[i].src==null || iframes[i].src=="" )){
+                iframes[i].src=iframes[i].attributes["src1"].value;
+            }
+        }
+    }
 }
+
 function ToggleShow(titleEle, elemId, arrowId){
 	try
 	{
@@ -89,8 +100,9 @@ function ToggleShow(titleEle, elemId, arrowId){
 	        ShowAllBlock(false, false, elemId);
 	    }
 	    if (elem){
-	        if ( visible )
-	             FixIFrameSrc(elem);
+	        if ( visible ){
+	            FixIFrameSrc(elem);
+	        }
             elem.style.display=visible?"block":"none";
 	        if (visible){
 	            elem = document.getElementById(elemId);
@@ -118,7 +130,7 @@ function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
             break;
     }
 
-    allBlockDivs=document.getElementsByName("__mdx_block_div");
+    allBlockDivs=document.getElementsByName(name_content_block);
     for(i=0; i<allBlockDivs.length; ++i){
         if (allBlockDivs[i].id!=exceptElementId) {
             allBlockDivs[i].style.display=visible?"block":"none";
@@ -144,28 +156,28 @@ function SetupMdx(){
     var expand_all=$start_expand_all$;
     ShowAllBlock(true, !expand_all, "");
 
-    var elements = document.getElementsByClassName(css_title_div);
-    css_title_div_active=css_title_div+"_active";
+    var elements = document.getElementsByClassName(css_title);
+    css_title_active=css_title+"_active";
     for(var i = 0; i < elements.length; i++) {
         var elm = elements[i];
         if(i%2!=0){
-		    addClass(elm,css_title_div+"_alt");
+		    addClass(elm,css_title+"_alt");
 	    }//alex20121205.en
         elm.addEventListener("touchstart", function(event) {
-            addClass(this, css_title_div_active);event.cancelBubble=true;}, false);
+            addClass(this, css_title_active);event.cancelBubble=true;}, false);
         elm.addEventListener("touchmove", function() {
-            removeClass(this, css_title_div_active);}, false);
+            removeClass(this, css_title_active);}, false);
         elm.addEventListener("touchend", function() {
-            removeClass(this, css_title_div_active);event.cancelBubble=true;}, false);
+            removeClass(this, css_title_active);event.cancelBubble=true;}, false);
         elm.addEventListener("touchcancel", function() {
-            removeClass(this, css_title_div_active);}, false);
+            removeClass(this, css_title_active);}, false);
     }
 
-    var elements = document.getElementsByClassName(css_block_base);
+    var elements = document.getElementsByClassName(css_content);
     for(var i = 0; i < elements.length; i++) {
         var elm = elements[i];
         if(i%2!=0){
-		    addClass(elm,css_block_base+"_alt");
+		    addClass(elm,css_content+"_alt");
 	    }
     }
 
@@ -187,8 +199,8 @@ function adjustDictTitle()
     if(fixed_dict_title==false)
     	return;
 	var docBody=document.compatMode!="BackCompat" ? document.documentElement: document.body;
-    var allBlockTitles = document.getElementsByName("__mdx_block_dict_title");
-    var allBlockDivs =document.getElementsByName("__mdx_block_div");
+    var allBlockTitles = document.getElementsByName(name_title_block);
+    var allBlockDivs =document.getElementsByName(name_content_block);
 	var factor=1.0*Initail_window_width/top.window.innerWidth;
 	var pageY =  window.pageYOffset|| document.documentElement.scrollTop || document.body.scrollTop;
 	pageY = pageY  * factor;
@@ -207,13 +219,13 @@ function adjustDictTitle()
 			pageY = pageY + prevTitleOffsetHeight;
 
 			//allBlockTitles[j].style.position = 'fixed';
-            addClass(allBlockTitles[i], css_title_div+"_fixed");
+            addClass(allBlockTitles[i], css_title+"_fixed");
             allBlockTitles[i].style.top = offsetHeight + 'px';
 		}
 		else
 		{
 		    allBlockTitles[i].style.top = null;
-            removeClass(allBlockTitles[i], css_title_div_active+"_fixed");
+            removeClass(allBlockTitles[i], css_title_active+"_fixed");
 		}
 
 		var divOffsetTop = getElementTop(blockDiv);
@@ -281,7 +293,7 @@ function getElementTop(element){
       border-color: #C43C35 #C43C35 #882A25;
       border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     }
-   .__mdx_block_title {
+   .__mdx_css_title {
         border-bottom: #ccc;
         margin: 0px 0px 0px 0px;
         color: #ffffff;
@@ -291,20 +303,20 @@ function getElementTop(element){
         position: relative !important;
     }
 
-    .__mdx_block_title_alt {
+    .__mdx_css_title_alt {
         background-color: #a0c93a;
     }
 
-    .__mdx_block_title_fixed {
+    .__mdx_css_title_fixed {
         position: fixed !important;
         z-index: 999 !important;
         left: 0;
         width: 100%;
     }
-    .__mdx_block_title_active {
+    .__mdx_css_title_active {
 
     }
-    .__mdx_dict_block {
+    .__mdx_css_content {
         display: block;
         position: relative;
         padding: 10px;
@@ -316,7 +328,7 @@ function getElementTop(element){
         border-color: #24acd6;
     }
 
-    .__mdx_dict_block_alt {
+    .__mdx_css_content_alt {
         border-color: #a0c93a;
     }
 

@@ -126,7 +126,7 @@
         @font-face {font-family: \'Droid Sans IPA\';
                 font-style:  normal;
                 font-weight: normal;
-                src: url(\'content://mdict.cn/localfile/droid_sans.ttf\'); }
+                src: url(\'content://mdict.cn/localfile/data/droid_sans.ttf\'); }
         *{font-family:\'Droid Sans IPA\', DroidSans, arial, sans-serif;}
     </STYLE>]]></string>
 </resources>

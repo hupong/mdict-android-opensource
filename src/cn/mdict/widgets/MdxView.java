@@ -192,8 +192,11 @@ public class MdxView extends RelativeLayout {
                         // currentEntry.getHeadword()));
 
                         if (currentEntry.isUnionDictEntry()) {
-                            switchViewMode(true);
-                            entryViewList.displayEntry(currentEntry);
+                            //switchViewMode(true);
+                            //entryViewList.displayEntry(currentEntry);
+                            switchViewMode(false);
+                            entryViewSingle.displayEntry(currentEntry);
+
                             //TODO: should scroll view to webview if "Show only one entry"
                         } else {
                             switchViewMode(false);
