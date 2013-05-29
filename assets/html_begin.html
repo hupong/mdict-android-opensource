@@ -76,6 +76,7 @@ function removeClass(ele,cls) {
 }
 
 function FixIFrameSrc(elem){
+    return;
     if ( elem.tagName=='IFRAME' && ( elem.src==null || elem.src=="" )){
         elem.src=elem.attributes["src1"].value;
     }
@@ -319,12 +320,12 @@ function getElementTop(element){
     .__mdx_css_content {
         display: block;
         position: relative;
-        padding: 10px;
+        padding: 10px 2px 0px 2px;
         margin: 0px 0px 0px 0px;
         overflow-x:hidden;
         background-color: #fff;
         border-style: none solid solid solid;
-        border-width: 2px;
+        border-width: 1px;
         border-color: #24acd6;
     }
 
