@@ -106,10 +106,9 @@ function ToggleShow(titleEle, elemId, arrowId){
 	        }
             elem.style.display=visible?"block":"none";
 	        if (visible){
-	            elem = document.getElementById(titleEle);
 	            //elem.scrollIntoView(true);
 	            //alert("Scroll into view:"+elem);
-	            window.scrollTo(elem.offsetLeft, elem.offsetTop);
+	            window.scrollTo(titleEle.offsetLeft, titleEle.offsetTop);
 	        }
 	    }
 	    if (arrow)
@@ -323,7 +322,7 @@ function getElementTop(element){
     .__mdx_css_content {
         display: block;
         position: relative;
-        padding: 6px 2px 0px 2px;
+        padding: 6px 2px 10px 2px;
         margin: 0px 0px 0px 0px;
         overflow-x:hidden;
         background-color: #fff;
