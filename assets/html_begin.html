@@ -106,10 +106,10 @@ function ToggleShow(titleEle, elemId, arrowId){
 	        }
             elem.style.display=visible?"block":"none";
 	        if (visible){
-	            elem = document.getElementById(elemId);
-	            elem.scrollIntoView(true);
+	            elem = document.getElementById(titleEle);
+	            //elem.scrollIntoView(true);
 	            //alert("Scroll into view:"+elem);
-	            //window.scrollTo(elem.offsetLeft, elem.offsetTop);
+	            window.scrollTo(elem.offsetLeft, elem.offsetTop);
 	        }
 	    }
 	    if (arrow)
@@ -158,30 +158,33 @@ function SetupMdx(){
     ShowAllBlock(true, !expand_all, "");
 
     var elements = document.getElementsByClassName(css_title);
-    css_title_active=css_title+"_active";
-    for(var i = 0; i < elements.length; i++) {
-        var elm = elements[i];
-        if(i%2!=0){
-		    addClass(elm,css_title+"_alt");
-	    }//alex20121205.en
-        elm.addEventListener("touchstart", function(event) {
-            addClass(this, css_title_active);event.cancelBubble=true;}, false);
-        elm.addEventListener("touchmove", function() {
-            removeClass(this, css_title_active);}, false);
-        elm.addEventListener("touchend", function() {
-            removeClass(this, css_title_active);event.cancelBubble=true;}, false);
-        elm.addEventListener("touchcancel", function() {
-            removeClass(this, css_title_active);}, false);
-    }
+    if ( elements ){
+        if (elements.length>0)
+            document.body.style.padding="0";
+        css_title_active=css_title+"_active";
+        for(var i = 0; i < elements.length; i++) {
+            var elm = elements[i];
+            if(i%2!=0){
+                addClass(elm,css_title+"_alt");
+            }//alex20121205.en
+            elm.addEventListener("touchstart", function(event) {
+                addClass(this, css_title_active);event.cancelBubble=true;}, false);
+            elm.addEventListener("touchmove", function() {
+                removeClass(this, css_title_active);}, false);
+            elm.addEventListener("touchend", function() {
+                removeClass(this, css_title_active);event.cancelBubble=true;}, false);
+            elm.addEventListener("touchcancel", function() {
+                removeClass(this, css_title_active);}, false);
+        }
 
-    var elements = document.getElementsByClassName(css_content);
-    for(var i = 0; i < elements.length; i++) {
-        var elm = elements[i];
-        if(i%2!=0){
-		    addClass(elm,css_content+"_alt");
-	    }
+        elements = document.getElementsByClassName(css_content);
+        for(var i = 0; i < elements.length; i++) {
+            var elm = elements[i];
+            if(i%2!=0){
+                addClass(elm,css_content+"_alt");
+            }
+        }
     }
-
     //window.location="content://mdict.cn/notify/PageLoaded";
     //window.MdxDict.onPageComplete();
     //alex20121205.sn
@@ -275,7 +278,7 @@ function getElementTop(element){
 
         body {
         margin: 0;
-        padding: 0;
+        padding: 0 2px 0 2px;
         }
     </style>
 <style>
@@ -320,7 +323,7 @@ function getElementTop(element){
     .__mdx_css_content {
         display: block;
         position: relative;
-        padding: 10px 2px 0px 2px;
+        padding: 6px 2px 0px 2px;
         margin: 0px 0px 0px 0px;
         overflow-x:hidden;
         background-color: #fff;
@@ -335,5 +338,5 @@ function getElementTop(element){
 
 </style>
 </head>
-<body onload="javascript:SetupMdx();" style="margin:0px;padding:0px;">
+<body onload="javascript:SetupMdx();">
 
