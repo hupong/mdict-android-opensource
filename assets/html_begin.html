@@ -33,6 +33,15 @@ $jscode$
 -->
 
 <!--
+var titleColors=[
+"#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e",
+"#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50",
+"#f1c40f", "#e67e22", "#e74c3c", "#ecf0f1", "#95a5a6",
+"#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d",
+"#75e1c2", "#96e2c0", "#5fb4e5", "#a677a6", "#768693",
+"#4ca686", "#45a142", "#4298cc", "#a97cca", "#415464",
+"#d89b2b", "#d89b2b", "#e53e30", "#d0d3d4", "#a3aaae"
+];
 var css_content="__mdx_css_content";
 var css_title="__mdx_css_title";
 var name_content_block="__mdx_name_content_block";
@@ -161,11 +170,13 @@ function SetupMdx(){
         if (elements.length>0)
             document.body.style.padding="0";
         css_title_active=css_title+"_active";
+        var colorCount=titleColors.length;
         for(var i = 0; i < elements.length; i++) {
             var elm = elements[i];
-            if(i%2!=0){
-                addClass(elm,css_title+"_alt");
-            }//alex20121205.en
+            elm.style.backgroundColor=titleColors[i%colorCount];
+            //if(i%2!=0){
+            //    addClass(elm,css_title+"_alt");
+            //}//alex20121205.en
             elm.addEventListener("touchstart", function(event) {
                 addClass(this, css_title_active);event.cancelBubble=true;}, false);
             elm.addEventListener("touchmove", function() {
@@ -179,9 +190,10 @@ function SetupMdx(){
         elements = document.getElementsByClassName(css_content);
         for(var i = 0; i < elements.length; i++) {
             var elm = elements[i];
-            if(i%2!=0){
-                addClass(elm,css_content+"_alt");
-            }
+            elm.style.borderColor=titleColors[i%colorCount];
+            //if(i%2!=0){
+            //    addClass(elm,css_content+"_alt");
+            //}
         }
     }
     //window.location="content://mdict.cn/notify/PageLoaded";
