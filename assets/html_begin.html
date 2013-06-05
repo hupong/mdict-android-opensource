@@ -42,6 +42,7 @@ var titleColors=[
 "#4ca686", "#45a142", "#4298cc", "#a97cca", "#415464",
 "#d89b2b", "#d89b2b", "#e53e30", "#d0d3d4", "#a3aaae"
 ];
+var useColorPalette=false;
 var css_content="__mdx_css_content";
 var css_title="__mdx_css_title";
 var name_content_block="__mdx_name_content_block";
@@ -173,10 +174,8 @@ function SetupMdx(){
         var colorCount=titleColors.length;
         for(var i = 0; i < elements.length; i++) {
             var elm = elements[i];
-            elm.style.backgroundColor=titleColors[i%colorCount];
-            //if(i%2!=0){
-            //    addClass(elm,css_title+"_alt");
-            //}//alex20121205.en
+            if (useColorPalette)
+                elm.style.backgroundColor=titleColors[i%colorCount];
             elm.addEventListener("touchstart", function(event) {
                 addClass(this, css_title_active);event.cancelBubble=true;}, false);
             elm.addEventListener("touchmove", function() {
@@ -187,13 +186,12 @@ function SetupMdx(){
                 removeClass(this, css_title_active);}, false);
         }
 
-        elements = document.getElementsByClassName(css_content);
-        for(var i = 0; i < elements.length; i++) {
-            var elm = elements[i];
-            elm.style.borderColor=titleColors[i%colorCount];
-            //if(i%2!=0){
-            //    addClass(elm,css_content+"_alt");
-            //}
+        if (useColorPalette){
+            elements = document.getElementsByClassName(css_content);
+            for(var i = 0; i < elements.length; i++) {
+                var elm = elements[i];
+                elm.style.borderColor=titleColors[i%colorCount];
+            }
         }
     }
     //window.location="content://mdict.cn/notify/PageLoaded";
@@ -310,16 +308,12 @@ function getElementTop(element){
     }
    .__mdx_css_title {
         border-bottom: #ccc;
-        margin: 0px 0px 0px 0px;
+        margin: 0px 0px 1px 0px;
         color: #ffffff;
-        background-color: #24acd6;
+        background-color: #a0a0a0;
         width: 100%;
         word-break: break-all;
         position: relative !important;
-    }
-
-    .__mdx_css_title_alt {
-        background-color: #a0c93a;
     }
 
     .__mdx_css_title_fixed {
@@ -334,17 +328,13 @@ function getElementTop(element){
     .__mdx_css_content {
         display: block;
         position: relative;
-        padding: 6px 2px 10px 2px;
+        padding: 4px 2px 10px 2px;
         margin: 0px 0px 0px 0px;
         overflow-x:hidden;
         background-color: #fff;
         border-style: none solid solid solid;
         border-width: 1px;
-        border-color: #24acd6;
-    }
-
-    .__mdx_css_content_alt {
-        border-color: #a0c93a;
+        border-color: #a0a0a0;
     }
 
 </style>

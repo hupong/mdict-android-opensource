@@ -23,6 +23,7 @@
 
     <style name="Theme.MDict" parent="@style/Theme.Sherlock">
         <item name="searchViewSearchIcon">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
         <!--
             <item name="icon">@drawable/app_icon_medium</item>
             <item name="android:icon">@drawable/app_icon_medium</item>
