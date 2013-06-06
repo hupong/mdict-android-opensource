@@ -72,11 +72,12 @@
                 android:title="@string/pref_title_use_lru_for_dict_order"
                 android:summary="@string/pref_summary_use_lru_for_dict_order"
                 android:defaultValue="@string/pref_default_use_lru_for_dict_order"/>
+    <!--
         <CheckBoxPreference
                 android:key="@string/pref_use_popover_for_lookup"
                 android:title="@string/pref_title_use_popover_for_lookup"
                 android:defaultValue="@string/pref_default_use_popover_for_lookup"/>
-
+    -->
         <ListPreference
             android:key="@string/pref_split_view_mode"
             android:title="@string/pref_title_split_view_mode"

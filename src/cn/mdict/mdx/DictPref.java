@@ -138,6 +138,18 @@ public class DictPref {
 
     public native void setDictName(String fileName);
 
+
+    public native String getTextColor();
+
+    public native void setTextColor(String textColor);
+
+    public native String getBackgroundColor();
+
+    public native void setBackgroundColor(String backgroundColor);
+
+    public native String getFontFace();
+
+    public native void setFontFace(String fontFace);
     /**
      * Method isDisabled returns the disabled of this DictPref object.
      *

@@ -122,7 +122,7 @@
         *{font-family:\'DejaVu Sans\', arial, sans-serif;}
     </STYLE>]]></string>
     -->
-    <string name="ipa_font_css"><![CDATA[<STYLE TYPE="text/css">
+    <string name="font_css"><![CDATA[<STYLE TYPE="text/css">
         @font-face {font-family: \'Droid Sans IPA\';
                 font-style:  normal;
                 font-weight: normal;

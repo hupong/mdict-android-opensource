@@ -76,6 +76,9 @@
     <string name="search_setting_description">词典, 百科</string>
     <string name="online_reference_loading">加载中…,请稍候!</string>
     <string name="network_not_available"><![CDATA[<font color=red><b>无可用网络</b></font>]]></string>
+    <string name="text_color">字体颜色</string>
+    <string name="background_color">背景颜色</string>
+    <string name="font_face">字体</string>
 
     <!-- string for setting frame -->
     <string name="pref_cate_title_basic_setting">基础设置</string>

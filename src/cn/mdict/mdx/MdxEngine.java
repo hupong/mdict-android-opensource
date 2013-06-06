@@ -232,7 +232,7 @@ public class MdxEngine {
 
         String css = "";
         if (MdxEngine.getSettings().getPrefUseBuiltInIPAFont()) {
-            css += baseContext.getResources().getString(R.string.ipa_font_css);
+            css += baseContext.getResources().getString(R.string.font_css);
         }
 
         StringBuffer css_buffer = new StringBuffer();
@@ -363,6 +363,11 @@ public class MdxEngine {
         return appOne.getResDirN();
     }
 
+    static public void findExternalFonts(ArrayList<String> extFonts){
+        appOne.findExternalFontsN(extFonts);
+    }
+
+
     // Native declarations
     private native int openDictN(int dictID, String deviceId, String email, boolean adjustDictOrder, MdxDictBase dict); // dict is java MdxDictBase
 
@@ -393,6 +398,8 @@ public class MdxEngine {
     private native String getDataHomeDirN();
 
     private native String getResDirN();
+
+    private native void findExternalFontsN(ArrayList<String> extFonts);
 
     private int fInstance;
 

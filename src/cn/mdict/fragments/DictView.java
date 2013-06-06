@@ -18,15 +18,20 @@ package cn.mdict.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.Preference;
 import android.speech.tts.TextToSpeech;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -41,6 +46,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
@@ -51,7 +57,9 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.widget.SearchView;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import cn.mdict.DictContentProvider;
@@ -65,6 +73,7 @@ import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
+import cn.mdict.mdx.MdxEngineSetting;
 import cn.mdict.online.Jukuu;
 import cn.mdict.online.OnlineReference;
 import cn.mdict.utils.IOUtil;
@@ -76,7 +85,8 @@ import cn.mdict.widgets.SearchTrack;
 
 public class DictView extends SherlockFragment implements MdxViewListener,
         SimpleActionModeCallbackAgent.ActionItemClickListener,
-        TextToSpeech.OnInitListener, WebViewGestureFilter.GestureListener {
+        TextToSpeech.OnInitListener, WebViewGestureFilter.GestureListener,
+        PopupMenu.OnMenuItemClickListener {
     @Override
     public boolean onSearchText(MdxView view, String text, int touchPointX,
                                 int touchPointY) {
@@ -412,6 +422,14 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.dict_view_option_menu, menu);
+        MenuItem item = menu.findItem(R.id.view);
+        if (item != null) {
+            SubMenu submenu = item.getSubMenu();
+            ArrayList<String> fonts=new ArrayList<String>();
+            MdxEngine.findExternalFonts(fonts);
+            if (fonts.isEmpty())
+                submenu.removeItem(R.id.font_face);
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -448,9 +466,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             item.setEnabled(dictIsValid && currentView == contentView);
             submenu = item.getSubMenu();
             if (submenu != null) {
-                if (dictPref != null) {
-                    chnConvType = dictPref.getChnConversion();
-                }
+                if (dict!=null && dict.getDictPref()!=null )
+                    chnConvType = dict.getDictPref().getChnConversion();
                 MenuItem menuItem;
                 int itemId;
                 switch (chnConvType) {
@@ -570,12 +587,52 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             case R.id.aboutdict:
                 displayByHeadword(":about", false);
                 break;
+            case R.id.font_face:
+                selectFont();
+                break;
             default:
                 // return super.onOptionsItemSelected(item);
                 return false;
         }
         getSherlockActivity().invalidateOptionsMenu();
         return true;
+    }
+
+    @Override
+    public boolean onMenuItemClick(android.view.MenuItem item) {
+        return false;
+    }
+
+    AlertDialog.Builder dialogBuilder = null;
+    private void selectFont() {
+        fontList.clear();
+        fontList.add(getSherlockActivity().getResources().getString(R.string.system_default));
+        MdxEngine.findExternalFonts(fontList);
+        String[] fontNames=fontList.toArray(new String[fontList.size()]);
+
+        DialogInterface.OnClickListener itemListener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        };
+
+        dialogBuilder = new AlertDialog.Builder(getSherlockActivity())
+                .setCancelable(true)
+                .setTitle(getSherlockActivity().getString(R.string.font_face))
+                .setItems(fontNames, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (dict==null || !dict.isValid())
+                            return;
+                        DictPref dictPref=dict.getDictPref();
+                        if (which==0){
+                            dictPref.setFontFace("");
+                        }else{
+                            dictPref.setFontFace(fontList.get(which));
+                        }
+                        DictView.this.updateDictWithRefresh(dictPref);
+                    }
+                });
+        dialogBuilder.show();
     }
 
     public boolean hasPronunciationForCurrentEntry() {
@@ -642,7 +699,6 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                     getString(R.string.invalid_dict));
         DictContentProvider.setDict(dict);
         if (dict != null && dict.isValid()) {
-            dictPref = dict.getDictPref();
             if (currentInput != null && currentInput.length() != 0) {
                 DictEntry entry = new DictEntry();
                 if (dict.locateFirst(currentInput, true, false, false, entry) == MdxDictBase.kMdxSuccess) {
@@ -658,7 +714,6 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 displayHtml("");
             }
         } else {
-            dictPref = null;
             currentEntry = new DictEntry(-1, "", DictPref.kInvalidDictPrefId);
             getSherlockActivity().invalidateOptionsMenu();
         }
@@ -679,6 +734,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     void updateDictWithRefresh(DictPref pref) {
+        if (dict!=null){
+            dict.setViewSetting(pref);
+            MdxEngine.rebuildHtmlSetting(dict,MdxEngine.getSettings().getPrefHighSpeedMode());
+        }
         MdxEngine.getLibMgr().updateDictPref(pref);
         currentEntry.makeJEntry();
         DictEntry entry = new DictEntry(currentEntry);
@@ -690,7 +749,6 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         if (dict.isValid()) {
             dict.setChnConversion(convertType);
             updateDictWithRefresh(dict.getDictPref());
-            dictPref = dict.getDictPref();
         }
     }
 
@@ -715,10 +773,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 zoomLevel = -1;
             if (zoomLevel >= 0) {
                 pref.setZoomLevel(zoomLevel);
-                dict.setViewSetting(pref);
                 updateDictWithRefresh(pref);
             }
-            dictPref = dict.getDictPref();
         }
     }
 
@@ -1025,7 +1081,6 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     };
 
     private MdxDictBase dict = null;
-    private DictPref dictPref = null;
     private SearchView searchView;
     private DictEntry currentEntry = new DictEntry();
     private MdxAdapter adapter = null;
@@ -1055,6 +1110,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     private ArrayList<SearchTrack> history;
     private SearchTrack lastTrack = null;
+
+    ArrayList<String> fontList=new ArrayList<String>();
 
     private static final String TAG = "MDict.DictView";
 
