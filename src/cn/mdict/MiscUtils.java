@@ -43,6 +43,7 @@ import cn.mdict.mdx.MdxUtils;
 import cn.mdict.utils.IOUtil;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -421,6 +422,25 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
                 return (getScreenSize(context) > 3.8) && context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         }
         return false;
+    }
+
+    public static String getFileNameMainPart(String filePath){
+        int pos=filePath.lastIndexOf('/');
+        String fileName;
+        if (pos<0)
+            fileName=filePath;
+        else if (pos<filePath.length()-1)
+            fileName=filePath.substring(pos+1, filePath.length());
+        else
+            fileName="";
+        if ( fileName.length()>0 ){
+            pos=fileName.lastIndexOf('.');
+            if ( pos<0 )
+                return fileName;
+            else
+                return fileName.substring(0, pos);
+        }else
+            return fileName;
     }
     /*
     public static View getItemViewForActionItem(ActionBarImpl actionBar, MenuItem item){

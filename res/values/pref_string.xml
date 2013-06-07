@@ -121,12 +121,30 @@
                 src: url(\'file:///android_asset/DejaVuSans.ttf\'); }
         *{font-family:\'DejaVu Sans\', arial, sans-serif;}
     </STYLE>]]></string>
+    <string name="ipa_font_css">
+        <![CDATA[
+        @font-face {
+            font-family: 'Droid Sans IPA';
+            font-style:  normal;
+            font-weight: normal;
+            src: url('content://mdict.cn/localfile/data/droid_sans.ttf');
+        }
+        ]]>
+    </string>
     -->
+    <string name="ipa_font_path"><![CDATA[data/droid_sans.ttf]]></string>
+    <string name="font_define_css">
+        <![CDATA[
+        \@font-face {
+            font-family: $FontFace$;
+            font-style:  normal;
+            font-weight: normal;
+            src: url(\'content://mdict.cn/localfile/$FontPath$\');
+        }
+        ]]>
+    </string>
     <string name="font_css"><![CDATA[<STYLE TYPE="text/css">
-        @font-face {font-family: \'Droid Sans IPA\';
-                font-style:  normal;
-                font-weight: normal;
-                src: url(\'content://mdict.cn/localfile/data/droid_sans.ttf\'); }
-        *{font-family:\'Droid Sans IPA\', DroidSans, arial, sans-serif;}
+        $DefineFontList$
+        *{font-family: $FontFaceList$, arial, sans-serif;}
     </STYLE>]]></string>
 </resources>

@@ -608,7 +608,12 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         fontList.clear();
         fontList.add(getSherlockActivity().getResources().getString(R.string.system_default));
         MdxEngine.findExternalFonts(fontList);
-        String[] fontNames=fontList.toArray(new String[fontList.size()]);
+        String[] fontNames=new String[fontList.size()];
+        int count=0;
+        for(String fontPath:fontList){
+            fontNames[count]=MiscUtils.getFileNameMainPart(fontPath);
+            ++count;
+        }
 
         DialogInterface.OnClickListener itemListener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {

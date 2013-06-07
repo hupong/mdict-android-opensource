@@ -26,6 +26,7 @@ import android.os.Environment;
 import android.util.Log;
 import cn.mdict.DictContentProvider;
 import cn.mdict.MainForm;
+import cn.mdict.MiscUtils;
 import cn.mdict.R;
 import cn.mdict.utils.IOUtil;
 import cn.mdict.utils.SysUtil;
@@ -228,17 +229,47 @@ public class MdxEngine {
         return result;
     }
 
-    static public void rebuildHtmlSetting(MdxDictBase dict, boolean highSpeedMode) {
+    static private String makeFontCSS(String fontPath, String cssTemplate){
+        String relativeFontPath;
+        if ( fontPath.startsWith(MdxEngine.getDataHomeDir()) ){
+            relativeFontPath=fontPath.substring(MdxEngine.getDataHomeDir().length());
+        }else
+            relativeFontPath=fontPath;
+        return cssTemplate.replace("$FontPath$", relativeFontPath);
+    }
 
-        String css = "";
+    static public void rebuildHtmlSetting(MdxDictBase dict, boolean highSpeedMode) {
+        if (dict==null || !dict.isValid())
+            return;
+
+        String fontFace=dict.getDictPref().getFontFace();
+        String fontDefTemplate=baseContext.getResources().getString(R.string.font_define_css);
+
+        StringBuilder cssBuilder=new StringBuilder();
+        StringBuilder fontDefBuilder = new StringBuilder();
+        StringBuilder fontFaceList = new StringBuilder();
+        if (fontFace.length()>0){
+            String fontName="'"+MiscUtils.getFileNameMainPart(fontFace)+"'";
+            fontFaceList.append(fontName);
+            fontDefBuilder.append(makeFontCSS(fontFace, fontDefTemplate).replace("$FontFace$", fontName));
+        }
         if (MdxEngine.getSettings().getPrefUseBuiltInIPAFont()) {
-            css += baseContext.getResources().getString(R.string.font_css);
+            String ipaFontPath=baseContext.getResources().getString(R.string.ipa_font_path);
+            String fontName="'"+MiscUtils.getFileNameMainPart(ipaFontPath)+"'";
+            if (fontFace.length()>0)
+                fontFaceList.append(',');
+            fontFaceList.append(fontName);
+            fontDefBuilder.append(makeFontCSS(ipaFontPath, fontDefTemplate).replace("$FontFace$", fontName));
+        }
+        if ( fontFaceList.length()>0 ){
+            String fontCSS=baseContext.getResources().getString(R.string.font_css);
+            cssBuilder.append(fontCSS.replace("$DefineFontList$", fontDefBuilder).replace("$FontFaceList$", fontFaceList));
         }
 
         StringBuffer css_buffer = new StringBuffer();
         if (IOUtil.loadStringFromFile(appOne.getDocDirN() + "mdict.css", css_buffer)) {
             if (css_buffer.length() != 0)
-                css += css_buffer.toString();
+                cssBuilder.append(css_buffer);
         }
         StringBuffer htmlBlock = new StringBuffer();
 
@@ -248,7 +279,7 @@ public class MdxEngine {
                 .replace("$start_expand_all$", MdxEngine.getSettings().getPrefMultiDictDefaultExpandAll().toString())
                 .replace("$expand_single$", MdxEngine.getSettings().getPrefMultiDictExpandOnlyOne().toString())
                 .replace("$fixed_dict_title$", MdxEngine.getSettings().getPrefFixedDictTitle().toString()) //alex20121207.n
-                .replace("$extra_header$", css);
+                .replace("$extra_header$", cssBuilder);
 
         htmlBlock.setLength(0);
         IOUtil.loadStringFromAsset(baseContext.getAssets(), "html_end.html", htmlBlock, true);
