@@ -151,8 +151,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         if (lastTrack != null) {
             view.scrollTo(lastTrack.getScrollX(), lastTrack.getScrollY());
             lastTrack = null;
+            return true; //return true to suppress "jump to anchor"
         }
-        return true; //return true to suppress "jump to anchor"
+        return false;
     }
 
     @Override

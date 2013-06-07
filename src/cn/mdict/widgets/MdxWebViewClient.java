@@ -18,6 +18,7 @@ package cn.mdict.widgets;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
+import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -40,7 +41,7 @@ import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
 
-public class MdxWebViewClient extends WebViewClient { // implements WebView.PictureListener {
+public class MdxWebViewClient extends WebViewClient implements WebView.PictureListener { // implements WebView.PictureListener {
     private MdxView mdxView;
     private Handler jsHandler = new Handler();
 
@@ -214,6 +215,11 @@ public class MdxWebViewClient extends WebViewClient { // implements WebView.Pict
         if (mdxView.onPageLoadCompleted(view))
             return;
         jumpToAnchor(view);
+    }
+
+    @Override
+    public void onNewPicture(WebView view, Picture picture) {
+        onPageComplete(view);
     }
 
     /*

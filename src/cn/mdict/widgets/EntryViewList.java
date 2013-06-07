@@ -73,6 +73,7 @@ public class EntryViewList implements MdxEntryView {
             if (wv != null) {
                 wv.setOnTouchListener(new WebViewGestureFilter(wv, gestureListener));
                 wv.setWebViewClient(webViewClient);
+                wv.setPictureListener(webViewClient);
             }
         }
     }

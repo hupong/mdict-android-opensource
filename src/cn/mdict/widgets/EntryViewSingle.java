@@ -105,6 +105,7 @@ public class EntryViewSingle implements MdxEntryView {
         this.mdxView = mdxView;
         wvClient = new MdxWebViewClient(mdxView);
         htmlView.setWebViewClient(wvClient);
+        htmlView.setPictureListener(wvClient);
     }
 
     @Override
