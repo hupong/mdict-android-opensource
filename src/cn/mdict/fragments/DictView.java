@@ -605,12 +605,17 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     AlertDialog.Builder dialogBuilder = null;
     private void selectFont() {
+        String selectedFont=dict.getDictPref().getFontFace();
+        int selectedFontPos=0;
+
         fontList.clear();
         fontList.add(getSherlockActivity().getResources().getString(R.string.system_default));
         MdxEngine.findExternalFonts(fontList);
         String[] fontNames=new String[fontList.size()];
         int count=0;
         for(String fontPath:fontList){
+            if (fontPath.compareTo(selectedFont)==0)
+                selectedFontPos=count;
             fontNames[count]=MiscUtils.getFileNameMainPart(fontPath);
             ++count;
         }
@@ -623,7 +628,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         dialogBuilder = new AlertDialog.Builder(getSherlockActivity())
                 .setCancelable(true)
                 .setTitle(getSherlockActivity().getString(R.string.font_face))
-                .setItems(fontNames, new DialogInterface.OnClickListener() {
+                .setSingleChoiceItems(fontNames, selectedFontPos, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (dict==null || !dict.isValid())
@@ -635,9 +640,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                             dictPref.setFontFace(fontList.get(which));
                         }
                         DictView.this.updateDictWithRefresh(dictPref);
+                        dialog.dismiss();
                     }
                 });
-        dialogBuilder.show();
+        dialog=dialogBuilder.show();
     }
 
     public boolean hasPronunciationForCurrentEntry() {
@@ -1093,7 +1099,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     private ListView headwordList;
     private View currentView = null;
     private ViewGroup fragmentContainer = null;
-
+    private AlertDialog dialog=null;
 
     private ImageButton btnSpeak = null;
     private ImageButton btnAddToFav = null;
