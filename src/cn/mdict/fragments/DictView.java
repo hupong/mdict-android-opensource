@@ -46,7 +46,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
@@ -85,8 +84,7 @@ import cn.mdict.widgets.SearchTrack;
 
 public class DictView extends SherlockFragment implements MdxViewListener,
         SimpleActionModeCallbackAgent.ActionItemClickListener,
-        TextToSpeech.OnInitListener, WebViewGestureFilter.GestureListener,
-        PopupMenu.OnMenuItemClickListener {
+        TextToSpeech.OnInitListener, WebViewGestureFilter.GestureListener{
     @Override
     public boolean onSearchText(MdxView view, String text, int touchPointX,
                                 int touchPointY) {
@@ -597,11 +595,6 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         }
         getSherlockActivity().invalidateOptionsMenu();
         return true;
-    }
-
-    @Override
-    public boolean onMenuItemClick(android.view.MenuItem item) {
-        return false;
     }
 
     AlertDialog.Builder dialogBuilder = null;
