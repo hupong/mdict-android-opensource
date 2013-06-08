@@ -137,12 +137,14 @@
         <![CDATA[
         \@font-face {
             font-family: $FontFace$;
+            font-style:  normal;
+            font-weight: normal;
             src: url(\'content://mdict.cn/localfile/$FontPath$\');
         }
         ]]>
     </string>
     <string name="font_css"><![CDATA[<STYLE TYPE="text/css">
         $DefineFontList$
-        *{font-family: $FontFaceList$, arial, sans-serif;}
+        *{font-family: $FontFaceList$, DroidSans, arial, sans-serif;}
     </STYLE>]]></string>
 </resources>
