@@ -21,6 +21,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -365,12 +366,11 @@ public class FloatingForm extends SherlockFragmentActivity {
         super.onPause();
     }
 
-	/*
-	 * @Override public void onConfigurationChanged (Configuration newConfig){
-	 * super.onConfigurationChanged(newConfig); if
-	 * (!MdxEngine.getSettings().getPrefLockRotation())
-	 * setRequestedOrientation(currentOrientation); }
-	 */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        dictView.updateViewMode(null);
+    }
 
     public void quitProcess() {
         Log.d(TAG, "Quiting process");
@@ -546,7 +546,7 @@ public class FloatingForm extends SherlockFragmentActivity {
         if (MdxEngine.getSettings().getPrefLockRotation())
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         else
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
     }
 
     @Override

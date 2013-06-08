@@ -32,7 +32,7 @@
                 android:name=".MainForm"
                 android:theme="@style/Theme.MDict"
                 android:configChanges="orientation|keyboardHidden|screenSize"
-                android:launchMode="singleTask"
+                android:launchMode="singleInstance"
                 android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -45,8 +45,9 @@
         </activity>
         <activity
                 android:name=".FloatingForm"
-                android:launchMode="singleInstance"
+                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict.Translucent"
+                android:configChanges="orientation|keyboardHidden|screenSize"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
@@ -91,7 +92,8 @@
 
         <provider
                 android:name=".DictContentProvider"
-                android:authorities="mdict.cn"/>
+                android:authorities="mdict.cn" />
+
         <receiver android:name=".services.ClipboardMonitorStarter">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

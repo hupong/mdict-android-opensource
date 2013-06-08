@@ -73,7 +73,7 @@
     <string name="aboutdict">关于词典</string>
     <string name="current_folder">当前文件夹:</string>
     <string name="mdict_search_hint">查找</string>
-    <string name="search_setting_description">词典, 百科</string>
+    <string name="search_setting_description">MDict词典, 百科</string>
     <string name="online_reference_loading">加载中…,请稍候!</string>
     <string name="network_not_available"><![CDATA[<font color=red><b>无可用网络</b></font>]]></string>
     <string name="text_color">字体颜色</string>

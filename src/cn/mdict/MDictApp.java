@@ -51,7 +51,7 @@ public class MDictApp {
     }
 
     public boolean setupAppEnv(Context context){
-        Log.d(TAG, "Setup App");
+        Log.d(TAG, "Setup App, Pid:"+android.os.Process.myPid());
         boolean res=MdxEngine.setupEnv(context);
         if (res ){
             mainDict=new MdxDictBase();

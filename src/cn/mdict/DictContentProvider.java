@@ -21,6 +21,7 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -29,6 +30,10 @@ import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 import android.provider.BaseColumns;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,7 +45,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.mdict.fragments.DictView;
 import cn.mdict.mdx.DictEntry;
+import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
 import cn.mdict.utils.IOUtil;
@@ -238,8 +245,14 @@ public class DictContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        MDictApp.getInstance().setupAppEnv(getContext());
-        Log.d(TAG, "Content Provider Created");
+        Log.d(TAG, "Init content provider");
+        MDictApp theApp = MDictApp.getInstance();
+        theApp.setupAppEnv(this.getContext());
+        if (fCurrentDict==null){
+            Log.d(TAG, "No dict assigned, open last dict");
+            theApp.openMainDictById(DictPref.kInvalidDictPrefId);
+            fCurrentDict=theApp.getMainDict();
+        }
         return true;
     }
 
@@ -248,11 +261,8 @@ public class DictContentProvider extends ContentProvider {
         Log.d(TAG, "Got query:" + uri.toString());
         if (uri.getPath() != null && uri.getPath().startsWith(SEARCH_PATH)) {
             if (fCurrentDict != null && fCurrentDict.isValid()) {
-                List<String> pathSegments = uri.getPathSegments();
-                if (pathSegments != null && pathSegments.size() > 0 && pathSegments.get(0).compareToIgnoreCase(SearchManager.SUGGEST_URI_PATH_QUERY) == 0) {
-                    String query = null;
-                    if (pathSegments.size() > 1)
-                        query = pathSegments.get(1);
+                String query=uri.getLastPathSegment();
+                if (query!=null && query.length()>0){
                     DictEntry entry = new DictEntry(0, "", fCurrentDict.getDictPref().getDictId());
                     if (query != null && query.length() > 0)
                         fCurrentDict.locateFirst(query, true, false, true, entry);
@@ -277,7 +287,7 @@ public class DictContentProvider extends ContentProvider {
                         Object[] row;
                         for (DictEntry cur_entry : entryList) {
                             String intentDataId = String.format("%d_%d_%s", cur_entry.getDictId(), cur_entry.getEntryNo(), cur_entry.getHeadword());
-                            row = new Object[]{cur_entry.toString(), cur_entry.getHeadword(), intentDataId, SearchManager.SUGGEST_NEVER_MAKE_SHORTCUT};
+                            row = new Object[]{cur_entry.hashCode(), cur_entry.getHeadword(), intentDataId, SearchManager.SUGGEST_NEVER_MAKE_SHORTCUT};
                             cursor.addRow(row);
                         }
                         return cursor;
