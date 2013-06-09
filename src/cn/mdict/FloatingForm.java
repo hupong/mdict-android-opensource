@@ -470,7 +470,6 @@ public class FloatingForm extends SherlockFragmentActivity {
                             data.getStringExtra(HistoryFrame.headwordName),
                             data.getIntExtra(HistoryFrame.dictIdName,
                                     DictPref.kInvalidDictPrefId));
-                    histEntry.makeJEntry();
                     dictView.displayByEntry(histEntry, false);
                 }
                 break;

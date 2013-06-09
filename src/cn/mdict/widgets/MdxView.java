@@ -168,44 +168,37 @@ public class MdxView extends RelativeLayout {
     public void displayByEntry(DictEntry entry, boolean addToHistory) {
         currentEntry = new DictEntry(entry);
         updateUIStateForEntry(currentEntry);
-        currentEntry.makeJEntry();
+        currentEntry.dumpEntryInfo();
         if (dict != null && dict.isValid()) {
             if (entry.isValid() || entry.isSysCmd()) { // TODO should handle
                 // syscmd here
-                int dictId = dict.getDictPref().getDictId();
-                if (!entry.isSysCmd()
-                        && (entry.getDictId() != dictId || (!dict
-                        .canRandomAccess() && entry.getSiblingCount() == 0))) {
-                    displayByHeadword(entry.getHeadword(), false);
+                if (mdxViewListener != null) {
+                    if (mdxViewListener.onDisplayEntry(this, currentEntry,
+                            addToHistory))
+                        return;
+                }
+                if (MdxEngine.getSettings().getPrefHighSpeedMode()) {
+                    switchViewMode(false);
+                    entryViewSingle.displayEntry(currentEntry);
                 } else {
-                    if (mdxViewListener != null) {
-                        if (mdxViewListener.onDisplayEntry(this, currentEntry,
-                                addToHistory))
-                            return;
-                    }
-                    if (MdxEngine.getSettings().getPrefHighSpeedMode()) {
+                    // htmlView.loadUrl(String.format("content://mdict.cn/mdx/%d/%d/%s/",
+                    // currentEntry.getDictId(), currentEntry.getEntryNo(),
+                    // currentEntry.getHeadword()));
+
+                    if (currentEntry.isUnionDictEntry()) {
+                        //switchViewMode(true);
+                        //entryViewList.displayEntry(currentEntry);
                         switchViewMode(false);
                         entryViewSingle.displayEntry(currentEntry);
+
+                        //TODO: should scroll view to webview if "Show only one entry"
                     } else {
-                        // htmlView.loadUrl(String.format("content://mdict.cn/mdx/%d/%d/%s/",
-                        // currentEntry.getDictId(), currentEntry.getEntryNo(),
-                        // currentEntry.getHeadword()));
-
-                        if (currentEntry.isUnionDictEntry()) {
-                            //switchViewMode(true);
-                            //entryViewList.displayEntry(currentEntry);
-                            switchViewMode(false);
-                            entryViewSingle.displayEntry(currentEntry);
-
-                            //TODO: should scroll view to webview if "Show only one entry"
-                        } else {
-                            switchViewMode(false);
-                            entryViewSingle.loadUrl(String.format(
-                                    "content://mdict.cn/mdx/%d/%d/%s/",
-                                    currentEntry.getDictId(),
-                                    currentEntry.getEntryNo(),
-                                    currentEntry.getHeadword()));
-                        }
+                        switchViewMode(false);
+                        entryViewSingle.loadUrl(String.format(
+                                "content://mdict.cn/mdx/%d/%d/%s/",
+                                currentEntry.getDictId(),
+                                currentEntry.getEntryNo(),
+                                currentEntry.getHeadword()));
                     }
                 }
             } else {

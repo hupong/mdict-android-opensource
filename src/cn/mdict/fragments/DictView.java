@@ -294,6 +294,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             public void onItemClick(AdapterView<?> arg0, View arg1,
                                     int position, long ID) {
                 DictEntry entry = adapter.getEntryByPosition(position);
+                //entry.dumpEntryInfo();
                 InputMethodManager imm = (InputMethodManager) getSherlockActivity()
                         .getSystemService(
                                 android.content.Context.INPUT_METHOD_SERVICE);
@@ -329,8 +330,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                         dict.getDictTextN(entryTest, false, false, "", "");
                     }
                     displayHtml("Dict verified!");
-                } else if (MdxDictBase.isMdxCmd(query)
-                        || !currentEntry.isValid()) {
+                } else if (MdxDictBase.isMdxCmd(query) || !currentEntry.isValid()) {
                     displayByHeadword(query, false);
                     depth = 0;
                     initSearchHistory();// added by alex
@@ -351,6 +351,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                             currentEntry.setEntryNo(DictEntry.kSystemCmdEntryNo);
                         } else {
                             dict.locateFirst(newText, true, true, true, currentEntry);
+                            currentEntry.dumpEntryInfo();
                             if (currentEntry.isValid())
                                 dict.getHeadword(currentEntry);
                         }
@@ -906,7 +907,11 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     public void displayByEntry(DictEntry entry, boolean addToHistory) {
         switchToContentView();
-        contentView.displayByEntry(entry, !entry.isSysCmd() && addToHistory);
+        addToHistory=!entry.isSysCmd() && addToHistory;
+        if ( entry.getDictId()!=dict.getDictPref().getDictId() || (entry.isUnionDictEntry()&& entry.getSiblingCount()==0))
+            contentView.displayByHeadword(entry.getHeadword(), addToHistory);
+        else
+            contentView.displayByEntry(entry, addToHistory);
     }
 
     public void displayByHeadword(String headword, boolean addToHistory) {        /*

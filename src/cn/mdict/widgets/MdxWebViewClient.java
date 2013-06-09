@@ -133,7 +133,7 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
         Matcher matcher = EntryUrlPattern.matcher(path);
         if (matcher.matches() && matcher.groupCount() == 2) {
             //String headWord=uri.getPath();
-            //int dictId=Integer.parseInt(matcher.group(1));
+            int dictId=Integer.parseInt(matcher.group(1));
             String headWord = matcher.group(2);
             anchor = uri.getFragment();
             int fragPos = headWord.indexOf('#');
@@ -141,7 +141,7 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
                 headWord = headWord.substring(0, fragPos);
             if (headWord.length() > 0) {
                 if (headWord.charAt(0) != '#') {
-                    DictEntry entry = new DictEntry(0, "", mdxView.getDict().getDictPref().getDictId());
+                    DictEntry entry = new DictEntry(0, "", dictId);
                     if (mdxView.getDict().locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                         mdxView.displayByEntry(entry, true);
                     } else {

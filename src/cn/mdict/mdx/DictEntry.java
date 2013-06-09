@@ -16,6 +16,8 @@
 
 package cn.mdict.mdx;
 
+import android.util.Log;
+
 /**
  * 本类用来表示普通辞典或者联合模式辞典中的一个条目入口
  * 当表示的是普通辞典的条目入口时, entryNo, headword, dictId都有效
@@ -24,6 +26,7 @@ package cn.mdict.mdx;
  *         Created on 11-12-31
  */
 public class DictEntry {
+    private static final String TAG = "MDict.DictEntry";
     public static final int kSystemCmdEntryNo = -2, kUnionDictEntryNo = 0x7fffffff, kInvalidEntryNo = -1;
 
     /**
@@ -161,6 +164,15 @@ public class DictEntry {
 
     public native boolean isUnionDictEntry();
 
+    public void dumpEntryInfo(){
+        Log.d(TAG, String.format("Entry Info: DictId:%d, Headword:%s, EntryNo:%d", getDictId(), getHeadword(), getEntryNo()));
+        if ( isUnionDictEntry() ){
+            for (int i=0; i<getSiblingCount(); ++i){
+                Log.d(TAG, "Sibling "+i);
+                getSiblingAt(i).dumpEntryInfo();
+            }
+        }
+    }
     /**
      * Method getSiblingCount returns the siblingCount of this DictEntry object.
      * <p/>
