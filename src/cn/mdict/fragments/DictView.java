@@ -465,24 +465,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             item.setEnabled(dictIsValid && currentView == contentView);
             submenu = item.getSubMenu();
             if (submenu != null) {
-                if (dict!=null && dict.getDictPref()!=null )
-                    chnConvType = dict.getDictPref().getChnConversion();
                 MenuItem menuItem;
-                int itemId;
-                switch (chnConvType) {
-                    case DictPref.kChnConvToSimplified:
-                        itemId = R.id.to_simp_chn;
-                        break;
-                    case DictPref.kChnConvToTraditional:
-                        itemId = R.id.to_trad_chn;
-                        break;
-                    default:
-                        itemId = R.id.no_chn_conv;
-                        break;
-                }
-                menuItem = submenu.findItem(itemId);
+                menuItem = submenu.findItem(R.id.chn_conv);
                 if (menuItem != null)
-                    menuItem.setChecked(true);
+                    menuItem.setEnabled(dictIsValid);
 
                 boolean showEntryCtrl = dictIsValid && !dict.canRandomAccess();
                 menuItem = submenu.findItem(R.id.expand_all);
@@ -502,6 +488,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 menuItem = submenu.findItem(R.id.zoom_out);
                 if (menuItem != null)
                     menuItem.setEnabled(zoomLevel > DictPref.kZoomSmallest);
+                menuItem = submenu.findItem(R.id.toggle_toolbar);
+                if (menuItem != null){
+                    menuItem.setTitle(show_toolbar?R.string.hide_toolbar:R.string.show_toolbar);
+                }
             }
         }
 
@@ -541,14 +531,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 // this.toggleView();
                 toggleToolbarVisible();
                 break;
-            case R.id.no_chn_conv:
-                setChnConv(DictPref.kChnConvNone);
-                break;
-            case R.id.to_simp_chn:
-                setChnConv(DictPref.kChnConvToSimplified);
-                break;
-            case R.id.to_trad_chn:
-                setChnConv(DictPref.kChnConvToTraditional);
+            case R.id.chn_conv:
+                selectChnConv();
                 break;
             case R.id.history_back:
                 contentView.displayHistPrev();
@@ -614,11 +598,6 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             ++count;
         }
 
-        DialogInterface.OnClickListener itemListener = new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        };
-
         dialogBuilder = new AlertDialog.Builder(getSherlockActivity())
                 .setCancelable(true)
                 .setTitle(getSherlockActivity().getString(R.string.font_face))
@@ -640,15 +619,54 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         dialog=dialogBuilder.show();
     }
 
+    private void selectChnConv(){
+        if (dict==null || dict.getDictPref()==null )
+            return;
+        int currentSelection=0;
+        switch (dict.getDictPref().getChnConversion()) {
+            case DictPref.kChnConvToSimplified:
+                currentSelection = 1;
+                break;
+            case DictPref.kChnConvToTraditional:
+                currentSelection= 2;
+                break;
+            default:
+                currentSelection = 0;
+                break;
+        }
+        dialogBuilder = new AlertDialog.Builder(getSherlockActivity())
+                .setCancelable(true)
+                .setTitle(getSherlockActivity().getString(R.string.chn_conv))
+                .setSingleChoiceItems(R.array.chn_conv_choices, currentSelection, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DictPref dictPref=dict.getDictPref();
+                        int chnType=DictPref.kChnConvNone;
+                        switch(which){
+                            case 0:
+                                chnType=DictPref.kChnConvNone;
+                                break;
+                            case 1:
+                                chnType=DictPref.kChnConvToSimplified;
+                                break;
+                            case 2:
+                                chnType=DictPref.kChnConvToTraditional;
+                                break;
+                        }
+                        dictPref.setChnConversion(chnType);
+                        DictView.this.updateDictWithRefresh(dictPref);
+                        dialog.dismiss();
+                    }
+                });
+        dialog=dialogBuilder.show();
+    }
     public boolean hasPronunciationForCurrentEntry() {
         boolean hasSound = dict != null && dict.isValid()
                 && currentEntry != null && currentEntry.isValid()
                 && currentEntry.getHeadword().length() > 0;
         if (hasSound)
             hasSound = (ttsEngine != null && MdxEngine.getSettings()
-                    .getPrefUseTTS())
-                    || MiscUtils.hasSpeechForWord(dict,
-                    currentEntry.getHeadword());
+                    .getPrefUseTTS()) || MiscUtils.hasSpeechForWord(dict, currentEntry.getHeadword());
         return hasSound;
     }
 

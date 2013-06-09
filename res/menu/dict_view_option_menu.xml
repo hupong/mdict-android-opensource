@@ -58,21 +58,6 @@
           android:showAsAction="always">
         <menu>
             <!-- <group android:checkableBehavior="single"> -->
-            <item android:id="@+id/no_chn_conv"
-                  android:icon="@drawable/ic_no_chn_conv"
-                  android:title="@string/no_chn_conv"
-                  android:showAsAction="never"
-                  android:checkable="true"/>
-            <item android:id="@+id/to_simp_chn"
-                  android:icon="@drawable/ic_to_simp_chn"
-                  android:title="@string/to_simp_chn"
-                  android:showAsAction="never"
-                  android:checkable="true"/>
-            <item android:id="@+id/to_trad_chn"
-                  android:icon="@drawable/ic_to_trad_chn"
-                  android:title="@string/to_trad_chn"
-                  android:showAsAction="never"
-                  android:checkable="true"/>
             <item android:id="@+id/zoom_in"
                   android:icon="@drawable/ic_zoom_in"
                   android:showAsAction="never"
@@ -87,6 +72,13 @@
             <item android:id="@+id/collapse_all"
                   android:title="@string/collapse_all"
                   android:showAsAction="never"/>
+            <item android:id="@+id/toggle_toolbar"
+                  android:title="@string/hide_toolbar"
+                  android:showAsAction="never" />
+            <item android:id="@+id/chn_conv"
+                  android:title="@string/chn_conv"
+                  android:showAsAction="never"
+                  android:checkable="true"/>
             <item android:id="@+id/font_face"
                   android:title="@string/font_face"
                   android:showAsAction="never" />

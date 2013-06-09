@@ -20,9 +20,6 @@
     <string name="speak">发音</string>
     <string name="add_to_fav">加入收藏</string>
     <string name="view">显示</string>
-    <string name="no_chn_conv">无转换</string>
-    <string name="to_simp_chn">转简体</string>
-    <string name="to_trad_chn">转繁体</string>
     <string name="invalid_dict">未选择有效词典</string>
     <string name="empty_entry_list">空</string>
     <string name="history_back">上一条历史</string>
@@ -79,6 +76,14 @@
     <string name="text_color">字体颜色</string>
     <string name="background_color">背景颜色</string>
     <string name="font_face">字体</string>
+    <string name="hide_toolbar">隐藏工具栏</string>
+    <string name="show_toolbar">显示工具栏</string>
+    <string name="chn_conv">简繁体转换</string>
+    <string-array name="chn_conv_choices">
+        <item>无转换</item>
+        <item>转简体</item>
+        <item>转繁体</item>
+    </string-array>
 
     <!-- string for setting frame -->
     <string name="pref_cate_title_basic_setting">基础设置</string>
