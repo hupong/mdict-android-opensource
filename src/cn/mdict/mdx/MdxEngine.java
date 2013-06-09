@@ -46,7 +46,7 @@ public class MdxEngine {
         System.loadLibrary("iconv");
         System.loadLibrary("mdx");
     }
-
+    private static final String TAG = "MDict.DictView";
     private static final String dictIconDefault="content://mdict.cn/res/book.png";
 
     private MdxEngine() {
@@ -135,8 +135,10 @@ public class MdxEngine {
     }
 
     static public boolean setupEnv(Context context) {
-        if (appInited)
+        if (appInited){
+            Log.d(TAG, "Mdx nngine already inited, skip setup action");
             return true;
+        }
         if (appSetting == null)
             appSetting = new MdxEngineSetting(context);
         baseContext = context;

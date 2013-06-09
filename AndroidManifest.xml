@@ -45,7 +45,6 @@
         </activity>
         <activity
                 android:name=".FloatingForm"
-                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict.Translucent"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
@@ -75,22 +74,18 @@
 
         <activity
                 android:name=".LibraryFrame"
-                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/library"></activity>
         <activity
                 android:name=".FavoritesFrame"
-                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/favorites"></activity>
         <activity
                 android:name=".HistoryFrame"
-                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/history"></activity>
         <activity
                 android:name=".SettingFrame"
-                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/settings"></activity>
 
