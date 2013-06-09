@@ -528,6 +528,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             // inputBox.requestFocus();
             // return true;
             case android.R.id.home:
+            case R.id.toggle_toolbar:
                 // this.toggleView();
                 toggleToolbarVisible();
                 break;

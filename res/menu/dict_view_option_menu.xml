@@ -77,8 +77,7 @@
                   android:showAsAction="never" />
             <item android:id="@+id/chn_conv"
                   android:title="@string/chn_conv"
-                  android:showAsAction="never"
-                  android:checkable="true"/>
+                  android:showAsAction="never" />
             <item android:id="@+id/font_face"
                   android:title="@string/font_face"
                   android:showAsAction="never" />
