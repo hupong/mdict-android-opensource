@@ -32,7 +32,7 @@
                 android:name=".MainForm"
                 android:theme="@style/Theme.MDict"
                 android:configChanges="orientation|keyboardHidden|screenSize"
-                android:launchMode="singleInstance"
+                android:launchMode="singleTask"
                 android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -75,18 +75,22 @@
 
         <activity
                 android:name=".LibraryFrame"
+                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/library"></activity>
         <activity
                 android:name=".FavoritesFrame"
+                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/favorites"></activity>
         <activity
                 android:name=".HistoryFrame"
+                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/history"></activity>
         <activity
                 android:name=".SettingFrame"
+                android:launchMode="singleTask"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/settings"></activity>
 
