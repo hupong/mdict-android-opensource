@@ -877,6 +877,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void switchToContentView() {
+        contentView.displayHtml("");
         headwordList.setVisibility(useSplitViewMode ? View.VISIBLE : View.INVISIBLE);
         contentView.setVisibility(View.VISIBLE);
         contentView.requestFocus();
