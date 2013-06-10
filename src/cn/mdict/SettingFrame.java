@@ -179,8 +179,12 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                 if (resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_FAIL) {
                     // success, create the TTS instance
                     ttsEngine = new TextToSpeech(this, this);
+                }else{
+                    onInit(TextToSpeech.ERROR);
                 }
-            } else if (requestCode == kInstallTTS) {
+            }
+            else if (requestCode == kInstallTTS) {
+                //如果是用户选择了安装TTS，安装完成后需要重新初始化一次
                 initTTS();
             }
         } catch (Exception e) {
