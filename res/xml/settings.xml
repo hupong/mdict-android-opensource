@@ -48,10 +48,12 @@
                 android:summary="@string/pref_summary_use_built_in_ipa_font"
                 android:defaultValue="@string/pref_default_use_built_in_ipa_font"/>
 
+        <!--
         <CheckBoxPreference
                 android:key="@string/pref_auto_sip"
                 android:title="@string/pref_title_auto_sip"
                 android:defaultValue="@string/pref_default_auto_sip"/>
+        -->
         <CheckBoxPreference
                 android:key="@string/pref_use_finger_gesture"
                 android:title="@string/pref_title_use_finger_gesture"

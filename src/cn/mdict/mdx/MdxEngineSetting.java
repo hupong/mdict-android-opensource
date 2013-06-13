@@ -280,7 +280,8 @@ public class MdxEngineSetting {
      */
     //是否在进入查找界面时将输入焦点设置为输入框(自动弹出输入法)
     public boolean getPrefAutoSIP() {
-        return appPrefs.getBoolean(prefAutoSIP, true);
+        return true;
+        //return appPrefs.getBoolean(prefAutoSIP, true);
     }
 
     /**

@@ -377,16 +377,18 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 if (imm == null)
                     return;
                 if (hasFocus) {
-                    switchToListView();
+                    if (currentView!=headwordList)
+                        switchToListView();
                     // inputBox.setText("");
-                    if (MdxEngine.getSettings().getPrefAutoSIP())
-                        imm.showSoftInput(searchView, 0);
                     AutoCompleteTextView editField = (AutoCompleteTextView) (searchView.findViewById(R.id.abs__search_src_text));
-                    editField.selectAll(); //TODO This line has no effect, need more works.
+                    editField.selectAll(); //TODO This only works when users use back key to switch input focus, not by click on the search view
+                    if (MdxEngine.getSettings().getPrefAutoSIP()){
+                        //imm.showSoftInput(searchView, 0);
+                        imm.toggleSoftInput(0,0);
+                    }
                 } else {
                     if (MdxEngine.getSettings().getPrefAutoSIP())
-                        imm.hideSoftInputFromWindow(searchView.getWindowToken(),
-                                0);
+                        imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
                     // imm.hideSoftInputFromWindow(inputBox.getWindowToken(),
                     // 0);
                 }
@@ -871,20 +873,20 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     public void switchToListView() {
         headwordList.setVisibility(View.VISIBLE);
         contentView.setVisibility(useSplitViewMode ? View.VISIBLE : View.INVISIBLE);
+        currentView = headwordList;
         if (MdxEngine.getSettings().getPrefAutoSIP() && !searchView.hasFocus())
             searchView.requestFocus();
-        currentView = headwordList;
     }
 
     public void switchToContentView() {
         contentView.displayHtml("");
         headwordList.setVisibility(useSplitViewMode ? View.VISIBLE : View.INVISIBLE);
         contentView.setVisibility(View.VISIBLE);
+        currentView = contentView;
         contentView.requestFocus();
         // InputMethodManager imm = (InputMethodManager)
         // getSupportActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
         // imm.hideSoftInputFromWindow(inputBox.getWindowToken(), 0);
-        currentView = contentView;
     }
 
     public boolean isInputing() {
