@@ -55,7 +55,7 @@
     <string name="pref_default_show_splash">true</string>
     <string name="pref_default_auto_lookup_clipboard">false</string>
     <string name="pref_default_use_built_in_ipa_font">true</string>
-    <string name="pref_default_lock_rotation">true</string>
+    <string name="pref_default_lock_rotation">false</string>
     <string name="pref_default_use_popover_for_lookup">true</string>
     <string name="pref_default_shake_for_random_entry">false</string>
     <string name="pref_default_show_toolbar">true</string>
