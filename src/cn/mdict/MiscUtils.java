@@ -419,7 +419,7 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
                 //Should change this according screen size and resolution.
                 Log.d(TAG, "Screen size:" + String.valueOf(getScreenSize(context)));
                 Log.d(TAG, "Orientation:" + String.valueOf(context.getResources().getConfiguration().orientation));
-                return (getScreenSize(context) > 3.8) && context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+                return (getScreenSize(context) > 3.5) && context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         }
         return false;
     }
