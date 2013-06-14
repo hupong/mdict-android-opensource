@@ -29,6 +29,7 @@ import android.preference.Preference;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.speech.tts.TextToSpeech;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
@@ -168,6 +169,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
             checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
             startActivityForResult(checkIntent, kCheckTTS);
         } catch (Exception e) {
+            onInit(TextToSpeech.ERROR);
             e.printStackTrace();
         }
     }
@@ -195,7 +197,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference.getKey().compareToIgnoreCase(getString(R.string.pref_use_tts)) == 0) {
-            CheckBoxPreference useTTS = (CheckBoxPreference) preference;
+            final CheckBoxPreference useTTS = (CheckBoxPreference) preference;
             if (useTTS.isChecked() && ttsEngine == null) {
                 AlertDialog dialog = MiscUtils.buildConfirmDialog(this,
                         R.string.confirm_install_tts, R.string.install_tts,
@@ -208,9 +210,15 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                                     startActivityForResult(installIntent, kInstallTTS);
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    Toast.makeText(SettingFrame.this, R.string.fail_to_install_tts_engine, 3000).show();
                                 }
                             }
-                        }, null);
+                        }, new android.content.DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(android.content.DialogInterface dialogInterface, int i) {
+                                useTTS.setChecked(false);
+                            }
+                        });
                 dialog.show();
             }
         } else if (preference.getKey().compareToIgnoreCase(getString(R.string.pref_extra_dict_dir)) == 0) {
@@ -234,12 +242,12 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                     if (ttsEngine != null) {
                         ttsEngine.shutdown();
                         ttsEngine = null;
-                        CheckBoxPreference useTTS = (CheckBoxPreference) findPreference(MdxEngineSetting.prefUseTTS);
-                        if (useTTS != null)
-                            useTTS.setChecked(false); //No TTS engine installed, so we turn it off.
-                        if (ttsEngineName != null) {
-                            prefGrp.removePreference(ttsEngineName);
-                        }
+                    }
+                    CheckBoxPreference useTTS = (CheckBoxPreference) findPreference(MdxEngineSetting.prefUseTTS);
+                    if (useTTS != null)
+                        useTTS.setChecked(false); //No TTS engine installed, so we turn it off.
+                    if (ttsEngineName != null) {
+                        prefGrp.removePreference(ttsEngineName);
                     }
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && ttsEngine != null && ttsEngineName != null) {

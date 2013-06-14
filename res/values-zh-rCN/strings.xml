@@ -84,10 +84,11 @@
         <item>转简体</item>
         <item>转繁体</item>
     </string-array>
+    <string name="fail_to_install_tts_engine">TTS 引擎安装失败</string>
 
     <!-- string for setting frame -->
     <string name="pref_cate_title_basic_setting">基础设置</string>
-    <string name="pref_cate_title_multi_dict">多词典查询模设置</string>
+    <string name="pref_cate_title_multi_dict">多词典查询模式设置</string>
 
     <string name="pref_title_email">Email</string>
     <string name="pref_summary_email">你的email地址</string>
