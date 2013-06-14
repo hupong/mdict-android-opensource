@@ -36,6 +36,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
+import android.widget.ListView;
+
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
 import cn.mdict.mdx.MdxEngineSetting;
@@ -422,6 +424,18 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
                 return (getScreenSize(context) > 3.5) && context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         }
         return false;
+    }
+
+    public static void MakeItemVisible(final ListView listView, final int position){
+        if (listView.getFirstVisiblePosition()!=position){
+            listView.post(new Runnable() {
+                @Override
+                public void run() {
+                    listView.setSelectionFromTop(position,0);
+                }
+            });
+            listView.setSelection(position);
+        }
     }
 
     public static String getFileNameMainPart(String filePath){

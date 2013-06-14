@@ -357,9 +357,11 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                         }
                         adapter.setCurrentEntry(currentEntry);
                         if (dict.canRandomAccess() && currentEntry.isValid()) {
-                            headwordList.setSelection(currentEntry.getEntryNo());
+                            MiscUtils.MakeItemVisible(headwordList, currentEntry.getEntryNo());
+                            //headwordList.setSelection(currentEntry.getEntryNo());
                         } else {
-                            headwordList.setSelection(0);
+                            MiscUtils.MakeItemVisible(headwordList, 0);
+                            //headwordList.setSelection(0);
                         }
                     }
                 }
