@@ -101,6 +101,13 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                 if (prefTtsEngine != null)
                     prefGrp.removePreference(prefTtsEngine);
             }
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                PreferenceGroup basicGrp = (PreferenceGroup) findPreference(getResources().getString(R.string.pref_category_basic));
+                Preference prefMonitorClipboard = basicGrp.findPreference(getResources().getString(R.string.pref_global_clipboard_monitor));
+                if (prefMonitorClipboard != null)
+                    basicGrp.removePreference(prefMonitorClipboard);
+            }
+
             if (ttsSuportedLocale.getEntries() == null || ttsSuportedLocale.getEntries().length == 0) {
                 prefGrp.removePreference(ttsSuportedLocale);
             }
