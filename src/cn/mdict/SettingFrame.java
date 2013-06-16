@@ -54,11 +54,6 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     private String oldExtraDictPath = "";
     private boolean oldUseFingerGesture = true;
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
     static String prefExtraDictDirTitle = null;
 
     void updateExtraDictDir() {
@@ -130,10 +125,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     @Override
     public void onResume() {
         super.onResume();
-        if (MdxEngine.getSettings().getPrefLockRotation())
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        else
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        MiscUtils.setOrientationSensorBySetting(this);
     }
 
     @Override

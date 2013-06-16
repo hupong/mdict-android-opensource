@@ -52,20 +52,6 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
     public abstract BookmarkAdapter getBookmarkAdapter();
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (MdxEngine.getSettings().getPrefLockRotation())
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        else
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MdxEngine.setupEnv(getApplicationContext());
@@ -170,6 +156,12 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
     protected void onPause() {
         MdxEngine.saveEngineSettings();
         super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MiscUtils.setOrientationSensorBySetting(this);
     }
 
     @Override

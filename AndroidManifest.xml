@@ -47,6 +47,7 @@
                 android:name=".FloatingForm"
                 android:theme="@style/Theme.MDict.Translucent"
                 android:configChanges="orientation|keyboardHidden|screenSize"
+                android:launchMode="singleTask"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
