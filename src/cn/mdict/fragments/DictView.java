@@ -541,16 +541,16 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 selectChnConv();
                 break;
             case R.id.history_back:
-                contentView.displayHistPrev();
+                displayHistPrev();
                 break;
             case R.id.history_forward:
-                contentView.displayHistNext();
+                displayHistNext();
                 break;
             case R.id.entry_prev:
-                contentView.displayEntryPrev();
+                displayEntryPrev();
                 break;
             case R.id.entry_next:
-                contentView.displayEntryNext();
+                displayEntryNext();
                 break;
             case R.id.zoom_in:
                 zoomView(true);
@@ -937,22 +937,61 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         contentView.displayHtml(html);
     }
 
+    public void displayHistPrev() {
+        if (MdxEngine.getHistMgr().hasPrev()) {
+            DictEntry entry = MdxEngine.getHistMgr().getPrev();
+            if (entry.isValid()) {
+                displayByEntry(entry, false);
+            } else {
+                displayByHeadword(entry.getHeadword(), false);
+            }
+        }
+    }
+
+    public void displayHistNext() {
+        if (MdxEngine.getHistMgr().hasNext()) {
+            DictEntry entry = MdxEngine.getHistMgr().getNext();
+            if (entry.isValid()) {
+                displayByEntry(entry, false);
+            } else {
+                entry.makeJEntry();
+                displayByHeadword(entry.getHeadword(), false);
+            }
+        }
+    }
+
+    public void displayEntryPrev() {
+        if (currentEntry.getEntryNo() != 0) {
+            currentEntry.setEntryNo(currentEntry.getEntryNo() - 1);
+            dict.getHeadword(currentEntry);
+            displayByEntry(currentEntry, true);
+        }
+    }
+
+    public void displayEntryNext() {
+        if (currentEntry.getEntryNo() < dict.getEntryCount() - 1) {
+            currentEntry.setEntryNo(currentEntry.getEntryNo() + 1);
+            dict.getHeadword(currentEntry);
+            displayByEntry(currentEntry, true);
+        }
+    }
+
     @Override
     public void onSwipe(View view, int direction, int touchPointCount,
                         MotionEvent motionEvent) {
         if (touchPointCount == 1) {
             if (direction == WebViewGestureFilter.GestureListener.swipeLeft) {
-                contentView.displayHistNext();
+                displayHistNext();
             } else {
-                contentView.displayHistPrev();
+                displayHistPrev();
             }
         } else if (touchPointCount == 2) {
             if (dict != null && dict.isValid() && dict.canRandomAccess()
                     && currentEntry.isValid()) {
                 if (direction == WebViewGestureFilter.GestureListener.swipeLeft) {
-                    contentView.displayEntryNext();
+                    displayEntryNext();
                 } else {
-                    contentView.displayEntryPrev();
+                    displayEntryPrev();
                 }
             }
         }

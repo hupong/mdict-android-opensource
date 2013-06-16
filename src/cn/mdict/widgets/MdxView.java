@@ -250,44 +250,6 @@ public class MdxView extends RelativeLayout {
         }
     }
 
-    public void displayHistPrev() {
-        if (MdxEngine.getHistMgr().hasPrev()) {
-            DictEntry entry = MdxEngine.getHistMgr().getPrev();
-            if (entry.isValid()) {
-                displayByEntry(entry, false);
-            } else {
-                displayByHeadword(entry.getHeadword(), false);
-            }
-        }
-    }
-
-    public void displayHistNext() {
-        if (MdxEngine.getHistMgr().hasNext()) {
-            DictEntry entry = MdxEngine.getHistMgr().getNext();
-            if (entry.isValid()) {
-                displayByEntry(entry, false);
-            } else {
-                entry.makeJEntry();
-                displayByHeadword(entry.getHeadword(), false);
-            }
-        }
-    }
-
-    public void displayEntryPrev() {
-        if (currentEntry.getEntryNo() != 0) {
-            currentEntry.setEntryNo(currentEntry.getEntryNo() - 1);
-            dict.getHeadword(currentEntry);
-            displayByEntry(currentEntry, true);
-        }
-    }
-
-    public void displayEntryNext() {
-        if (currentEntry.getEntryNo() < dict.getEntryCount() - 1) {
-            currentEntry.setEntryNo(currentEntry.getEntryNo() + 1);
-            dict.getHeadword(currentEntry);
-            displayByEntry(currentEntry, true);
-        }
-    }
 
     public void toggleZoom() {
         if (!lastZoomActionIsZoomIn)
