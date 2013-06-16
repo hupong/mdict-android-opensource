@@ -912,6 +912,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     public void displayByEntry(DictEntry entry, boolean addToHistory) {
         switchToContentView();
+        if (dict ==null || !dict.isValid())
+            return;
         addToHistory=!entry.isSysCmd() && addToHistory;
         if ( entry.getDictId()!=dict.getDictPref().getDictId() || (entry.isUnionDictEntry()&& entry.getSiblingCount()==0))
             contentView.displayByHeadword(entry.getHeadword(), addToHistory);
