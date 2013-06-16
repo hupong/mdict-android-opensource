@@ -23,6 +23,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -277,25 +278,26 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     private String[] loadDirList(String rootPath) {
         File path = new File(rootPath);
         String[] dirList = null;
-        if (path.exists()) {
-            FilenameFilter filter = new FilenameFilter() {
-                public boolean accept(File dir, String filename) {
-                    File sel = new File(dir, filename);
-                    return sel.isDirectory();
-                }
-            };
-            String[] list = path.list(filter);
-            if (rootPath.compareTo("/") != 0) {
-                if (list != null && list.length > 0) {
-                    dirList = new String[list.length + 1];
-                    System.arraycopy(list, 0, dirList, 1, list.length);
-                }
-            } else
-                dirList = list;
-            if (dirList == null)
-                dirList = new String[1];
-            dirList[0] = "..";
+        if (!path.exists()) {
+            path=new File(Environment.getExternalStorageDirectory().getAbsolutePath());
         }
+        FilenameFilter filter = new FilenameFilter() {
+            public boolean accept(File dir, String filename) {
+                File sel = new File(dir, filename);
+                return sel.isDirectory();
+            }
+        };
+        String[] list = path.list(filter);
+        if (rootPath.compareTo("/") != 0) {
+            if (list != null && list.length > 0) {
+                dirList = new String[list.length + 1];
+                System.arraycopy(list, 0, dirList, 1, list.length);
+            }
+        } else
+            dirList = list;
+        if (dirList == null)
+            dirList = new String[1];
+        dirList[0] = "..";
         java.util.Arrays.sort(dirList, java.text.Collator.getInstance());
         return dirList;
     }
