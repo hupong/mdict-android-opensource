@@ -5,6 +5,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import cn.mdict.mdx.MdxEngine;
+import cn.mdict.mdx.MdxEngineSetting;
 
 /**
  * When booting is completed, it starts {@link ClipboardMonitor} service to
@@ -19,11 +21,12 @@ public class ClipboardMonitorStarter extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-            ComponentName service = context.startService(
-                    new Intent(context, ClipboardMonitor.class));
-            if (service == null) {
-                Log.e(TAG, "Can't start service "
-                        + ClipboardMonitor.class.getName());
+            MdxEngineSetting appSetting = new MdxEngineSetting(context);
+            if (appSetting.getPrefGlobalClipboardMonitor()){
+                ComponentName service = context.startService(new Intent(context, ClipboardMonitor.class));
+                if (service == null) {
+                    Log.e(TAG, "Can't start service " + ClipboardMonitor.class.getName());
+                }
             }
         } else {
             Log.e(TAG, "Received unexpected intent " + intent.toString());
