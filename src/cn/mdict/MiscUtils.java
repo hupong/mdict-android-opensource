@@ -52,7 +52,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 
-public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
+public class MiscUtils {
     static MediaPlayer mediaPlayer = null;
     static boolean appInited = false;
     private static final String TAG = "MDict.MiscUtil";
@@ -125,16 +125,6 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
         }
     }
 
-    @Override
-    public void onBufferingUpdate(MediaPlayer mp, int percent) {
-        if (percent == 100) {
-            mp.stop();
-            mp.release();
-            if (mediaPlayer == mp)
-                mediaPlayer = null;
-        }
-    }
-
     public class WaveInfo {
         WaveInfo(int format, int channels, int rate, int bits, int size, int bodyOffset) {
             this.format = format;
@@ -188,12 +178,33 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
 
     public static void playMedia(byte[] mediaData) {
         try {
-            mediaPlayer = new MediaPlayer();
+            if ( mediaPlayer!=null ){
+                if (mediaPlayer.isPlaying())
+                    mediaPlayer.stop();
+            }else
+                mediaPlayer = new MediaPlayer();
             String tmpFile = MdxEngine.getTempDir() + "audio.wav";
             IOUtil.saveBytesToFile(tmpFile, mediaData);
             mediaPlayer.setDataSource(tmpFile);
             mediaPlayer.prepare();
-            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.stop();
+                    mp.release();
+                    if ( mediaPlayer==mp ){
+                        mediaPlayer=null;
+                    }else{
+                        Log.d(TAG, "mediaPlayer unmatched!");
+                    }
+               }
+            });
+            new Thread(){
+                @Override
+                public void run() {
+                    mediaPlayer.start();
+                }
+            }.start();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -168,7 +168,7 @@ public class MdxView extends RelativeLayout {
     public void displayByEntry(DictEntry entry, boolean addToHistory) {
         currentEntry = new DictEntry(entry);
         updateUIStateForEntry(currentEntry);
-        currentEntry.dumpEntryInfo();
+        //currentEntry.dumpEntryInfo();
         if (dict != null && dict.isValid()) {
             if (entry.isValid() || entry.isSysCmd()) { // TODO should handle
                 // syscmd here

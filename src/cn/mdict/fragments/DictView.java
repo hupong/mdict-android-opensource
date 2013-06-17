@@ -351,7 +351,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                             currentEntry.setEntryNo(DictEntry.kSystemCmdEntryNo);
                         } else {
                             dict.locateFirst(newText, true, true, true, currentEntry);
-                            currentEntry.dumpEntryInfo();
+                            //currentEntry.dumpEntryInfo();
                             if (currentEntry.isValid())
                                 dict.getHeadword(currentEntry);
                         }
