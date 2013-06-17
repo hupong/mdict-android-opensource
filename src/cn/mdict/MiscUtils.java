@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.AudioFormat;
@@ -455,6 +456,13 @@ public class MiscUtils implements MediaPlayer.OnBufferingUpdateListener {
                 return fileName.substring(0, pos);
         }else
             return fileName;
+    }
+
+    public static void setOrientationSensorBySetting(Activity activity){
+        if (MdxEngine.getSettings().getPrefLockRotation()) {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+        } else
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
     }
     /*
     public static View getItemViewForActionItem(ActionBarImpl actionBar, MenuItem item){

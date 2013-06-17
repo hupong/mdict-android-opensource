@@ -19,6 +19,7 @@ package cn.mdict.mdx;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Build;
 import cn.mdict.R;
 
 /**
@@ -439,7 +440,10 @@ public class MdxEngineSetting {
     }
 
     public Boolean getPrefMonitorClipboard() {
-        return appPrefs.getBoolean(prefMonitorClipboard, prefDefaultMonitorClipboard);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            return false;
+        }else
+            return appPrefs.getBoolean(prefMonitorClipboard, prefDefaultMonitorClipboard);
     }
 
     public void setPrefMonitorClipboard(boolean monitorClipboard) {

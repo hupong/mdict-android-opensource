@@ -307,7 +307,6 @@ public class DictContentProvider extends ContentProvider {
     private static final Pattern MddDataUrlPattern = Pattern.compile("/mdd/(\\d+)/(.*)"); //%1=dict_id, %2=name
     private static final Pattern IFrameEntryUrlPattern = Pattern.compile("/mdx/_(\\d+)/(-?\\d+)/"); //Used by iframe view mode for sub-entryies, %1=dict_id, %2=entry_no
     private static final Pattern ProgEntryUrlPattern = Pattern.compile("/mdx/(\\d+)/(-?\\d+)/(.*)/"); //Used by single view mode, %1=dict_id, %2=entry_no, %3=headword
-    private static final Pattern SearchViewUrlPattern = Pattern.compile("/searchView/(\\d+)_(-?\\d+)_(.*)"); //Used by search suggestion View action
 
 
     public static byte[] getDataByUrl(MdxDictBase dict, String urlString, StringBuffer mimeType) {
@@ -350,13 +349,8 @@ public class DictContentProvider extends ContentProvider {
                 }
                 matcher = ProgEntryUrlPattern.matcher(url);
                 boolean isProgEntryUrl = (matcher.matches() && matcher.groupCount() >= 2);
-                boolean isSearchEntryUrl = false;
-                if (!isProgEntryUrl) {
-                    matcher = SearchViewUrlPattern.matcher(url);
-                    isSearchEntryUrl = (matcher.matches() && matcher.groupCount() >= 2);
-                }
 
-                if (isSearchEntryUrl || isProgEntryUrl) {
+                if ( isProgEntryUrl) {
                     int dictId = Integer.parseInt(matcher.group(1));
                     int entryNo = Integer.parseInt(matcher.group(2));
                     DictEntry entry = new DictEntry(entryNo, "", dictId);
@@ -369,8 +363,8 @@ public class DictContentProvider extends ContentProvider {
                     if (entry.isSysCmd()) {
                         data = dict.getDictTextN(entry, true, false, null, null);
                     } else if (entry.isUnionDictEntry()) {
-                        if (dict.locateFirst(headWord, isSearchEntryUrl, false, false, entry) == MdxDictBase.kMdxSuccess) {
-                            data = dict.getDictTextN(entry, true, true, null, null);
+                        if (dict.locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                            data = dict.getDictTextN(entry, true, false, null, null);
                         }
                     } else {
                         data = dict.getDictTextN(entry, true, false, null, null);

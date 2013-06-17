@@ -43,7 +43,7 @@ public class MDictApp {
     private MDictApp(){
     }
 
-    static MDictApp getInstance(){
+    public static MDictApp getInstance(){
         if (instance==null){
             instance=new MDictApp();
         }

@@ -23,6 +23,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -53,11 +54,6 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     private String oldTTSEngineName = "";
     private String oldExtraDictPath = "";
     private boolean oldUseFingerGesture = true;
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
 
     static String prefExtraDictDirTitle = null;
 
@@ -101,6 +97,13 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                 if (prefTtsEngine != null)
                     prefGrp.removePreference(prefTtsEngine);
             }
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                PreferenceGroup basicGrp = (PreferenceGroup) findPreference(getResources().getString(R.string.pref_category_basic));
+                Preference prefMonitorClipboard = basicGrp.findPreference(getResources().getString(R.string.pref_global_clipboard_monitor));
+                if (prefMonitorClipboard != null)
+                    basicGrp.removePreference(prefMonitorClipboard);
+            }
+
             if (ttsSuportedLocale.getEntries() == null || ttsSuportedLocale.getEntries().length == 0) {
                 prefGrp.removePreference(ttsSuportedLocale);
             }
@@ -123,10 +126,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     @Override
     public void onResume() {
         super.onResume();
-        if (MdxEngine.getSettings().getPrefLockRotation())
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        else
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        MiscUtils.setOrientationSensorBySetting(this);
     }
 
     @Override
@@ -278,25 +278,26 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
     private String[] loadDirList(String rootPath) {
         File path = new File(rootPath);
         String[] dirList = null;
-        if (path.exists()) {
-            FilenameFilter filter = new FilenameFilter() {
-                public boolean accept(File dir, String filename) {
-                    File sel = new File(dir, filename);
-                    return sel.isDirectory();
-                }
-            };
-            String[] list = path.list(filter);
-            if (rootPath.compareTo("/") != 0) {
-                if (list != null && list.length > 0) {
-                    dirList = new String[list.length + 1];
-                    System.arraycopy(list, 0, dirList, 1, list.length);
-                }
-            } else
-                dirList = list;
-            if (dirList == null)
-                dirList = new String[1];
-            dirList[0] = "..";
+        if (!path.exists()) {
+            path=new File(Environment.getExternalStorageDirectory().getAbsolutePath());
         }
+        FilenameFilter filter = new FilenameFilter() {
+            public boolean accept(File dir, String filename) {
+                File sel = new File(dir, filename);
+                return sel.isDirectory();
+            }
+        };
+        String[] list = path.list(filter);
+        if (rootPath.compareTo("/") != 0) {
+            if (list != null && list.length > 0) {
+                dirList = new String[list.length + 1];
+                System.arraycopy(list, 0, dirList, 1, list.length);
+            }
+        } else
+            dirList = list;
+        if (dirList == null)
+            dirList = new String[1];
+        dirList[0] = "..";
         java.util.Arrays.sort(dirList, java.text.Collator.getInstance());
         return dirList;
     }

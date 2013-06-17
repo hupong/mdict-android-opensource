@@ -542,10 +542,7 @@ public class FloatingForm extends SherlockFragmentActivity {
     @Override
     public void onResume() {
         super.onResume();
-        if (MdxEngine.getSettings().getPrefLockRotation())
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        else
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        MiscUtils.setOrientationSensorBySetting(this);
     }
 
     @Override

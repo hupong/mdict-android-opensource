@@ -40,11 +40,6 @@ public class LibraryFrame extends SherlockFragmentActivity {
     private LibraryAdapter adapter;
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.library);
@@ -108,12 +103,9 @@ public class LibraryFrame extends SherlockFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        MiscUtils.setOrientationSensorBySetting(this);
         MdxEngine.refreshDictList();
         prepareAdapter();
-        if (MdxEngine.getSettings().getPrefLockRotation())
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        else
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     }
 
     private void prepareAdapter() {

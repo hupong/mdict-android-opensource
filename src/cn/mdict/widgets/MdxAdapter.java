@@ -68,8 +68,8 @@ public class MdxAdapter extends BaseAdapter {
         currentPage.clear();
         if (currentEntry != null && currentEntry.isValid() && dict != null && dict.isValid() && !dict.canRandomAccess()) {
             dict.getEntries(currentEntry, pageSize, currentPage);
-            notifyDataSetChanged();
         }
+        notifyDataSetChanged();
     }
 
     public DictEntry getEntryByPosition(int position) {

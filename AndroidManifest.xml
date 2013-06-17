@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cn.mdict"
-          android:versionCode="31"
-          android:versionName="1.1 Release">
+          android:versionCode="32"
+          android:versionName="1.2 alpha">
 
     <uses-sdk
             android:minSdkVersion="7"
@@ -47,6 +47,7 @@
                 android:name=".FloatingForm"
                 android:theme="@style/Theme.MDict.Translucent"
                 android:configChanges="orientation|keyboardHidden|screenSize"
+                android:launchMode="singleTask"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
