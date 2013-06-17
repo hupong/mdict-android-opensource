@@ -345,25 +345,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (!skipUpdateEntryList) {
-                    currentEntry.setEntryNo(-1);
-                    if (dict != null && dict.isValid()) {
-                        if (MdxDictBase.isMdxCmd(newText)) {
-                            currentEntry.setEntryNo(DictEntry.kSystemCmdEntryNo);
-                        } else {
-                            dict.locateFirst(newText, true, true, true, currentEntry);
-                            //currentEntry.dumpEntryInfo();
-                            if (currentEntry.isValid())
-                                dict.getHeadword(currentEntry);
-                        }
-                        adapter.setCurrentEntry(currentEntry);
-                        if (dict.canRandomAccess() && currentEntry.isValid()) {
-                            MiscUtils.MakeItemVisible(headwordList, currentEntry.getEntryNo());
-                            //headwordList.setSelection(currentEntry.getEntryNo());
-                        } else {
-                            MiscUtils.MakeItemVisible(headwordList, 0);
-                            //headwordList.setSelection(0);
-                        }
-                    }
+                    SyncHeadwordList(newText);
                 }
                 skipUpdateEntryList = false;
                 return true; //return false if want the system provide a suggestion list?
@@ -404,6 +386,28 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         editField.setSelectAllOnFocus(true);
 
         return rootView;
+    }
+
+    private void SyncHeadwordList(String newText) {
+        currentEntry.setEntryNo(-1);
+        if (dict != null && dict.isValid()) {
+            if (MdxDictBase.isMdxCmd(newText)) {
+                currentEntry.setEntryNo(DictEntry.kSystemCmdEntryNo);
+            } else {
+                dict.locateFirst(newText, true, true, true, currentEntry);
+                //currentEntry.dumpEntryInfo();
+                if (currentEntry.isValid())
+                    dict.getHeadword(currentEntry);
+            }
+            adapter.setCurrentEntry(currentEntry);
+            if (dict.canRandomAccess() && currentEntry.isValid()) {
+                MiscUtils.MakeItemVisible(headwordList, currentEntry.getEntryNo());
+                //headwordList.setSelection(currentEntry.getEntryNo());
+            } else {
+                MiscUtils.MakeItemVisible(headwordList, 0);
+                //headwordList.setSelection(0);
+            }
+        }
     }
 
     @Override
@@ -738,7 +742,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 if (dict.locateFirst(currentInput, true, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     displayByEntry(entry, true);
                 } else {
-                    setInputText(currentInput, false);
+                    setInputText(currentInput, true);
+                    SyncHeadwordList(currentInput);
                     switchToListView();
                 }
             } else if (showDictAbout) {
@@ -901,8 +906,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void syncSearchView() {
-        setInputText(currentEntry.getHeadword(), true);
-        // TODO should sync the entry list too
+        setInputText(currentEntry.getHeadword(), false);
+        //SetInputText can't trigger onQueryTextChange event, we have to do it again.
+        //TODO SyncHeadwordList will be called twice if user input query then submit it. Should reduce the call to once
+        SyncHeadwordList(currentEntry.getHeadword());
     }
 
     public void displayWelcome() {
