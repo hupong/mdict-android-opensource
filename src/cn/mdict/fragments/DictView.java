@@ -381,9 +381,11 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 if (hasFocus) {
                     if (currentView!=headwordList)
                         switchToListView();
-                    // inputBox.setText("");
-                    AutoCompleteTextView editField = (AutoCompleteTextView) (searchView.findViewById(R.id.abs__search_src_text));
-                    editField.selectAll(); //TODO This only works when users use back key to switch input focus, not by click on the search view
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
+                        AutoCompleteTextView editField = (AutoCompleteTextView) (searchView.findViewById(R.id.abs__search_src_text));
+                        editField.selectAll();
+                        //editField.setSelection(editField.getText().length()); //This can move the cursor to end of line
+                    }
                     if (MdxEngine.getSettings().getPrefAutoSIP()){
                         //imm.showSoftInput(searchView, 0);
                         imm.toggleSoftInput(0,0);
@@ -398,6 +400,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
             }
         });
+        AutoCompleteTextView editField = (AutoCompleteTextView) (searchView.findViewById(R.id.abs__search_src_text));
+        editField.setSelectAllOnFocus(true);
+
         return rootView;
     }
 
