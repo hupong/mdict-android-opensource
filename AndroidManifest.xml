@@ -47,8 +47,10 @@
                 android:name=".FloatingForm"
                 android:theme="@style/Theme.MDict.Translucent"
                 android:configChanges="orientation|keyboardHidden|screenSize"
-                android:launchMode="singleTask"
+                android:launchMode="singleInstance"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <!-- This activity's launchMode must not be 'singleTask' otherwise it will cause Main activity to
+            be shown as background window -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
 

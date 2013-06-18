@@ -210,7 +210,7 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                                     startActivityForResult(installIntent, kInstallTTS);
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                    Toast.makeText(SettingFrame.this, R.string.fail_to_install_tts_engine, 3000).show();
+                                    Toast.makeText(SettingFrame.this, R.string.fail_to_install_tts_engine, Toast.LENGTH_LONG).show();
                                 }
                             }
                         }, new android.content.DialogInterface.OnClickListener() {
