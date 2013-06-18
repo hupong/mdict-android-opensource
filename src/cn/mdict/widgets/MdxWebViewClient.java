@@ -145,12 +145,16 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
                     if (mdxView.getDict().locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                         mdxView.displayByEntry(entry, true);
                     } else {
-                        Toast.makeText(mdxView.getContext(),
-                                String.format(mdxView.getContext().getString(R.string.headword_not_found), headWord),
-                                Toast.LENGTH_SHORT).show();
-                        return true;
+                        entry.setDictId(mdxView.getDict().getDictPref().getDictId());
+                        if(mdxView.getDict().locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                            mdxView.displayByEntry(entry, true);
+                        } else {
+                            Toast.makeText(mdxView.getContext(),
+                                    String.format(mdxView.getContext().getString(R.string.headword_not_found), headWord),
+                                    Toast.LENGTH_SHORT).show();
+                            return true;
+                        }
                     }
-                } else {
                     return false;
                 }
             }
