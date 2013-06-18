@@ -165,6 +165,8 @@ public class DictEntry {
     public native boolean isUnionDictEntry();
 
     public void dumpEntryInfo(){
+        return;
+        /*
         Log.d(TAG, String.format("Entry Info: DictId:%d, Headword:%s, EntryNo:%d", getDictId(), getHeadword(), getEntryNo()));
         if ( isUnionDictEntry() ){
             for (int i=0; i<getSiblingCount(); ++i){
@@ -172,6 +174,7 @@ public class DictEntry {
                 getSiblingAt(i).dumpEntryInfo();
             }
         }
+        */
     }
     /**
      * Method getSiblingCount returns the siblingCount of this DictEntry object.
