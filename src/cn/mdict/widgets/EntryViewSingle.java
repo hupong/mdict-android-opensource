@@ -28,6 +28,7 @@ import cn.mdict.WebViewGestureFilter;
 import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.MdxEngine;
 import cn.mdict.mdx.MdxUtils;
+import cn.mdict.utils.IOUtil;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,6 +45,7 @@ public class EntryViewSingle implements MdxEntryView {
 		 * ViewGroup.LayoutParams.MATCH_PARENT); htmlView=new WebView(context);
 		 * htmlView.setFocusable(true);
 		 */
+        this.context=context;
         htmlView = wv;
         htmlView.setVerticalScrollbarOverlay(true);
         htmlView.getSettings().setJavaScriptEnabled(true);
@@ -116,6 +118,10 @@ public class EntryViewSingle implements MdxEntryView {
     @Override
     public void displayEntry(DictEntry entry) {
         //MdxUtils.displayEntryHtml(mdxView.getDict(),entry, htmlView);
+        //StringBuffer html=new StringBuffer();
+        //IOUtil.loadStringFromAsset(context.getAssets(), "test.html", html, false );
+        //htmlView.loadDataWithBaseURL("", html.toString(), "text/html", "utf-8", "");
+
         // htmlView.loadData("","text/html","");
         // htmlView.clearView();
         MdxUtils.displayEntry(htmlView, mdxView.getDict(), entry, !MdxEngine.getSettings().getPrefHighSpeedMode()&&!mdxView.getDict().canRandomAccess());
@@ -168,4 +174,5 @@ public class EntryViewSingle implements MdxEntryView {
     private MdxView mdxView = null;
     private WebView htmlView = null;
     MdxWebViewClient wvClient = null;
+    Context context=null;
 }

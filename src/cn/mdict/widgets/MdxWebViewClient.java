@@ -22,6 +22,7 @@ import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.util.Log;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -69,6 +70,16 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
         StringBuffer mimeType = new StringBuffer();
         byte[] data = DictContentProvider.getDataByUrl(mdxView.getDict(), url, mimeType);
         if (data != null && data.length > 0) {
+            String css;
+            if (url.endsWith(".css")){
+                try{
+                    css=new String(data, "UTF-8");
+                    Log.d("css", css);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             return new WebResourceResponse(mimeType.toString(), null, new ByteArrayInputStream(data));
         } else
             return null;

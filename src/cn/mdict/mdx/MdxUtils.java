@@ -20,6 +20,8 @@ import android.webkit.WebView;
 
 import java.io.ByteArrayOutputStream;
 
+import cn.mdict.utils.IOUtil;
+
 /**
  * User: rayman
  * Date: 11-12-17
