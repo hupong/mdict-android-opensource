@@ -186,7 +186,6 @@ public class MiscUtils {
             String tmpFile = MdxEngine.getTempDir() + "audio.wav";
             IOUtil.saveBytesToFile(tmpFile, mediaData);
             mediaPlayer.setDataSource(tmpFile);
-            mediaPlayer.prepare();
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -202,6 +201,11 @@ public class MiscUtils {
             new Thread(){
                 @Override
                 public void run() {
+                    try {
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     mediaPlayer.start();
                 }
             }.start();
