@@ -299,6 +299,10 @@ public class MdxEngine {
         IOUtil.loadStringFromAsset(baseContext.getAssets(), "union_grp_title.html", htmlBlock, true);
         String unionGroupTitle = htmlBlock.toString();
 
+        if (dict.canRandomAccess()){
+            htmlBegin+="<div id='__mdx_css_id_"+dict.getDictPref().getDictId()+"'>";
+            htmlEnd="</div>"+htmlEnd;
+        }
         dict.setHtmlHeader(htmlBegin, htmlEnd);
         //IOUtil.saveStringToFile(MdxEngine.getDocDir()+"/hb.html", htmlBegin, "utf8");
         dict.setHtmlBlockHeader(blockBegin, blockEnd);

@@ -117,7 +117,7 @@ public class EntryViewSingle implements MdxEntryView {
 
     @Override
     public void displayEntry(DictEntry entry) {
-        MdxUtils.displayEntryHtml(mdxView.getDict(),entry, htmlView);
+        //MdxUtils.displayEntryHtml(mdxView.getDict(),entry, htmlView);
         //StringBuffer html=new StringBuffer();
         //IOUtil.loadStringFromAsset(context.getAssets(), "test.html", html, false );
         //htmlView.loadDataWithBaseURL("", html.toString(), "text/html", "utf-8", "");

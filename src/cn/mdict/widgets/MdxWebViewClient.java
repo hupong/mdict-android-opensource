@@ -236,8 +236,12 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
     }
 
     @Override
-    public void onNewPicture(WebView view, Picture picture) {
-        onPageComplete(view);
+    public void onNewPicture(final WebView view, Picture picture) {
+        jsHandler.post(new Runnable() {
+            public void run() {
+                onPageComplete(view);
+            }
+        });
     }
 
     /*

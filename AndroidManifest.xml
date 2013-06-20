@@ -16,7 +16,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cn.mdict"
-          android:versionCode="35"
+          android:versionCode="33"
           android:versionName="1.1.2">
 
     <uses-sdk
