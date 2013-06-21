@@ -243,11 +243,11 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                         ttsEngine.shutdown();
                         ttsEngine = null;
                     }
-                    CheckBoxPreference useTTS = (CheckBoxPreference) findPreference(MdxEngineSetting.prefUseTTS);
+                    CheckBoxPreference useTTS = (CheckBoxPreference) prefGrp.findPreference(MdxEngineSetting.prefUseTTS);
                     if (useTTS != null)
                         useTTS.setChecked(false); //No TTS engine installed, so we turn it off.
                     if (ttsEngineName != null) {
-                        prefGrp.removePreference(ttsEngineName);
+                        ttsEngineName.setEnabled(false);
                     }
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && ttsEngine != null && ttsEngineName != null) {
@@ -264,9 +264,10 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                             ttsEngineName.setEntries(enginePackageName);
                             ttsEngineName.setEntryValues(engineLabel);
                         }
+
                     }
-                    if (ttsEngineName == null || ttsEngineName.getEntries() == null || ttsEngineName.getEntries().length == 0) {
-                        prefGrp.removePreference(ttsEngineName);
+                    if (ttsEngineName != null){
+                        ttsEngineName.setEnabled (ttsEngineName.getEntries() != null && ttsEngineName.getEntries().length > 0);
                     }
                 }
             }

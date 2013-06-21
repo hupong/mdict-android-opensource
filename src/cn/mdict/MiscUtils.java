@@ -186,73 +186,69 @@ public class MiscUtils {
             String tmpFile = MdxEngine.getTempDir() + "audio.wav";
             IOUtil.saveBytesToFile(tmpFile, mediaData);
             mediaPlayer.setDataSource(tmpFile);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     mp.stop();
                     mp.release();
-                    if ( mediaPlayer==mp ){
-                        mediaPlayer=null;
-                    }else{
+                    if (mediaPlayer == mp) {
+                        mediaPlayer = null;
+                    } else {
                         Log.d(TAG, "mediaPlayer unmatched!");
                     }
-               }
-            });
-            new Thread(){
-                @Override
-                public void run() {
-                    try {
-                        mediaPlayer.prepare();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    mediaPlayer.start();
                 }
-            }.start();
+            });
+            mediaPlayer.prepare();
+            mediaPlayer.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void playWave(byte[] waveData) {
-        WaveInfo info = MiscUtils.parseWaveHeader(waveData);
-//        WaveInfo info1= MiscUtils.parseWaveHeader1(waveData);
+    public static void playWave(final byte[] waveData) {
+        new Thread("PlayWaveThread"){
+            @Override
+            public void run(){
+                WaveInfo info = MiscUtils.parseWaveHeader(waveData);
+        //        WaveInfo info1= MiscUtils.parseWaveHeader1(waveData);
 
-        int channelConfig, encoding;
-        if (info.channels == 1)
-            channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO;
-        else if (info.channels == 2)
-            channelConfig = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
-        else
-            channelConfig = AudioFormat.CHANNEL_CONFIGURATION_INVALID;
+                int channelConfig, encoding;
+                if (info.channels == 1)
+                    channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO;
+                else if (info.channels == 2)
+                    channelConfig = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
+                else
+                    channelConfig = AudioFormat.CHANNEL_CONFIGURATION_INVALID;
 
-        if (info.bits == 8)
-            encoding = AudioFormat.ENCODING_PCM_8BIT;
-        else if (info.bits == 16)
-            encoding = AudioFormat.ENCODING_PCM_16BIT;
-        else {
-            //encoding=AudioFormat.ENCODING_INVALID;
-            playMedia(waveData);
-            return;
-        }
+                if (info.bits == 8)
+                    encoding = AudioFormat.ENCODING_PCM_8BIT;
+                else if (info.bits == 16)
+                    encoding = AudioFormat.ENCODING_PCM_16BIT;
+                else {
+                    //encoding=AudioFormat.ENCODING_INVALID;
+                    playMedia(waveData);
+                    return;
+                }
 
-        int sampleRate = info.rate;
-        int bufSize = AudioTrack.getMinBufferSize(sampleRate, channelConfig, encoding);
-        AudioTrack outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
-                channelConfig, encoding, bufSize, AudioTrack.MODE_STREAM);
-        outTrack.play();
-        int audioSize = waveData.length - info.bodyOffset;
-        int dataOffset = info.bodyOffset;
-        while (audioSize > 0) {
-            int curBufSize = bufSize;
-            if (audioSize < bufSize) {
-                curBufSize = audioSize;
+                int sampleRate = info.rate;
+                int bufSize = AudioTrack.getMinBufferSize(sampleRate, channelConfig, encoding);
+                AudioTrack outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
+                        channelConfig, encoding, bufSize, AudioTrack.MODE_STREAM);
+                outTrack.play();
+                int audioSize = waveData.length - info.bodyOffset;
+                int dataOffset = info.bodyOffset;
+                while (audioSize > 0) {
+                    int curBufSize = bufSize;
+                    if (audioSize < bufSize) {
+                        curBufSize = audioSize;
+                    }
+                    outTrack.write(waveData, dataOffset, curBufSize);
+                    dataOffset += curBufSize;
+                    audioSize -= curBufSize;
+                }
+                outTrack.stop();
             }
-            outTrack.write(waveData, dataOffset, curBufSize);
-            dataOffset += curBufSize;
-            audioSize -= curBufSize;
-        }
-        outTrack.stop();
+        }.start();
     }
 
     private static ByteArrayOutputStream getWaveDataForPath(MdxDictBase dict, String path) {
