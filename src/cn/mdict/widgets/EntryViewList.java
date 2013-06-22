@@ -167,7 +167,8 @@ public class EntryViewList implements MdxEntryView {
             wv.clearView();
             wv.requestLayout();
             viewList.addView(ll);
-            MdxUtils.displayEntry(wv, mdxView.getDict(), entry.getSiblingAt(i), false);
+            DictEntry subEntry=entry.getSiblingAt(i);
+            MdxUtils.displayEntry(wv, mdxView.getDict(), subEntry, false, MdxUtils.makeBaseUrl(subEntry));
 /*
             ViewGroup.LayoutParams params=wv.getLayoutParams();
             params.width=LayoutParams.MATCH_PARENT;

@@ -244,6 +244,7 @@ public class MdxEngine {
         if (dict==null || !dict.isValid())
             return;
 
+        dict.setCSSPrefix("#__mdx_css_id_");
         String fontFace=dict.getDictPref().getFontFace();
         String fontDefTemplate=baseContext.getResources().getString(R.string.font_define_css);
 

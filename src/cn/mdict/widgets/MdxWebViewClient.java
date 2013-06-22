@@ -70,7 +70,6 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
         StringBuffer mimeType = new StringBuffer();
         byte[] data = DictContentProvider.getDataByUrl(mdxView.getDict(), url, mimeType);
         if (data != null && data.length > 0) {
-/*
             //Dump css content for debug
             String css;
             if (url.endsWith(".css")){
@@ -82,7 +81,6 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
                     e.printStackTrace();
                 }
             }
-*/
             return new WebResourceResponse(mimeType.toString(), null, new ByteArrayInputStream(data));
         } else
             return null;

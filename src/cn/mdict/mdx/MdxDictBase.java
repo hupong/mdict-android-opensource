@@ -290,4 +290,5 @@ public class MdxDictBase {
     public native String getTitle(int dictId, boolean htmlEscaped);
 
     public native void setDefaultIconUrl(String iconUrl);
+    public native void setCSSPrefix(String prefix);
 }

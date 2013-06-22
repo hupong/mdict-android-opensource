@@ -100,7 +100,8 @@ public class ContentViewAdapter extends BaseAdapter {
             //htmlView.getSettings().setBuiltInZoomControls(true);
             htmlView.getSettings().setSupportZoom(true);
             htmlView.clearView();
-            MdxUtils.displayEntry(htmlView, dict, (DictEntry) getItem(position), false);
+            DictEntry entry=(DictEntry) getItem(position);
+            MdxUtils.displayEntry(htmlView, dict, entry, false, MdxUtils.makeBaseUrl(entry));
         }
         return convertView;
     }

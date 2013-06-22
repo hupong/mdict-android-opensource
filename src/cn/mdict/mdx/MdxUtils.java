@@ -55,19 +55,31 @@ public class MdxUtils {
      * @param entry   of type DictEntry
      * @return int
      */
-    public native static int displayEntry(WebView webView, MdxDictBase dict, DictEntry entry, boolean headerOnly);
+    public native static int displayEntry(WebView webView, MdxDictBase dict, DictEntry entry, boolean headerOnly, String baseUrl);
 
 
-    public static void displayEntryHtml(MdxDictBase dict, DictEntry entry, WebView wv) {
+    public static void displayEntryHtml(MdxDictBase dict, DictEntry entry, WebView wv, String baseUrl) {
         byte[] data = dict.getDictTextN(entry, true, false, "", "");
         if (data != null) {
             try {
                 String html = new String(data, "utf-8");
-                wv.loadDataWithBaseURL("", html, "text/html", "utf-8", "");
+                wv.loadDataWithBaseURL(baseUrl, html, "text/html", "utf-8", "");
+                //wv.loadUrl(baseUrl);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static String makeBaseUrl(DictEntry entry){
+        StringBuffer buffer=new StringBuffer("content://mdict.cn/mdx/");
+        buffer.append(entry.getDictId());
+        buffer.append("/");
+        buffer.append(entry.getEntryNo());
+        buffer.append("/");
+        buffer.append(entry.getHeadword());
+        buffer.append("/");
+        return buffer.toString();
     }
 
 }
