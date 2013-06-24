@@ -30,28 +30,7 @@ import java.util.List;
 @SuppressLint("NewApi")
 public class ClipboardMonitor extends Service {
 
-    private MonitorTask mTask = new MonitorTask();
-    private ClipboardManager mCM;
     private android.content.ClipboardManager mClipboard;
-    private SharedPreferences mPrefs;
-
-    protected static boolean isTopActivity(Activity activity) {
-
-        String packageName = "cn.mdict";
-        ActivityManager activityManager = (ActivityManager) activity
-                .getSystemService(ACTIVITY_SERVICE);
-        List<RunningTaskInfo> tasksInfo = activityManager.getRunningTasks(1);
-        if (tasksInfo.size() > 0) {
-            System.out.println("---------------package name-----------"
-                    + tasksInfo.get(0).topActivity.getPackageName());
-            // 应用程序位于堆栈的顶层
-            if (packageName.equals(tasksInfo.get(0).topActivity
-                    .getPackageName())) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -62,12 +41,6 @@ public class ClipboardMonitor extends Service {
     @Override
     public void onCreate() {
         MdxEngine.setupEnv(getApplicationContext());
-        // showNotification();
-        mCM = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-        mPrefs = getSharedPreferences(ClipboardPrefs.NAME, MODE_PRIVATE);
-        ClipboardPrefs.operatingClipboardId = mPrefs.getInt(
-                ClipboardPrefs.KEY_OPERATING_CLIPBOARD,
-                ClipboardPrefs.DEF_OPERATING_CLIPBOARD);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             mClipboard = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
             mClipboard.addPrimaryClipChangedListener(new android.content.ClipboardManager.OnPrimaryClipChangedListener() {
@@ -100,92 +73,14 @@ public class ClipboardMonitor extends Service {
                     startActivity(intent);
                 }
             });
-        } else {
-            mTask.start();
         }
-    }
-
-    private void showNotification() {
-
     }
 
     @Override
     public void onDestroy() {
-        mTask.cancel();
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
-    }
-
-    /**
-     * Monitor task: monitor new text clips in global system clipboard and new
-     * image clips in browser download directory
-     */
-    private class MonitorTask extends Thread {
-
-        private volatile boolean mKeepRunning = false;
-        private String mOldClip = null;
-
-        public MonitorTask() {
-            super("ClipboardMonitor");
-        }
-
-        /**
-         * Cancel task
-         */
-        public void cancel() {
-            mKeepRunning = false;
-            interrupt();
-        }
-
-        @Override
-        public void run() {
-            mKeepRunning = true;
-            // mBDM.startWatching();
-            while (true) {
-                if (!MdxEngine.getSettings().getPrefGlobalClipboardMonitor())
-                    continue;
-                doTask();
-                try {
-                    Thread.sleep(mPrefs.getInt(ClipboardPrefs.KEY_MONITOR_INTERVAL,
-                            ClipboardPrefs.DEF_MONITOR_INTERVAL));
-                } catch (InterruptedException ignored) {
-                }
-                if (!mKeepRunning) {
-                    break;
-                }
-            }
-            // mBDM.stopWatching();
-        }
-
-        private void doTask() {
-            if (mCM.hasText()) {
-                String newClip = mCM.getText().toString();
-                if (!newClip.equals(mOldClip)) {
-                    Log.i("ClipBoard", "detect new text clip: " + newClip);
-                    mOldClip = newClip;
-                    if (newClip.length() > 50)
-                        return;
-                    searchDict(newClip);
-                }
-            }
-        }
-
-        private void searchDict(String newClip) {
-            Integer gravity = Gravity.TOP;
-            Intent intent = new Intent();
-            intent.setAction("mdict.intent.action.SEARCH");
-            intent.putExtra("EXTRA_QUERY", newClip);//
-            intent.putExtra("EXTRA_FULLSCREEN", true);//
-            intent.putExtra("EXTRA_GRAVITY", gravity);
-            intent.putExtra("EXTRA_HEIGHT", 200);//
-            intent.putExtra("EXTRA_MARGIN_LEFT", 4);//
-            intent.putExtra("EXTRA_MARGIN_RIGHT", 4);
-            intent.putExtra("EXTRA_MARGIN_TOP", 4);
-            intent.putExtra("EXTRA_MARGIN_BOTTOM", 4);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
     }
 }

@@ -975,7 +975,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void displayEntryPrev() {
-        if (currentEntry.getEntryNo() != 0) {
+        if (currentEntry.getEntryNo() != 0 && !currentEntry.isUnionDictEntry()) {
             currentEntry.setEntryNo(currentEntry.getEntryNo() - 1);
             dict.getHeadword(currentEntry);
             displayByEntry(currentEntry, true);
@@ -983,7 +983,12 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void displayEntryNext() {
-        if (currentEntry.getEntryNo() < dict.getEntryCount() - 1) {
+        if (currentEntry.isUnionDictEntry()){
+            if (adapter.getCount()>0){
+                currentEntry = adapter.getEntryByPosition(1);
+                displayByEntry(currentEntry, true);
+            }
+        }else if (currentEntry.getEntryNo() < dict.getEntryCount() - 1) {
             currentEntry.setEntryNo(currentEntry.getEntryNo() + 1);
             dict.getHeadword(currentEntry);
             displayByEntry(currentEntry, true);
