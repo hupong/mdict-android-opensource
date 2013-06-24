@@ -146,14 +146,14 @@ public class MdxView extends RelativeLayout {
             if (MdxDictBase.isMdxCmd(headword)) {
                 entry.setEntryNo(DictEntry.kSystemCmdEntryNo);
             } else {
-                int r = dict.locateFirst(headword, true, false, false, entry);
+                int r = dict.locateFirst(headword, true, false, false, true, entry);
                 if (r != MdxDictBase.kMdxSuccess
                         //|| (entry.getHeadword().indexOf(" ") != -1 && headword.indexOf(" ") == -1)) {//alex20121205.o
                         || !entry.getHeadword().equals(headword)) {//alex20121205.n
                     String word = WordSuggestion.getMdxSuggestWord(getContext(), dict, headword);
                     if (word.length() > 0) {
                         entry.setHeadword(word);
-                        dict.locateFirst(word, true, false, false, entry);
+                        dict.locateFirst(word, true, false, false, true, entry);
                         // entry.setHeadword(word);
                     } else {
                         if (r != MdxDictBase.kMdxSuccess)

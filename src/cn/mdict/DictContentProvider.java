@@ -265,7 +265,7 @@ public class DictContentProvider extends ContentProvider {
                 if (query!=null && query.length()>0){
                     DictEntry entry = new DictEntry(0, "", fCurrentDict.getDictPref().getDictId());
                     if (query != null && query.length() > 0)
-                        fCurrentDict.locateFirst(query, true, false, true, entry);
+                        fCurrentDict.locateFirst(query, true, false, true, false, entry);
                     if (entry.isValid()) {
                         String limit = uri.getQueryParameter(SearchManager.SUGGEST_PARAMETER_LIMIT);
                         int maxResultCount = 20;
@@ -363,7 +363,7 @@ public class DictContentProvider extends ContentProvider {
                     if (entry.isSysCmd()) {
                         data = dict.getDictTextN(entry, true, false, null, null);
                     } else if (entry.isUnionDictEntry()) {
-                        if (dict.locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(headWord, false, false, false, true, entry) == MdxDictBase.kMdxSuccess) {
                             data = dict.getDictTextN(entry, true, false, null, null);
                         }
                     } else {

@@ -109,9 +109,9 @@ public class MdxDictBase {
      * @param entry        The matched entry if found
      * @return Return kMdxSuccess when succeed, otherwise return error codes.
      */
-    public synchronized int locateFirst(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, DictEntry entry) {
+    public synchronized int locateFirst(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, boolean bestMatch, DictEntry entry) {
         if (isValid()) {
-            return locateFirstN(headword, convertKey, partialMatch, startWithMatch, entry);
+            return locateFirstN(headword, convertKey, partialMatch, startWithMatch, bestMatch, entry);
         } else {
             return kMdxDatabaseNotInited;
         }
@@ -254,7 +254,7 @@ public class MdxDictBase {
      * @param entry        of type DictEntry
      * @return int
      */
-    private native int locateFirstN(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, DictEntry entry);
+    private native int locateFirstN(String headword, boolean convertKey, boolean partialMatch, boolean startWithMatch, boolean bestMatch, DictEntry entry);
 
     /**
      * Method getDictPrefN returns the dictPrefN of this MdxDictBase object.

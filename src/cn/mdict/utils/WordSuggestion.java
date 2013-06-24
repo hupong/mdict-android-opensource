@@ -48,7 +48,7 @@ public class WordSuggestion {
 
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compareWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -57,7 +57,7 @@ public class WordSuggestion {
                     word = word.substring(0, word.length() - 1) + "y";
                     entry = new DictEntry();
                     entry.setHeadword("");
-                    if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                    if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                         if (compareWord(entry.getHeadword(), word, 0))
                             return word;
                     }
@@ -71,7 +71,7 @@ public class WordSuggestion {
                         word = input.substring(0, input.length() - 3);
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compareWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -82,7 +82,7 @@ public class WordSuggestion {
                 String word = input.substring(0, input.length() - 3);
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compareWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -91,7 +91,7 @@ public class WordSuggestion {
                     word = word.substring(0, word.length() - 1) + "y";
                     entry = new DictEntry();
                     entry.setHeadword("");
-                    if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                    if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                         if (compareWord(entry.getHeadword(), word, 0))
                             return word;
                     }
@@ -105,7 +105,7 @@ public class WordSuggestion {
                         word = input.substring(0, input.length() - 4);
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compareWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -116,7 +116,7 @@ public class WordSuggestion {
                 String word = input.substring(0, input.length() - 1);
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compareWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -126,7 +126,7 @@ public class WordSuggestion {
 
                     entry = new DictEntry();
                     entry.setHeadword("");
-                    if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                    if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                         if (compareWord(entry.getHeadword(), word, 0))
                             return word;
                     }
@@ -136,7 +136,7 @@ public class WordSuggestion {
                         word = word.substring(0, word.length() - 1) + "y";
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compareWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -147,7 +147,7 @@ public class WordSuggestion {
                         word = word.substring(0, word.length() - 1) + "fe";
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compareWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -155,7 +155,7 @@ public class WordSuggestion {
                         word = word.substring(0, word.length() - 1);
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compareWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -168,7 +168,7 @@ public class WordSuggestion {
                 String word = input.substring(0, input.length() - 2);
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compareWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -178,7 +178,7 @@ public class WordSuggestion {
                     word = word.substring(0, word.length() - 1) + "y";
                     entry = new DictEntry();
                     entry.setHeadword("");
-                    if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                    if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                         if (compareWord(entry.getHeadword(), word, 0))
                             return word;
                     }
@@ -188,7 +188,7 @@ public class WordSuggestion {
                 word = input.substring(0, input.length() - 1); //
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compareWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -201,7 +201,7 @@ public class WordSuggestion {
                         word = input.substring(0, input.length() - 3);
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compareWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -214,7 +214,7 @@ public class WordSuggestion {
                 String word = input.substring(0, input.length() - 3);
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compareWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -223,7 +223,7 @@ public class WordSuggestion {
                 word = input.substring(0, input.length() - 3) + "e"; //
                 entry = new DictEntry();
                 entry.setHeadword("");
-                if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     if (compareWord(entry.getHeadword(), word, 0))
                         return word;
                 }
@@ -236,7 +236,7 @@ public class WordSuggestion {
                         word = input.substring(0, input.length() - 4);
                         entry = new DictEntry();
                         entry.setHeadword("");
-                        if (dict.locateFirst(word, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if (dict.locateFirst(word, false, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                             if (compareWord(entry.getHeadword(), word, 0))
                                 return word;
                         }
@@ -278,7 +278,7 @@ public class WordSuggestion {
             for (String editDistance : wordsInEditDistance) {
                 entry = new DictEntry(DictEntry.kInvalidEntryNo, "", dict
                         .getDictPref().getDictId());
-                if (dict.locateFirst(editDistance, true, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                if (dict.locateFirst(editDistance, true, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
                     dictionary.add(entry.getHeadword());
                 }
             }

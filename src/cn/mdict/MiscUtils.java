@@ -439,7 +439,7 @@ public class MiscUtils {
     }
 
     public static void MakeItemVisible(final ListView listView, final int position){
-        if (listView.getFirstVisiblePosition()!=position){
+        if (listView.getFirstVisiblePosition()!=position && listView.getAdapter().getCount()>0 ){
             listView.post(new Runnable() {
                 @Override
                 public void run() {

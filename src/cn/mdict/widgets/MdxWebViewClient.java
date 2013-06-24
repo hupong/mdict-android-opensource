@@ -154,11 +154,11 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
             if (headWord.length() > 0) {
                 if (headWord.charAt(0) != '#') {
                     DictEntry entry = new DictEntry(0, "", dictId);
-                    if (mdxView.getDict().locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                    if (mdxView.getDict().locateFirst(headWord, false, false, false, true, entry) == MdxDictBase.kMdxSuccess) {
                         mdxView.displayByEntry(entry, true);
                     } else {
                         entry.setDictId(mdxView.getDict().getDictPref().getDictId());
-                        if(mdxView.getDict().locateFirst(headWord, false, false, false, entry) == MdxDictBase.kMdxSuccess) {
+                        if(mdxView.getDict().locateFirst(headWord, false, false, false, true, entry) == MdxDictBase.kMdxSuccess) {
                             mdxView.displayByEntry(entry, true);
                         } else {
                             Toast.makeText(mdxView.getContext(),

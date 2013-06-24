@@ -27,11 +27,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.Preference;
 import android.speech.tts.TextToSpeech;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -56,9 +54,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.widget.SearchView;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
 
 import cn.mdict.DictContentProvider;
@@ -72,7 +68,6 @@ import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
-import cn.mdict.mdx.MdxEngineSetting;
 import cn.mdict.online.Jukuu;
 import cn.mdict.online.OnlineReference;
 import cn.mdict.utils.IOUtil;
@@ -344,8 +339,12 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (MdxDictBase.isMdxCmd(newText)){
+                    currentEntry.setEntryNo(DictEntry.kSystemCmdEntryNo);
+                }
                 if (!skipUpdateEntryList) {
-                    SyncHeadwordList(newText);
+                    dict.locateFirst(newText, true, true, true, false, currentEntry);
+                    syncHeadwordList();
                 }
                 skipUpdateEntryList = false;
                 return true; //return false if want the system provide a suggestion list?
@@ -388,17 +387,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         return rootView;
     }
 
-    private void SyncHeadwordList(String newText) {
-        currentEntry.setEntryNo(-1);
+    private void syncHeadwordList() {
         if (dict != null && dict.isValid()) {
-            if (MdxDictBase.isMdxCmd(newText)) {
-                currentEntry.setEntryNo(DictEntry.kSystemCmdEntryNo);
-            } else {
-                dict.locateFirst(newText, true, true, true, currentEntry);
-                //currentEntry.dumpEntryInfo();
-                if (currentEntry.isValid())
-                    dict.getHeadword(currentEntry);
-            }
             adapter.setCurrentEntry(currentEntry);
             if (dict.canRandomAccess() && currentEntry.isValid()) {
                 MiscUtils.MakeItemVisible(headwordList, currentEntry.getEntryNo());
@@ -738,12 +728,10 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         DictContentProvider.setDict(dict);
         if (dict != null && dict.isValid()) {
             if (currentInput != null && currentInput.length() != 0) {
-                DictEntry entry = new DictEntry();
-                if (dict.locateFirst(currentInput, true, false, false, entry) == MdxDictBase.kMdxSuccess) {
-                    displayByEntry(entry, true);
+                if (dict.locateFirst(currentInput, true, false, false, true, currentEntry) == MdxDictBase.kMdxSuccess) {
+                    displayByEntry(currentEntry, true);
                 } else {
-                    setInputText(currentInput, true);
-                    SyncHeadwordList(currentInput);
+                    syncHeadwordList();
                     switchToListView();
                 }
             } else if (showDictAbout) {
@@ -908,8 +896,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     public void syncSearchView() {
         setInputText(currentEntry.getHeadword(), false);
         //SetInputText can't trigger onQueryTextChange event, we have to do it again.
-        //TODO SyncHeadwordList will be called twice if user input query then submit it. Should reduce the call to once
-        SyncHeadwordList(currentEntry.getHeadword());
+        //TODO syncHeadwordList will be called twice if user input query then submit it. Should reduce the call to once
+        syncHeadwordList();
     }
 
     public void displayWelcome() {
