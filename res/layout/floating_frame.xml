@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 dv:has_toolbar="true"
-                dv:show_home_button_in_toolbar="true" />
+                dv:show_home_button_in_toolbar="true"
+                dv:is_floating_mode="true" />
     </RelativeLayout>
 </FrameLayout>

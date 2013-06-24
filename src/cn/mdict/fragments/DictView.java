@@ -156,6 +156,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         TypedArray a = activity.obtainStyledAttributes(attrs, R.styleable.DictView);
         hasToolbar = a.getBoolean(R.styleable.DictView_has_toolbar, false);
         showHomeButtonInToolbar = a.getBoolean(R.styleable.DictView_show_home_button_in_toolbar, true);
+        isFloatingMode= a.getBoolean(R.styleable.DictView_is_floating_mode, false);
         a.recycle();
     }
 
@@ -424,6 +425,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if(this.isFloatingMode) //No options menu is needed for floating mode
+            return;//No options menu is needed for floating mode
         inflater.inflate(R.menu.dict_view_option_menu, menu);
         MenuItem item = menu.findItem(R.id.view);
         if (item != null) {
@@ -447,7 +450,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     public void onPrepareOptionsMenu(Menu menu) {
         // rebuildOptionMenuOnDemand(menu,
         // getSupportActivity().getMenuInflater(), false);
-
+        if(this.isFloatingMode) //No options menu is needed for floating mode
+            return;//No options menu is needed for floating mode
         boolean show_toolbar = MdxEngine.getSettings().getPrefShowToolbar();
         for (int i = 0; i < menu.size(); ++i) {
             menu.getItem(i).setShowAsAction(
@@ -676,7 +680,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     public void updateViewMode(ViewGroup rootView) {
-        useSplitViewMode = MiscUtils.shouldUseSplitViewMode(getSherlockActivity());
+        useSplitViewMode=MiscUtils.shouldUseSplitViewMode(getSherlockActivity()) && !isFloatingMode;
         Log.d(TAG, "Update view mode, use split view mode:" + String.valueOf(useSplitViewMode));
         if (rootView == null)
             rootView = (ViewGroup) getView();
@@ -1194,5 +1198,5 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     ArrayList<String> fontList=new ArrayList<String>();
 
     private static final String TAG = "MDict.DictView";
-
+    private boolean isFloatingMode =false;
 }

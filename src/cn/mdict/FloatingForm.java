@@ -16,6 +16,7 @@
 
 package cn.mdict;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -30,6 +31,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
@@ -323,7 +325,12 @@ public class FloatingForm extends SherlockFragmentActivity {
         }
     }
 
+    @SuppressLint("NewApi")
     private void initFloatingWindow(Integer height) {
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.floating_view);
+        // Gets the layout params that will allow you to resize the layout
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) layout
+                .getLayoutParams();
         Boolean fullScreen = getIntent().getBooleanExtra("EXTRA_FULLSCREEN",
                 true);//
         Integer layoutGravity = getIntent().getIntExtra("EXTRA_GRAVITY",
@@ -335,14 +342,45 @@ public class FloatingForm extends SherlockFragmentActivity {
         Integer topMargin = 0;// getIntent().getIntExtra("EXTRA_MARGIN_TOP", 0);
         Integer bottomMargin = 0;// getIntent().getIntExtra("EXTRA_MARGIN_BOTTOM",
         // 0);
+        WindowManager wm = getWindowManager();
+
+        Display display = wm.getDefaultDisplay();
+        int screenWidth = display.getWidth();
+        int screenHeight = display.getHeight();
+
+        int xpos = getIntent().getIntExtra("EXTRA_XPOS", 0);
+        int ypos = getIntent().getIntExtra("EXTRA_YPOS", 0);
+        int width = screenWidth;
+        if (xpos > 0 || ypos > 0) {
+            ViewGroup searchViewContainer = (ViewGroup) findViewById(R.id.toolbar_container);
+            layout.setBackgroundColor(this.getResources().getColor(R.color.half_transparent));
+            //searchViewContainer.setBackgroundColor(this.getResources().getColor(R.color.half_transparent));
+            searchViewContainer.setAlpha((float) 0.3);
+            width = screenWidth - 50;
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+                width = screenWidth / 3;
+            if (height > screenHeight / 2)
+                height = screenHeight / 2 - 30;
+            leftMargin = xpos + 20;
+            topMargin = ypos + 30;
+
+            if (leftMargin > screenWidth - width) {
+                leftMargin = xpos - width - 20;
+                leftMargin = leftMargin < 0 ? 20 : leftMargin;
+            }
+
+            if (topMargin > screenHeight - height) {
+                topMargin = ypos - height - 50;
+            }
+            rightMargin = screenWidth - leftMargin - width;
+            bottomMargin = screenHeight - topMargin - height;
+            params.gravity = Gravity.TOP | Gravity.LEFT;
+        }
         if (fullScreen)
             getWindow().addFlags(1024); // No title full screen
         else
             getWindow().clearFlags(1024);
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.floating_view);
-        // Gets the layout params that will allow you to resize the layout
-        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) layout
-                .getLayoutParams();
+
         // Changes the height and width to the specified *pixels*
         params.height = height;
         params.gravity = layoutGravity;
@@ -431,112 +469,6 @@ public class FloatingForm extends SherlockFragmentActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.setClass(this, cls);
         startActivityForResult(intent, requestCode);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        switch (requestCode) {
-            case kLibraryIntentId:
-                if (resultCode == Activity.RESULT_OK) {
-                    MdxEngine.saveEngineSettings();
-                    int libId = data.getIntExtra(LibraryFrame.SELECTED_LIB_ID,
-                            DictPref.kInvalidDictPrefId);
-                    if (libId != DictPref.kInvalidDictPrefId) {
-                        int result = MDictApp.getInstance().openPopupDictById(libId);
-                        if (result == MdxDictBase.kMdxSuccess) {
-                            dictView.changeDict(MDictApp.getInstance().getMainDict(), true);
-                        } else {
-                            String info = String.format(getString(R.string.fail_to_open_dict), result);
-                            MiscUtils.showMessageDialog(this, info, getString(R.string.error));
-                        }
-                    }
-                }
-                break;
-            case kFavoritesIntentId:
-                if (resultCode == Activity.RESULT_OK) {
-                    DictEntry favEntry = new DictEntry(data.getIntExtra(
-                            FavoritesFrame.entryNoName, -1),
-                            data.getStringExtra(FavoritesFrame.headwordName),
-                            data.getIntExtra(FavoritesFrame.dictIdName,
-                                    DictPref.kInvalidDictPrefId));
-                    dictView.displayByEntry(favEntry, false);
-                }
-                break;
-            case kHistoryIntentId:
-                if (resultCode == Activity.RESULT_OK) {
-                    DictEntry histEntry = new DictEntry(data.getIntExtra(
-                            HistoryFrame.entryNoName, -1),
-                            data.getStringExtra(HistoryFrame.headwordName),
-                            data.getIntExtra(HistoryFrame.dictIdName,
-                                    DictPref.kInvalidDictPrefId));
-                    dictView.displayByEntry(histEntry, false);
-                }
-                break;
-            case kSettingIntentId:
-                if (data != null) {
-                    ArrayList<String> changePrefs = data
-                            .getStringArrayListExtra(SettingFrame.prefChanged);
-                    if (changePrefs != null && changePrefs.size() > 0) {
-                        for (String pref : changePrefs) {
-                            if (pref.compareToIgnoreCase(MdxEngineSetting.prefUseTTS) == 0
-                                    || pref.compareToIgnoreCase(MdxEngineSetting.prefPreferredTTSEngine) == 0
-                                    || pref.compareToIgnoreCase(MdxEngineSetting.prefTTSLocale) == 0) {
-                                dictView.initTTSEngine();
-                            } else if (pref
-                                    .compareToIgnoreCase(MdxEngineSetting.prefUseFingerGesture) == 0) {
-                                dictView.enableFingerGesture(MdxEngine
-                                        .getSettings().getPrefUseFingerGesture());
-                            }
-                        }
-                    }
-                }
-                theApp.rebuildAllDictSetting();
-                if (MdxEngine.getSettings().getPrefShowInNotification())
-                    MdxEngine.registerNotification();
-                else
-                    MdxEngine.unregisterNotification();
-                break;
-            default:
-                super.onActivityResult(requestCode, resultCode, data);
-                break;
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
-        if (imm.isActive()) {
-            MiscUtils.hideSIP(this);
-        }
-        // Handle item selection
-		/*
-		 * QuickActionBar qbar=new QuickActionBar(this); qbar.addQuickAction(new
-		 * QuickAction(this, R.drawable.ic_search, R.string.quit)); View
-		 * itemView
-		 * =MiscUtils.getItemViewForActionItem((ActionBarImpl)getSupportActionBar
-		 * (), item); qbar.show(itemView);
-		 */
-        switch (item.getItemId()) {
-            // case android.R.id.home:
-            // return true;
-            case R.id.library:
-                startIntentForClass(kLibraryIntentId, LibraryFrame.class);
-                return true;
-            case R.id.favorites:
-                startIntentForClass(kFavoritesIntentId, FavoritesFrame.class);
-                return true;
-            case R.id.history:
-                startIntentForClass(kHistoryIntentId, HistoryFrame.class);
-                return true;
-            case R.id.settings:
-                startIntentForClass(kSettingIntentId, SettingFrame.class);
-                return true;
-            case R.id.quit:
-                onQuit();
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     @Override
