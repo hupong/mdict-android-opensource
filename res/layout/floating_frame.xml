@@ -19,6 +19,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:orientation="vertical"
+             android:cacheColorHint="#00000000"
              android:id="@+id/floating_frame">
 
     <RelativeLayout
@@ -37,5 +38,12 @@
                 dv:has_toolbar="true"
                 dv:show_home_button_in_toolbar="true"
                 dv:is_floating_mode="true" />
+
+        <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/floating_dict_view_fragment">
+        </FrameLayout>
     </RelativeLayout>
 </FrameLayout>
