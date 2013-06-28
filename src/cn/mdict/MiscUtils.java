@@ -232,6 +232,7 @@ public class MiscUtils {
 
                 int sampleRate = info.rate;
                 int bufSize = AudioTrack.getMinBufferSize(sampleRate, channelConfig, encoding);
+                bufSize=Math.max(bufSize,32*1024);
                 AudioTrack outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
                         channelConfig, encoding, bufSize, AudioTrack.MODE_STREAM);
                 outTrack.play();
