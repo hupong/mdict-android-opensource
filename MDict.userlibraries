@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="android-support-v4">
+    <archive path="E:/Alex/Work/Android/Mdict/Project/mdict-android-opensource/libs/android-support-v4.jar" />
+  </library>
+</eclipse-userlibraries>
+
