@@ -21,7 +21,6 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -30,10 +29,6 @@ import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 import android.provider.BaseColumns;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ImageView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,11 +36,9 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.mdict.fragments.DictView;
 import cn.mdict.mdx.DictEntry;
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxDictBase;
@@ -89,7 +82,7 @@ public class DictContentProvider extends ContentProvider {
     public static AssetFileDescriptor makeAssetFileDescriptorFromByteArray(String fileName, byte[] data) {
         MemoryFile memFile;
         try {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH || Build.VERSION.SDK_INT>=Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
                 memFile = new MemoryFile(fileName, data.length);
                 memFile.writeBytes(data, 0, 0, data.length);
                 MemoryFileUtil.deactivate(memFile);
@@ -157,10 +150,7 @@ public class DictContentProvider extends ContentProvider {
             return null;
     }
 
-    static HashMap<String, byte[]> cache = new HashMap<String, byte[]>();
-
     private static final Pattern LocalFilePattern = Pattern.compile("/localfile/(.*)"); //%1=name
-    private static final Pattern AssetFilePattern = Pattern.compile("/res/(.*)"); //%1=name
 
     @Override
     public AssetFileDescriptor openAssetFile(Uri uri, String mode) throws FileNotFoundException {
@@ -172,34 +162,10 @@ public class DictContentProvider extends ContentProvider {
 //                return new AssetFileDescriptor(openLocalFile(MdxEngine.getDataHomeDir()+"/"+matcher.group(1)), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
                 return new AssetFileDescriptor(openLocalFile(matcher.group(1)), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
             }
-            matcher = AssetFilePattern.matcher(path);
-            if (matcher.matches() && matcher.groupCount() == 1) {
-                try {
-                    String fileName = matcher.group(1);
-                    byte[] data;
-                    if (cache.containsKey(fileName))
-                        data = cache.get(fileName);
-                    else {
-                        data = IOUtil.loadBinFromAsset(assets, fileName, true);
-                        if (data != null)
-                            cache.put(fileName, data);
-                    }
-                    return makeAssetFileDescriptorFromByteArray(fileName, data);
-                    //IOUtil.copyAssetToFile(assets, fileName, false, MdxEngine.getDataHomeDir()+"/data", fileName);
-                    //return new AssetFileDescriptor(ParcelFileDescriptor.open(new File(MdxEngine.getDataHomeDir()+"/data/"+fileName), ParcelFileDescriptor.MODE_READ_ONLY),0,AssetFileDescriptor.UNKNOWN_LENGTH);
-                    //InputStream is=assets.open(fileName);
-                    //AssetFileDescriptor afd= assets.openFd(fileName);
-                    //return afd;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return null;
-                }
-            } else {
-//                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
-//                    return null;
-//                else
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                return null;
+            else
                 return openMDDMemoryFile(uri);
-            }
         }
         return null;
     }
@@ -304,9 +270,11 @@ public class DictContentProvider extends ContentProvider {
         return 0;
     }
 
+    private static final Pattern AssetFilePattern = Pattern.compile("/res/(.*)"); //%1=name
     private static final Pattern MddDataUrlPattern = Pattern.compile("/mdd/(\\d+)/(.*)"); //%1=dict_id, %2=name
     private static final Pattern IFrameEntryUrlPattern = Pattern.compile("/mdx/_(\\d+)/(-?\\d+)/"); //Used by iframe view mode for sub-entryies, %1=dict_id, %2=entry_no
     private static final Pattern ProgEntryUrlPattern = Pattern.compile("/mdx/(\\d+)/(-?\\d+)/(.*)/"); //Used by single view mode, %1=dict_id, %2=entry_no, %3=headword
+    static HashMap<String, byte[]> assetCache = new HashMap<String, byte[]>();
 
 
     public static byte[] getDataByUrl(MdxDictBase dict, String urlString, StringBuffer mimeType) {
@@ -321,7 +289,24 @@ public class DictContentProvider extends ContentProvider {
             if (uri.getScheme() != null && uri.getScheme().compareToIgnoreCase("content") == 0 && uri.getHost() != null && uri.getHost().compareToIgnoreCase(ContentHost) == 0) {
                 mimeType.setLength(0);
                 String url = uri.getPath();
-                Matcher matcher = MddDataUrlPattern.matcher(url);
+                Matcher matcher = AssetFilePattern.matcher(url);
+                if (matcher.matches() && matcher.groupCount() == 1) {
+                    try {
+                        String fileName = matcher.group(1);
+                        if (assetCache.containsKey(fileName))
+                            data = assetCache.get(fileName);
+                        else {
+                            data = IOUtil.loadBinFromAsset(assets, fileName, true);
+                            if (data != null)
+                                assetCache.put(fileName, data);
+                        }
+                        return data;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                }
+                matcher = MddDataUrlPattern.matcher(url);
                 if (matcher.matches() && matcher.groupCount() == 2) {
                     int dictId = Integer.parseInt(matcher.group(1));
                     String dataName = matcher.group(2);
