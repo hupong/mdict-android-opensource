@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/library/actionbar-sherlock/library/ActionbarSherlock.iml" filepath="$PROJECT_DIR$/library/actionbar-sherlock/library/ActionbarSherlock.iml" />
       <module fileurl="file://$PROJECT_DIR$/MDict.iml" filepath="$PROJECT_DIR$/MDict.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/actionbar-sherlock/actionbarsherlock/actionbarsherlock.iml" filepath="$PROJECT_DIR$/library/actionbar-sherlock/actionbarsherlock/actionbarsherlock.iml" />
     </modules>
   </component>
 </project>
