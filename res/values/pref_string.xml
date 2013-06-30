@@ -41,8 +41,9 @@
     <string name="pref_show_in_notification">ShowInNotification</string>
     <string name="pref_use_lru_for_dict_order">UseLRUForDictOrder</string>
     <string name="pref_split_view_mode">SplitViewMode</string>
-
     <string name="pref_floating_window_height">FloatingWindowHeight</string>
+    <string name="pref_resize_images">ResizeImages</string>
+
     
     <!-- alex 2012-12-07 start -->
     <string name="pref_global_clipboard_monitor">GlobalClipboardMonitor</string>
@@ -67,6 +68,8 @@
     <string name="pref_default_monitor_clipboard">true</string>
     <string name="pref_default_show_in_notification">false</string>
     <string name="pref_default_use_lru_for_dict_order">false</string>
+    <string name="pref_default_floating_window_height">-1</string>
+    <string name="pref_default_resize_images">true</string>
 
 
     <string-array name="split_view_mode_entries">
@@ -82,7 +85,6 @@
         <item>2</item> <!-- Auto -->
     </string-array>
 
-    <string name="pref_default_floating_window_height">-1</string>
 
     <!-- alex 2012-12-07 start -->
     <string name="pref_default_global_clipboard_monitor">false</string>

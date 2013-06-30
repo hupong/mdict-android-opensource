@@ -102,6 +102,10 @@
                 android:key="@string/pref_show_splash"
                 android:title="@string/pref_title_show_splash"
                 android:defaultValue="@string/pref_default_show_splash"/>
+        <CheckBoxPreference
+            android:key="@string/pref_resize_images"
+            android:title="@string/pref_title_resize_images"
+            android:defaultValue="@string/pref_default_resize_images"/>
 
         <EditTextPreference
                 android:key="@string/pref_app_owner"

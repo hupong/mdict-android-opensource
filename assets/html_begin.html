@@ -27,6 +27,7 @@ var css_content="__mdx_css_content";
 var css_title="__mdx_css_title";
 var name_content_block="__mdx_name_content_block";
 var name_title_block="__mdx_name_title_block";
+var shouldResizeImages=$resize_images$;
 
 if (typeof String.prototype.startsWith !== 'function') {
     String.prototype.startsWith = function(prefix){
@@ -181,7 +182,8 @@ function SetupMdx(){
 	//	adjustDictTitle();
 	//}
 	//alex20121205.en
-    resizeImages();
+	if (shouldResizeImages)
+        toggleImageResize(true);
     //window.MdxDict.onPageComplete();
 }
 
@@ -231,14 +233,21 @@ function adjustDictTitle()
 	}
 }
 
-function resizeImages() {
+function toggleImageResize(shouldResize) {
 	   if(screen.width >= 1024 || screen.height >=1024)
 	   {
 			var w = top.window.innerWidth - 40;
 			for ( var i = 0; i < document.images.length; i++) {
 				var img = document.images[i];
-				img.style.maxWidth="90%";
-				img.style.maxHeight="50%";
+				if ( shouldResize ){
+				    img.style.maxWidthOrig=img.style.maxWidth;
+	    			img.style.maxHeightOrig=img.style.maxHeight;
+				    img.style.maxWidth="95%";
+	    			img.style.maxHeight="80%";
+	    		}else{
+    				img.style.maxWidth=img.style.maxWidth;
+	    			img.style.maxHeight=img.style.maxHeight;
+	    		}
 				//if (img.width > w) {
 				//	img.height = Math.round(img.height * (w / img.width));
 				//	img.width = w;

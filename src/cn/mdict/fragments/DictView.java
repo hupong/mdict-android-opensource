@@ -763,17 +763,19 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     public void setFragmentContainer(ViewGroup container) {
         fragmentContainer = container;
     }
-
-    void updateDictWithRefresh(DictPref pref) {
+    public void refresh() {
+        //changeDict(dict);
+        //changeDict may change the value of currentEntry.
+        DictEntry entry = new DictEntry(currentEntry);
+        displayByEntry(entry, false);
+    }
+    public void updateDictWithRefresh(DictPref pref) {
         if (dict!=null){
             dict.setViewSetting(pref);
             MdxEngine.rebuildHtmlSetting(dict,MdxEngine.getSettings().getPrefHighSpeedMode());
         }
         MdxEngine.getLibMgr().updateDictPref(pref);
-        currentEntry.makeJEntry();
-        DictEntry entry = new DictEntry(currentEntry);
-        // changeDict(dict); //changeDict may change the value of currentEntry.
-        displayByEntry(entry, false);
+        refresh();
     }
 
     public void setChnConv(int convertType) {

@@ -60,6 +60,7 @@ public class MdxEngineSetting {
     public static String prefUseLRUForDictOrder;
     public static String prefSplitViewMode;
     public static String prefFloatingWindowHeight;
+    public static String prefResizeImages;
 
     public static String prefGlobalClipboardMonitor;//Alex20121207.n
     public static String prefFixedDictTitle;//Alex20121207.n
@@ -84,8 +85,8 @@ public class MdxEngineSetting {
     public static boolean prefDefaultShowInNotification;
     public static boolean prefDefaultUseLRUForDictOrder;
     public static String prefDefaultSplitViewMode;
-
     public static int prefDefaultFloatingWindowHeight;
+    public static boolean prefDefaultResizeImages;
 
     public static boolean prefDefaultGlobalClipboardMonitor;//Alex20121207.n
     public static boolean prefDefaultFixedDictTitle;//Alex20121207.n
@@ -124,6 +125,7 @@ public class MdxEngineSetting {
             prefSplitViewMode = res.getString(R.string.pref_split_view_mode);
 
             prefFloatingWindowHeight = res.getString(R.string.pref_floating_window_height);
+            prefResizeImages=res.getString(R.string.pref_resize_images);
             prefGlobalClipboardMonitor = res.getString(R.string.pref_global_clipboard_monitor);//Alex20121207.n
             prefFixedDictTitle = res.getString(R.string.pref_fixed_dict_title);//Alex20121207.n
 
@@ -146,8 +148,9 @@ public class MdxEngineSetting {
             prefDefaultHighSpeedMode = Boolean.parseBoolean(res.getString(R.string.pref_default_high_speed_mode));
             prefDefaultUseLRUForDictOrder = Boolean.parseBoolean(res.getString(R.string.pref_default_use_lru_for_dict_order));
             prefDefaultSplitViewMode = res.getString(R.string.pref_default_split_view_mode);
-
             prefDefaultFloatingWindowHeight = Integer.parseInt(res.getString(R.string.pref_default_floating_window_height), 10);
+            prefDefaultResizeImages=Boolean.parseBoolean(res.getString(R.string.pref_default_resize_images));
+
             prefDefaultGlobalClipboardMonitor = Boolean.parseBoolean(res.getString(R.string.pref_default_global_clipboard_monitor));//Alex20121207.n
             prefDefaultFixedDictTitle = Boolean.parseBoolean(res.getString(R.string.pref_default_fixed_dict_title));//Alex20121207.n
 
@@ -484,6 +487,13 @@ public class MdxEngineSetting {
         appPrefs.edit().putInt(prefFloatingWindowHeight, floatingWindowHeight).commit();
     }
 
+    public boolean getPrefResizeImages() {
+        return appPrefs.getBoolean(prefResizeImages, prefDefaultResizeImages);
+    }
+
+    public void setPrefFloatingWindowHeight(boolean shouldResize) {
+        appPrefs.edit().putBoolean(prefResizeImages, shouldResize).commit();
+    }
     //alex20121207.sn
 
     /**

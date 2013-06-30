@@ -147,6 +147,8 @@
 
     <string name="pref_title_split_view_mode">使用分屏模式</string>
     <string name="pref_title_use_popover_for_lookup">用弹出窗口显示词典内查找</string>
+    <string name="pref_title_resize_images">调整图片以适应窗口大小</string>
+
 
     <!-- alex 2012-12-07 start -->
     <string name="pref_title_fixed_dict_title">固定辞典标题</string>

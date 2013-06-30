@@ -282,7 +282,8 @@ public class MdxEngine {
                 .replace("$start_expand_all$", MdxEngine.getSettings().getPrefMultiDictDefaultExpandAll().toString())
                 .replace("$expand_single$", MdxEngine.getSettings().getPrefMultiDictExpandOnlyOne().toString())
                 .replace("$fixed_dict_title$", MdxEngine.getSettings().getPrefFixedDictTitle().toString()) //alex20121207.n
-                .replace("$extra_header$", cssBuilder);
+                .replace("$extra_header$", cssBuilder)
+                .replace("$resize_images$", getSettings().getPrefResizeImages()?"true":"false");
 
         htmlBlock.setLength(0);
         IOUtil.loadStringFromAsset(baseContext.getAssets(), "html_end.html", htmlBlock, true);
