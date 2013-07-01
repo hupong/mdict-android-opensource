@@ -61,6 +61,7 @@ public class MdxEngineSetting {
     public static String prefSplitViewMode;
     public static String prefFloatingWindowHeight;
     public static String prefResizeImages;
+    public static String prefPlayAudioInBackground;
 
     public static String prefGlobalClipboardMonitor;//Alex20121207.n
     public static String prefFixedDictTitle;//Alex20121207.n
@@ -87,6 +88,7 @@ public class MdxEngineSetting {
     public static String prefDefaultSplitViewMode;
     public static int prefDefaultFloatingWindowHeight;
     public static boolean prefDefaultResizeImages;
+    public static boolean prefDefaultPlayAudioInBackground;
 
     public static boolean prefDefaultGlobalClipboardMonitor;//Alex20121207.n
     public static boolean prefDefaultFixedDictTitle;//Alex20121207.n
@@ -123,9 +125,9 @@ public class MdxEngineSetting {
             prefShowInNotification = res.getString(R.string.pref_show_in_notification);
             prefUseLRUForDictOrder = res.getString(R.string.pref_use_lru_for_dict_order);
             prefSplitViewMode = res.getString(R.string.pref_split_view_mode);
-
             prefFloatingWindowHeight = res.getString(R.string.pref_floating_window_height);
             prefResizeImages=res.getString(R.string.pref_resize_images);
+            prefPlayAudioInBackground=res.getString(R.string.pref_play_audio_in_background);
             prefGlobalClipboardMonitor = res.getString(R.string.pref_global_clipboard_monitor);//Alex20121207.n
             prefFixedDictTitle = res.getString(R.string.pref_fixed_dict_title);//Alex20121207.n
 
@@ -150,6 +152,7 @@ public class MdxEngineSetting {
             prefDefaultSplitViewMode = res.getString(R.string.pref_default_split_view_mode);
             prefDefaultFloatingWindowHeight = Integer.parseInt(res.getString(R.string.pref_default_floating_window_height), 10);
             prefDefaultResizeImages=Boolean.parseBoolean(res.getString(R.string.pref_default_resize_images));
+            prefDefaultPlayAudioInBackground=Boolean.parseBoolean(res.getString(R.string.pref_default_play_audio_in_background));
 
             prefDefaultGlobalClipboardMonitor = Boolean.parseBoolean(res.getString(R.string.pref_default_global_clipboard_monitor));//Alex20121207.n
             prefDefaultFixedDictTitle = Boolean.parseBoolean(res.getString(R.string.pref_default_fixed_dict_title));//Alex20121207.n
@@ -489,6 +492,10 @@ public class MdxEngineSetting {
 
     public boolean getPrefResizeImages() {
         return appPrefs.getBoolean(prefResizeImages, prefDefaultResizeImages);
+    }
+
+    public boolean getPrefPlayAudioInBackground() {
+        return appPrefs.getBoolean(prefPlayAudioInBackground, prefDefaultPlayAudioInBackground);
     }
 
     public void setPrefFloatingWindowHeight(boolean shouldResize) {

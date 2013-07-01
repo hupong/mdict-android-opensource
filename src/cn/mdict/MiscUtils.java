@@ -205,51 +205,46 @@ public class MiscUtils {
         }
     }
 
-    public static void playWave(final byte[] waveData) {
-        new Thread("PlayWaveThread"){
-            @Override
-            public void run(){
-                WaveInfo info = MiscUtils.parseWaveHeader(waveData);
-        //        WaveInfo info1= MiscUtils.parseWaveHeader1(waveData);
+    public static void playWave(byte[] waveData) {
+        WaveInfo info = MiscUtils.parseWaveHeader(waveData);
+//        WaveInfo info1= MiscUtils.parseWaveHeader1(waveData);
 
-                int channelConfig, encoding;
-                if (info.channels == 1)
-                    channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO;
-                else if (info.channels == 2)
-                    channelConfig = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
-                else
-                    channelConfig = AudioFormat.CHANNEL_CONFIGURATION_INVALID;
+        int channelConfig, encoding;
+        if (info.channels == 1)
+            channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO;
+        else if (info.channels == 2)
+            channelConfig = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
+        else
+            channelConfig = AudioFormat.CHANNEL_CONFIGURATION_INVALID;
 
-                if (info.bits == 8)
-                    encoding = AudioFormat.ENCODING_PCM_8BIT;
-                else if (info.bits == 16)
-                    encoding = AudioFormat.ENCODING_PCM_16BIT;
-                else {
-                    //encoding=AudioFormat.ENCODING_INVALID;
-                    playMedia(waveData);
-                    return;
-                }
+        if (info.bits == 8)
+            encoding = AudioFormat.ENCODING_PCM_8BIT;
+        else if (info.bits == 16)
+            encoding = AudioFormat.ENCODING_PCM_16BIT;
+        else {
+            //encoding=AudioFormat.ENCODING_INVALID;
+            playMedia(waveData);
+            return;
+        }
 
-                int sampleRate = info.rate;
-                int bufSize = AudioTrack.getMinBufferSize(sampleRate, channelConfig, encoding);
-                bufSize=Math.max(bufSize,32*1024);
-                AudioTrack outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
-                        channelConfig, encoding, bufSize, AudioTrack.MODE_STREAM);
-                outTrack.play();
-                int audioSize = waveData.length - info.bodyOffset;
-                int dataOffset = info.bodyOffset;
-                while (audioSize > 0) {
-                    int curBufSize = bufSize;
-                    if (audioSize < bufSize) {
-                        curBufSize = audioSize;
-                    }
-                    outTrack.write(waveData, dataOffset, curBufSize);
-                    dataOffset += curBufSize;
-                    audioSize -= curBufSize;
-                }
-                outTrack.stop();
+        int sampleRate = info.rate;
+        int bufSize = AudioTrack.getMinBufferSize(sampleRate, channelConfig, encoding);
+        bufSize=Math.max(bufSize,16*1024);
+        AudioTrack outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
+                channelConfig, encoding, bufSize, AudioTrack.MODE_STREAM);
+        outTrack.play();
+        int audioSize = waveData.length - info.bodyOffset;
+        int dataOffset = info.bodyOffset;
+        while (audioSize > 0) {
+            int curBufSize = bufSize;
+            if (audioSize < bufSize) {
+                curBufSize = audioSize;
             }
-        }.start();
+            outTrack.write(waveData, dataOffset, curBufSize);
+            dataOffset += curBufSize;
+            audioSize -= curBufSize;
+        }
+        outTrack.stop();
     }
 
     private static ByteArrayOutputStream getWaveDataForPath(MdxDictBase dict, String path) {
@@ -295,10 +290,18 @@ public class MiscUtils {
     }
 
     public static boolean playAudio(MdxDictBase dict, String path) {
-        ByteArrayOutputStream waveData = getWaveDataForPath(dict, path);
+        final ByteArrayOutputStream waveData = getWaveDataForPath(dict, path);
         if (waveData != null && waveData.size() > 0) {
             try {
-                MiscUtils.playWave(waveData.toByteArray());
+                if (MdxEngine.getSettings().getPrefPlayAudioInBackground()){
+                    new Thread("PlayWaveThread"){
+                        @Override
+                        public void run(){
+                            MiscUtils.playWave(waveData.toByteArray());
+                        }
+                    };
+                }else
+                    MiscUtils.playWave(waveData.toByteArray());
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();

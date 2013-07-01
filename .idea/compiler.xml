@@ -9,6 +9,7 @@
       <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/library/target/generated-test-sources/test-annotations" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/library/gen/com/example/Actionbar_Sherlock/BuildConfig.java" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/library/gen" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/library/actionbar-sherlock/actionbarsherlock/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>

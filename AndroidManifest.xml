@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cn.mdict"
-          android:versionCode="37"
-          android:versionName="1.1.2 RC1">
+          android:versionCode="38"
+          android:versionName="1.1.2 RC2">
 
     <uses-sdk
             android:minSdkVersion="7"
