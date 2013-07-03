@@ -32,12 +32,11 @@ public class MdxUtils {
      * Method decodeSpeex ...
      *
      * @param input           of type byte[]
-     * @param output          of type ByteArrayOutputStream
      * @param appendWAVHeader of type boolean
      * @return boolean
      */
     // Native declarations
-    public native static boolean decodeSpeex(byte[] input, ByteArrayOutputStream output, boolean appendWAVHeader);
+    public native static byte[] decodeSpeex(byte[] input, boolean appendWAVHeader);
 
     /**
      * Method punyCodeToUnicode ...

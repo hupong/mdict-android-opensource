@@ -247,7 +247,7 @@ public class MiscUtils {
         outTrack.stop();
     }
 
-    private static ByteArrayOutputStream getWaveDataForPath(MdxDictBase dict, String path) {
+    private static byte[] getWaveDataForPath(MdxDictBase dict, String path) {
         byte[] result = null;
         if (dict != null && dict.isValid())
             result = dict.getDictData(path, true);
@@ -260,22 +260,9 @@ public class MiscUtils {
             // TODO: Ogg decode?
             if (result.length > 3) {
                 if (result[0] == 'O' && result[1] == 'g' && result[2] == 'g') {
-                    // For Ogg stream
-                    ByteArrayOutputStream oggresult = new ByteArrayOutputStream();
-                    if (MdxUtils.decodeSpeex(result, oggresult, true)) {
-                        if (oggresult.size() > 0) {
-                            return oggresult;
-                        }
-                    }
+                    return MdxUtils.decodeSpeex(result, true);
                 } else {
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    try {
-                        bos.write(result);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        return null;
-                    }
-                    return bos;
+                    return result;
                 }
             }
         }
@@ -290,18 +277,18 @@ public class MiscUtils {
     }
 
     public static boolean playAudio(MdxDictBase dict, String path) {
-        final ByteArrayOutputStream waveData = getWaveDataForPath(dict, path);
-        if (waveData != null && waveData.size() > 0) {
+        final byte[] waveData = getWaveDataForPath(dict, path);
+        if (waveData != null && waveData.length > 0) {
             try {
                 if (MdxEngine.getSettings().getPrefPlayAudioInBackground()){
                     new Thread("PlayWaveThread"){
                         @Override
                         public void run(){
-                            MiscUtils.playWave(waveData.toByteArray());
+                            MiscUtils.playWave(waveData);
                         }
                     }.start();
                 }else
-                    MiscUtils.playWave(waveData.toByteArray());
+                    MiscUtils.playWave(waveData);
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
