@@ -107,6 +107,12 @@
             android:title="@string/pref_title_resize_images"
             android:defaultValue="@string/pref_default_resize_images"/>
 
+    <!--
+        <CheckBoxPreference
+            android:key="@string/pref_play_audio_in_background"
+            android:title="@string/pref_title_play_audio_in_background"
+            android:defaultValue="@string/pref_default_play_audio_in_background"/>
+            -->
         <EditTextPreference
                 android:key="@string/pref_app_owner"
                 android:title="@string/pref_title_email"

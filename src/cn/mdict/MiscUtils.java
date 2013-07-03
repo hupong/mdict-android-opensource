@@ -299,7 +299,7 @@ public class MiscUtils {
                         public void run(){
                             MiscUtils.playWave(waveData.toByteArray());
                         }
-                    };
+                    }.start();
                 }else
                     MiscUtils.playWave(waveData.toByteArray());
                 return true;
