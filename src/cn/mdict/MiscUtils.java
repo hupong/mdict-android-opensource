@@ -54,6 +54,7 @@ import java.nio.ByteOrder;
 
 public class MiscUtils {
     static MediaPlayer mediaPlayer = null;
+    static AudioTrack outTrack=null;
     static boolean appInited = false;
     private static final String TAG = "MDict.MiscUtil";
 
@@ -229,10 +230,15 @@ public class MiscUtils {
 
         int sampleRate = info.rate;
         int bufSize = AudioTrack.getMinBufferSize(sampleRate, channelConfig, encoding);
-        bufSize=Math.max(bufSize,16*1024);
-        AudioTrack outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
+        bufSize=Math.max(bufSize,8*1024);
+        if (outTrack!=null){
+            outTrack.pause();
+            outTrack.flush();
+        }
+        outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
                 channelConfig, encoding, bufSize, AudioTrack.MODE_STREAM);
-        outTrack.play();
+        AudioTrack player=outTrack;
+        player.play();
         int audioSize = waveData.length - info.bodyOffset;
         int dataOffset = info.bodyOffset;
         while (audioSize > 0) {
@@ -240,11 +246,13 @@ public class MiscUtils {
             if (audioSize < bufSize) {
                 curBufSize = audioSize;
             }
-            outTrack.write(waveData, dataOffset, curBufSize);
+            if ( player.getPlayState()!=AudioTrack.PLAYSTATE_PLAYING )
+                break;
+            player.write(waveData, dataOffset, curBufSize);
             dataOffset += curBufSize;
             audioSize -= curBufSize;
         }
-        outTrack.stop();
+        player.release();
     }
 
     private static byte[] getWaveDataForPath(MdxDictBase dict, String path) {
@@ -271,7 +279,9 @@ public class MiscUtils {
 
     public static boolean playAudioForWord(MdxDictBase dict, String headword) {
         if (headword.length() > 0) {
-            return playAudio(dict, getAudioFileNameForWord(headword, ".spx")) || playAudio(dict, getAudioFileNameForWord(headword, ".wav"));
+            return playAudio(dict, getAudioFileNameForWord(headword, ".spx"))
+                    || playAudio(dict, getAudioFileNameForWord(headword, ".wav"))
+                    || playAudio(dict, getAudioFileNameForWord(headword, ".mp3"));
         } else
             return false;
     }
@@ -314,7 +324,7 @@ public class MiscUtils {
     public static boolean hasSpeechForWord(MdxDictBase dict, String headword) {
         if (headword.length() == 0)
             return false;
-        return findSpeechForWord(dict, headword, ".spx") || findSpeechForWord(dict, headword, ".wav");
+        return findSpeechForWord(dict, headword, ".spx") || findSpeechForWord(dict, headword, ".wav") || findSpeechForWord(dict, headword, ".mp3");
     }
 
     public static void showMessageDialog(Context context, String message, String title) {
