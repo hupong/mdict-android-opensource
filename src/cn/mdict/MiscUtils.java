@@ -232,8 +232,10 @@ public class MiscUtils {
         int bufSize = AudioTrack.getMinBufferSize(sampleRate, channelConfig, encoding);
         bufSize=Math.max(bufSize,8*1024);
         if (outTrack!=null){
-            outTrack.pause();
-            outTrack.flush();
+            if (outTrack.getPlayState()==AudioTrack.PLAYSTATE_PLAYING){
+                outTrack.pause();
+                outTrack.flush();
+            }
         }
         outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
                 channelConfig, encoding, bufSize, AudioTrack.MODE_STREAM);

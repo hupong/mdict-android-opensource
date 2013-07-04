@@ -16,11 +16,11 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cn.mdict"
-          android:versionCode="42"
+          android:versionCode="43"
           android:versionName="1.1.2 RC2">
 
     <uses-sdk
-            android:minSdkVersion="7"
+            android:minSdkVersion="8"
             android:targetSdkVersion="13"/>
 
     <application
