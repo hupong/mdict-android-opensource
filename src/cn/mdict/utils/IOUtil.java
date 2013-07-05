@@ -16,15 +16,17 @@
 
 package cn.mdict.utils;
 
-import android.app.ProgressDialog;
 import android.content.res.AssetManager;
-import android.os.Environment;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import cn.mdict.mdx.MdxEngine;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.logging.Handler;
 
 /**
  * User: rayman
@@ -52,21 +54,43 @@ public class IOUtil {
             e.printStackTrace();
         }
     }
+    public interface StatusReport{
+        public void onProgressUpdate(long count);
+        public void onStart();
+        public void onGetTotal(long total);
+        public void onComplete();
+        public void onError(Exception e);
+        public void onInterrupted();
+        public boolean isCanceled();
+    }
 
-    public static boolean streamDuplicate(InputStream is, OutputStream os, int bufferSize){
+    public static boolean streamDuplicate(InputStream is, OutputStream os, int bufferSize, StatusReport statusReport){
         is= new BufferedInputStream(is);
         os= new BufferedOutputStream(os);
         byte[] buffer = new byte[bufferSize];
         int length;
+        int count=0;
         boolean result=false;
         try{
-            while ((length = is.read(buffer)) > 0) {
+            while ( ((statusReport==null) || !statusReport.isCanceled()) && (length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
+                count+=length;
+                if ( statusReport!=null )
+                    statusReport.onProgressUpdate(count);
             }
             os.flush();
             result = true;
+            if ( statusReport!=null ){
+                if (statusReport.isCanceled())
+                    statusReport.onInterrupted();
+                else
+                    statusReport.onComplete();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            if ( statusReport!=null )
+                statusReport.onError(e);
+            else
+                e.printStackTrace();
         }finally {
             forceClose(is);
             forceClose(os);
@@ -74,18 +98,18 @@ public class IOUtil {
         return result;
     }
 
-    public static boolean streamDuplicate(InputStream is, OutputStream os){
-        return streamDuplicate(is, os, 8*1024);
+    public static boolean streamDuplicate(InputStream is, OutputStream os, StatusReport statusReport){
+        return streamDuplicate(is, os, 8*1024, statusReport);
     }
 
-    public static boolean streamToFile(InputStream is, String fileName, boolean overwrite){
+    public static boolean streamToFile(InputStream is, String fileName, boolean overwrite, StatusReport statusReport){
         // Check if the dest exists before copying
         File file = new File(fileName);
         if (file.exists() && !overwrite)
             return true;
         try {
             OutputStream os = new FileOutputStream(fileName);
-            return streamDuplicate(is,os);
+            return streamDuplicate(is,os, statusReport);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -99,7 +123,7 @@ public class IOUtil {
             final String destfilename = targetDir + "/" + ((newFileName != null && newFileName.length() > 0) ? newFileName : filename);
             // Open the source file in your assets directory
             InputStream is = new BufferedInputStream(assets.open(filename));
-            result=streamToFile(is, destfilename, overwrite);
+            result=streamToFile(is, destfilename, overwrite, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -118,7 +142,7 @@ public class IOUtil {
             if (is == null)
                 is = am.open(fileName);
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            if ( streamDuplicate(is, buffer) ){
+            if ( streamDuplicate(is, buffer, null) ){
                 return buffer.toByteArray();
             }
         } catch (Exception e) {
@@ -182,7 +206,7 @@ public class IOUtil {
     public static boolean saveStringToFile(String filename, String str, String charset) {
         try {
             InputStream is= new ByteArrayInputStream(str.getBytes(charset));
-            return streamToFile(is, filename, true);
+            return streamToFile(is, filename, true, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -190,6 +214,40 @@ public class IOUtil {
     }
 
     public static boolean saveBytesToFile(String fileName, byte[] data) {
-        return streamToFile(new ByteArrayInputStream(data), fileName, true);
+        return streamToFile(new ByteArrayInputStream(data), fileName, true, null);
     }
+
+
+    public static boolean httpGetFile(String url, String target, StatusReport statusReport){
+        try {
+            OutputStream os = new FileOutputStream(target);
+            return httpGetFile(url, os, statusReport);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean httpGetFile(String url, OutputStream os, StatusReport statusReport){
+        try{
+            HttpClient client = new DefaultHttpClient();
+            HttpGet get = new HttpGet(url);
+            if (statusReport!=null)
+                statusReport.onStart();
+            HttpResponse response = client.execute(get);
+            HttpEntity entity = response.getEntity();
+            long length = entity.getContentLength();
+            if (statusReport!=null)
+                statusReport.onGetTotal(length);
+            return streamDuplicate(entity.getContent(), os, statusReport);
+        }
+        catch (Exception e){
+            if (statusReport!=null)
+                statusReport.onError(e);
+            else
+                e.printStackTrace();
+        }
+        return false;
+    }
+
 }

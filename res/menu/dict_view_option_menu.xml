@@ -132,6 +132,9 @@
             <item android:id="@+id/aboutdict"
                   android:title="@string/aboutdict"
                   android:showAsAction="never"/>
+            <item android:id="@+id/app_update"
+                  android:title="@string/app_update"
+                  android:showAsAction="never" />
         </menu>
     </item>
     <item android:id="@+id/quit"

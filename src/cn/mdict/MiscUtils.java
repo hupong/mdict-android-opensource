@@ -16,10 +16,17 @@
 
 package cn.mdict;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.app.DownloadManager.Request;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -29,25 +36,37 @@ import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.util.Xml;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import cn.mdict.mdx.MdxDictBase;
 import cn.mdict.mdx.MdxEngine;
 import cn.mdict.mdx.MdxEngineSetting;
 import cn.mdict.mdx.MdxUtils;
 import cn.mdict.utils.IOUtil;
+import cn.mdict.utils.SysUtil;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -248,9 +267,8 @@ public class MiscUtils {
             if (audioSize < bufSize) {
                 curBufSize = audioSize;
             }
-            if ( player.getPlayState()!=AudioTrack.PLAYSTATE_PLAYING )
+            if (player.write(waveData, dataOffset, curBufSize)<=0)
                 break;
-            player.write(waveData, dataOffset, curBufSize);
             dataOffset += curBufSize;
             audioSize -= curBufSize;
         }
@@ -493,5 +511,165 @@ public class MiscUtils {
         return actionView;
     }
     */
+
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+    public static boolean updateAppWithDownloadManager(Context context, String url, String title, String description, final String target){
+        try {
+            String serviceString = Context.DOWNLOAD_SERVICE;
+            DownloadManager downloadManager;
+            downloadManager = (DownloadManager) context.getSystemService(serviceString);
+
+            Uri uri = Uri.parse(url);
+            Request request = new Request(uri);
+            request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
+            request.setDestinationUri(Uri.fromFile(new File(target)));
+            request.setTitle(title);
+            request.setDescription(description);
+            //request.setNotificationVisibility(Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            final long myDownloadReference = downloadManager.enqueue(request);
+            IntentFilter filter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+
+            BroadcastReceiver receiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    long reference = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                    if (myDownloadReference == reference) {
+                        installApk(context, target);
+                    }
+                }
+            };
+            context.registerReceiver(receiver, filter);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static void installApk(Context context, String path) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(android.content.Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(new File(path)),"application/vnd.android.package-archive");
+        context.startActivity(intent);
+    }
+
+        /*
+        <version>1.0</version>
+        <build>10</build>
+        <url>http://mdict.cn/download/MDict-1.0.apk</url>
+        <description>Changelog: xxxx </description>
+     */
+
+    public static class AppInfo{
+        public String getVersion() {
+            return version;
+        }
+
+        public void setVersion(String version) {
+            this.version = version;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public int getBuild() {
+            return build;
+        }
+
+        public void setBuild(int build) {
+            this.build = build;
+        }
+
+        private String version="";
+        private String url="";
+        private String description="";
+        private int build =-1;
+    }
+
+    public static AppInfo parseAppUpdateInfo(byte[] appUpdateInfo){
+        try{
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setInput(new ByteArrayInputStream(appUpdateInfo), "utf-8");
+            int type = parser.getEventType();
+            AppInfo info=new AppInfo();
+            while(type != XmlPullParser.END_DOCUMENT ){
+                switch (type) {
+                    case XmlPullParser.START_TAG:
+                        if("version".equals(parser.getName())){
+                            info.setVersion(parser.nextText());	//获取版本号
+                        }else if ("url".equals(parser.getName())){
+                            info.setUrl(parser.nextText());	//获取要升级的APK文件
+                        }else if ("description".equals(parser.getName())){
+                            info.setDescription(parser.nextText());	//获取该文件的信息
+                        }else if ("build".equals(parser.getName())){
+                            info.setBuild(Integer.parseInt(parser.nextText()));
+                        }
+                        break;
+                }
+                type = parser.next();
+            }
+            return info;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void updateApp(final Context context){
+        final String appInfoUrl="http://mdict.cn/version/mdict_android.xml";
+        final ByteArrayOutputStream page= new ByteArrayOutputStream();
+        final Handler handler=new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if ( IOUtil.httpGetFile(appInfoUrl, page, null) ){
+                    final AppInfo info=parseAppUpdateInfo(page.toByteArray());
+                    if (info!=null){
+                        final int currentBuild= SysUtil.getVersionCode(context);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (currentBuild<info.getBuild() && info.getUrl()!=null && info.getUrl().length()!=0){
+                                    AlertDialog dialog = MiscUtils.buildConfirmDialog(context,
+                                            R.string.confirm_update, R.string.app_update,
+                                            new android.content.DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(android.content.DialogInterface dialogInterface, int i) {
+                                                    File downloadDir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                                                    try {
+                                                        URL url=new URL(info.getUrl());
+                                                        File apk = new File(downloadDir, url.getFile());
+                                                        updateAppWithDownloadManager(context, info.getUrl(), context.getResources().getString(R.string.app_name), "", apk.getAbsolutePath());
+                                                    } catch (MalformedURLException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            }, null);
+                                    dialog.show();
+                                }else{
+                                    Toast.makeText(context, R.string.already_latest,Toast.LENGTH_LONG);
+                                }
+                            }
+                        });
+                    }
+                };
+            }
+        }).start();
+
+    }
 
 }

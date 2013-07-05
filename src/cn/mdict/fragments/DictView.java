@@ -513,6 +513,13 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             item.setEnabled(MdxEngine.getHistMgr().hasNext());
         }
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD) {
+            item = menu.findItem(R.id.help);
+            if (item != null) {
+                submenu = item.getSubMenu();
+                submenu.removeItem(R.id.app_update);
+            }
+        }
     }
 
     @Override
@@ -578,6 +585,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 break;
             case R.id.aboutdict:
                 displayByHeadword(":about", false);
+                break;
+            case R.id.app_update:
+                MiscUtils.updateApp(getSherlockActivity());
                 break;
             case R.id.font_face:
                 selectFont();

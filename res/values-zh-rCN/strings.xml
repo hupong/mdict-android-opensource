@@ -85,6 +85,18 @@
         <item>转繁体</item>
     </string-array>
     <string name="fail_to_install_tts_engine">TTS 引擎安装失败</string>
+    <string name="content_download_begin">开始下载</string>
+    <string name="content_downloaded"> 已下载%d字节</string>
+    <string name="content_download_complete">下载完成</string>
+    <string name="content_download_canceled">下载取消</string>
+    <string name="content_download_error">下载失败: %s</string>
+    <string name="error_client_protocol">网络异常</string>
+    <string name="error_io">IO 错误</string>
+
+    <string name="confirm_update">发现新版本，更新吗?</string>
+    <string name="app_update">程序更新</string>
+    <string name="already_latest">程序已经是最新版本</string>
+
 
     <!-- string for setting frame -->
     <string name="pref_cate_title_basic_setting">基础设置</string>
