@@ -633,7 +633,9 @@ public class MiscUtils {
     }
 
     public static void updateApp(final Context context){
-        final String appInfoUrl="http://mdict.cn/version/mdict_android.xml?AndroidId="+SysUtil.getAndroidId(context);
+        String releaseChannel="http://mdict.cn/version/mdict_android.xml";
+        String debugChannel="http://mdict.cn/version/mdict_android_test.xml";
+        final String appInfoUrl=(SysUtil.isDebuggable(context)?debugChannel:releaseChannel)+"?AndroidId="+SysUtil.getAndroidId(context);
         final ByteArrayOutputStream page= new ByteArrayOutputStream();
         final Handler handler=new Handler();
         new Thread(new Runnable() {

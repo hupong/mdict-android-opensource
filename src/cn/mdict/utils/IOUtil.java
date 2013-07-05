@@ -239,11 +239,16 @@ public class IOUtil {
             if (statusReport!=null)
                 statusReport.onStart();
             HttpResponse response = client.execute(get);
+            if ( response.getStatusLine()!=null && response.getStatusLine().getStatusCode()!=200 ){
+                get.abort();
+                return false;
+            }
             HttpEntity entity = response.getEntity();
             long length = entity.getContentLength();
             if (statusReport!=null)
                 statusReport.onGetTotal(length);
-            return streamDuplicate(entity.getContent(), os, statusReport);
+            boolean result=streamDuplicate(entity.getContent(), os, statusReport);
+            return result;
         }
         catch (Exception e){
             if (statusReport!=null)

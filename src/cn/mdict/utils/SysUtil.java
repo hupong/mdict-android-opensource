@@ -17,6 +17,7 @@
 package cn.mdict.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
@@ -61,5 +62,8 @@ public class SysUtil {
     public static String getAndroidId(Context context){
         return Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
 
+    }
+    public static boolean isDebuggable(Context context){
+        return  ( 0 != ( context.getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
     }
 }
