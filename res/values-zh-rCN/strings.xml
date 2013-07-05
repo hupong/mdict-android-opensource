@@ -90,6 +90,7 @@
     <string name="content_download_complete">下载完成</string>
     <string name="content_download_canceled">下载取消</string>
     <string name="content_download_error">下载失败: %s</string>
+    <string name="content_download_failed">Download failed</string>
     <string name="error_client_protocol">网络异常</string>
     <string name="error_io">IO 错误</string>
 
@@ -161,6 +162,7 @@
     <string name="pref_title_use_popover_for_lookup">用弹出窗口显示词典内查找</string>
     <string name="pref_title_resize_images">调整图片以适应窗口大小</string>
     <string name="pref_title_play_audio_in_background">在后台播放语音</string>
+    <string name="pref_title_auto_check_update">自动检查更新</string>
 
     <!-- alex 2012-12-07 start -->
     <string name="pref_title_fixed_dict_title">固定辞典标题</string>

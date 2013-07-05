@@ -24,6 +24,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import cn.mdict.mdx.MdxEngine;
+import org.apache.http.params.CoreProtocolPNames;
 
 import java.io.*;
 import java.util.logging.Handler;
@@ -34,6 +35,8 @@ import java.util.logging.Handler;
  * Time: 上午11:20
  */
 public class IOUtil {
+    public static final String HttpUserAgent="MDict-Android";
+
     public static boolean createDir(String dir) {
         File dirFile = new File(dir);
         return dirFile.mkdir();
@@ -231,6 +234,7 @@ public class IOUtil {
     public static boolean httpGetFile(String url, OutputStream os, StatusReport statusReport){
         try{
             HttpClient client = new DefaultHttpClient();
+            client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, HttpUserAgent);
             HttpGet get = new HttpGet(url);
             if (statusReport!=null)
                 statusReport.onStart();

@@ -22,11 +22,9 @@ import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Request;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -65,8 +63,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -521,10 +517,17 @@ public class MiscUtils {
 
             Uri uri = Uri.parse(url);
             Request request = new Request(uri);
-            request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
-            request.setDestinationUri(Uri.fromFile(new File(target)));
+            //request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
+            File targetFile=new File(target);
+            File parentDir=targetFile.getParentFile();
+            if ( !parentDir.mkdirs() && !parentDir.isDirectory()){
+                return false;
+            }
+            request.setDestinationUri(Uri.fromFile(targetFile));
             request.setTitle(title);
             request.setDescription(description);
+            request.setAllowedOverRoaming(false);
+            request.addRequestHeader("User-Agent", IOUtil.HttpUserAgent);
             //request.setNotificationVisibility(Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             final long myDownloadReference = downloadManager.enqueue(request);
             IntentFilter filter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
@@ -630,13 +633,14 @@ public class MiscUtils {
     }
 
     public static void updateApp(final Context context){
-        final String appInfoUrl="http://mdict.cn/version/mdict_android.xml";
+        final String appInfoUrl="http://mdict.cn/version/mdict_android.xml?AndroidId="+SysUtil.getAndroidId(context);
         final ByteArrayOutputStream page= new ByteArrayOutputStream();
         final Handler handler=new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 if ( IOUtil.httpGetFile(appInfoUrl, page, null) ){
+                    MdxEngine.getSettings().setPrefLastUpdateCheckDate(System.currentTimeMillis());
                     final AppInfo info=parseAppUpdateInfo(page.toByteArray());
                     if (info!=null){
                         final int currentBuild= SysUtil.getVersionCode(context);
@@ -650,14 +654,13 @@ public class MiscUtils {
                                                 @Override
                                                 public void onClick(android.content.DialogInterface dialogInterface, int i) {
                                                     File downloadDir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                                                    try {
-                                                        URL url=new URL(info.getUrl());
-                                                        File apk = new File(downloadDir, url.getFile());
-                                                        updateAppWithDownloadManager(context, info.getUrl(), context.getResources().getString(R.string.app_name), "", apk.getAbsolutePath());
-                                                    } catch (MalformedURLException e) {
-                                                        e.printStackTrace();
+                                                    Uri uri=Uri.parse(info.getUrl());
+                                                    File apk = new File(downloadDir, uri.getLastPathSegment());
+                                                    if ( !updateAppWithDownloadManager(context, info.getUrl(), context.getResources().getString(R.string.app_name),
+                                                            context.getResources().getString(R.string.app_update), apk.getAbsolutePath()) ){
+                                                        Toast.makeText(context, R.string.content_download_failed,Toast.LENGTH_LONG);
                                                     }
-                                                }
+                                               }
                                             }, null);
                                     dialog.show();
                                 }else{

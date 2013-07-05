@@ -74,6 +74,10 @@
                 android:title="@string/pref_title_use_lru_for_dict_order"
                 android:summary="@string/pref_summary_use_lru_for_dict_order"
                 android:defaultValue="@string/pref_default_use_lru_for_dict_order"/>
+        <CheckBoxPreference
+            android:key="@string/pref_auto_check_update"
+            android:title="@string/pref_title_auto_check_update"
+            android:defaultValue="@string/pref_default_auto_check_update"/>
     <!--
         <CheckBoxPreference
                 android:key="@string/pref_use_popover_for_lookup"
@@ -86,8 +90,7 @@
             android:dialogTitle="@string/pref_title_split_view_mode"
             android:entries="@array/split_view_mode_entries"
             android:entryValues="@array/split_view_mode_values"
-            android:defaultValue="@string/pref_default_split_view_mode"
-            ></ListPreference>
+            android:defaultValue="@string/pref_default_split_view_mode" />
 
     <!--
 

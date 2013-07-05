@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
+import android.provider.Settings.Secure;
+
 
 /**
  * User: rayman
@@ -54,5 +56,10 @@ public class SysUtil {
             Log.e("VersionInfo", "Exception", e);
         }
         return versionName;
+    }
+
+    public static String getAndroidId(Context context){
+        return Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
+
     }
 }

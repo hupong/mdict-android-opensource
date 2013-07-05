@@ -22,6 +22,8 @@ import android.content.res.Resources;
 import android.os.Build;
 import cn.mdict.R;
 
+import java.util.Date;
+
 /**
  * Class MdxEngineSetting ...
  *
@@ -62,6 +64,8 @@ public class MdxEngineSetting {
     public static String prefFloatingWindowHeight;
     public static String prefResizeImages;
     public static String prefPlayAudioInBackground;
+    public static String prefAutoCheckUpdate;
+    public static String prefLastUpdateCheckDate="LastUpdateCheckDate";
 
     public static String prefGlobalClipboardMonitor;//Alex20121207.n
     public static String prefFixedDictTitle;//Alex20121207.n
@@ -89,6 +93,7 @@ public class MdxEngineSetting {
     public static int prefDefaultFloatingWindowHeight;
     public static boolean prefDefaultResizeImages;
     public static boolean prefDefaultPlayAudioInBackground;
+    public static boolean prefDefaultAutoCheckUpdate;
 
     public static boolean prefDefaultGlobalClipboardMonitor;//Alex20121207.n
     public static boolean prefDefaultFixedDictTitle;//Alex20121207.n
@@ -130,6 +135,7 @@ public class MdxEngineSetting {
             prefPlayAudioInBackground=res.getString(R.string.pref_play_audio_in_background);
             prefGlobalClipboardMonitor = res.getString(R.string.pref_global_clipboard_monitor);//Alex20121207.n
             prefFixedDictTitle = res.getString(R.string.pref_fixed_dict_title);//Alex20121207.n
+            prefAutoCheckUpdate = res.getString(R.string.pref_auto_check_update);
 
             prefDefaultTTSLocale = res.getString(R.string.pref_default_tts_locale);
             prefDefaultAutoPlayPronunciation = Boolean.parseBoolean(res.getString(R.string.pref_default_auto_play_pronunciation));
@@ -153,6 +159,7 @@ public class MdxEngineSetting {
             prefDefaultFloatingWindowHeight = Integer.parseInt(res.getString(R.string.pref_default_floating_window_height), 10);
             prefDefaultResizeImages=Boolean.parseBoolean(res.getString(R.string.pref_default_resize_images));
             prefDefaultPlayAudioInBackground=Boolean.parseBoolean(res.getString(R.string.pref_default_play_audio_in_background));
+            prefDefaultAutoCheckUpdate=Boolean.parseBoolean(res.getString(R.string.pref_default_auto_check_update));
 
             prefDefaultGlobalClipboardMonitor = Boolean.parseBoolean(res.getString(R.string.pref_default_global_clipboard_monitor));//Alex20121207.n
             prefDefaultFixedDictTitle = Boolean.parseBoolean(res.getString(R.string.pref_default_fixed_dict_title));//Alex20121207.n
@@ -496,6 +503,18 @@ public class MdxEngineSetting {
 
     public boolean getPrefPlayAudioInBackground() {
         return appPrefs.getBoolean(prefPlayAudioInBackground, prefDefaultPlayAudioInBackground);
+    }
+
+    public boolean getPrefAutoCheckUpdate() {
+        return appPrefs.getBoolean(prefAutoCheckUpdate, prefDefaultAutoCheckUpdate);
+    }
+
+    public long getPrefLastUpdateCheckDate(){
+        return appPrefs.getLong(prefLastUpdateCheckDate, 0);
+    }
+
+    public void setPrefLastUpdateCheckDate(long lastCheckDate){
+        appPrefs.edit().putLong(prefLastUpdateCheckDate, lastCheckDate).commit();
     }
 
     public void setPrefFloatingWindowHeight(boolean shouldResize) {
