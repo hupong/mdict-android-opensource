@@ -66,4 +66,9 @@ public class SysUtil {
     public static boolean isDebuggable(Context context){
         return  ( 0 != ( context.getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
     }
+
+    public static boolean isTestVersion(Context context){
+        String versionName=getVersionName(context, false).toUpperCase();
+        return versionName.contains("RC")||versionName.contains("BETA");
+    }
 }

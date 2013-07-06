@@ -250,6 +250,7 @@ public class MiscUtils {
             if (outTrack.getPlayState()==AudioTrack.PLAYSTATE_PLAYING){
                 outTrack.pause();
                 outTrack.flush();
+                outTrack.release();
             }
         }
         outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
@@ -268,7 +269,7 @@ public class MiscUtils {
             dataOffset += curBufSize;
             audioSize -= curBufSize;
         }
-        player.release();
+        //player.release();
     }
 
     private static byte[] getWaveDataForPath(MdxDictBase dict, String path) {
@@ -633,47 +634,49 @@ public class MiscUtils {
     }
 
     public static void updateApp(final Context context){
-        String releaseChannel="http://mdict.cn/version/mdict_android.xml";
-        String debugChannel="http://mdict.cn/version/mdict_android_test.xml";
-        final String appInfoUrl=(SysUtil.isDebuggable(context)?debugChannel:releaseChannel)+"?AndroidId="+SysUtil.getAndroidId(context);
-        final ByteArrayOutputStream page= new ByteArrayOutputStream();
-        final Handler handler=new Handler();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if ( IOUtil.httpGetFile(appInfoUrl, page, null) ){
-                    MdxEngine.getSettings().setPrefLastUpdateCheckDate(System.currentTimeMillis());
-                    final AppInfo info=parseAppUpdateInfo(page.toByteArray());
-                    if (info!=null){
-                        final int currentBuild= SysUtil.getVersionCode(context);
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (currentBuild<info.getBuild() && info.getUrl()!=null && info.getUrl().length()!=0){
-                                    AlertDialog dialog = MiscUtils.buildConfirmDialog(context,
-                                            R.string.confirm_update, R.string.app_update,
-                                            new android.content.DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(android.content.DialogInterface dialogInterface, int i) {
-                                                    File downloadDir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                                                    Uri uri=Uri.parse(info.getUrl());
-                                                    File apk = new File(downloadDir, uri.getLastPathSegment());
-                                                    if ( !updateAppWithDownloadManager(context, info.getUrl(), context.getResources().getString(R.string.app_name),
-                                                            context.getResources().getString(R.string.app_update), apk.getAbsolutePath()) ){
-                                                        Toast.makeText(context, R.string.content_download_failed,Toast.LENGTH_LONG);
-                                                    }
-                                               }
-                                            }, null);
-                                    dialog.show();
-                                }else{
-                                    Toast.makeText(context, R.string.already_latest,Toast.LENGTH_LONG);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            String releaseChannel="http://mdict.cn/version/mdict_android.xml";
+            String debugChannel="http://mdict.cn/version/mdict_android_test.xml";
+            final String appInfoUrl=(SysUtil.isDebuggable(context)?debugChannel:releaseChannel)+"?AndroidId="+SysUtil.getAndroidId(context);
+            final ByteArrayOutputStream page= new ByteArrayOutputStream();
+            final Handler handler=new Handler();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if ( IOUtil.httpGetFile(appInfoUrl, page, null) ){
+                        MdxEngine.getSettings().setPrefLastUpdateCheckDate(System.currentTimeMillis());
+                        final AppInfo info=parseAppUpdateInfo(page.toByteArray());
+                        if (info!=null){
+                            final int currentBuild= SysUtil.getVersionCode(context);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (currentBuild<info.getBuild() && info.getUrl()!=null && info.getUrl().length()!=0){
+                                        AlertDialog dialog = MiscUtils.buildConfirmDialog(context,
+                                                R.string.confirm_update, R.string.app_update,
+                                                new android.content.DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(android.content.DialogInterface dialogInterface, int i) {
+                                                        File downloadDir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                                                        Uri uri=Uri.parse(info.getUrl());
+                                                        File apk = new File(downloadDir, uri.getLastPathSegment());
+                                                        if ( !updateAppWithDownloadManager(context, info.getUrl(), context.getResources().getString(R.string.app_name),
+                                                                context.getResources().getString(R.string.app_update), apk.getAbsolutePath()) ){
+                                                            Toast.makeText(context, R.string.content_download_failed,Toast.LENGTH_LONG);
+                                                        }
+                                                   }
+                                                }, null);
+                                        dialog.show();
+                                    }else{
+                                        Toast.makeText(context, R.string.already_latest,Toast.LENGTH_LONG);
+                                    }
                                 }
-                            }
-                        });
-                    }
-                };
-            }
-        }).start();
+                            });
+                        }
+                    };
+                }
+            }).start();
+        }
 
     }
 
