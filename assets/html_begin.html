@@ -234,26 +234,26 @@ function adjustDictTitle()
 }
 
 function toggleImageResize(shouldResize) {
-	   if(screen.width >= 1024 || screen.height >=1024)
-	   {
-			var w = top.window.innerWidth - 40;
-			for ( var i = 0; i < document.images.length; i++) {
-				var img = document.images[i];
-				if ( shouldResize ){
-				    img.style.maxWidthOrig=img.style.maxWidth;
-	    			img.style.maxHeightOrig=img.style.maxHeight;
-				    img.style.maxWidth="95%";
-	    			img.style.maxHeight="80%";
-	    		}else{
-    				img.style.maxWidth=img.style.maxWidth;
-	    			img.style.maxHeight=img.style.maxHeight;
-	    		}
-				//if (img.width > w) {
-				//	img.height = Math.round(img.height * (w / img.width));
-				//	img.width = w;
-				//}
-			}
-		}
+    if(screen.width >= 1024 || screen.height >=1024)
+    {
+        var w = top.window.innerWidth - 40;
+        for ( var i = 0; i < document.images.length; i++) {
+            var img = document.images[i];
+            if ( shouldResize ){
+                img.style.maxWidthOrig=img.style.maxWidth;
+                img.style.maxHeightOrig=img.style.maxHeight;
+                img.style.maxWidth="95%";
+                img.style.maxHeight="80%";
+            }else{
+                img.style.maxWidth=img.style.maxWidth;
+                img.style.maxHeight=img.style.maxHeight;
+            }
+            //if (img.width > w) {
+            //	img.height = Math.round(img.height * (w / img.width));
+            //	img.width = w;
+            //}
+        }
+    }
 }
 
 function getElementTop(element){
@@ -317,13 +317,11 @@ function getElementTop(element){
         position: relative;
         padding: 4px 2px 10px 2px;
         margin: 0px 0px 0px 0px;
-        overflow-x:hidden;
         background-color: #fff;
         border-style: none solid solid solid;
         border-width: 1px;
         border-color: #a0a0a0;
     }
-
 </style>
 </head>
 <body onload="javascript:SetupMdx();">
