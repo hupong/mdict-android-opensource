@@ -168,7 +168,7 @@ public class MdxEngine {
 
         //Optimize copy action by write a version file after successful copy.
         //Only overwritten asset files if different version found
-        if (!checkInstalledVersionNumber(context, versionFileName)) {
+        if (!checkInstalledVersionNumber(context, versionFileName) || SysUtil.isDebuggable(context)) {
             IOUtil.copyAssetToFile(assets, "ResDB.dat", true, resDir, null);
             IOUtil.copyAssetToFile(assets, "html_begin.html", true, resDir, null);
             IOUtil.copyAssetToFile(assets, "html_end.html", true, resDir, null);

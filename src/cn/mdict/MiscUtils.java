@@ -255,7 +255,7 @@ public class MiscUtils {
         }
         outTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
                 channelConfig, encoding, bufSize, AudioTrack.MODE_STREAM);
-        AudioTrack player=outTrack;
+        final AudioTrack player=outTrack;
         player.play();
         int audioSize = waveData.length - info.bodyOffset;
         int dataOffset = info.bodyOffset;
@@ -269,7 +269,13 @@ public class MiscUtils {
             dataOffset += curBufSize;
             audioSize -= curBufSize;
         }
+        //We will release the audio track resource before app exit.
         //player.release();
+    }
+    public static void releaseAudioTrack(){
+        if (outTrack!=null){
+            outTrack.release();
+        }
     }
 
     private static byte[] getWaveDataForPath(MdxDictBase dict, String path) {
