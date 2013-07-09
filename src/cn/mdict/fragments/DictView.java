@@ -587,7 +587,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                 displayByHeadword(":about", false);
                 break;
             case R.id.app_update:
-                MiscUtils.updateApp(getSherlockActivity());
+                MiscUtils.updateApp(getSherlockActivity(), true);
                 break;
             case R.id.font_face:
                 selectFont();

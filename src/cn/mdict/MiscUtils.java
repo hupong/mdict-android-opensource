@@ -639,7 +639,7 @@ public class MiscUtils {
         return null;
     }
 
-    public static void updateApp(final Context context){
+    public static void updateApp(final Context context, final boolean promptUser){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             String releaseChannel="http://mdict.cn/version/mdict_android.xml";
             String debugChannel="http://mdict.cn/version/mdict_android_test.xml";
@@ -668,13 +668,14 @@ public class MiscUtils {
                                                         File apk = new File(downloadDir, uri.getLastPathSegment());
                                                         if ( !updateAppWithDownloadManager(context, info.getUrl(), context.getResources().getString(R.string.app_name),
                                                                 context.getResources().getString(R.string.app_update), apk.getAbsolutePath()) ){
-                                                            Toast.makeText(context, R.string.content_download_failed,Toast.LENGTH_LONG);
+                                                            Toast.makeText(context, R.string.content_download_failed,Toast.LENGTH_LONG).show();
                                                         }
                                                    }
                                                 }, null);
                                         dialog.show();
                                     }else{
-                                        Toast.makeText(context, R.string.already_latest,Toast.LENGTH_LONG);
+                                        if ( promptUser )
+                                            Toast.makeText(context, R.string.already_latest,Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
