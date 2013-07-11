@@ -140,7 +140,7 @@ public class MdxView extends RelativeLayout {
     }
 
     public void displayByHeadword(String headword, boolean addToHistory) {
-        if (dict != null && dict.isValid()) {
+        if (dict != null && dict.isValid() && headword.length()>0) {
             DictEntry entry = new DictEntry(DictEntry.kInvalidEntryNo,
                     headword, dict.getDictPref().getDictId());
             if (MdxDictBase.isMdxCmd(headword)) {
@@ -168,7 +168,8 @@ public class MdxView extends RelativeLayout {
     public void displayByEntry(DictEntry entry, boolean addToHistory) {
         currentEntry = new DictEntry(entry);
         updateUIStateForEntry(currentEntry);
-        currentEntry.dumpEntryInfo();
+        //currentEntry.dumpEntryInfo();
+        String headword=entry.getHeadword();
         if (dict != null && dict.isValid()) {
             if (entry.isValid() || entry.isSysCmd()) { // TODO should handle
                 // syscmd here
@@ -202,28 +203,30 @@ public class MdxView extends RelativeLayout {
                     }
                 }
             } else {
-                // added by alex started
-                if (mdxViewListener != null) {
-                    mdxViewListener.onHeadWordNotFound(this, currentEntry
-                            .getHeadword(), getHtmlView().getScrollX(),
-                            getHtmlView().getScrollY());
+                if (entry.getHeadword().length()>0){
+                    // added by alex started
+                    if (mdxViewListener != null) {
+                        mdxViewListener.onHeadWordNotFound(this, currentEntry
+                                .getHeadword(), getHtmlView().getScrollX(),
+                                getHtmlView().getScrollY());
+                    }
+                    String str = String.format(
+                            getContext().getString(R.string.headword_not_found),
+                            currentEntry.getHeadword());
+                    // this.getHtmlView().loadUrl(url);
+                    String wordList = WordSuggestion
+                            .getMdxSuggestWordList(this.getContext(), dict,
+                                    currentEntry.getHeadword());
+                    if (wordList.length() > 0) {
+                        str = String.format(getContext().getString(R.string.headword_not_found_suggestion), currentEntry.getHeadword(), wordList);
+                    }
+                    // String str=String.format(
+                    // getContext().getString(R.string.headword_not_found),
+                    // currentEntry.getHeadword());
+                    displayHtml(str);
                 }
-                String str = String.format(
-                        getContext().getString(R.string.headword_not_found),
-                        currentEntry.getHeadword());
-                // this.getHtmlView().loadUrl(url);
-                String wordList = WordSuggestion
-                        .getMdxSuggestWordList(this.getContext(), dict,
-                                currentEntry.getHeadword());
-                if (wordList.length() > 0) {
-                    str = String.format(getContext().getString(R.string.headword_not_found_suggestion), currentEntry.getHeadword(), wordList);
-                }
-                // String str=String.format(
-                // getContext().getString(R.string.headword_not_found),
-                // currentEntry.getHeadword());
-                displayHtml(str);
             }
-            if (!entry.isSysCmd() && addToHistory) {
+            if (!entry.isSysCmd() && (entry.isValid() || headword.length()>0) && addToHistory) {
                 MdxEngine.getHistMgr().add(currentEntry);
             }
         } else {
