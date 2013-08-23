@@ -189,6 +189,8 @@ public class DictEntry {
         return new DictEntry(getSiblingAtN(index));
     }
 
+    public native void addSibling(DictEntry sibling);
+
     private native int getSiblingAtN(int index);
 
     /**
