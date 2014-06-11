@@ -134,7 +134,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
     }
 
     @Override
-    public boolean onPlayAudio(MdxView view, String path) {
+    public boolean onPlayAudio(MdxView view, int dictId, String path) {
         return false;
     }
 

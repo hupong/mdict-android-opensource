@@ -20,6 +20,7 @@ import android.webkit.WebView;
 
 import java.io.ByteArrayOutputStream;
 
+import cn.mdict.MiscUtils;
 import cn.mdict.utils.IOUtil;
 
 /**
@@ -62,6 +63,7 @@ public class MdxUtils {
         if (data != null) {
             try {
                 String html = new String(data, "utf-8");
+                IOUtil.saveStringToFile(MdxEngine.getDocDir()+"/word.html", html, "utf-8");
                 wv.loadDataWithBaseURL(baseUrl, html, "text/html", "utf-8", "");
                 //wv.loadUrl(baseUrl);
             } catch (Exception e) {

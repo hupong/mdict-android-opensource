@@ -278,10 +278,11 @@ public class MiscUtils {
         }
     }
 
-    private static byte[] getWaveDataForPath(MdxDictBase dict, String path) {
+    private static byte[] getWaveDataForPath(MdxDictBase dict, int dictId, String path) {
         byte[] result = null;
-        if (dict != null && dict.isValid())
-            result = dict.getDictData(path, true);
+        if (dict != null && dict.isValid()) {
+            result = dict.getDictData(dictId, path, true);
+        }
 
         if (result == null) {
             result = MdxEngine.getSharedMdxData(path, true);
@@ -300,17 +301,17 @@ public class MiscUtils {
         return null;
     }
 
-    public static boolean playAudioForWord(MdxDictBase dict, String headword) {
+    public static boolean playAudioForWord(MdxDictBase dict, int dictId, String headword) {
         if (headword.length() > 0) {
-            return playAudio(dict, getAudioFileNameForWord(headword, ".spx"))
-                    || playAudio(dict, getAudioFileNameForWord(headword, ".wav"))
-                    || playAudio(dict, getAudioFileNameForWord(headword, ".mp3"));
+            return playAudio(dict, dictId, getAudioFileNameForWord(headword, ".spx"))
+                    || playAudio(dict, dictId, getAudioFileNameForWord(headword, ".wav"))
+                    || playAudio(dict, dictId, getAudioFileNameForWord(headword, ".mp3"));
         } else
             return false;
     }
 
-    public static boolean playAudio(MdxDictBase dict, String path) {
-        final byte[] waveData = getWaveDataForPath(dict, path);
+    public static boolean playAudio(MdxDictBase dict, int dictId, String path) {
+        final byte[] waveData = getWaveDataForPath(dict, dictId, path);
         if (waveData != null && waveData.length > 0) {
             try {
                 if (MdxEngine.getSettings().getPrefPlayAudioInBackground()){

@@ -119,12 +119,7 @@ public class EntryViewSingle implements MdxEntryView {
     @Override
     public void displayEntry(DictEntry entry) {
         //MdxUtils.displayEntryHtml(mdxView.getDict(),entry, htmlView, MdxUtils.makeBaseUrl(entry));
-        //StringBuffer html=new StringBuffer();
-        //IOUtil.loadStringFromAsset(context.getAssets(), "test.html", html, false );
-        //htmlView.loadDataWithBaseURL("", html.toString(), "text/html", "utf-8", "");
 
-        // htmlView.loadData("","text/html","");
-        // htmlView.clearView();
         MdxUtils.displayEntry(htmlView, mdxView.getDict(), entry, !MdxEngine.getSettings().getPrefHighSpeedMode()&&!mdxView.getDict().canRandomAccess(), MdxUtils.makeBaseUrl(entry));
         htmlView.scrollTo(0, 0);
         //htmlView.loadUrl("javascript:window.MdxDict.saveSource(document.getElementsByTagName('html')[0].innerHTML);");

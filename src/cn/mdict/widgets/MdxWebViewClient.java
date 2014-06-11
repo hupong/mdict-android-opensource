@@ -208,12 +208,13 @@ public class MdxWebViewClient extends WebViewClient implements WebView.PictureLi
         */
         matcher = SoundUrlPattern.matcher(path);
         if (matcher.matches() && matcher.groupCount() == 2) {
+            int dictId=Integer.parseInt(matcher.group(1));
             String headWord = matcher.group(2);
             if (headWord != null && headWord.length() != 0) {
                 headWord = headWord.replace('/', '\\');
                 if (headWord.charAt(0) != '\\')
                     headWord = "\\" + headWord;
-                mdxView.playAudio(headWord);
+                mdxView.playAudio(dictId,headWord);
             }
             return true;
         }

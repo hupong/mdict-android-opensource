@@ -46,7 +46,7 @@ public class MdxView extends RelativeLayout {
 
         boolean onHeadWordNotFound(MdxView view, String headWord, int touchPointX, int touchPointY);// added by alex
 
-        boolean onPlayAudio(MdxView view, String path);
+        boolean onPlayAudio(MdxView view, int dictId, String path);
 
         //Default action is "jump to anchor"
         boolean onPageLoadCompleted(WebView view);
@@ -334,7 +334,7 @@ public class MdxView extends RelativeLayout {
         if (currentEntry != null && currentEntry.isValid()
                 && currentEntry.getHeadword().length() != 0) {
             if (!MiscUtils
-                    .playAudioForWord(dict, currentEntry.getHeadword())
+                    .playAudioForWord(dict, currentEntry.getDictId(), currentEntry.getHeadword())
                     && ttsEngine != null
                     && MdxEngine.getSettings().getPrefUseTTS()) {
                 String headword = currentEntry.getHeadword().trim();
@@ -355,10 +355,10 @@ public class MdxView extends RelativeLayout {
         }
     }
 
-    public void playAudio(String path) {
+    public void playAudio(int dictId, String path) {
         if (mdxViewListener != null) {
-            if (!mdxViewListener.onPlayAudio(this, path)) {
-                MiscUtils.playAudio(dict, path);
+            if (!mdxViewListener.onPlayAudio(this, dictId, path)) {
+                MiscUtils.playAudio(dict, dictId, path);
             }
         }
     }
