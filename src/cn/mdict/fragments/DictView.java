@@ -326,7 +326,7 @@ public class DictView extends SherlockFragment implements MdxViewListener,
                         dict.getDictTextN(entryTest, false, false, "", "");
                     }
                     displayHtml("Dict verified!");
-                } else if (MdxDictBase.isMdxCmd(query) || !currentEntry.isValid()) {
+                } else if (MdxDictBase.isMdxCmd(query) || !currentEntry.isValid() || currentEntry.isUnionDictEntry()) {
                     displayByHeadword(query, false);
                     depth = 0;
                     initSearchHistory();// added by alex

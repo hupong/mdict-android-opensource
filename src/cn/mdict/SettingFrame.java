@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,7 +44,7 @@ import java.util.List;
 import cn.mdict.mdx.MdxEngine;
 import cn.mdict.mdx.MdxEngineSetting;
 
-public class SettingFrame extends SherlockPreferenceActivity implements TextToSpeech.OnInitListener {
+public class SettingFrame extends SherlockPreferenceActivity {
     public final static String prefChanged = "PrefChanged";
 
     private TextToSpeech ttsEngine = null;
@@ -83,17 +85,22 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
         initTTS();
 
         /* fill the language list */
-        ListPreference ttsSuportedLocale = (ListPreference) findPreference(MdxEngineSetting.prefTTSLocale);
-        String[] tts_locales = getResources().getStringArray(R.array.tts_supported_language);
+        /* fill the language list */
+        ListPreference ttsSuportedLocale = (ListPreference) findPreference(MdxEngine.getSettings().prefTTSLocale);
+        String[] tts_locales = getResources().getStringArray(
+                R.array.tts_supported_language);
         ttsSuportedLocale.setEntryValues(tts_locales);
-        String[] tts_locales_name = getResources().getStringArray(R.array.tts_supported_language_name);
+        String[] tts_locales_name = getResources().getStringArray(
+                R.array.tts_supported_language_name);
         ttsSuportedLocale.setEntries(tts_locales_name);
-        PreferenceGroup prefGrp = (PreferenceGroup) findPreference(getResources().getString(R.string.pref_category_sound));
+        PreferenceGroup prefGrp = (PreferenceGroup) findPreference(getResources()
+                .getString(R.string.pref_category_sound));
 
-        updateExtraDictDir();
         if (prefGrp != null) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                Preference prefTtsEngine = prefGrp.findPreference(getResources().getString(R.string.pref_preferred_tts_engine));
+                Preference prefTtsEngine = prefGrp
+                        .findPreference(getResources().getString(
+                                R.string.pref_preferred_tts_engine));
                 if (prefTtsEngine != null)
                     prefGrp.removePreference(prefTtsEngine);
             }
@@ -103,11 +110,13 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
                 if (prefMonitorClipboard != null)
                     basicGrp.removePreference(prefMonitorClipboard);
             }
-
-            if (ttsSuportedLocale.getEntries() == null || ttsSuportedLocale.getEntries().length == 0) {
+            if (ttsSuportedLocale.getEntries() == null
+                    || ttsSuportedLocale.getEntries().length == 0) {
                 prefGrp.removePreference(ttsSuportedLocale);
             }
         }
+
+        updateExtraDictDir();
 
 /*
         for(int i=0; i<tts_locales.length; ++i){
@@ -165,63 +174,35 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
 
     private void initTTS() {
         try {
-            Intent checkIntent = new Intent();
-            checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-            startActivityForResult(checkIntent, kCheckTTS);
+            PreferenceGroup prefGrp = (PreferenceGroup) findPreference(getResources()
+                    .getString(R.string.pref_category_sound));
+            ListPreference ttsEngineName = (ListPreference) prefGrp
+                    .findPreference(MdxEngineSetting.prefPreferredTTSEngine);
+
+            Intent intent = new Intent(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+            PackageManager pm = getPackageManager();
+            List<ResolveInfo> engines = pm.queryIntentActivities(intent, 0);// PackageManager.MATCH_DEFAULT_ONLY);
+            String[] enginePackageName = new String[engines.size()];
+            String[] engineLable = new String[engines.size()];
+            for (int i = 0; i< engines.size(); i++) {
+                final String name = engines.get(i).loadLabel(pm).toString();
+                final String classPath = engines.get(i).activityInfo.packageName;
+                enginePackageName[i] = classPath;
+                engineLable[i] = name;
+                ttsEngineName.setEntries(engineLable);
+                ttsEngineName.setEntryValues(enginePackageName);
+                //androidTTSEngineInstalled.add(new AndroidTTSEngine(name,
+                //		classPath));
+            }
         } catch (Exception e) {
-            onInit(TextToSpeech.ERROR);
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        try {
-            if (requestCode == kCheckTTS) {
-                if (resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_FAIL) {
-                    // success, create the TTS instance
-                    ttsEngine = new TextToSpeech(this, this);
-                }else{
-                    onInit(TextToSpeech.ERROR);
-                }
-            }
-            else if (requestCode == kInstallTTS) {
-                //如果是用户选择了安装TTS，安装完成后需要重新初始化一次
-                initTTS();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference.getKey().compareToIgnoreCase(getString(R.string.pref_use_tts)) == 0) {
-            final CheckBoxPreference useTTS = (CheckBoxPreference) preference;
-            if (useTTS.isChecked() && ttsEngine == null) {
-                AlertDialog dialog = MiscUtils.buildConfirmDialog(this,
-                        R.string.confirm_install_tts, R.string.install_tts,
-                        new android.content.DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(android.content.DialogInterface dialogInterface, int i) {
-                                try {
-                                    Intent installIntent = new Intent();
-                                    installIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-                                    startActivityForResult(installIntent, kInstallTTS);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(SettingFrame.this, R.string.fail_to_install_tts_engine, Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        }, new android.content.DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(android.content.DialogInterface dialogInterface, int i) {
-                                useTTS.setChecked(false);
-                            }
-                        });
-                dialog.show();
-            }
-        } else if (preference.getKey().compareToIgnoreCase(getString(R.string.pref_extra_dict_dir)) == 0) {
+        if (preference.getKey().compareToIgnoreCase(getString(R.string.pref_extra_dict_dir)) == 0) {
             String dir = MdxEngine.getSettings().getExtraDictDir();
             if (dir == null || dir.length() == 0)
                 selectFolder(this, MdxEngine.getDocDir());
@@ -232,49 +213,6 @@ public class SettingFrame extends SherlockPreferenceActivity implements TextToSp
         return false;
     }
 
-    @Override
-    public void onInit(int i) {
-        try {
-            PreferenceGroup prefGrp = (PreferenceGroup) findPreference(getResources().getString(R.string.pref_category_sound));
-            if (prefGrp != null) {
-                ListPreference ttsEngineName = (ListPreference) prefGrp.findPreference(MdxEngineSetting.prefPreferredTTSEngine);
-                if (i == TextToSpeech.ERROR) {
-                    if (ttsEngine != null) {
-                        ttsEngine.shutdown();
-                        ttsEngine = null;
-                    }
-                    CheckBoxPreference useTTS = (CheckBoxPreference) prefGrp.findPreference(MdxEngineSetting.prefUseTTS);
-                    if (useTTS != null)
-                        useTTS.setChecked(false); //No TTS engine installed, so we turn it off.
-                    if (ttsEngineName != null) {
-                        ttsEngineName.setEnabled(false);
-                    }
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && ttsEngine != null && ttsEngineName != null) {
-                        //noinspection AndroidLintNewApi
-                        List<TextToSpeech.EngineInfo> engines = ttsEngine.getEngines();
-                        if (!engines.isEmpty()) {
-                            String[] enginePackageName = new String[engines.size()];
-                            String[] engineLabel = new String[engines.size()];
-                            int n = 0;
-                            for (TextToSpeech.EngineInfo ei : engines) {
-                                enginePackageName[n] = ei.name;
-                                engineLabel[n++] = ei.label;
-                            }
-                            ttsEngineName.setEntries(enginePackageName);
-                            ttsEngineName.setEntryValues(engineLabel);
-                        }
-
-                    }
-                    if (ttsEngineName != null){
-                        ttsEngineName.setEnabled (ttsEngineName.getEntries() != null && ttsEngineName.getEntries().length > 0);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private String[] loadDirList(String rootPath) {
         File path = new File(rootPath);
