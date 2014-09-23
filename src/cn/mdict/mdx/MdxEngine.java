@@ -406,7 +406,24 @@ public class MdxEngine {
         appOne.findExternalFontsN(extFonts);
     }
 
-
+    /**
+     * Merge 'newList' into 'target', remove all non-exist node from target.
+     * @param baseDir  Not used in android platform
+     * @param target target dict group to be merged to
+     * @param newList up-to-date dict lists(All available dicts)
+     * @param enableNewDict default status of new dict
+     * @param libMgr libManager
+     * @param removeNonExistFromLibMgr shall we remove non-exist dict from libMgr too?
+     * Code example:
+     *   MdxEngine.refreshDictList(); //Search lib dir and update default group
+     *   DictPref allDicts=MdxEngine.getLibMgr().getDictPref(DictPref.kDefaultGrpId);
+     *   DictPref targetGrp=MdxEngine.getLibMgr().getDictPref(101); //target group to be updated
+     *   if (allDicts!=null){
+     *       MdxEngine.mergeDictListWithUpdate("", targetGrp, allDicts, true, MdxEngine.getLibMgr(), false);
+     *   }
+     */
+    public static native void mergeDictListWithUpdate(String baseDir, DictPref target, DictPref newList,
+                                        boolean enableNewDict, MdxLibraryMgrRef libMgr, boolean removeNonExistFromLibMgr);
     // Native declarations
     private native int openDictN(int dictID, String deviceId, String email, boolean adjustDictOrder, MdxDictBase dict); // dict is java MdxDictBase
 

@@ -70,6 +70,8 @@ public class DictPref {
      * Field kRootDictPrefId
      */
     public final static int kRootDictPrefId = 0;
+    public final static int kDefaultGrpId=1;
+
     /**
      * Field kInvalidDictPrefId
      */
