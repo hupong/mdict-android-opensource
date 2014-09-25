@@ -16,8 +16,6 @@
 
 package cn.mdict.mdx;
 
-import cn.mdict.mdx.DictPref;
-
 /**
  * Class MdxLibraryMgrRef ...
  *
@@ -54,14 +52,6 @@ public class MdxLibraryMgrRef {
     }
 
     /**
-     * Method getRootDictPrefN returns the rootDictPrefN of this MdxLibraryMgrRef object.
-     *
-     * @return the rootDictPrefN (type int) of this MdxLibraryMgrRef object.
-     */
-    // Native declarations
-    private native int getRootDictPrefN();
-
-    /**
      * Method updateDictPref ...
      *
      * @param dictPref of type DictPref
@@ -84,5 +74,41 @@ public class MdxLibraryMgrRef {
      */
     public native void removeDictPref(int dictId);
 
+    /**
+     * Remove all dictPref with the same name
+     * @param dictName
+     */
+    public native void removeDict(String dictName);
+
+
+    public native void setDefaultViewSetting(DictPref dictPref);
+
+    public DictPref getDictPref(int dictId ){
+        int dictInst=getDictPrefN(dictId);
+        if (dictInst!=0){
+            return new DictPref(dictInst);
+        }else
+            return null;
+    }
+
+    public native void addDictPref(int parentGroupId, DictPref dictPref);
+
+    public native void updateAllLibViewSetting(DictPref dictPref);
+
+    public native void searchDir( int parentGroupId, String searchDir, String filenamePattern, boolean userDirNameAsGroup );
+
+    public native int createNewDictId();
+
     private native int createDictPrefN();
+    private native int getDictPrefN(int dictId );
+
+    /**
+     * Method getRootDictPrefN returns the rootDictPrefN of this MdxLibraryMgrRef object.
+     *
+     * @return the rootDictPrefN (type int) of this MdxLibraryMgrRef object.
+     */
+    // Native declarations
+    private native int getRootDictPrefN();
+
+
 }

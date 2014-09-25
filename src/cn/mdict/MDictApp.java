@@ -50,9 +50,13 @@ public class MDictApp {
         return instance;
     }
 
-    public boolean setupAppEnv(Context context){
+    public boolean setupAppEnv(Context context)
+    {
+        return setupAppEnv(context, false);
+    }
+    public boolean setupAppEnv(Context context, boolean reInit){
         Log.d(TAG, "Setup App, Pid:"+android.os.Process.myPid());
-        boolean res=MdxEngine.setupEnv(context);
+        boolean res=MdxEngine.setupEnv(context, reInit);
         if (res ){
             mainDict=new MdxDictBase();
             popupDict=mainDict;

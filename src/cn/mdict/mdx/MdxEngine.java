@@ -24,16 +24,21 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.mdict.DictContentProvider;
 import cn.mdict.MainForm;
 import cn.mdict.MiscUtils;
 import cn.mdict.R;
 import cn.mdict.utils.IOUtil;
 import cn.mdict.utils.SysUtil;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class MdxEngine ...
@@ -133,8 +138,13 @@ public class MdxEngine {
         }
         return sameVersion;
     }
-
-    static public boolean setupEnv(Context context) {
+    static public boolean setupEnv(Context context)
+    {
+        return setupEnv(context, false);
+    }
+    static public boolean setupEnv(Context context, boolean reInit) {
+        if(reInit)
+            appInited = false;
         if (appInited){
             Log.d(TAG, "Mdx nngine already inited, skip setup action");
             return true;
@@ -406,7 +416,24 @@ public class MdxEngine {
         appOne.findExternalFontsN(extFonts);
     }
 
-
+    /**
+     * Merge 'newList' into 'target', remove all non-exist node from target.
+     * @param baseDir  Not used in android platform
+     * @param target target dict group to be merged to
+     * @param newList up-to-date dict lists(All available dicts)
+     * @param enableNewDict default status of new dict
+     * @param libMgr libManager
+     * @param removeNonExistFromLibMgr shall we remove non-exist dict from libMgr too?
+     * Code example:
+     *   MdxEngine.refreshDictList(); //Search lib dir and update default group
+     *   DictPref allDicts=MdxEngine.getLibMgr().getDictPref(DictPref.kDefaultGrpId);
+     *   DictPref targetGrp=MdxEngine.getLibMgr().getDictPref(101); //target group to be updated
+     *   if (allDicts!=null){
+     *       MdxEngine.mergeDictListWithUpdate("", targetGrp, allDicts, true, MdxEngine.getLibMgr(), false);
+     *   }
+     */
+    public static native void mergeDictListWithUpdate(String baseDir, DictPref target, DictPref newList,
+                                                      boolean enableNewDict, MdxLibraryMgrRef libMgr, boolean removeNonExistFromLibMgr);
     // Native declarations
     private native int openDictN(int dictID, String deviceId, String email, boolean adjustDictOrder, MdxDictBase dict); // dict is java MdxDictBase
 

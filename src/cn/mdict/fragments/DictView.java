@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -383,7 +384,8 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             }
         });
         AutoCompleteTextView editField = (AutoCompleteTextView) (searchView.findViewById(R.id.abs__search_src_text));
-        editField.setSelectAllOnFocus(true);
+        editField.setHint(getText(R.string.please_input_word));
+        editField.setTextColor(Color.LTGRAY);
 
         return rootView;
     }

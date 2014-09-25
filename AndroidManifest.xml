@@ -90,6 +90,10 @@
                 android:theme="@style/Theme.MDict"
                 android:label="@string/library"></activity>
         <activity
+            android:name=".LibraryFrameNew"
+            android:theme="@style/Theme.MDict"
+            android:label="@string/library"></activity>
+        <activity
                 android:name=".FavoritesFrame"
                 android:theme="@style/Theme.MDict"
                 android:label="@string/favorites"></activity>

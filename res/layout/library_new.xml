@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2014. Rayman Zhang <raymanzhang@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, version 3 of the License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tlv="http://schemas.android.com/apk/res/cn.mdict"
+    android:id="@+id/library_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <cn.mdict.views.DraggableGridView
+            android:id="@+id/dgv"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"></cn.mdict.views.DraggableGridView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/layoutDictGroup"
+            android:background="#70000000"
+            android:visibility="gone"
+            >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_dictgroup_list"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="80dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:padding="10dp">
+
+                <EditText
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDictGroupName" />
+
+                <cn.mdict.views.DraggableGridView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/dgvDictGroup"
+                    android:layout_height="fill_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"></cn.mdict.views.DraggableGridView>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

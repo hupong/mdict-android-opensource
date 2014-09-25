@@ -70,6 +70,8 @@ public class DictPref {
      * Field kRootDictPrefId
      */
     public final static int kRootDictPrefId = 0;
+    public final static int kDefaultGrpId=1;
+
     /**
      * Field kInvalidDictPrefId
      */
@@ -236,5 +238,31 @@ public class DictPref {
         }
         return hasEnabledChild;
     }
+    public void setActualDictName(String dictName) {
+        String orgDictName = getDictName();
 
+        String dir = "";
+        if (orgDictName == null ||
+                orgDictName.isEmpty()) {
+            dir = MdxEngine.getSettings().getExtraDictDir();
+            if (dir == null || dir.length() == 0)
+                dir = MdxEngine.getDocDir();
+        } else {
+            int slash_pos = orgDictName.lastIndexOf('/');
+            dir = orgDictName.substring(0, slash_pos);
+        }
+        if(!dir.endsWith("/"))
+            dir = dir.concat("/");
+        setDictName(dir + dictName + ".mdx");
+    }
+
+    public String getActualDictName() {
+        String dictName = getDictName();
+        int slash_pos = dictName.lastIndexOf('/');
+        int dot_pos = dictName.lastIndexOf('.');
+        if (dot_pos < 0)
+            dot_pos = dictName.length();
+        dictName = dictName.substring(slash_pos + 1, dot_pos);
+        return dictName;
+    }
 }
