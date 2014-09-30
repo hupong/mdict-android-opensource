@@ -308,6 +308,8 @@ public class MdxView extends RelativeLayout {
             });
         }
 
+
+
         entryViewList = new EntryViewList(getContext(),
                 (ScrollView) findViewById(R.id.entryListView));
 
@@ -315,6 +317,18 @@ public class MdxView extends RelativeLayout {
         entryViewSingle = new EntryViewSingle(getContext(),
                 (WebView) findViewById(R.id.entrySingleView));
         entryViewSingle.setMdxView(this);
+        /*
+        btnViewLibrary = (ImageButton) findViewById(R.id.btn_view_library);
+        if (btnViewLibrary != null) {
+            btnViewLibrary.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //addCurrentEntryToFav();
+                    entryViewSingle.loadUrl("javascript:ToggleSideMenu()");
+                }
+            });
+        }
+        */
     }
 
     public void addCurrentEntryToFav() {
@@ -374,6 +388,7 @@ public class MdxView extends RelativeLayout {
     // private TableLayout toolbar=null;
     private ImageButton btnAddToFav = null;
     private ImageButton btnSpeak = null;
+    //private ImageButton btnViewLibrary = null;
     private boolean lastZoomActionIsZoomIn = false;
     private TextToSpeech ttsEngine = null;
 

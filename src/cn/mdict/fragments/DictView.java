@@ -438,6 +438,41 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             if (fonts.isEmpty())
                 submenu.removeItem(R.id.font_face);
         }
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                final View v = getActivity().findViewById(R.id.library);
+
+                if (v != null) {
+                    v.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            if(currentView == contentView)
+                            {
+                                contentView.getHtmlView().loadUrl("javascript:ToggleSideMenu()");
+                            }
+                            return true;
+                        }
+                    });
+                }
+            }
+        });
+        /*
+        item = menu.findItem(R.id.library);
+        if (item != null) {
+            ((View)item.getIcon()).setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if(currentView == contentView)
+                    {
+                        contentView.getHtmlView().loadUrl("javascript:ToggleSideMenu()");
+                    }
+                    return false;
+                }
+            });
+        }
+        */
         super.onCreateOptionsMenu(menu, inflater);
     }
 

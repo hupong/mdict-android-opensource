@@ -16,6 +16,8 @@
 
 package cn.mdict.mdx;
 
+import java.io.File;
+
 /**
  * Class DictPref ...
  *
@@ -264,5 +266,26 @@ public class DictPref {
             dot_pos = dictName.length();
         dictName = dictName.substring(slash_pos + 1, dot_pos);
         return dictName;
+    }
+
+    public String getDictCoverImage() {
+        String dictCover = getDictName();
+        int dot_pos = dictCover.lastIndexOf('.');
+        if (dot_pos < 0)
+            dot_pos = dictCover.length();
+        dictCover = dictCover.substring(0, dot_pos);
+        File coverImg = new File(dictCover.concat(".png"));
+        if(coverImg.exists())
+            return coverImg.getPath();
+        coverImg = new File(dictCover.concat(".jpg"));
+        if(coverImg.exists())
+            return coverImg.getPath();
+        coverImg = new File(dictCover.concat(".jpeg"));
+        if(coverImg.exists())
+            return coverImg.getPath();
+        coverImg = new File(dictCover.concat(".bmp"));
+        if(coverImg.exists())
+            return coverImg.getPath();
+        return null;
     }
 }

@@ -18,7 +18,7 @@ package cn.mdict;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -38,12 +38,14 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import cn.mdict.mdx.DictPref;
 import cn.mdict.mdx.MdxEngine;
+import cn.mdict.utils.IOUtil;
 import cn.mdict.views.DraggableGridView;
 import cn.mdict.views.OnDraggedOutOfContainerListener;
 import cn.mdict.views.OnGroupListener;
@@ -60,7 +62,7 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
     static Random random = new Random();
     public static String SELECTED_LIB_ID = "SelectedLibId";
     private DictPref rootDictRef = MdxEngine.getLibMgr().getRootDictPref();
-    private DictPref defaultDictGroup = rootDictRef.getChildDictPrefAtIndex(0);
+    private DictPref defaultDictGroup = null;//rootDictRef.getChildDictPrefAtIndex(0);
     List<DictPref> dictPrefList = new ArrayList<DictPref>();
 
     @Override
@@ -70,6 +72,14 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
         layoutDictGroup = (LinearLayout) findViewById(R.id.layoutDictGroup);
         dgvDictGroup = (DraggableGridView) findViewById(R.id.dgvDictGroup);
         txtDictGroupName = (EditText) findViewById(R.id.txtDictGroupName);
+        for (int i = 0; i < rootDictRef.getChildCount(); i++) {
+            DictPref childPref = rootDictRef.getChildDictPrefAtIndex(i);
+            if (childPref.getDictId() == DictPref.kDefaultGrpId) {
+                defaultDictGroup = childPref;
+                break;
+            }
+        }
+
         dgv = (DraggableGridView) findViewById(R.id.dgv);
         dgv.setGroupingAllowed(true);
         getSupportActionBar().setTitle(R.string.library);
@@ -86,34 +96,30 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
     }
 
 
-
-
-
     private void setListeners() {
         dgv.setOnItemCheckedListener(new OnItemCheckedListener() {
             @Override
             public void OnItemChecked(int position) {
                 DictPref dictPref = dictPrefList.get(position);
                 dictPref.setDisabled(!dictPref.isDisabled());
-				if(dictPref.isDictGroup())
-				{
-					for (int i = 0; i < dictPref.getChildCount(); i++) {
-						DictPref childPref = dictPref.getChildDictPrefAtIndex(i);
-					    childPref.setDisabled(dictPref.isDisabled());
-						dictPref.updateChildPref(childPref);
-					}
-				}
-				if(dictPref.isDictGroup())
-					rootDictRef.updateChildPref(dictPref);
-				else {
-					defaultDictGroup.updateChildPref(dictPref);
-					rootDictRef.updateChildPref(defaultDictGroup);
+                if (dictPref.isDictGroup()) {
+                    for (int i = 0; i < dictPref.getChildCount(); i++) {
+                        DictPref childPref = dictPref.getChildDictPrefAtIndex(i);
+                        childPref.setDisabled(dictPref.isDisabled());
+                        dictPref.updateChildPref(childPref);
+                    }
+                }
+                if (dictPref.isDictGroup())
+                    rootDictRef.updateChildPref(dictPref);
+                else {
+                    defaultDictGroup.updateChildPref(dictPref);
+                    rootDictRef.updateChildPref(defaultDictGroup);
                     if (!MdxEngine.getSettings().getPrefMultiDictLookkupMode()) {
                         Intent intent = getIntent().putExtra(SELECTED_LIB_ID, dictPref.getDictId());
                         LibraryFrameNew.this.setResult(RESULT_OK, intent);
                         finish();
                     }
-				}
+                }
 
             }
         });
@@ -124,11 +130,9 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
                 int newDictIndex = calculateNewDictIndex(newIndex, dictPref.isDictGroup());
                 dictPrefList.remove(oldIndex);
                 dictPrefList.add(newIndex, dictPref);
-                if(dictPref.isDictGroup())
-                {
+                if (dictPref.isDictGroup()) {
                     rootDictRef.moveChildToPos(dictPref.getDictId(), newDictIndex);
-                }
-                else {
+                } else {
                     defaultDictGroup.moveChildToPos(dictPref.getDictId(), newDictIndex);
                     rootDictRef.updateChildPref(defaultDictGroup);
                 }
@@ -138,16 +142,13 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
             @Override
             public void onGroup(int srcIndex, int targetIndex) {
                 DictPref srcPref = dictPrefList.get(srcIndex);
-                if(srcPref.isDictGroup())
-                {
+                if (srcPref.isDictGroup()) {
                     MiscUtils.showMessageDialog(LibraryFrameNew.this, getText(R.string.msg_cannot_add_group).toString(), "Warning");
                     return;
-                }
-                else {
+                } else {
                     DictPref targetPref = dictPrefList.get(targetIndex);
                     if (targetPref.isDictGroup()) {
-                        if(isDictExistsInGroup(srcPref.getDictId(), targetPref))
-                        {
+                        if (isDictExistsInGroup(srcPref.getDictId(), targetPref)) {
                             MiscUtils.showMessageDialog(LibraryFrameNew.this, getText(R.string.msg_dict_exists_in_group).toString(), "Warning");
                             return;
                         }
@@ -170,17 +171,17 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
                         dictPrefList.add(targetIndex, dictPref);
                         //rootDictRef.removeChildDictPref(srcPref.getDictId());
                         //rootDictRef.removeChildDictPref(targetPref.getDictId());
-						
-						dictPref.setDictGroup(true);
+
+                        dictPref.setDictGroup(true);
                         dictPref.setUnionGroup(true);
-						dictPref.addChildPref(targetPref);
+                        dictPref.addChildPref(targetPref);
                         dictPref.addChildPref(srcPref);
-						dictPref.updateChildPref(targetPref);
+                        dictPref.updateChildPref(targetPref);
                         dictPref.updateChildPref(srcPref);
-						
+
                         rootDictRef.addChildPref(dictPref);
                         rootDictRef.moveChildToPos(dictPref.getDictId(), newDictIndex);
-						rootDictRef.updateChildPref(dictPref);
+                        rootDictRef.updateChildPref(dictPref);
                         //disable dict in default group
                         srcPref.setDisabled(true);
                         defaultDictGroup.updateChildPref(srcPref);
@@ -209,9 +210,9 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
                 DictPref dictPref = openedDictGroup.getChildDictPrefAtIndex(position);
                 dictPref.setDisabled(!dictPref.isDisabled());
                 openedDictGroup.updateChildPref(dictPref);
-				defaultDictGroup.updateChildPref(dictPref);
+                //defaultDictGroup.updateChildPref(dictPref);
                 rootDictRef.updateChildPref(openedDictGroup);
-				rootDictRef.updateChildPref(defaultDictGroup);
+                //rootDictRef.updateChildPref(defaultDictGroup);
             }
         });
 
@@ -230,7 +231,7 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
                 openedDictGroup.removeChildDictPref(dictPref.getDictId());
                 rootDictRef.updateChildPref(openedDictGroup);
                 //rootDictRef.addChildPref(dictPref);
-                if(openedDictGroup.getChildCount()>0)
+                if (openedDictGroup.getChildCount() > 0)
                     showDictsByGroup(null, openedDictGroup);
                 else {
                     rootDictRef.removeChildDictPref(openedDictGroup.getDictId());
@@ -245,14 +246,14 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
         if (refresh) {
             MdxEngine.getLibMgr().updateDictPref(rootDictRef);
             dictPrefList.clear();
-            for (int i = 1; i < rootDictRef.getChildCount(); i++) {
+            for (int i = 0; i < rootDictRef.getChildCount(); i++) {
                 DictPref childPref = rootDictRef.getChildDictPrefAtIndex(i);
-                //MiscUtils.showMessageDialog(this,childPref.getDictName(), "debug");
-                dictPrefList.add(childPref);
+                if (childPref.getDictId() != DictPref.kDefaultGrpId) //Default group
+                    dictPrefList.add(childPref);
             }
             for (int i = 0; i < defaultDictGroup.getChildCount(); i++) {
                 DictPref childPref = defaultDictGroup.getChildDictPrefAtIndex(i);
-                if(!isDictExistsInAnyGroup(childPref.getDictId()))
+                if (!isDictExistsInAnyGroup(childPref.getDictId()))
                     dictPrefList.add(childPref);
             }
 
@@ -270,7 +271,7 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
             DictPref childPref = dictGroup.getChildDictPrefAtIndex(i);
             dgvDictGroup.addView(new DictEntryView(this, childPref, 110));
         }
-        if(view!=null) {
+        if (view != null) {
             layoutDictGroup.setVisibility(View.VISIBLE);
             dgv.setTouchAllowed(false);
             openedDictGroup = dictGroup;
@@ -280,11 +281,10 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
 
     private void exitDictGrupView() {
         layoutDictGroup.setVisibility(View.GONE);
-        if(!txtDictGroupName.getText().toString().equals(openedDictGroup.getActualDictName()))
-        {
+        if (!txtDictGroupName.getText().toString().equals(openedDictGroup.getActualDictName())) {
             openedDictGroup.setDictName(txtDictGroupName.getText().toString());
             rootDictRef.updateChildPref(openedDictGroup);
-            ((TextView)openedDictGroupView.findViewById(R.id.dict_name)).setText(txtDictGroupName.getText());
+            ((TextView) openedDictGroupView.findViewById(R.id.dict_name)).setText(txtDictGroupName.getText());
         }
         dgv.setTouchAllowed(true);
         openedDictGroup = null;
@@ -293,9 +293,9 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
 
     @Override
     protected void onPause() {
-		
+
         MdxEngine.getLibMgr().updateDictPref(rootDictRef);
-		//MdxEngine.getLibMgr().updateDictPrefRoot(rootDictPref)
+        //MdxEngine.getLibMgr().updateDictPrefRoot(rootDictPref)
         MdxEngine.saveEngineSettings();
         super.onPause();
     }
@@ -310,11 +310,9 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(openedDictGroup!=null)
-        {
+        if (openedDictGroup != null) {
             exitDictGrupView();
-        }
-        else {
+        } else {
             if (MdxEngine.getSettings().getPrefMultiDictLookkupMode()) {
                 if (rootDictRef.hasEnabledChild()) {
                     Intent intent = getIntent().putExtra(SELECTED_LIB_ID, DictPref.kRootDictPrefId);
@@ -365,11 +363,10 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
         return false;
     }
 
-    private boolean isDictExistsInAnyGroup(int dictId)
-    {
-        for(int i=1; i<rootDictRef.getChildCount(); i++) {
+    private boolean isDictExistsInAnyGroup(int dictId) {
+        for (int i = 0; i < rootDictRef.getChildCount(); i++) {
             DictPref dictGroup = rootDictRef.getChildDictPrefAtIndex(i);
-            if(dictGroup.isDictGroup()) {
+            if (dictGroup.isDictGroup() && dictGroup.getDictId() != DictPref.kDefaultGrpId) {
                 for (int j = 0; j < dictGroup.getChildCount(); j++) {
                     DictPref childDictPref = dictGroup.getChildDictPrefAtIndex(j);
                     if (childDictPref.getDictId() == dictId)
@@ -379,34 +376,35 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
         }
         return false;
     }
-    private boolean isDictExistsInGroup(int dictId, DictPref dictGroup)
-    {
-        for(int i=0; i<dictGroup.getChildCount(); i++)
-        {
+
+    private boolean isDictExistsInGroup(int dictId, DictPref dictGroup) {
+        for (int i = 0; i < dictGroup.getChildCount(); i++) {
             DictPref childDictPref = dictGroup.getChildDictPrefAtIndex(i);
-            if(childDictPref.getDictId()==dictId)
+            if (childDictPref.getDictId() == dictId)
                 return true;
         }
         return false;
     }
-    private int calculateNewDictIndex(int lastIndex, boolean isGroup)
-    {
+
+    private int calculateNewDictIndex(int lastIndex, boolean checkForGroup) {
         int index = 0;
-        for(int i=0; i<=lastIndex; i++)
-        {
+        for (int i = 0; i <= lastIndex; i++) {
             DictPref childDictPref = dictPrefList.get(i);
-            if(childDictPref.isDictGroup() && isGroup)
-                index ++;
-            else {
-                if(!childDictPref.isDictGroup() && !isGroup)
+            if (childDictPref.isDictGroup() && checkForGroup) {
+                if (i != lastIndex)
                     index++;
+            } else {
+                if (!childDictPref.isDictGroup() && !checkForGroup)
+                    if (i != lastIndex)
+                        index++;
             }
         }
         return index;
     }
+
     public class DictEntryView extends LinearLayout {
         private TextView dictName;
-	    private TextView childCount;
+        private TextView childCount;
         private CheckBox itemCheckBox;
         private DictPref dictPrefEntry;
 
@@ -418,7 +416,6 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
             init();
 
         }
-
 
 
         public DictEntryView(Context context, DictPref dictPref, int sizeInDp) {
@@ -434,34 +431,37 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
             //LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             //View view = layoutInflater.inflate(R.layout.example, this);
             LayoutInflater.from(getContext()).inflate(R.layout.dict_pref_view, this);
-			if(viewSize!=-1)
-            {
-                viewSize = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, viewSize, getResources().getDisplayMetrics());
+            if (viewSize != -1) {
+                viewSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, viewSize, getResources().getDisplayMetrics());
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) findViewById(R.id.dict_pref_view_container).getLayoutParams();
                 params.width = viewSize;
                 params.height = viewSize;
                 findViewById(R.id.dict_pref_view_container).setLayoutParams(params);
             }
-			//this.setTag(dictPrefEntry.getDictId());
+            //this.setTag(dictPrefEntry.getDictId());
             this.dictName = (TextView) findViewById(R.id.dict_name);
-			this.childCount = (TextView) findViewById(R.id.child_count);
+            this.childCount = (TextView) findViewById(R.id.child_count);
             this.itemCheckBox = (CheckBox) findViewById(R.id.item_cb);
             this.itemCheckBox.setTag(dictPrefEntry.getDictId());
-            
+
             if (dictPrefEntry.isDictGroup()) {
-				this.childCount.setVisibility(View.VISIBLE);
-				this.childCount.setText(String.valueOf(dictPrefEntry.getChildCount()));
+                this.childCount.setVisibility(View.VISIBLE);
+                this.childCount.setText(String.valueOf(dictPrefEntry.getChildCount()));
                 ((ImageView) findViewById(R.id.dict_img)).setImageResource(R.drawable.ic_dict_group);
                 this.setBackgroundResource(R.drawable.bg_dictgroup);
                 this.setTag(R.drawable.bg_dictgroup);
             } else {
-				this.childCount.setVisibility(View.GONE);
+                this.childCount.setVisibility(View.GONE);
+                if(dictPrefEntry.getDictCoverImage()!=null)
+                    ((ImageView) findViewById(R.id.dict_img)).setImageBitmap(IOUtil.decodeBitmapFile(
+                            new File(dictPrefEntry.getDictCoverImage()), 30));
+                    else
                 ((ImageView) findViewById(R.id.dict_img)).setImageResource(R.drawable.ic_dict_pref);
                 this.setBackgroundResource(R.drawable.bg_dictpref);
                 this.setTag(R.drawable.bg_dictpref);
             }
             dictName.setText(dictPrefEntry.getActualDictName());
-			
+
             if (MdxEngine.getSettings().getPrefMultiDictLookkupMode()) {
                 this.itemCheckBox.setChecked(!dictPrefEntry.isDisabled());
             } else {

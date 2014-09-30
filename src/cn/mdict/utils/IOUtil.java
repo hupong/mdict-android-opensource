@@ -17,6 +17,9 @@
 package cn.mdict.utils;
 
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -259,4 +262,50 @@ public class IOUtil {
         return false;
     }
 
+    public static Bitmap decodeBitmapFile(final File f, final int suggestedSize) {
+        if (f == null) {
+            return null;
+        }
+        if (f.exists() == false) {
+            return null;
+        }
+        // return BitmapFactory.decodeFile(f.getAbsolutePath());
+        try {
+            // System.gc();
+            // decode image size
+            final BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
+            // Find the correct scale value. It should be the power of
+            // 2.
+            final int requiredSize = suggestedSize;
+            int widthTmp = o.outWidth, heightTmp = o.outHeight;
+            int scale = 1;
+            while (true) {
+                if ((widthTmp / 2) < requiredSize
+                        && (heightTmp / 2) < requiredSize) {
+                    break;
+                }
+                widthTmp /= 2;
+                heightTmp /= 2;
+                scale *= 2;
+            }
+            // decode with inSampleSize
+            final BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            o2.inTempStorage = new byte[64 * 1024];
+            o2.inPurgeable = true;
+            Bitmap bitmap = null;
+            try {
+                bitmap = BitmapFactory.decodeStream(new FileInputStream(f),
+                        null, o2);
+            } catch (final Throwable e) {
+                System.gc();
+            }
+            return bitmap;
+        } catch (final Throwable e) {
+            System.gc();
+            return null;
+        }
+    }
 }

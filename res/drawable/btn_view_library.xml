@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
   ~ Copyright (C) 2014. Rayman Zhang <raymanzhang@gmail.com>
@@ -14,43 +15,9 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<!--
-<shape
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle"   >
 
-    <solid
-        android:color="#ff707070" >
-    </solid>
-
-    <stroke
-        android:width="0dp"
-        android:color="#C4CDE0" >
-    </stroke>
-
-
-    <corners
-        android:radius="2dp"   >
-    </corners>
-
-</shape>
--->
-<shape
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle"   >
-
-    <solid
-        android:color="#ff7d7d7d" >
-    </solid>
-
-    <stroke
-        android:width="2dp"
-        android:color="#C4CDE0" >
-    </stroke>
-
-
-    <corners
-        android:radius="3dp"   >
-    </corners>
-
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@drawable/ic_add_to_fav_highlite"/>
+    <item android:state_enabled="false" android:drawable="@drawable/ic_add_to_fav_disable"/>
+    <item android:drawable="@drawable/ic_book"/>
+</selector>

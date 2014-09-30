@@ -41,7 +41,6 @@
                 android:orientation="vertical">
         </LinearLayout>
     </ScrollView>
-
     <TableLayout
             android:id="@+id/toolbar"
             android:layout_width="wrap_content"
@@ -51,9 +50,12 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp">
 
+
+
         <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
 
             <ImageButton
                     android:id="@+id/speak"
