@@ -3,7 +3,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport"
       content="width=device-width, initial-scale=$initial_scale$, maximum-scale=5.0"/>
-
 $extra_header$
 <style type="text/css">
     $css$
@@ -109,7 +108,7 @@ $extra_header$
 	function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
 		allArrowImgs=document.getElementsByName("__mdx_arrow_img");
 		for(i=0; i<allArrowImgs.length; ++i){
-			allArrowImgs[i].src=visible?"content://mdict.cn/res/arrow_down.png":"content://mdict.cn/res/arrow_up.png";
+			allArrowImgs[i].src=visible?"arrow_down.png":"arrow_up.png";
 			if (onlyFirstOne)
 				break;
 		}
@@ -117,14 +116,19 @@ $extra_header$
 		allBlockDivs=document.getElementsByName(name_content_block);
 		for(i=0; i<allBlockDivs.length; ++i){
 			if (allBlockDivs[i].id!=exceptElementId) {
-				allBlockDivs[i].firstElementChild.style.display=(visible?"block":"none");
-				allBlockDivs[i].style.padding=(visible?"8px":"3px");
+				ShowBlock(allBlockDivs[i], visible);
 				if (visible )
 					FixIFrameSrc(allBlockDivs[i]);
 			}
 			if (onlyFirstOne)
 				break;
 		}
+	}
+
+	function ShowBlock(blockEle, visible)
+	{
+		blockEle.firstElementChild.style.display=(visible?"block":"none");
+		blockEle.style.padding=(visible?"8px":"3px");
 	}
 
 	function SetupMdx(){
@@ -180,12 +184,14 @@ $extra_header$
 				//li.appendChild(textNode);
 				li.name = '__mdx_name_side_menu_entry_' + i;
 				//li.id = 'li_' + titleBlock.id;
-				li.innerText = titleBlock.getElementsByClassName('__mdx_css_title_label')[0].innerText;
+				li.innerHTML = '<img src="content://mdict.cn/res/book.png" style="margin-right:5px; display: inline-block; vertical-align: middle; height: 1.4em; max-width: 95%; max-height: 80%;">'
+		                        + titleBlock.getElementsByClassName('__mdx_css_title_label')[0].innerText;
+
 				var div = document.createElement("div");
 				div.className = "__mdx_css_side_menu_mask";
 				div.id = 'li_' + titleBlock.id;
 				li.appendChild(div);
-				document.getElementById('side-menu-ul').appendChild(li);
+				document.getElementById('__mdx_id_side_menu_ul').appendChild(li);
 
 			}
 		window.MdxDict.saveSource(document.getElementsByTagName('html')[0].innerHTML);
@@ -193,19 +199,25 @@ $extra_header$
 	function ToggleSideMenu()
 	{
 		var css = '__mdx_css_side_menu';
-	    if(document.getElementById('side-menu').className == '__mdx_css_side_menu' )
+
+	    if(document.getElementById('__mdx_id_side_menu').className == '__mdx_css_side_menu' )
 	    {
 	        css = '__mdx_css_side_menu_active';
-    	 }
-	     else
-		 {
-		 }
-		 document.getElementById('side-menu').className = css;
+    	}
+		document.getElementById('__mdx_id_side_menu').className = css;
+		setTimeout(
+			function(){
+		        document.getElementById('__mdx_id_side_menu_div').style.display =null;
+		        document.getElementById('__mdx_id_side_menu_ul').style.display = null;
+			}, 600);
+
 	}
 	function OnSideMenuClick(event)
 	{
 		var e =  event || window.event;
 		var eventTarget =  e.target || e.srcElement;
+		if(eventTarget.name == "__mdx_dict_jump_button")
+			return;
         ToggleSideMenu();
 		if(eventTarget.id && eventTarget.id.length > 3)
 		{
@@ -213,6 +225,12 @@ $extra_header$
 			var titleEle = document.getElementById(eventTarget.id.substring(3));
 			if(titleEle)
 			{
+			    var contentBlock = document.getElementById(titleEle.id.replace('_title_', '_content_'));
+				if(expand_single)
+				{
+					ShowAllBlock(false, false, contentBlock.id);
+					ShowBlock(contentBlock, true);
+				}
                 //eventTarget.innerText = 'done';
                 smoothScroll(titleEle.id);
 				//window.scrollTo(titleEle.offsetLeft, titleEle.offsetTop);
@@ -296,139 +314,234 @@ $extra_header$
 		return false;
 	}
 	//alex20121205.en
-	-->
+	function HideLibraryList()
+	{
+	    document.getElementById('__mdx_id_side_menu_div').style.display = "none";
+	    document.getElementById('__mdx_id_side_menu_ul').style.display = "none";
+	}
+	function JumpToDict(index)
+	{
+		var allBlockTitles = document.getElementsByName(name_title_block);
+		var allBlockDivs =document.getElementsByName(name_content_block);
+		if(expand_single)
+		{
+			ShowAllBlock(false, false, allBlockDivs[index].id);
+			ShowBlock(allBlockDivs[index], true);
+		}
+		smoothScroll(allBlockTitles[index].id);
+	}
+	function JumpFirstDict()
+	{
+	    HideLibraryList();
+		JumpToDict(0);
+	}
 
+	function JumpPrevDict()
+	{
+	    HideLibraryList();
+		var currentDictIndex = FindCurrentDict();
+		if(currentDictIndex != 0)
+		{
+			JumpToDict(currentDictIndex - 1);
+		}
+	}
+
+	function JumpNextDict()
+	{
+	    HideLibraryList();
+		var allBlockTitles = document.getElementsByName(name_title_block);
+		var currentDictIndex = FindCurrentDict();
+		if(currentDictIndex != allBlockTitles.length - 1)
+		{
+			JumpToDict(currentDictIndex + 1);
+		}
+
+	}
+
+	function JumpLastDict()
+	{
+	    HideLibraryList();
+	    var allBlockTitles = document.getElementsByName(name_title_block);
+     	if(allBlockTitles.length > 0)
+		{
+			JumpToDict(allBlockTitles.length - 1);
+		}
+
+	}
+	function FindCurrentDict()
+	{
+		var docBody=document.compatMode!="BackCompat" ? document.documentElement: document.body;
+		var allBlockTitles = document.getElementsByName(name_title_block);
+		var allBlockDivs =document.getElementsByName(name_content_block);
+		var factor=1.0*Initail_window_width/top.window.innerWidth;
+		var pageY =  window.pageYOffset|| document.documentElement.scrollTop || document.body.scrollTop;
+		pageY = pageY  * factor;
+		var foundCurrentDict = false;
+		var offsetHeight = 0;
+		var contendPaddingTop = 0;
+		for(i=0; i<allBlockDivs.length; i++){
+			var blockDiv = allBlockDivs[i];
+			var divOffsetTop = getElementTop(blockDiv);
+			var divOffsetBottom = (parseInt(getElementTop(blockDiv),10) + parseInt(blockDiv.offsetHeight,10));
+			if(pageY <= divOffsetTop || (pageY >= divOffsetTop && pageY <= divOffsetBottom) && !foundCurrentDict)
+			{
+				foundCurrentDict = true;
+				return i;
+			}
+		}
+		return 1;
+	}
+	-->
 </script>
 <style>
-    html, body{
-        height: 100%;
-        margin-top: 2px;
-        margin-bottom: 0px;
-        margin-left: 1px;
-        margin-right: 1px;
+    html, body {
+    height: 100%;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    margin-left: 1px;
+    margin-right: 1px;
     }
     body {
-        padding: 2px 2px 0 2px;
+    padding: 2px 2px 0 2px;
     }
-    ._mdx_dick_bock
-    {
-        width: 100%;
-        height:auto;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        margin-left: 0px;
-        margin-right: 0px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-        padding-right: 0px;
-        padding-left: 0px;
-        color: #404040;
+    ._mdx_dick_bock {
+    width: 100%;
+    height: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    color: #404040;
     }
-
-    .__mdx_css_content
-    {
-        display: inline-block;
-        border: solid 1px #ccc;
-        top: 33px;
-        bottom: 0;
-        left: 0;
-        right:0;
-        width: 100%;
-        padding: 8px;
-        overflow: auto;
-        background: #fff;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
+    .__mdx_css_content {
+    display: inline-block;
+    border: solid 1px #ccc;
+    top: 33px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 8px;
+    overflow: auto;
+    background: #fff;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     }
-
-    .__mdx_css_title
-    {
-        display: inline-block;
-        border-style: solid solid none solid;
-        border-width: 1px;
-        border-color: #ccc;
-        margin:0px;
-        padding: 0 10px;
-        line-height: 32px;
-        background: #f1f1f1;
-        text-align: left;
-        border-radius: 5px 5px 0 0;
-        cursor: pointer;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
+    .__mdx_css_title {
+    display: inline-block;
+    border-style: solid solid none solid;
+    border-width: 1px;
+    border-color: #ccc;
+    margin: 0px;
+    padding: 0 10px;
+    line-height: 32px;
+    background: #f1f1f1;
+    text-align: left;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     }
-
-    .__mdx_css_title_label
-    {
-        color: #000;
+    .__mdx_css_title_label {
+    color: #000;
     }
-        .__mdx_css_side_menu {
-        background-color: rgba(51,51,51,0.7);
-        position: fixed;
-        top: 0;
-        left: -305px;
-        bottom: 0;
-        display: block;
-        float: left;
-        width: 100%;
-        max-width: 300px;
-        height: 100%;
-        -moz-transition: all 300ms;
-        -webkit-transition: all 300ms;
-        transition: all 300ms;
-        z-index:0;
-        }
-        .__mdx_css_side_menu_active {
+    .__mdx_css_side_menu {
+    background-color: rgba(51,51,51,0);
+    position: fixed;
+    top: 0;
+    left: -305px;
+    bottom: 0;
+    display: block;
+    float: left;
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
+    -moz-transition: all 300ms;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+    z-index: 0;
+    }
+    .__mdx_css_side_menu_active {
+    background-color: rgba(51,51,51,0);
+    position: fixed;
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 100%;
+    -moz-transition: all 300ms;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+    z-index: 99999999;
+    }
+    .__mdx_css_side_menu_div {
     background-color: rgba(51,51,51,0.7);
-        position: fixed;
-        top: 0;
-        left: 0px;
-        bottom: 0;
-   
-        display: block;
-        float: left;
-        width: 100%;
-        max-width: 284px;
-        height: 100%;
-        -moz-transition: all 300ms;
-        -webkit-transition: all 300ms;
-        transition: all 300ms;
-		z-index:99999999;
-		 overflow-y: scroll;
-		-webkit-overflow-scrolling: touch;
-        }
-	 .__mdx_css_side_menu_active ul {
-		text-overflow: ellipsis;
-		padding:0px;
-		margin:0px;
+    display: block;
+    width: 284px;
+    height: 100%;
+    z-index: 10;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    }
+    .__mdx_css_side_menu_active ul {
+    text-overflow: ellipsis;
+    padding: 0px;
+    margin: 0px;
     }
     .__mdx_css_side_menu_active li {
-		background-color: rgba(51,51,51,0.7);
-		border: 1px solid #888;
-		border-top: none;
-		color: #bbb;
-		display: block;
-		font-size: 1.1em;
-		line-height: 15px;
-		padding: 10px 12px;
-		z-index:20;
-		position:relative;
+    background-color: rgba(51,51,51, 0);
+    border: 1px solid #888;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: #bbb;
+    display: block;
+    font-size: 1em;
+    line-height: 15px;
+    padding: 5px 12px;
+    text-overflow: ellipsis;
+    z-index: 20;
+    position: relative;
     }
-
-
-    .__mdx_css_side_menu_mask{
-        width:100%;
-        height:100%;
-        position:absolute;
-        left:0px;
-        top:0px;
+    .__mdx_css_side_menu_mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    }
+    .__mdx_css_side_menu_bottom_bar {
+    width: 100%;
+    position: absolute;
+    color: white;
+    left: 10px;
+    bottom: 10px;
+    }
+    .__mdx_css_side_menu_bottom_img {
+        width:30px;
+        height:30px;
+        margin-right:10px;
     }
 </style>
 
-<body onload="javascript:SetupMdx();">
-	<nav name="__mdx_name_side_menu" class="__mdx_css_side_menu" id="side-menu">
-		<ul id="side-menu-ul" onclick="OnSideMenuClick(event)">
-		</ul>
-	</nav>
+<body onLoad="javascript:SetupMdx();">
+<nav id="__mdx_id_side_menu" name="__mdx_name_side_menu" class="__mdx_css_side_menu" onClick="OnSideMenuClick(event)" >
+    <div id="__mdx_id_side_menu_div" class="__mdx_css_side_menu_div">
+        <ul id="__mdx_id_side_menu_ul" >
+        </ul>
+    </div>
+    <div class="__mdx_css_side_menu_bottom_bar">
+        <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpFirstDict()" src="content://mdict.cn/res/ic_first.png"/>
+        <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpPrevDict()" src="content://mdict.cn/res/ic_prev.png"/>
+        <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpNextDict()"  src="content://mdict.cn/res/ic_next.png"/>
+        <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpLastDict()"  src="content://mdict.cn/res/ic_last.png"/>
+    </div>
+</nav>
