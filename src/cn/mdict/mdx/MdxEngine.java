@@ -301,7 +301,8 @@ public class MdxEngine {
 
         htmlBlock.setLength(0);
         IOUtil.loadStringFromAsset(baseContext.getAssets(), highSpeedMode ? "block_begin_h.html" : "block_begin.html", htmlBlock, true);
-        String blockBegin = htmlBlock.toString();
+        String blockBegin = htmlBlock.toString()
+                .replace("$dict_content_display$", getSettings().getPrefMultiDictExpandOnlyOne()?"none":"block");
 
         htmlBlock.setLength(0);
         IOUtil.loadStringFromAsset(baseContext.getAssets(), highSpeedMode ? "block_end_h.html" : "block_end.html", htmlBlock, true);

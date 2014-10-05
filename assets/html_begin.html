@@ -22,7 +22,9 @@ $extra_header$
 	var name_content_block="__mdx_name_content_block";
 	var name_title_block="__mdx_name_title_block";
 	var shouldResizeImages=$resize_images$;
-
+    var allBlockTitles;
+    var allBlockDiv;
+    var allArrowImgs;
 	if (typeof String.prototype.startsWith !== 'function') {
 		String.prototype.startsWith = function(prefix){
 			return (this.lastIndexOf(str, 0) === 0);
@@ -105,15 +107,12 @@ $extra_header$
 	}
 
 
-	function ShowAllBlock(visible, onlyFirstOne, exceptElementId){
-		allArrowImgs=document.getElementsByName("__mdx_arrow_img");
+	function ShowAllBlock(visible, onlyFirstOne, exceptElementId){	
 		for(i=0; i<allArrowImgs.length; ++i){
 			allArrowImgs[i].src=visible?"arrow_down.png":"arrow_up.png";
 			if (onlyFirstOne)
 				break;
 		}
-
-		allBlockDivs=document.getElementsByName(name_content_block);
 		for(i=0; i<allBlockDivs.length; ++i){
 			if (allBlockDivs[i].id!=exceptElementId) {
 				ShowBlock(allBlockDivs[i], visible);
@@ -127,12 +126,27 @@ $extra_header$
 
 	function ShowBlock(blockEle, visible)
 	{
-		blockEle.firstElementChild.style.display=(visible?"block":"none");
-		blockEle.style.padding=(visible?"8px":"3px");
+		if(visible)
+		{
+			if(blockEle.firstElementChild.style.display=="none")
+			{
+				blockEle.firstElementChild.style.display="block";
+				blockEle.style.padding="8px";
+			}
+		}
+		else{
+			if(blockEle.firstElementChild.style.display!="none")
+			{
+				blockEle.firstElementChild.style.display="none";
+				blockEle.style.padding="3px";
+			}
+		}
 	}
 
 	function SetupMdx(){
-
+        allBlockDivs=document.getElementsByName(name_content_block);
+        allBlockTitles = document.getElementsByName(name_title_block);
+		allArrowImgs=document.getElementsByName("__mdx_arrow_img");
 		if ( typeof(iframe_mode)=="undefined" || !iframe_mode ) {
 			SetupTouchEventListener();
 		} else{
@@ -175,7 +189,7 @@ $extra_header$
 		if (shouldResizeImages)
 			toggleImageResize(true);
 
-			var allBlockTitles = document.getElementsByName(name_title_block);
+
 			for(i=0; i<allBlockTitles.length; i++){
 				var titleBlock = allBlockTitles[i];
 				//alert(titleBlock.getElementsByClassName('__mdx_css_title_label')[0].innerText);
@@ -268,7 +282,7 @@ $extra_header$
 			}
 			return actualTop;
 	}
-	
+
 	function currentYPosition() {
 		// Firefox, Chrome, Opera, Safari
 		if (self.pageYOffset) return self.pageYOffset;
@@ -279,7 +293,7 @@ $extra_header$
 		if (document.body.scrollTop) return document.body.scrollTop;
 		return 0;
 	}
-	
+
 	function elmYPosition(eID) {
 		var elm = document.getElementById(eID);
 		var y = elm.offsetTop;
@@ -321,8 +335,6 @@ $extra_header$
 	}
 	function JumpToDict(index)
 	{
-		var allBlockTitles = document.getElementsByName(name_title_block);
-		var allBlockDivs =document.getElementsByName(name_content_block);
 		if(expand_single)
 		{
 			ShowAllBlock(false, false, allBlockDivs[index].id);
@@ -349,7 +361,6 @@ $extra_header$
 	function JumpNextDict()
 	{
 	    HideLibraryList();
-		var allBlockTitles = document.getElementsByName(name_title_block);
 		var currentDictIndex = FindCurrentDict();
 		if(currentDictIndex != allBlockTitles.length - 1)
 		{
@@ -361,7 +372,6 @@ $extra_header$
 	function JumpLastDict()
 	{
 	    HideLibraryList();
-	    var allBlockTitles = document.getElementsByName(name_title_block);
      	if(allBlockTitles.length > 0)
 		{
 			JumpToDict(allBlockTitles.length - 1);
@@ -371,8 +381,6 @@ $extra_header$
 	function FindCurrentDict()
 	{
 		var docBody=document.compatMode!="BackCompat" ? document.documentElement: document.body;
-		var allBlockTitles = document.getElementsByName(name_title_block);
-		var allBlockDivs =document.getElementsByName(name_content_block);
 		var factor=1.0*Initail_window_width/top.window.innerWidth;
 		var pageY =  window.pageYOffset|| document.documentElement.scrollTop || document.body.scrollTop;
 		pageY = pageY  * factor;
@@ -495,6 +503,7 @@ $extra_header$
     text-overflow: ellipsis;
     padding: 0px;
     margin: 0px;
+    margin-bottom: 60px
     }
     .__mdx_css_side_menu_active li {
     background-color: rgba(51,51,51, 0);
@@ -526,9 +535,9 @@ $extra_header$
     bottom: 10px;
     }
     .__mdx_css_side_menu_bottom_img {
-        width:30px;
-        height:30px;
-        margin-right:10px;
+    width:30px;
+    height:30px;
+    margin-right:10px;
     }
 </style>
 
