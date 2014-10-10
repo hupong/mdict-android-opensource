@@ -110,7 +110,7 @@ public abstract class BookmarkActivity extends SherlockListActivity implements B
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        if (position < 0 || position >= MdxEngine.getHistMgr().getCount()) {
+        if (position < 0 || position >= getBookmarkMgr().getCount()) {
             return;
         }
         DictEntry entry = getBookmarkMgr().getEntryByIndex((int) id);
