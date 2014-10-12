@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import cn.mdict.WebViewGestureFilter;
 import cn.mdict.mdx.DictEntry;
@@ -39,6 +40,7 @@ import cn.mdict.utils.IOUtil;
  */
 public class EntryViewSingle implements MdxEntryView {
 
+    boolean blockLoadingNetworkImage=false;
     @SuppressLint("NewApi")
     EntryViewSingle(Context context, WebView wv) {        /*
          * ViewGroup.LayoutParams params= new
@@ -55,6 +57,9 @@ public class EntryViewSingle implements MdxEntryView {
         // htmlView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         // htmlView.getSettings().setBuiltInZoomControls(true);
         htmlView.getSettings().setSupportZoom(true);
+        htmlView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+        htmlView.getSettings().setBlockNetworkImage(true);
+        blockLoadingNetworkImage=true;
         htmlView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
         // htmlView.setInitialScale(1);
         // (ImageView)
@@ -96,6 +101,17 @@ public class EntryViewSingle implements MdxEntryView {
                 String message = consoleMessage.message();
                 Log.d("JS", message);
                 return false;
+            }
+
+            public void onProgressChanged(WebView view, int progress) {
+                if (progress >= 100) {
+
+                    if(blockLoadingNetworkImage)
+                    {
+                        htmlView.getSettings().setBlockNetworkImage(false);
+                        blockLoadingNetworkImage=false;
+                    }
+                }
             }
         });
 

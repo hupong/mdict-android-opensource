@@ -189,26 +189,19 @@ $extra_header$
 		if (shouldResizeImages)
 			toggleImageResize(true);
 
-
 			for(i=0; i<allBlockTitles.length; i++){
 				var titleBlock = allBlockTitles[i];
-				//alert(titleBlock.getElementsByClassName('__mdx_css_title_label')[0].innerText);
 				var li = document.createElement("li");
-				//var textNode = document.createTextNode(titleBlock.getElementsByClassName('__mdx_css_title_label')[0].innerText);
-				//li.appendChild(textNode);
 				li.name = '__mdx_name_side_menu_entry_' + i;
-				//li.id = 'li_' + titleBlock.id;
 				li.innerHTML = '<img src="content://mdict.cn/res/book.png" style="margin-right:5px; display: inline-block; vertical-align: middle; height: 1.4em; max-width: 95%; max-height: 80%;">'
 		                        + titleBlock.getElementsByClassName('__mdx_css_title_label')[0].innerText;
-
 				var div = document.createElement("div");
 				div.className = "__mdx_css_side_menu_mask";
 				div.id = 'li_' + titleBlock.id;
 				li.appendChild(div);
 				document.getElementById('__mdx_id_side_menu_ul').appendChild(li);
-
 			}
-		window.MdxDict.saveSource(document.getElementsByTagName('html')[0].innerHTML);
+		//window.MdxDict.saveSource(document.getElementsByTagName('html')[0].innerHTML);
 	}
 	function ToggleSideMenu()
 	{
@@ -221,6 +214,7 @@ $extra_header$
 		document.getElementById('__mdx_id_side_menu').className = css;
 		setTimeout(
 			function(){
+document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor = null;
 		        document.getElementById('__mdx_id_side_menu_div').style.display =null;
 		        document.getElementById('__mdx_id_side_menu_ul').style.display = null;
 			}, 600);
@@ -330,6 +324,8 @@ $extra_header$
 	//alex20121205.en
 	function HideLibraryList()
 	{
+
+document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor = "transparent";
 	    document.getElementById('__mdx_id_side_menu_div').style.display = "none";
 	    document.getElementById('__mdx_id_side_menu_ul').style.display = "none";
 	}
@@ -491,19 +487,22 @@ $extra_header$
     z-index: 99999999;
     }
     .__mdx_css_side_menu_div {
-    background-color: rgba(51,51,51,0.7);
+    background-color: rgba(51,51,51,1);
+ border-radius: 0 5px 5px 0;
     display: block;
     width: 284px;
     height: 100%;
+   padding-bottom:80px;
     z-index: 10;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     }
-    .__mdx_css_side_menu_active ul {
-    text-overflow: ellipsis;
+   .__mdx_css_side_menu_div::-webkit-scrollbar { 
+    display: none; 
+}
+    .__mdx_css_side_menu_ul {
     padding: 0px;
     margin: 0px;
-    margin-bottom: 60px
     }
     .__mdx_css_side_menu_active li {
     background-color: rgba(51,51,51, 0);
@@ -511,11 +510,14 @@ $extra_header$
     border-top: none;
     border-left: none;
     border-right: none;
-    color: #bbb;
+    color: rgba(204,204,204,1);
+  white-space: nowrap;
+    width: 260px;
     display: block;
     font-size: 1em;
     line-height: 15px;
-    padding: 5px 12px;
+    padding:10px 5px;
+   overflow:hidden;
     text-overflow: ellipsis;
     z-index: 20;
     position: relative;
@@ -528,11 +530,14 @@ $extra_header$
     top: 0px;
     }
     .__mdx_css_side_menu_bottom_bar {
-    width: 100%;
+    width: 250px;
+    background-color: rgba(51,51,51, 1);
     position: absolute;
     color: white;
-    left: 10px;
-    bottom: 10px;
+    left:0;
+    bottom:0;
+    padding: 10px;
+    z-index: 50;
     }
     .__mdx_css_side_menu_bottom_img {
     width:30px;
@@ -543,11 +548,11 @@ $extra_header$
 
 <body onLoad="javascript:SetupMdx();">
 <nav id="__mdx_id_side_menu" name="__mdx_name_side_menu" class="__mdx_css_side_menu" onClick="OnSideMenuClick(event)" >
-    <div id="__mdx_id_side_menu_div" class="__mdx_css_side_menu_div">
-        <ul id="__mdx_id_side_menu_ul" >
+     <div id="__mdx_id_side_menu_div" class="__mdx_css_side_menu_div">
+        <ul id="__mdx_id_side_menu_ul" class="__mdx_css_side_menu_ul">
         </ul>
     </div>
-    <div class="__mdx_css_side_menu_bottom_bar">
+    <div id="__mdx_id_side_menu_bottom_bar" class="__mdx_css_side_menu_bottom_bar">
         <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpFirstDict()" src="content://mdict.cn/res/ic_first.png"/>
         <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpPrevDict()" src="content://mdict.cn/res/ic_prev.png"/>
         <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpNextDict()"  src="content://mdict.cn/res/ic_next.png"/>
