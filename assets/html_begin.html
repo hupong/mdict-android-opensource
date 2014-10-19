@@ -186,9 +186,17 @@ $extra_header$
 				}
 			}
 		}
+		 try
+        {
 		if (shouldResizeImages)
 			toggleImageResize(true);
-
+			}
+		catch(e)
+		{
+		    alert('Resize image:' + e.message);
+		}
+        try
+        {
 			for(i=0; i<allBlockTitles.length; i++){
 				var titleBlock = allBlockTitles[i];
 				var li = document.createElement("li");
@@ -201,6 +209,11 @@ $extra_header$
 				li.appendChild(div);
 				document.getElementById('__mdx_id_side_menu_ul').appendChild(li);
 			}
+		}
+		catch(e)
+		{
+		    alert('Build side menu:' + e.message);
+		}
 		window.MdxDict.saveSource(document.getElementsByTagName('html')[0].innerHTML);
 	}
 	function ToggleSideMenu()
@@ -429,7 +442,7 @@ document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor =
     left: 0;
     right: 0;
     width: 100%;
-    padding: 8px;
+    padding: 0px;
     overflow: auto;
     background: #fff;
     -moz-box-sizing: border-box;
