@@ -2,10 +2,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=$initial_scale$, maximum-scale=5.0"/>
+      content="width=device-width, user-scalable=0, initial-scale=$initial_scale$, maximum-scale=5.0"/>
 $extra_header$
 <style type="text/css">
-    $css$
+$css$
 </style>
 <script>
 	<!--
@@ -19,11 +19,13 @@ $extra_header$
 	var useColorPalette= false;
 	var css_content = "__mdx_css_content";
 	var css_title = "__mdx_css_title";
+	var css_image = "__mdx_css_title_img";
 	var name_content_block="__mdx_name_content_block";
 	var name_title_block="__mdx_name_title_block";
 	var shouldResizeImages=$resize_images$;
     var allBlockTitles;
-    var allBlockDiv;
+    var allBlockDivs;
+	var allBlockImaes;
     var allArrowImgs;
 	if (typeof String.prototype.startsWith !== 'function') {
 		String.prototype.startsWith = function(prefix){
@@ -81,8 +83,8 @@ $extra_header$
 		{
 			var elem = document.getElementById(elemId);
 			var arrow = document.getElementById(arrowId)
-
-			var visible= elem.firstElementChild.style.display == "none" && !titleEle.isCurrentDict; //alex20121205.en
+			var contentTextBlock = elem.getElementsByClassName("__mdx_css_content_text")[0];
+			var visible= contentTextBlock.style.display == "none" && !titleEle.isCurrentDict; //alex20121205.en
 			if ( visible && expand_single ){
 				ShowAllBlock(false, false, elemId);
 			}
@@ -90,8 +92,9 @@ $extra_header$
 				if ( visible ){
 					FixIFrameSrc(elem);
 				}
-				elem.firstElementChild.style.display=(visible?"block":"none");
-				elem.style.padding=(visible?"8px":"0px");
+				//contentTextBlock.style.display=(visible?"block":"none");
+				//elem.style.padding=(visible?"8px":"-1px");
+				ShowBlock(elem, visible);
 				if (visible){
 					window.scrollTo(titleEle.offsetLeft, titleEle.offsetTop);
 				}
@@ -126,26 +129,56 @@ $extra_header$
 
 	function ShowBlock(blockEle, visible)
 	{
+		var contentTextBlock = blockEle.getElementsByClassName("__mdx_css_content_text")[0];
 		if(visible)
 		{
-			if(blockEle.firstElementChild.style.display=="none")
-			{
-				blockEle.firstElementChild.style.display="block";
-				blockEle.style.padding="8px";
-			}
+			contentTextBlock.style.display="block";			
+			blockEle.style.padding="8px";
+			blockEle.style.borderBottom = blockEle.style.borderTop;
+			
 		}
-		else{
-			if(blockEle.firstElementChild.style.display!="none")
-			{
-				blockEle.firstElementChild.style.display="none";
-				blockEle.style.padding="0px";
-			}
+		else{			
+			contentTextBlock.style.display="none";
+			blockEle.style.padding="0px";
+			blockEle.style.borderBottom = "0px";
+			
 		}
 	}
 
+    function ShowFindInPageDiaglog()
+	{
+	  document.getElementById('__mdx_id_search_panel').style.display='block';
+	}
+
+	function FindInPage(aBackwards) {
+
+	 var name = document.getElementById("__mdx_id_text_search").value;
+		if (name != null) {
+			  document.getElementById("__mdx_id_text_search").value = "";
+			  searchForText(name, aBackwards);
+			  document.getElementById("__mdx_id_text_search").value = name;
+		}
+
+	}
+
+
+	function searchForText (str, aBackwards) {
+	 if (parseInt(navigator.appVersion)<4) return;
+	 var strFound;
+	 if (window.find) {
+		  strFound=self.find(str, 0, aBackwards);
+		  if (!strFound) {
+			   strFound=self.find(str,0,!aBackwards);
+			   while (self.find(str,0,!aBackwards)) continue;
+		  }
+	 }
+	 if (!strFound) alert ("String '"+str+"' not found!")
+	 return;
+	}
 	function SetupMdx(){
         allBlockDivs=document.getElementsByName(name_content_block);
         allBlockTitles = document.getElementsByName(name_title_block);
+		allBlockImages = document.getElementsByClassName(css_image);
 		allArrowImgs=document.getElementsByName("__mdx_arrow_img");
 		if ( typeof(iframe_mode)=="undefined" || !iframe_mode ) {
 			SetupTouchEventListener();
@@ -201,7 +234,7 @@ $extra_header$
 				var titleBlock = allBlockTitles[i];
 				var li = document.createElement("li");
 				li.name = '__mdx_name_side_menu_entry_' + i;
-				li.innerHTML = '<img src="content://mdict.cn/res/book.png" style="margin-right:5px; display: inline-block; vertical-align: middle; height: 1.4em; max-width: 95%; max-height: 80%;">'
+				li.innerHTML = '<img src="' + allBlockImages[i].src +'" style="margin-right:5px; display: inline-block; vertical-align: middle; height: 1.4em; max-width: 95%; max-height: 80%;">'
 		                        + titleBlock.getElementsByClassName('__mdx_css_title_label')[0].innerText;
 				var div = document.createElement("div");
 				div.className = "__mdx_css_side_menu_mask";
@@ -227,7 +260,7 @@ $extra_header$
 		document.getElementById('__mdx_id_side_menu').className = css;
 		setTimeout(
 			function(){
-document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor = null;
+				document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor = null;
 		        document.getElementById('__mdx_id_side_menu_div').style.display =null;
 		        document.getElementById('__mdx_id_side_menu_ul').style.display = null;
 			}, 600);
@@ -337,8 +370,7 @@ document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor =
 	//alex20121205.en
 	function HideLibraryList()
 	{
-
-document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor = "transparent";
+		document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor = "transparent";
 	    document.getElementById('__mdx_id_side_menu_div').style.display = "none";
 	    document.getElementById('__mdx_id_side_menu_ul').style.display = "none";
 	}
@@ -411,174 +443,220 @@ document.getElementById('__mdx_id_side_menu_bottom_bar').style.backgroundColor =
 	-->
 </script>
 <style>
-    html, body {
-    height: 100%;
-    margin-top: 2px;
-    margin-bottom: 0px;
-    margin-left: 1px;
-    margin-right: 1px;
-    }
-    body {
-    padding: 2px 2px 0 2px;
-    }
-    ._mdx_dick_bock {
-    width: 100%;
-    height: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-right: 0px;
-    padding-left: 0px;
-    color: #404040;
-    }
-    .__mdx_css_content {
-    display: inline-block;
-    border: solid 1px #ccc;
-    top: 33px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    padding: 0px;
-    overflow: auto;
-    background: #fff;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    }
-    .__mdx_css_content_text
-    {}
-    .__mdx_css_title {
-    display: inline-block;
-    border-style: solid solid none solid;
-    border-width: 1px;
-    border-color: #ccc;
-    margin: 0px;
-    padding: 0 10px;
-    line-height: 32px;
-    background: #f1f1f1;
-    text-align: left;
-    border-radius: 5px 5px 0 0;
-    cursor: pointer;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    }
-    .__mdx_css_title_label {
-    color: #000;
-    }
-    .__mdx_css_title_span
-    {
-    display: inline-block; vertical-align: middle;
-    }
-    .__mdx_css_title_img
-    {
-    display: inline-block; vertical-align: middle;height:1.4em;
-    }
-    .__mdx_css_side_menu {
-    background-color: rgba(51,51,51,0);
-    position: fixed;
-    top: 0;
-    left: -305px;
-    bottom: 0;
-    display: block;
-    float: left;
-    width: 100%;
-    max-width: 300px;
-    height: 100%;
-    -moz-transition: all 300ms;
-    -webkit-transition: all 300ms;
-    transition: all 300ms;
-    z-index: 0;
-    }
-    .__mdx_css_side_menu_active {
-    background-color: rgba(51,51,51,0);
-    position: fixed;
-    top: 0;
-    left: 0px;
-    bottom: 0;
-    display: block;
-    float: left;
-    width: 100%;
-    height: 100%;
-    -moz-transition: all 300ms;
-    -webkit-transition: all 300ms;
-    transition: all 300ms;
-    z-index: 99999999;
-    }
-    .__mdx_css_side_menu_div {
-    background-color: rgba(51,51,51,1);
- border-radius: 0 5px 5px 0;
-    display: block;
-    width: 284px;
-    height: 100%;
-   padding-bottom:80px;
-    z-index: 10;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    }
-   .__mdx_css_side_menu_div::-webkit-scrollbar { 
-    display: none; 
+html, body {
+	height: 100%;
+	margin-top: 2px;
+	margin-bottom: 0px;
+	margin-left: 1px;
+	margin-right: 1px;
 }
-    .__mdx_css_side_menu_ul {
-    padding: 0px;
-    margin: 0px;
-    }
-    .__mdx_css_side_menu_active li {
-    background-color: rgba(51,51,51, 0);
-    border: 1px solid #888;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    color: rgba(204,204,204,1);
-  white-space: nowrap;
-    width: 260px;
-    display: block;
-    font-size: 1em;
-    line-height: 15px;
-    padding:10px 5px;
-   overflow:hidden;
-    text-overflow: ellipsis;
-    z-index: 20;
-    position: relative;
-    }
-    .__mdx_css_side_menu_mask {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    }
-    .__mdx_css_side_menu_bottom_bar {
-    width: 250px;
-    background-color: rgba(51,51,51, 1);
-    position: absolute;
-    color: white;
+body {
+	padding: 2px 2px 0 2px;
+}
+._mdx_dick_bock {
+	width: 100%;
+	height: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	color: #404040;
+}
+.__mdx_css_content {
+	display: inline-block;
+	border: solid 1px #ccc;
+	top: 33px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	padding: 0px;
+	overflow: auto;
+	background: #fff;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.__mdx_css_content_text {
+}
+.__mdx_css_title {
+	display: inline-block;
+	border-style: solid solid none solid;
+	border-width: 1px;
+	border-color: #ccc;
+	margin: 0px;
+	padding: 0 10px;
+	line-height: 32px;
+	background: #f1f1f1;
+	text-align: left;
+	border-radius: 5px 5px 0 0;
+	cursor: pointer;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.__mdx_css_title_label {
+	color: #000;
+}
+.__mdx_css_title_span {
+	display: inline-block;
+	vertical-align: middle;
+}
+.__mdx_css_title_img {
+	display: inline-block;
+	vertical-align: middle;
+	height: 1.4em;
+}
+.__mdx_css_side_menu {
+	background-color: rgba(51,51,51,0);
+	position: fixed;
+	top: 0;
+	left: -305px;
+	bottom: 0;
+	display: block;
+	float: left;
+	width: 100%;
+	max-width: 300px;
+	height: 100%;
+	-moz-transition: all 300ms;
+	-webkit-transition: all 300ms;
+	transition: all 300ms;
+	z-index: 0;
+}
+.__mdx_css_side_menu_active {
+	background-color: rgba(51,51,51,0);
+	position: fixed;
+	top: 0;
+	left: 0px;
+	bottom: 0;
+	display: block;
+	float: left;
+	width: 100%;
+	height: 100%;
+	-moz-transition: all 300ms;
+	-webkit-transition: all 300ms;
+	transition: all 300ms;
+	z-index: 99999999;
+}
+.__mdx_css_side_menu_div {
+	background-color: rgba(51,51,51,1);
+	border-radius: 0 5px 5px 0;
+	display: block;
+	width: 284px;
+	height: 100%;
+	padding-bottom: 80px;
+	z-index: 10;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+ .__mdx_css_side_menu_div::-webkit-scrollbar {
+ display: none;
+}
+.__mdx_css_side_menu_ul {
+	padding: 0px;
+	margin: 0px;
+}
+.__mdx_css_side_menu_active li {
+	background-color: rgba(51,51,51, 0);
+	border: 1px solid #888;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	color: rgba(204,204,204,1);
+	white-space: nowrap;
+	width: 260px;
+	display: block;
+	font-size: 1em;
+	line-height: 15px;
+	padding: 10px 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	z-index: 20;
+	position: relative;
+}
+.__mdx_css_side_menu_mask {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.__mdx_css_side_menu_bottom_bar {
+	width: 250px;
+	background-color: rgba(51,51,51, 1);
+	position: absolute;
+	color: white;
+	left: 0;
+	bottom: 0;
+	padding: 10px;
+	z-index: 50;
+}
+.__mdx_css_side_menu_bottom_img {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+    .__mdx_search_panel {
+    width:100%;
+    background-color: #eeeeee;
+    position: fixed;
+    top: 0;
+    right:0;
     left:0;
-    bottom:0;
-    padding: 10px;
-    z-index: 50;
+    padding-left:15px;
+    padding-right:15px;
+    padding-bottom:16px;
+    display: block;
+    vertical-align:middle;
+    float: top;
+    z-index: 99999999;
+    box-shadow: 0px 0px 5px 2px rgba(139, 139, 139, 0.6);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(139, 139, 139, 0.6);
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(139, 139, 139, 0.6);
     }
-    .__mdx_css_side_menu_bottom_img {
-    width:30px;
+    .__mdx_search_panel_text
+    {
+    width:200px;
+    /* 3 */
+    font-size:1.2em;
+    /* 4 */
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    color: #444444;
+    -webkit-transition: all linear 0.2s;
+    transition: all linear 0.2s;
     height:30px;
-    margin-right:10px;
+
+    }
+    .__mdx_search_panel_img {
+
+    width: 22px;
+    height: 22px;
+    margin-top:10px;
+    margin-left: 10px;
     }
 </style>
 
 <body onLoad="javascript:SetupMdx();">
+<div id="__mdx_id_search_panel" name="__mdx_name_search_panel" class="__mdx_search_panel" style="display:none">
+    <input type="text" id="__mdx_id_text_search" class="__mdx_search_panel_text"/>
+    &nbsp;
+    &nbsp;
+    <input name="__mdx_name_search_panel_img" type="image" onClick="FindInPage(true)" src="content://mdict.cn/res/ic_prev_word.png" class="__mdx_search_panel_img" >
+    <input name="__mdx_name_search_panel_img" type="image" onClick="FindInPage(false)" src="content://mdict.cn/res/ic_next_word.png" class="__mdx_search_panel_img" >
+    <input name="__mdx_name_search_panel_img" type="image" onClick="document.getElementById('__mdx_id_search_panel').style.display='none'" src="content://mdict.cn/res/ic_close.png" class="__mdx_search_panel_img" >
+</div>
 <nav id="__mdx_id_side_menu" name="__mdx_name_side_menu" class="__mdx_css_side_menu" onClick="OnSideMenuClick(event)" >
-     <div id="__mdx_id_side_menu_div" class="__mdx_css_side_menu_div">
-        <ul id="__mdx_id_side_menu_ul" class="__mdx_css_side_menu_ul">
-        </ul>
-    </div>
-    <div id="__mdx_id_side_menu_bottom_bar" class="__mdx_css_side_menu_bottom_bar">
-        <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpFirstDict()" src="content://mdict.cn/res/ic_first.png"/>
-        <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpPrevDict()" src="content://mdict.cn/res/ic_prev.png"/>
-        <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpNextDict()"  src="content://mdict.cn/res/ic_next.png"/>
-        <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpLastDict()"  src="content://mdict.cn/res/ic_last.png"/>
-    </div>
+  <div id="__mdx_id_side_menu_div" class="__mdx_css_side_menu_div">
+    <ul id="__mdx_id_side_menu_ul" class="__mdx_css_side_menu_ul">
+    </ul>
+  </div>
+  <div id="__mdx_id_side_menu_bottom_bar" class="__mdx_css_side_menu_bottom_bar">
+  <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpFirstDict()" src="content://mdict.cn/res/ic_first.png"/>
+  <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpPrevDict()" src="content://mdict.cn/res/ic_prev.png"/>
+  <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpNextDict()"  src="content://mdict.cn/res/ic_next.png"/> <img name="__mdx_dict_jump_button" class="__mdx_css_side_menu_bottom_img" onClick="JumpLastDict()"  src="content://mdict.cn/res/ic_last.png"/> </div>
 </nav>

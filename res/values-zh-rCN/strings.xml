@@ -1,180 +1,137 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (C) 2012. Rayman Zhang <raymanzhang@gmail.com>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, version 3 of the License.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MDict</string>
-    <string name="speak">发音</string>
-    <string name="add_to_fav">加入收藏</string>
-    <string name="view">显示</string>
-    <string name="invalid_dict">未选择有效词典</string>
-    <string name="empty_entry_list">空</string>
-    <string name="history_back">上一条历史</string>
-    <string name="history_forward">下一条历史</string>
-    <string name="search">查找</string>
-    <string name="fail_to_open_dict">打开词典失败, 错误码:%d</string>
-    <string name="error">错误</string>
-    <string name="library">词库</string>
-    <string name="history">历史</string>
-    <string name="favorites">收藏</string>
-    <string name="use_multi_dict_mode">多词典查询</string>
-    <string name="use_single_dict_mode">单词典查询</string>
-    <string name="ok">确认</string>
-    <string name="cancel">取消</string>
-    <string name="yes">是</string>
-    <string name="no">否</string>
-    <string name="confirm_quit">退出程序?</string>
-    <string name="quit">退出</string>
-    <string name="headword_not_found">找不到\'%s\'</string>
-    <string name="headword_not_found_suggestion" formatted='false'>词典中找不到 \'%s\' 的定义, 点击下面的拼写建议或者再查询. %s</string>
-
-    <string name="no_dict_selected">未选择词典</string>
-    <string name="clear_all">清除所有</string>
-    <string name="confirm_clear_all_record">清除所有记录吗?</string>
-    <string name="add_entry_to_fav">将记录加入到收藏</string>
-    <string name="delete_selected_entry">删除选定记录</string>
-    <string name="settings">设置</string>
-    <string name="entry_prev">上一条</string>
-    <string name="entry_next">下一条</string>
-    <string name="zoom_in">放 大</string>
-    <string name="zoom_out">缩 小</string>
-    <string name="delete">删除</string>
-    <string name="system_default">系统默认</string>
-    <string name="quit_prompt">再按一次返回键退出</string>
-    <string name="confirm_install_tts">你还没有安装TTS引擎，你想安装一个吗？</string>
-    <string name="install_tts">安装TTS引擎</string>
-    <string name="entries_added">加入 %d 条记录到收藏</string>
-    <string name="entries_deleted">删除 %d 条</string>
-    <string name="entries_selected">已选择 %d 条</string>
-    <string name="navigate">导航</string>
-    <string name="dict_mode">查询模式</string>
-    <string name="at_least_select_one_dict">至少选择一个词典</string>
-    <string name="expand_all">展开所有条目</string>
-    <string name="collapse_all">折叠所有条目</string>
-    <string name="entry_added_to_fav">\'%s\' 加入到收藏</string>
-    <string name="help">帮助</string>
-    <string name="aboutapp">关于程序</string>
-    <string name="aboutdict">关于词典</string>
-    <string name="current_folder">当前文件夹:</string>
-    <string name="mdict_search_hint">查找</string>
-    <string name="search_setting_description">MDict词典, 百科</string>
-    <string name="online_reference_loading">加载中…,请稍候!</string>
-    <string name="network_not_available"><![CDATA[<font color=red><b>无可用网络</b></font>]]></string>
-    <string name="text_color">字体颜色</string>
-    <string name="background_color">背景颜色</string>
-    <string name="font_face">字体</string>
-    <string name="hide_toolbar">隐藏工具栏</string>
-    <string name="show_toolbar">显示工具栏</string>
-    <string name="chn_conv">简繁体转换</string>
-    <string-array name="chn_conv_choices">
-        <item>无转换</item>
-        <item>转简体</item>
-        <item>转繁体</item>
-    </string-array>
-    <string name="fail_to_install_tts_engine">TTS 引擎安装失败</string>
-    <string name="content_download_begin">开始下载</string>
-    <string name="content_downloaded"> 已下载%d字节</string>
-    <string name="content_download_complete">下载完成</string>
-    <string name="content_download_canceled">下载取消</string>
-    <string name="content_download_error">下载失败: %s</string>
-    <string name="content_download_failed">Download failed</string>
-    <string name="error_client_protocol">网络异常</string>
-    <string name="error_io">IO 错误</string>
-
-    <string name="confirm_update">发现新版本，更新吗?</string>
-    <string name="app_update">程序更新</string>
-    <string name="already_latest">程序已经是最新版本</string>
-
-
-    <!-- string for setting frame -->
-    <string name="pref_cate_title_basic_setting">基础设置</string>
-    <string name="pref_cate_title_multi_dict">多词典查询模式设置</string>
-
-    <string name="pref_title_email">Email</string>
-    <string name="pref_summary_email">你的email地址</string>
-    <string name="pref_dialog_title_email">输入你的Email地址</string>
-
-    <string name="pref_title_auto_play_pronunciation">自动发音</string>
-    <string name="pref_summary_auto_play_pronunciation">显示解释时自动播放单词发音</string>
-
-    <string name="pref_title_auto_lookup_clipboard">自动查找剪贴板</string>
-    <string name="pref_summary_auto_lookup_clipboard">窗口激活时自动查找剪贴板</string>
-
-    <string name="pref_title_use_finger_gesture">使用手势控制</string>
-
-    <string name="pref_title_high_speed_mode">高速模式</string>
-    <string name="pref_summary_high_speed_mode">高速模式可能存在显示或者链接跳转的兼容问题</string>
-
-    <string name="pref_title_lock_rotation">禁止重力旋屏</string>
-    <string name="pref_summary_lock_rotation"></string>
-
-    <string name="pref_title_shake_for_random_entry">摇晃设备显示随机条目</string>
-    <string name="pref_summary_shake_for_random_entry">摇晃设备的时候显示随机条目</string>
-
-    <string name="pref_title_extra_dict_dir">词库目录:</string>
-    <string name="pref_summary_extra_dict_dir">额外的词库目录</string>
-    <string name="pref_dialog_title_extra_dict_dir">请输入目录路径</string>
-
-    <string name="pref_title_show_splash">显示启动画面</string>
-
-    <string name="pref_title_use_built_in_ipa_font">使用内置音标字体</string>
-    <string name="pref_summary_use_built_in_ipa_font">如果你的设备不能正常显示音标，请打开这个选项</string>
-
-    <string name="pref_title_use_tts">使用TTS进行发音</string>
-    <string name="pref_summary_use_tts">当语音库中没有对应单词发音时，使用TTS引擎发音</string>
-
-    <string name="pref_title_tts_locale">TTS引擎的语言</string>
-    <string name="pref_dialog_title_tts_locale">语言</string>
-
-    <string name="pref_title_tts_engine">TTS引擎</string>
-
-    <string name="pref_cate_title_sound_setting">语音设置</string>
-
-    <string name="pref_title_auto_sip">自动打开输入法</string>
-    <string name="pref_summary_auto_sip"></string>
-
-    <string name="pref_title_multi_dict_default_expand_all">默认展开所有条目内容</string>
-    <string name="pref_summary_multi_dict_default_expand_all">默认展开所有条目或者仅展开第一条</string>
-
-    <string name="pref_title_multi_dict_expand_only_one">只展开选中条目</string>
-    <string name="pref_summary_multi_dict_expand_only_one">点击条目时仅展开选中条目并折叠其他条目</string>
-
-    <string name="pref_title_show_in_notification">在通知中心中显示</string>
-    <string name="pref_summary_show_in_notification">在通知中心中显示程序图标，方便快速访问</string>
-
-    <string name="pref_title_use_lru_for_dict_order">自动调整辞典次序</string>
-    <string name="pref_summary_use_lru_for_dict_order">最后打开的辞典会被放到辞典列表的最开始</string>
-
-    <string name="pref_title_split_view_mode">使用分屏模式</string>
-    <string name="pref_title_use_popover_for_lookup">用弹出窗口显示词典内查找</string>
-    <string name="pref_title_resize_images">调整图片以适应窗口大小</string>
-    <string name="pref_title_play_audio_in_background">在后台播放语音</string>
-    <string name="pref_title_auto_check_update">自动检查更新</string>
-
-    <!-- alex 2012-12-07 start -->
-    <string name="pref_title_fixed_dict_title">固定辞典标题</string>
-    <string name="pref_summary_fixed_dict_title">当滚动辞典窝内空时固定辞典标题</string>
-
-    <string name="pref_title_global_clipboard_monitor">监视系统剪贴板</string>
-    <string name="pref_summary_global_clipboard_monitor">当用户在任何地方复制文字时自动弹出浮动窗口翻译</string>
-    <!-- alex 2012-12-07 end -->
-
-    <string name="un_named_dict_group">未命名分组</string>
-    <string name="please_input_word">请输入查询内容</string>
-    <string name="msg_cannot_add_group">不能把一个分组放进另外一个分组里</string>
-    <string name="msg_dict_exists_in_group">词典已经存在于分组内</string>
-
+  <string name="app_name">MDict</string>
+  <string name="speak">发音</string>
+  <string name="add_to_fav">加入收藏</string>
+  <string name="view">显示</string>
+  <string name="invalid_dict">未选择有效词典</string>
+  <string name="empty_entry_list">空</string>
+  <string name="history_back">上一条历史</string>
+  <string name="history_forward">下一条历史</string>
+  <string name="search">查找</string>
+  <string name="fail_to_open_dict">打开词典失败, 错误码:%d</string>
+  <string name="error">错误</string>
+  <string name="library">词库</string>
+  <string name="history">历史</string>
+  <string name="favorites">收藏</string>
+  <string name="use_multi_dict_mode">多词典查询</string>
+  <string name="use_single_dict_mode">单词典查询</string>
+  <string name="ok">确认</string>
+  <string name="cancel">取消</string>
+  <string name="yes">是</string>
+  <string name="no">否</string>
+  <string name="confirm_quit">退出程序?</string>
+  <string name="quit">退出</string>
+  <string name="headword_not_found">找不到\'%s\'</string>
+  <string name="headword_not_found_suggestion" formatted="false">词典中找不到 \'%s\' 的定义, 点击下面的拼写建议或者再查询. %s</string>
+  <string name="no_dict_selected">未选择词典</string>
+  <string name="clear_all">清除所有</string>
+  <string name="confirm_clear_all_record">清除所有记录吗?</string>
+  <string name="add_entry_to_fav">将记录加入到收藏</string>
+  <string name="delete_selected_entry">删除选定记录</string>
+  <string name="settings">设置</string>
+  <string name="entry_prev">上一条</string>
+  <string name="entry_next">下一条</string>
+  <string name="zoom_in">放 大</string>
+  <string name="zoom_out">缩 小</string>
+  <string name="delete">删除</string>
+  <string name="system_default">系统默认</string>
+  <string name="quit_prompt">再按一次返回键退出</string>
+  <string name="confirm_install_tts">你还没有安装TTS引擎，你想安装一个吗？</string>
+  <string name="install_tts">安装TTS引擎</string>
+  <string name="entries_added">加入 %d 条记录到收藏</string>
+  <string name="entries_deleted">删除 %d 条</string>
+  <string name="entries_selected">已选择 %d 条</string>
+  <string name="navigate">导航</string>
+  <string name="dict_mode">查询模式</string>
+  <string name="at_least_select_one_dict">至少选择一个词典</string>
+  <string name="expand_all">展开所有条目</string>
+  <string name="collapse_all">折叠所有条目</string>
+  <string name="entry_added_to_fav">\'%s\' 加入到收藏</string>
+  <string name="help">帮助</string>
+  <string name="aboutapp">关于程序</string>
+  <string name="aboutdict">关于词典</string>
+  <string name="current_folder">当前文件夹:</string>
+  <string name="mdict_search_hint">查找</string>
+  <string name="search_setting_description">MDict词典, 百科</string>
+  <string name="online_reference_loading">加载中…,请稍候!</string>
+  <string name="network_not_available"><![CDATA[<font color=red><b>无可用网络</b></font>]]></string>
+  <string name="text_color">字体颜色</string>
+  <string name="background_color">背景颜色</string>
+  <string name="font_face">字体</string>
+  <string name="hide_toolbar">隐藏工具栏</string>
+  <string name="show_toolbar">显示工具栏</string>
+  <string name="chn_conv">简繁体转换</string>
+  <string-array name="chn_conv_choices">
+    <item>无转换</item>
+    <item>转简体</item>
+    <item>转繁体</item>
+  </string-array>
+  <string name="fail_to_install_tts_engine">TTS 引擎安装失败</string>
+  <string name="content_download_begin">开始下载</string>
+  <string name="content_downloaded"> 已下载%d字节</string>
+  <string name="content_download_complete">下载完成</string>
+  <string name="content_download_canceled">下载取消</string>
+  <string name="content_download_error">下载失败: %s</string>
+  <string name="content_download_failed">Download failed</string>
+  <string name="error_client_protocol">网络异常</string>
+  <string name="error_io">IO 错误</string>
+  <string name="confirm_update">发现新版本，更新吗?</string>
+  <string name="app_update">程序更新</string>
+  <string name="already_latest">程序已经是最新版本</string>
+  <!-- string for setting frame -->
+  <string name="pref_cate_title_basic_setting">基础设置</string>
+  <string name="pref_cate_title_multi_dict">多词典查询模式设置</string>
+  <string name="pref_title_email">Email</string>
+  <string name="pref_summary_email">你的email地址</string>
+  <string name="pref_dialog_title_email">输入你的Email地址</string>
+  <string name="pref_title_auto_play_pronunciation">自动发音</string>
+  <string name="pref_summary_auto_play_pronunciation">显示解释时自动播放单词发音</string>
+  <string name="pref_title_auto_lookup_clipboard">自动查找剪贴板</string>
+  <string name="pref_summary_auto_lookup_clipboard">窗口激活时自动查找剪贴板</string>
+  <string name="pref_title_use_finger_gesture">使用手势控制</string>
+  <string name="pref_title_high_speed_mode">高速模式</string>
+  <string name="pref_summary_high_speed_mode">高速模式可能存在显示或者链接跳转的兼容问题</string>
+  <string name="pref_title_lock_rotation">禁止重力旋屏</string>
+  <string name="pref_summary_lock_rotation"></string>
+  <string name="pref_title_shake_for_random_entry">摇晃设备显示随机条目</string>
+  <string name="pref_summary_shake_for_random_entry">摇晃设备的时候显示随机条目</string>
+  <string name="pref_title_extra_dict_dir">词库目录:</string>
+  <string name="pref_summary_extra_dict_dir">额外的词库目录</string>
+  <string name="pref_dialog_title_extra_dict_dir">请输入目录路径</string>
+  <string name="pref_title_show_splash">显示启动画面</string>
+  <string name="pref_title_use_built_in_ipa_font">使用内置音标字体</string>
+  <string name="pref_summary_use_built_in_ipa_font">如果你的设备不能正常显示音标，请打开这个选项</string>
+  <string name="pref_title_use_tts">使用TTS进行发音</string>
+  <string name="pref_summary_use_tts">当语音库中没有对应单词发音时，使用TTS引擎发音</string>
+  <string name="pref_title_tts_locale">TTS引擎的语言</string>
+  <string name="pref_dialog_title_tts_locale">语言</string>
+  <string name="pref_title_tts_engine">TTS引擎</string>
+  <string name="pref_cate_title_sound_setting">语音设置</string>
+  <string name="pref_title_auto_sip">自动打开输入法</string>
+  <string name="pref_summary_auto_sip"></string>
+  <string name="pref_title_multi_dict_default_expand_all">默认展开所有条目内容</string>
+  <string name="pref_summary_multi_dict_default_expand_all">默认展开所有条目或者仅展开第一条</string>
+  <string name="pref_title_multi_dict_expand_only_one">只展开选中条目</string>
+  <string name="pref_summary_multi_dict_expand_only_one">点击条目时仅展开选中条目并折叠其他条目</string>
+  <string name="pref_title_show_in_notification">在通知中心中显示</string>
+  <string name="pref_summary_show_in_notification">在通知中心中显示程序图标，方便快速访问</string>
+  <string name="pref_title_use_lru_for_dict_order">自动调整辞典次序</string>
+  <string name="pref_summary_use_lru_for_dict_order">最后打开的辞典会被放到辞典列表的最开始</string>
+  <string name="pref_title_split_view_mode">使用分屏模式</string>
+  <string name="pref_title_use_popover_for_lookup">用弹出窗口显示词典内查找</string>
+  <string name="pref_title_resize_images">调整图片以适应窗口大小</string>
+  <string name="pref_title_play_audio_in_background">在后台播放语音</string>
+  <string name="pref_title_auto_check_update">自动检查更新</string>
+  <!-- alex 2012-12-07 start -->
+  <string name="pref_title_fixed_dict_title">固定辞典标题</string>
+  <string name="pref_summary_fixed_dict_title">当滚动辞典窝内空时固定辞典标题</string>
+  <string name="pref_title_global_clipboard_monitor">监视系统剪贴板</string>
+  <string name="pref_summary_global_clipboard_monitor">当用户在任何地方复制文字时自动弹出浮动窗口翻译</string>
+  <!-- alex 2012-12-07 end -->
+  <string name="un_named_dict_group">未命名分组</string>
+  <string name="please_input_word">请输入查询内容</string>
+  <string name="msg_cannot_add_group">不能把一个分组放进另外一个分组里</string>
+  <string name="msg_dict_exists_in_group">词典已经存在于分组内</string>
+  <string name="find_in_page">查找页面</string>
 </resources>

@@ -602,6 +602,9 @@ public class DictView extends SherlockFragment implements MdxViewListener,
             case R.id.zoom_in:
                 zoomView(true);
                 break;
+            case R.id.find_in_pge:
+                findInPage();
+                break;
             case R.id.zoom_out:
                 zoomView(false);
                 break;
@@ -635,6 +638,13 @@ public class DictView extends SherlockFragment implements MdxViewListener,
         }
         getSherlockActivity().invalidateOptionsMenu();
         return true;
+    }
+
+    private void findInPage() {
+        if(currentView == contentView)
+        {
+            contentView.getHtmlView().loadUrl("javascript:ShowFindInPageDiaglog()");
+        }
     }
 
     AlertDialog.Builder dialogBuilder = null;
