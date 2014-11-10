@@ -123,6 +123,7 @@ public class ImportExportUtil {
                 MdxEngine.getLibMgr().updateDictPref(rootDictRef);
                 //Remove old groups
                 int count = rootDictRef.getChildCount();
+
                 while (count > 1) {
                     for (int i = 0; i < rootDictRef.getChildCount(); i++) {
                         DictPref dictGroup = rootDictRef.getChildDictPrefAtIndex(i);
