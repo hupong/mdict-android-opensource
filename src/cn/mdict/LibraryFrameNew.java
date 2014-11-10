@@ -18,7 +18,6 @@ package cn.mdict;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -313,6 +312,7 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
         if (openedDictGroup != null) {
             exitDictGrupView();
         } else {
+            //exportDictSettings();
             if (MdxEngine.getSettings().getPrefMultiDictLookkupMode()) {
                 if (rootDictRef.hasEnabledChild()) {
                     Intent intent = getIntent().putExtra(SELECTED_LIB_ID, DictPref.kRootDictPrefId);
@@ -322,9 +322,11 @@ public class LibraryFrameNew extends SherlockFragmentActivity {
                     return;
                 }
             }
+
             finish();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

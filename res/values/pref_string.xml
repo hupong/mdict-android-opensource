@@ -45,6 +45,7 @@
     <string name="pref_resize_images">ResizeImages</string>
     <string name="pref_play_audio_in_background">PlayAudioInBackground</string>
     <string name="pref_auto_check_update">AutoCheckUpdate</string>
+    <string name="pref_first_run">FirstRun</string>
     
     <!-- alex 2012-12-07 start -->
     <string name="pref_global_clipboard_monitor">GlobalClipboardMonitor</string>
@@ -73,7 +74,7 @@
     <string name="pref_default_resize_images">true</string>
     <string name="pref_default_play_audio_in_background">true</string>
     <string name="pref_default_auto_check_update">true</string>
-
+    <string name="pref_default_first_run">true</string>
     <string-array name="split_view_mode_entries">
         <item>Off</item>
         <item>On</item>

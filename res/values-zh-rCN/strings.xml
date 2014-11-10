@@ -134,4 +134,15 @@
   <string name="msg_cannot_add_group">不能把一个分组放进另外一个分组里</string>
   <string name="msg_dict_exists_in_group">词典已经存在于分组内</string>
   <string name="find_in_page">查找页面</string>
+  <string name="confirm_load_prev_dict_settings">是否要加载之前导出的词典设置？</string>
+  <string name="title_download_load_prev_dict_settings">导入</string>
+  <string name="menu_export_settings">导出设置</string>
+  <string name="menu_import_settings">导入设置</string>
+  <string name="confirm_import_dict_settings">你确定要导入词典设置吗(现在的设置将会清除）？</string>
+  <string name="warning">警告</string>
+  <string name="import_export">导入/导出</string>
+  <string name="msg_success">成功</string>
+  <string name="title_information">信息</string>
+  <string name="title_warning">警告</string>
+  <string name="no_exported_file">找不到导出文件</string>
 </resources>

@@ -72,7 +72,7 @@ public class DictPref {
      * Field kRootDictPrefId
      */
     public final static int kRootDictPrefId = 0;
-    public final static int kDefaultGrpId=1;
+    public final static int kDefaultGrpId = 1;
 
     /**
      * Field kInvalidDictPrefId
@@ -154,6 +154,7 @@ public class DictPref {
     public native String getFontFace();
 
     public native void setFontFace(String fontFace);
+
     /**
      * Method isDisabled returns the disabled of this DictPref object.
      *
@@ -240,6 +241,29 @@ public class DictPref {
         }
         return hasEnabledChild;
     }
+
+    public boolean childExistsByDictName(String dictName) {
+        return getDictIdByName(dictName) != kInvalidDictPrefId;
+    }
+
+    public int getDictIdByName(String dictName) {
+        DictPref dictPref = getDictByName(dictName);
+        if (dictPref != null)
+            return dictPref.getDictId();
+        return kInvalidDictPrefId;
+    }
+
+    public DictPref getDictByName(String dictName) {
+        DictPref dictPref = null;
+        for (int i = 0; i < getChildCount(); ++i) {
+            if (getChildDictPrefAtIndex(i).getDictName().equals(dictName)) {
+                dictPref = getChildDictPrefAtIndex(i);
+                break;
+            }
+        }
+        return dictPref;
+    }
+
     public void setActualDictName(String dictName) {
         String orgDictName = getDictName();
 
@@ -253,7 +277,7 @@ public class DictPref {
             int slash_pos = orgDictName.lastIndexOf('/');
             dir = orgDictName.substring(0, slash_pos);
         }
-        if(!dir.endsWith("/"))
+        if (!dir.endsWith("/"))
             dir = dir.concat("/");
         setDictName(dir + dictName + ".mdx");
     }
@@ -275,16 +299,16 @@ public class DictPref {
             dot_pos = dictCover.length();
         dictCover = dictCover.substring(0, dot_pos);
         File coverImg = new File(dictCover.concat(".png"));
-        if(coverImg.exists())
+        if (coverImg.exists())
             return coverImg.getPath();
         coverImg = new File(dictCover.concat(".jpg"));
-        if(coverImg.exists())
+        if (coverImg.exists())
             return coverImg.getPath();
         coverImg = new File(dictCover.concat(".jpeg"));
-        if(coverImg.exists())
+        if (coverImg.exists())
             return coverImg.getPath();
         coverImg = new File(dictCover.concat(".bmp"));
-        if(coverImg.exists())
+        if (coverImg.exists())
             return coverImg.getPath();
         return null;
     }

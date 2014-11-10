@@ -20,9 +20,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
-import cn.mdict.R;
 
-import java.util.Date;
+import cn.mdict.R;
 
 /**
  * Class MdxEngineSetting ...
@@ -66,7 +65,7 @@ public class MdxEngineSetting {
     public static String prefPlayAudioInBackground;
     public static String prefAutoCheckUpdate;
     public static String prefLastUpdateCheckDate="LastUpdateCheckDate";
-
+    public static String prefFirstRun;
     public static String prefGlobalClipboardMonitor;//Alex20121207.n
     public static String prefFixedDictTitle;//Alex20121207.n
 
@@ -94,6 +93,8 @@ public class MdxEngineSetting {
     public static boolean prefDefaultResizeImages;
     public static boolean prefDefaultPlayAudioInBackground;
     public static boolean prefDefaultAutoCheckUpdate;
+    public static boolean prefDefaultFirstRun;
+
 
     public static boolean prefDefaultGlobalClipboardMonitor;//Alex20121207.n
     public static boolean prefDefaultFixedDictTitle;//Alex20121207.n
@@ -136,6 +137,7 @@ public class MdxEngineSetting {
             prefGlobalClipboardMonitor = res.getString(R.string.pref_global_clipboard_monitor);//Alex20121207.n
             prefFixedDictTitle = res.getString(R.string.pref_fixed_dict_title);//Alex20121207.n
             prefAutoCheckUpdate = res.getString(R.string.pref_auto_check_update);
+            prefFirstRun = res.getString(R.string.pref_first_run);
 
             prefDefaultTTSLocale = res.getString(R.string.pref_default_tts_locale);
             prefDefaultAutoPlayPronunciation = Boolean.parseBoolean(res.getString(R.string.pref_default_auto_play_pronunciation));
@@ -160,6 +162,7 @@ public class MdxEngineSetting {
             prefDefaultResizeImages=Boolean.parseBoolean(res.getString(R.string.pref_default_resize_images));
             prefDefaultPlayAudioInBackground=Boolean.parseBoolean(res.getString(R.string.pref_default_play_audio_in_background));
             prefDefaultAutoCheckUpdate=Boolean.parseBoolean(res.getString(R.string.pref_default_auto_check_update));
+            prefDefaultFirstRun=Boolean.parseBoolean(res.getString(R.string.pref_default_first_run));
 
             prefDefaultGlobalClipboardMonitor = Boolean.parseBoolean(res.getString(R.string.pref_default_global_clipboard_monitor));//Alex20121207.n
             prefDefaultFixedDictTitle = Boolean.parseBoolean(res.getString(R.string.pref_default_fixed_dict_title));//Alex20121207.n
@@ -507,6 +510,14 @@ public class MdxEngineSetting {
 
     public boolean getPrefAutoCheckUpdate() {
         return appPrefs.getBoolean(prefAutoCheckUpdate, prefDefaultAutoCheckUpdate);
+    }
+
+    public boolean getPrefFirstRun() {
+        return appPrefs.getBoolean(prefFirstRun, prefDefaultFirstRun);
+    }
+
+    public void setPrefFirstRun(boolean value){
+        appPrefs.edit().putBoolean(prefFirstRun, value).commit();
     }
 
     public long getPrefLastUpdateCheckDate(){

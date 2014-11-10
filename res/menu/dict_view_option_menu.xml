@@ -141,6 +141,19 @@
                   android:showAsAction="never" />
         </menu>
     </item>
+    <item android:id="@+id/import_export"
+        android:title="@string/import_export"
+        android:icon="@drawable/ic_info"
+        android:showAsAction="ifRoom">
+        <menu>
+            <item android:id="@+id/exportSettings"
+                android:title="@string/menu_export_settings"
+                android:showAsAction="never"/>
+            <item android:id="@+id/importSettings"
+                android:title="@string/menu_import_settings"
+                android:showAsAction="never"/>
+        </menu>
+    </item>
     <item android:id="@+id/quit"
           android:title="@string/quit"
           android:icon="@drawable/ic_quit"

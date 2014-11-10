@@ -138,4 +138,15 @@
   <string name="msg_cannot_add_group">Cannot add a group to another group</string>
   <string name="msg_dict_exists_in_group">Dictionary already in this group</string>
   <string name="find_in_page">Find In Page</string>
+  <string name="confirm_load_prev_dict_settings">Load previous exported libraries settings?</string>
+  <string name="title_download_load_prev_dict_settings">Import</string>
+  <string name="menu_export_settings">Export Settings</string>
+  <string name="menu_import_settings">Import Settings</string>
+  <string name="confirm_import_dict_settings">Are you sure to import dict settings(existing settings will be removed)?</string>
+  <string name="warning">Warning</string>
+  <string name="import_export">Import/Export</string>
+  <string name="msg_success">Success</string>
+  <string name="title_information">Information</string>
+  <string name="title_warning">Warning</string>
+  <string name="no_exported_file">No exported file found!</string>
 </resources>
