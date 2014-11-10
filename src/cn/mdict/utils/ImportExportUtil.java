@@ -112,15 +112,7 @@ public class ImportExportUtil {
                 MdxEngine.getSettings().setPrefMonitorClipboard(rootDictJson.getBoolean("MonitorClipboard"));
 
                 MdxEngine.saveEngineSettings();
-                theApp.setupAppEnv(context, true);
-                theApp.openMainDictById(DictPref.kInvalidDictPrefId);
-                MdxEngine.refreshDictList();
-                //Save multi-lookup again after finish init
-                MdxEngine.getSettings().setPrefMultiDictLookupMode(rootDictJson.getBoolean("MultiDictLookkupMode"));
-                MdxEngine.saveEngineSettings();
-                rootDictRef = MdxEngine.getLibMgr().getRootDictPref();
-                rootDictRef.setUnionGroup(MdxEngine.getSettings().getPrefMultiDictLookkupMode());
-                MdxEngine.getLibMgr().updateDictPref(rootDictRef);
+
                 //Remove old groups
                 int count = rootDictRef.getChildCount();
 
